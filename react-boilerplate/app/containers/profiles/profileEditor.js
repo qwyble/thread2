@@ -3,8 +3,8 @@ import {
   Button, Modal, Icon, Loader, Portal, Segment, Image, Form,
 } from 'semantic-ui-react';
 import axios from 'axios';
+import isEmail from 'validator/lib/isEmail';
 import ProfileEditFields from '../../components/profile/profileEditFields';
-const isEmail = require('validator/lib/isEmail');
 
 
 class ProfileEditor extends React.Component {

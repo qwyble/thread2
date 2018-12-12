@@ -1,94 +1,40 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import Loadable from 'react-loadable';
-import { Loader } from 'semantic-ui-react';
+
+import LoadableMessagesContainer from 'containers/messages/MessagesContainer/Loadable';
+import LoadableProfileContainer from 'containers/profiles/ProfileContainer/Loadable';
+import LoadableAudioPlayback from 'containers/audioPlayback/AudioPlayback/Loadable';
+import LoadableSongDetails from 'containers/songRenderers/SongDetails/Loadable';
+import LoadableForumSidebar from 'containers/forum/ForumSidebar/Loadable';
+import LoadableFollowers from 'containers/follower/Followers/Loadable';
+import LoadableFollowing from 'containers/follower/Following/Loadable';
+import LoadableExplorer from 'containers/search/Explorer/Loadable';
+import LoadableTopBar from 'containers/topBar/Loadable';
+
+import LoadableRoutedContext from '../../appUtilities/RoutedContext/Loadable';
 
 import logo from './logo.svg';
 
-const LoadingMessagesContainer = Loadable({
-  loader: () => import('../messages/messagesContainer'),
-  loading: Loader,
-});
-
-const LoadingFollowers = Loadable({
-  loader: () => import('../follower/followers'),
-  loading: Loader,
-});
-
-const LoadingFollowing = Loadable({
-  loader: () => import('../follower/following'),
-  loading: Loader,
-});
-
-const LoadingProfileContainer = Loadable({
-  loader: () => import('../profiles/profileContainer'),
-  loading: Loader,
-});
-
-const LoadingAudioPlayback = Loadable({
-  loader: () => import('../audioPlayback/audioPlayback'),
-  loading: Loader,
-});
-
-const LoadingSongDetails = Loadable({
-  loader: () => import('../songRenderers/songDetails'),
-  loading: Loader,
-});
-
-const LoadingRoutedContext = Loadable({
-  loader: () => import('../../appUtilities/routedContext'),
-  loading: Loader,
-});
-
-const LoadingExplorer = Loadable({
-  loader: () => import('../search/explorer'),
-  loading: Loader,
-});
-
-
-const LoadingForumSidebarLeftOverlay = Loadable({
-  loader: () => import('../forum/forumSideBar'),
-  loading: Loader,
-});
-
-const LoadingSidebarTopOverlay = Loadable({
-  loader: () => import('../topBar/topBar'),
-  loading: Loader,
-  render(loaded, props) {
-    const Component = loaded.default;
-    return <Component {...props} />;
-  },
-});
-
-/* App controls state for individual songs
-and for the list of songs to be rendered.
-it also renders the two main components: topBar and sideBar. */
 const Root = () => (
   <div>
     <div>
-      <div>
-        <LoadingSidebarTopOverlay logo={logo} />
-      </div>
-
+      <div><LoadableTopBar logo={logo} /></div>
       <div>
         <Switch>
-          <Route path="/messages" component={LoadingMessagesContainer} />
-          <Route path="/followers" component={LoadingFollowers} />
-          <Route path="/following" component={LoadingFollowing} />
-          <Route path="/forum" component={LoadingForumSidebarLeftOverlay} />
-          <Route path="/explore" component={LoadingExplorer} />
-          <Route path="/stream" component={LoadingRoutedContext} />
-          <Route path="/playlist/:playlist" component={LoadingRoutedContext} />
-          <Route exact path="/edit" component={LoadingProfileContainer} />
+          <Route path="/playlist/:playlist" component={LoadableRoutedContext} />
           <Route path="/profile/:profile" component={LoadingRoutedContext} />
-          <Route path="/song/:song" component={LoadingSongDetails} />
-          <Route path="/" component={LoadingRoutedContext} />
+          <Route exact path="/edit" component={LoadableProfileContainer} />
+          <Route path="/messages" component={LoadableMessagesContainer} />
+          <Route path="/song/:song" component={LoadableSongDetails} />
+          <Route path="/stream" component={LoadableRoutedContext} />
+          <Route path="/followers" component={LoadableFollowers} />
+          <Route path="/following" component={LoadableFollowing} />
+          <Route path="/forum" component={LoadableForumSidebar} />
+          <Route path="/explore" component={LoadableExplorer} />
+          <Route path="/" component={LoadableRoutedContext} />
         </Switch>
       </div>
-
-      <div>
-        <LoadingAudioPlayback />
-      </div>
+      <div><LoadableAudioPlayback /></div>
     </div>
   </div>
 );

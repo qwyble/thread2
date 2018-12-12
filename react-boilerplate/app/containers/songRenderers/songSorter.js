@@ -1,6 +1,6 @@
 import React from 'react';
 import {Table, Loader, Icon} from 'semantic-ui-react';
-import PlaylistPortal from './playlistPortal.js';
+import PlaylistPortal from 'containers/songRenderers/PlaylistPortal';
 import RenderClonePortal from '../../components/sidebarUtilities/renderClonePortal.js';
 import WrappedSongRows from '../../components/sidebarUtilities/wrappedSongRows.js';
 import RemoveSongFromPlaylist from '../../components/sidebarUtilities/removeSongFromPlaylist.js';
