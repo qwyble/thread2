@@ -1,7 +1,28 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Loader } from 'semantic-ui-react';
+
+import { createStructuredSelector } from 'reselect';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+
+import injectReducer from 'utils/injectReducer';
+import injectSaga from 'utils/injectSaga';
+
 import FetchCategories from 'containers/sideBar/fetchCategories';
-import { AppContext } from '../ownerContext';
+
+import {
+  makeSelectProfile,
+  makeSelectIsOwner,
+  makeSelectIsLoading,
+  makeSelectCategories,
+} from './selectors';
+
+import { makeSelectUser } from '../UserContainer/selectors';
+import { getCategories } from './actions';
+import reducer from './reducer';
+import saga from './saga';
+
 
 // when the component mounts or updates,
 // if the profile being viewed has changed,
@@ -9,51 +30,55 @@ import { AppContext } from '../ownerContext';
 // then use profile to render categories and set
 // owner based on categories rendered
 class RoutedContext extends React.Component {
-  state = {
-    profile: '',
-  };
 
   componentDidMount() {
-    this.getProfile();
+    this.props.getCategories(this.props.profile);
   }
-
-  componentDidUpdate() {
-    this.getProfile();
-  }
-
-  getProfile = () => {
-    if (this.props.match.path.includes('/profile')) {
-      if (this.props.match.params.profile !== this.state.profile) {
-        const profile = this.props.match.params.profile;
-        this.setState({ profile });
-      }
-    } else if (
-      this.props.match.path === '/stream' ||
-      this.props.match.path === '/edit'
-    ) {
-      if (this.state.profile !== '') {
-        this.setState({ profile: '' });
-      }
-    }
-  };
 
   render() {
-    return (
-      <AppContext.Consumer>
-        {context => {
-          if (context.user)
-            return (
-              <FetchCategories
-                user={context.user}
-                profile={this.state.profile}
-                isOwner={context.isOwner}
-                setOwner={context.onSetOwner}
-              />
-            );
-          return <Loader active />;
-        }}
-      </AppContext.Consumer>
-    );
+    if (this.props.user) {
+      return (
+        <FetchCategories
+          user={this.props.user}
+          profile={this.props.profile}
+          isOwner={this.props.isOwner}
+        />
+      );
+    }
+    return <Loader active />;
   }
 }
-export default RoutedContext;
+
+RoutedContext.propTypes = {
+  getCategories: PropTypes.func,
+  categories: PropTypes.object,
+  profile: PropTypes.number,
+  isOwner: PropTypes.bool,
+  user: PropTypes.object,
+};
+
+const mapStateToProps = createStructuredSelector({
+  categories: () => makeSelectCategories(),
+  isLoading: () => makeSelectIsLoading(),
+  profile: () => makeSelectProfile(),
+  isOwner: () => makeSelectIsOwner(),
+  user: () => makeSelectUser(),
+});
+
+const mapDispatchToProps = {
+  getCategories,
+};
+
+const withReducer = injectReducer({ key: 'ProfileContext', reducer });
+const withSaga = injectSaga({ key: 'ProfileContext', saga });
+
+const withConnect = connect({
+  mapStateToProps,
+  mapDispatchToProps,
+});
+
+export default compose(
+  withSaga,
+  withReducer,
+  withConnect,
+)(RoutedContext);

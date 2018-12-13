@@ -27,11 +27,9 @@ const Protected = (props) => {
       <Route
         path="/"
         render={() => (
-          <AppOwnerProvider user={props.user}>
-            <AppProvider>
-              <Root user={props.user} />
-            </AppProvider>
-          </AppOwnerProvider>
+          <AppProvider>
+            <Root />
+          </AppProvider>
         )}
       />
     </Switch>

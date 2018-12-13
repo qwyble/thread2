@@ -11,6 +11,7 @@ class AppOwnerProvider extends React.Component {
     user: this.props.user,
     isOwner: true,
     owner: '',
+    onSetOwner: this.handleSetOwner,
   };
 
   componentDidUpdate() {
@@ -30,12 +31,8 @@ class AppOwnerProvider extends React.Component {
   };
 
   render() {
-    const handlers = {
-      onSetOwner: this.handleSetOwner,
-    };
-
     return (
-      <AppContext.Provider value={{ ...this.state, ...handlers }}>
+      <AppContext.Provider value={this.state}>
         {this.props.children}
       </AppContext.Provider>
     );

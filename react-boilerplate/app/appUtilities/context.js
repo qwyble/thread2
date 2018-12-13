@@ -9,15 +9,20 @@ const AppContext = React.createContext();
 class AppProvider extends React.Component {
   state = {
     songs: [],
-    nowPlaying: {},
     paused: true,
+    nowPlaying: {},
+    onEnd: this.handleEnd,
+    onPlaying: this.handlePlaying,
+    onPausing: this.handlePausing,
+    skipBack: this.handleSkipBack,
+    onSetSongs: this.handleSetSongs,
   };
 
-  handleSetSongs = songs => {
+  handleSetSongs = (songs) => {
     this.setState({ songs });
   };
 
-  handlePlaying = song => {
+  handlePlaying = (song) => {
     this.setState({
       nowPlaying: song,
       paused: false,
@@ -61,16 +66,8 @@ class AppProvider extends React.Component {
   };
 
   render() {
-    const handlers = {
-      onPlaying: this.handlePlaying,
-      onEnd: this.handleEnd,
-      onPausing: this.handlePausing,
-      onSetSongs: this.handleSetSongs,
-      skipBack: this.handleSkipBack,
-    };
-
     return (
-      <AppContext.Provider value={{ ...this.state, ...handlers }}>
+      <AppContext.Provider value={this.state}>
         {this.props.children}
       </AppContext.Provider>
     );

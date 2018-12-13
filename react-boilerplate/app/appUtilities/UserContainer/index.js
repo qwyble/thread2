@@ -9,7 +9,6 @@ import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 
 import {
-  makeSelectUser,
   makeSelectIsLoggedIn,
   makeSelectIsLoading,
   makeSelectErrorMsg,
@@ -66,7 +65,6 @@ class UserContainer extends React.Component {
                   {...props}
                   isLoggedIn={this.props.isLoggedIn}
                   onLogout={this.handleLogout}
-                  user={this.props.user}
                 />
               )}
             />
@@ -79,19 +77,17 @@ class UserContainer extends React.Component {
 
 
 UserContainer.propTypes = {
-  user: PropTypes.object,
   isLoggedIn: PropTypes.bool,
 };
 
 
 const mapStateToProps = createStructuredSelector({
-  user: makeSelectUser(),
   isLoggedIn: makeSelectIsLoggedIn(),
   isLoading: makeSelectIsLoading(),
   errorMsg: makeSelectErrorMsg(),
 });
 
-export function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(dispatch) {
   return {
     onAuth: (creds, ext) => dispatch(authenticate(creds, ext)),
   };

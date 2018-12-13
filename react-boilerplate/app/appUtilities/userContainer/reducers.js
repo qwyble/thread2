@@ -2,14 +2,15 @@ import { fromJS } from 'immutable';
 
 import { AUTH, AUTH_SUCCESS, AUTH_FAILED } from './constants';
 
-const initialState = fromJS({
-  user: {},
-  isLoggedIn: false,
-  isLoading: true,
-  error: false,
-});
 
 const blankError = fromJS({});
+
+const initialState = fromJS({
+  user: fromJS({}),
+  isLoggedIn: false,
+  isLoading: true,
+  error: blankError,
+});
 
 function userReducer(state = initialState, action) {
   switch (action.type) {
@@ -26,7 +27,7 @@ function userReducer(state = initialState, action) {
     case AUTH_FAILED:
       return state
         .set('isLoading', false)
-        .set('error', action.error);
+        .set('error', fromJS(action.error));
     default:
       return state;
   }
