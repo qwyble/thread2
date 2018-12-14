@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Sidebar, Segment, Button, Menu, Icon, Loader } from 'semantic-ui-react';
-import CategoryMenuItem from '../../components/sidebarUtilities/categoryMenuItem.js';
-import AddCategory from './addCategory.js';
-import WrappedPlaylistController from '../../components/sidebarUtilities/wrappedPlaylistController.js';
+import CategoryMenuItem from '../../../components/sidebarUtilities/categoryMenuItem.js';
+import AddCategory from '../addCategory.js';
+import WrappedPlaylistController from '../../../components/sidebarUtilities/wrappedPlaylistController.js';
 
 /*
 SidebarLeftOverlay handles selecting playlists and renders

@@ -9,57 +9,78 @@ import { compose } from 'redux';
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 
-import FetchCategories from 'containers/sideBar/fetchCategories';
+import SideBar from 'containers/sideBar/SideBar';
 
 import {
   makeSelectProfile,
   makeSelectIsOwner,
-  makeSelectIsLoading,
   makeSelectCategories,
+  makeSelectProfileParam,
+  makeSelectCatsIsLoading,
+  makeSelectProfileIsLoading,
 } from './selectors';
 
 import { makeSelectUser } from '../UserContainer/selectors';
-import { getCategories } from './actions';
+import { getCategories, getProfile } from './actions';
 import reducer from './reducer';
 import saga from './saga';
 
+// sets the profile being viewed,
+// fetches categories to display
+// based on profile.
 
-// when the component mounts or updates,
-// if the profile being viewed has changed,
-// tell fetchCategories. FetchCategoies will
-// then use profile to render categories and set
-// owner based on categories rendered
 class RoutedContext extends React.Component {
 
   componentDidMount() {
-    this.props.getCategories(this.props.profile);
+    if (this.props.profileParam) this.props.getProfile(this.props.profileParam)
+    else this.props.getCategories(this.props.profile.get('idUsers'));
   }
 
   render() {
     if (this.props.user) {
-      return (
-        <FetchCategories
-          user={this.props.user}
-          profile={this.props.profile}
-          isOwner={this.props.isOwner}
-        />
-      );
+      if (!this.props.profileIsLoading) {
+        if (!this.props.profileError) {
+          return (
+            <SideBar
+              _loading={this.props.catsIsLoading}
+              categories={this.props.categories}
+              getCats={this.props.getCategories}
+              profile={this.props.profile}
+              isOwner={this.props.isOwner}
+              owner={this.props.profile}
+            />
+          );
+        }
+        return (
+          <div>
+            {this.props.profileError}
+          </div>
+        );
+      }
     }
     return <Loader active />;
   }
 }
 
 RoutedContext.propTypes = {
+  profileIsLoading: PropTypes.bool,
+  profileError: PropTypes.object,
   getCategories: PropTypes.func,
+  catsIsLoading: PropTypes.bool,
   categories: PropTypes.object,
-  profile: PropTypes.number,
+  getProfile: PropTypes.func,
+  profile: PropTypes.object,
+  param: PropTypes.number,
   isOwner: PropTypes.bool,
   user: PropTypes.object,
 };
 
 const mapStateToProps = createStructuredSelector({
+  profileIsLoading: () => makeSelectProfileIsLoading(),
+  catsIsLoading: () => makeSelectCatsIsLoading(),
+  profileParam: () => makeSelectProfileParam(),
+  profileError: () => makeSelectProfileError(),
   categories: () => makeSelectCategories(),
-  isLoading: () => makeSelectIsLoading(),
   profile: () => makeSelectProfile(),
   isOwner: () => makeSelectIsOwner(),
   user: () => makeSelectUser(),
@@ -67,14 +88,15 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = {
   getCategories,
+  getProfile,
 };
 
 const withReducer = injectReducer({ key: 'ProfileContext', reducer });
 const withSaga = injectSaga({ key: 'ProfileContext', saga });
 
 const withConnect = connect({
-  mapStateToProps,
   mapDispatchToProps,
+  mapStateToProps,
 });
 
 export default compose(
