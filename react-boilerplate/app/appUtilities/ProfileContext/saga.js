@@ -1,21 +1,17 @@
 import axios from 'axios';
 import { call, takeLatest, put } from 'redux-saga/effects';
-import { GET_CATS, SET_PROFILE, GET_PROFILE } from './constants';
+import { GET_PROFILE } from './constants';
 import {
-  getCats,
-  getCatsFailed,
-  getCatsSuccess,
   getProfileFailed,
   getProfileSuccess,
 } from './actions';
 
 
 export default function* rootSaga() {
-  yield takeLatest(GET_CATS, getCategories);
   yield takeLatest(GET_PROFILE, getProfile);
-  yield takeLatest(SET_PROFILE, getCategories);
 }
 
+/*
 
 function* getCategories(action) {
   try {
@@ -26,17 +22,28 @@ function* getCategories(action) {
     yield put(getCatsFailed, error);
   }
 }
-
+*/
 function* getProfile(action) {
   try {
     const profile = yield call(getProfileRequest, action.profileId);
     yield put(getProfileSuccess, profile);
-    yield put(getCats, action.profileId);
   } catch (error) {
     yield put(getProfileFailed, error);
   }
 }
 
+function getProfileRequest(profileId) {
+  return axios({
+    method: 'get',
+    url: `https://thread-204819.appspot.com/getProfile/${profileId}`,
+    withCredentials: true,
+  }).then(response => response.data).catch((err) => {
+    throw new Error(err);
+  });
+}
+
+
+/*
 
 function getUrl(profileId) {
   if (profileId) return `https://thread-204819.appspot.com/getPlaylists/${profileId}`;
@@ -61,6 +68,6 @@ function getCatsRequest(url) {
     return cats;
   });
 }
+*/
 
 
-function getProfileRequest()

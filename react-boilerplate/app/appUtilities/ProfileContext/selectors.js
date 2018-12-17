@@ -31,9 +31,7 @@ export const makeSelectProfile = () => createSelector(
 
 export const makeSelectProfileId = () => createSelector(
   makeSelectProfile,
-  makeSelectProfileParam,
-  (profile, param) => {
-    if (param) return param;
+  (profile) => {
     return profile.get('idUsers');
   }
 );
