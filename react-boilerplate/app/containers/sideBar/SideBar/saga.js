@@ -1,12 +1,18 @@
 import { call, takeLatest, put, select } from 'redux-saga/effects';
 import axios from 'axios';
 import { GET_CATEGORIES } from './constants';
-import { getCategoriesSuccess, getCategoriesFailed } from './actions';
+import {
+  getCategoriesSuccess,
+  getCategoriesFailed,
+  addCategorySuccess,
+  addCategoryFailed,
+} from './actions';
 import { makeSelectProfileId } from '../../../appUtilities/ProfileContext/selectors';
 
 
 export default function* sideBarSaga() {
   yield takeLatest(GET_CATEGORIES, getCategories);
+  yield takeLatest(ADD_CATEGORY, addCategory);
 }
 
 function* getCategories() {
@@ -17,6 +23,15 @@ function* getCategories() {
     yield put(getCategoriesSuccess, cats);
   } catch (error) {
     yield put(getCategoriesFailed, error);
+  }
+}
+
+function* addCategory() {
+  try {
+    const category = yield call(addCatRequest, action.category);
+    yield put(addCategorySuccess, category);
+  } catch (err) {
+    yield put(addCategoryFailed, err);
   }
 }
 
@@ -34,14 +49,26 @@ function getCatsRequest(url) {
     withCredentials: true,
   }).then((categories) => {
     const catpls = categories.data;
-    const cats = Object.values(
+    const categories2 = Object.values(
       catpls.reduce((cats, { catname, catid, plname, plid, isPublic }) => {
         if (!(catid in cats)) { cats[catid] = { catname, catid, pls: [] }; }
         if (plid) { cats[catid].pls.push({ plname, plid, isPublic }); }
         return cats;
       }, {})
     );
-    return cats;
+    return categories2;
+  }).catch((err) => {
+    throw new Error(err);
   });
 }
 
+function addCatRequest(category) {
+  return axios({
+    method: 'post',
+    url: 'https://thread-204819.appspot.com/addCategory',
+    data: { category },
+    withCredentials: true,
+  }).then(result => result.data).catch((err) => {
+    throw new Error(err);
+  });
+}

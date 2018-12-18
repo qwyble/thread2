@@ -5,16 +5,21 @@ import {
   GET_CATEGORIES,
   GET_CATEGORIES_SUCCESS,
   GET_CATEGORIES_FAILED,
+  ADD_CATEGORY_ATTEMPT,
+  ADD_CATEGORY_SUCCESS,
+  ADD_CATEGORY_FAILED,
 } from './constants';
 
 const blankError = fromJS({});
 
 const initialState = fromJS({
   categories: fromJS({}),
+  isAddCatLoading: false,
   selectedPlaylist: '',
   isVisible: true,
   isLoading: true,
   error: blankError,
+  addCatError: blankError,
 });
 
 function sideBarReducer(state = initialState, action) {
@@ -29,12 +34,24 @@ function sideBarReducer(state = initialState, action) {
         .set('error', blankError);
     case (GET_CATEGORIES_SUCCESS):
       return state
-        .set('categories', action.cats)
+        .set('categories', fromJS(action.cats))
         .set('isLoading', false);
     case (GET_CATEGORIES_FAILED):
       return state
         .set('isLoading', false)
-        .set('error', action.error);
+        .set('error', fromJS(action.error));
+    case (ADD_CATEGORY_ATTEMPT):
+      return state
+        .set('isAddCatLoading', true)
+        .set('addCatError', blankError);
+    case (ADD_CATEGORY_SUCCESS):
+      return state
+        .set('isAddCatLoading', false)
+        .update('categories', categories => categories.push(fromJS(action.category)));
+    case (ADD_CATEGORY_FAILED):
+      return state
+        .set('isAddCatLoading', false)
+        .set('addCatError', fromJS(action.error));
     default:
       return state;
   }

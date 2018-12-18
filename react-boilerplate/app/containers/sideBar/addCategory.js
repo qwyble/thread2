@@ -1,11 +1,11 @@
 import React from 'react';
-import RenderAddCategory from '../../components/sidebarUtilities/renderAddCategory';
 import axios from 'axios';
-import {Loader} from 'semantic-ui-react';
+import { Loader } from 'semantic-ui-react';
+import RenderAddCategory from '../../components/sidebarUtilities/renderAddCategory';
 
 
 
-class AddCategory extends React.Component{
+class AddCategory extends React.Component {
 
   state = {
     _loading: false,
@@ -28,22 +28,21 @@ class AddCategory extends React.Component{
   }
 
 
-  render(){
+  render() {
 
-    return(
+    return (
       <div>
-        <div>
-          <RenderAddCategory
-            onToggle={this.handleToggle}
-            onAddCategory={this.handleAddCategory}
-            err={this.state.err}
-          />
-        </div>
         {this.state._loading ?
-          <Loader active={true} /> :
-          <div></div>
+          <Loader active />
+          : (
+            <div>
+              <RenderAddCategory
+                onAddCategory={this.handleAddCategory}
+                err={this.state.err}
+              />
+            </div>
+          )
         }
-
       </div>
     )
   }

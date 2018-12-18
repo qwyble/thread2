@@ -2,8 +2,7 @@ import React from 'react';
 import {Button, Icon, Input, Form} from 'semantic-ui-react';
 import {Transition} from 'react-transition-group'
 
-/* renders either 'add category' button or
-form to add category.*/
+
 class RenderAddCategory extends React.Component{
 
   state = {

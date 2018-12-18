@@ -4,6 +4,9 @@ import {
   GET_CATEGORIES,
   GET_CATEGORIES_SUCCESS,
   GET_CATEGORIES_FAILED,
+  ADD_CATEGORY_ATTEMPT,
+  ADD_CATEGORY_SUCCESS,
+  ADD_CATEGORY_FAILED,
 } from './constants';
 
 
@@ -41,3 +44,22 @@ export function getCategoriesFailed(error) {
   };
 }
 
+export function addCategory() {
+  return {
+    type: ADD_CATEGORY_ATTEMPT,
+  };
+}
+
+export function addCategorySuccess(category) {
+  return {
+    type: ADD_CATEGORY_SUCCESS,
+    category,
+  };
+}
+
+export function addCategoryFailed(error) {
+  return {
+    type: ADD_CATEGORY_FAILED,
+    error,
+  };
+}
