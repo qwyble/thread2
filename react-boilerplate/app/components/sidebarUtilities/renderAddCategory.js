@@ -3,11 +3,11 @@ import {Button, Icon, Input, Form} from 'semantic-ui-react';
 import {Transition} from 'react-transition-group'
 
 
-class RenderAddCategory extends React.Component{
+class RenderAddCategory extends React.Component {
 
   state = {
     categoryToAdd: '',
-    err: this.props.err,
+    error: this.props.error,
     displayForm: false,
     renderForm: false
   }
@@ -15,7 +15,7 @@ class RenderAddCategory extends React.Component{
   handleInputChange = (e) => {
     var value = e.target.value;
 
-    this.setState({categoryToAdd: value, err: ''});
+    this.setState({categoryToAdd: value, error: ''});
   }
 
 
@@ -25,7 +25,7 @@ class RenderAddCategory extends React.Component{
 
   validate = () => {
     if(!this.state.categoryToAdd) return true;
-    if(this.state.err) return true;
+    if(this.state.error) return true;
     else return false;
   }
 
@@ -86,9 +86,9 @@ class RenderAddCategory extends React.Component{
                 :
                 <div></div>
               }
-              {this.props.err ?
+              {this.props.error ?
                 <Button fluid icon inverted size='mini' color='blue'>
-                  {this.props.err}
+                  {this.props.error}
                 </Button> :
                 <div></div>
               }
