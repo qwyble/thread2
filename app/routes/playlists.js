@@ -38,28 +38,13 @@ module.exports = function(app){
     playlist.getCats(
       req.session.user.idUsers,
       req.params.profile
-    ).then((cats) => {
-      playlist.getCatOwner(
-        req.params.profile
-      ).then((owner) => {
-        var data = {cats: cats, owner: owner};
-        return data;
-      }).then((data) => {res.status(200).send(data);});
-    })
-  })
-
-  app.get('/getPlaylists', function(req, res){
-    playlist.getCats(
-      req.session.user.idUsers
-    ).then((cats) => {
-      playlist.getCatOwner(
-        req.session.user.idUsers
-      ).then((owner) => {
-        var data = {cats: cats, owner: owner};
-        return data;
-      }).then((data) => {res.status(200).send(data);})
+    ).then((data) => {
+      res.status(200).send(data);
+    }).catch((err) => {
+      res.status(400).send(err);
     });
-  })
+    })
+  });
 
   app.post('/renameCat', function(req, res){
     playlist.renameCategory(

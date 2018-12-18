@@ -7,7 +7,7 @@ const blankError = fromJS({});
 const initialState = fromJS({
   error: blankError,
   profile: blankProfile,
-  profileIsLoading: false,
+  isLoading: true,
   profileError: blankError,
 });
 
@@ -15,18 +15,19 @@ function profileReducer(state = initialState, action) {
   switch (action.type) {
     case SET_PROFILE:
       return state
-        .set('profile', fromJS(action.profile));
+        .set('profile', fromJS(action.profile))
+        .set('isLoading', false);
     case GET_PROFILE:
       return state
-        .set('profileIsLoading', true)
+        .set('isLoading', true)
         .set('profileError', blankError);
     case GET_PROFILE_SUCCESS:
       return state
-        .set('profileIsLoading', false)
+        .set('isLoading', false)
         .set('profile', fromJS(action.profile);
     case GET_PROFILE_FAILED:
       return state
-        .set('profileIsLoading',false)
+        .set('isLoading',false)
         .set('profileError', fromJS(action.error));
     default:
       return state;

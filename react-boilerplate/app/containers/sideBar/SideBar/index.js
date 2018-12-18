@@ -1,112 +1,152 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Sidebar, Segment, Button, Menu, Icon, Loader } from 'semantic-ui-react';
-import CategoryMenuItem from '../../../components/sidebarUtilities/categoryMenuItem.js';
-import AddCategory from '../addCategory.js';
-import WrappedPlaylistController from '../../../components/sidebarUtilities/wrappedPlaylistController.js';
 
-/*
-SidebarLeftOverlay handles selecting playlists and renders
-child components which render categories,
-playlists, songs, and methods for sorting.
-*/
+
+import { compose }  from 'redux';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+
+import injectSaga from 'utils/injectSaga';
+import injectReducer from 'utils/injectReducer';
+
+import CategoryMapper from 'containers/sideBarUtils/CategoryMapper';
+import WrappedPlaylistController from 'components/sidebarUtilities/wrappedPlaylistController';
+
+import {
+  makeSelectIsLoading,
+  makeSelectVisibility,
+  makeSelectPlaylistParam,
+} from './selectors';
+import { makeSelectIsOwner, makeSelectProfile } from '../../../appUtilities/ProfileContext/selectors';
+
+import {
+  toggleVisibility,
+  setPlaylist,
+} from './actions';
+
+import reducer from './reducer';
+import saga from './saga';
+
+import AddCategory from '../addCategory';
+
 
 class SidebarLeftOverlay extends Component {
-  constructor(){
-    super()
 
-    this.state = {
-      selectedPlaylist: '',
-      isPublic: false,
-      visible: true,
-    }
-  }
-
-
-  static getDerivedStateFromProps(props, state){
-    var path = window.location.pathname;
-    if(path === '/stream' || path.includes('/profile')) return { selectedPlaylist: '' }
-    else if(path.includes('/playlist')) return {selectedPlaylist: path.slice(10)}
-    else return {}
-  }
-
-
-  toggleVisibility = () => { this.setState({ visible: !this.state.visible }) }
-
-
-  handleSelectPlaylist = (e, data) => {
-    this.setState({ selectedPlaylist: e.target.value, isPublic: data.ispublic });
+  componentDidMount() {
+    this.props.setPlaylist(this.props.playlistParam);
   }
 
   render() {
-
     return (
       <div>
         <div>
-        <Sidebar.Pushable as={Segment} className='primaryContainer'>
-          <Sidebar
-            inverted vertical
-            width='thin' as={Menu}
-            icon='labeled' animation='push'
-            visible={this.state.visible}>
+          <Sidebar.Pushable as={Segment} className='primaryContainer'>
+            <Sidebar
+              inverted
+              vertical
+              width="thin"
+              icon="labeled"
+              animation="push"
+              as={Menu}
+              visible={this.state.visible}>
 
-            {this.props.owner ?
-              <Menu.Item style={{color: '#54c8ff'}}>
-                {
-                  !this.props.isOwner ?
-                  <div>{this.props.owner.userName}'s playlists:</div>
-                  : <div>Your playlists:</div>
-                }
-              </Menu.Item>
-              :
-              <div></div>
-            }
+              {this.props.owner ?
+                (
+                  <Menu.Item style={{color: '#54c8ff'}}>
+                    {
+                      !this.props.isOwner ?
+                        (
+                          <div>
+                            {this.props.owner.userName}
+                            's playlists:
+                          </div>
+                        )
+                        : <div>Your playlists:</div>
+                    }
+                  </Menu.Item>
+                )
+                : <div></div>
+              }
 
 
               <div>
-                <CategoryMenuItem
-                  getCats={this.props.getCats}
-                  isOwner={this.props.isOwner}
-                  categories={this.props.categories}
-                  onSelectPlaylist={this.handleSelectPlaylist}
-                />
-              <div>
-                {this.props._loading ?
-                  <Loader active />:
-                    <div>
-                      {this.props.isOwner ?
-                        <AddCategory getCats={this.props.getCats}/>
-                        : <div></div>}
-                    </div>
-                }
+                <CategoryMapper />
+                <div>
+                  {this.props.isLoading ?
+                    <Loader active />
+                    : (
+                      <div>
+                        {this.props.isOwner ?
+                          <AddCategory />
+                          : <div></div>}
+                      </div>
+                    )
+                  }
+                </div>
               </div>
-            </div>
 
 
-          </Sidebar>
-          <Sidebar.Pusher className='pusherContainer'>
+            </Sidebar>
+            <Sidebar.Pusher className="pusherContainer">
 
-            <Button inverted icon
-              className='sidebarButton'
-              attached='right' color='blue'
-              onClick={this.toggleVisibility}>
-              <Icon name={this.state.visible ? 'left arrow' : 'right arrow'}/>
-            </Button>
+              <Button
+                icon
+                inverted
+                color="blue"
+                attached="right"
+                className="sidebarButton"
+                onClick={this.props.toggleVisibility}>
+                <Icon name={this.props.visible ? 'left arrow' : 'right arrow'}/>
+              </Button>
 
-            <WrappedPlaylistController
-              isOwner={this.props.isOwner}
-              isPublic={this.state.isPublic}
-              selectedPlaylist={this.state.selectedPlaylist}
-              categories={this.props.categories}
-              refreshCategories={this.props.getCats}
-            />
+              <WrappedPlaylistController />
 
-          </Sidebar.Pusher>
-        </Sidebar.Pushable>
-      </div>
+            </Sidebar.Pusher>
+          </Sidebar.Pushable>
+        </div>
 
       </div>
-    )
+    );
   }
 }
 
-export default SidebarLeftOverlay;
+
+SidebarLeftOverlay.propTypes = {
+  toggleVisibility: PropTypes.func,
+  playlistParam: PropTypes.string,
+  categories: PropTypes.object,
+  setPlaylist: PropTypes.func,
+  isLoading: PropTypes.bool,
+  isOwner: PropTypes.bool,
+  visible: PropTypes.bool,
+  owner: PropTypes.object,
+}
+
+
+const mapStateToProps = createStructuredSelector({
+  playlistParam: () => makeSelectPlaylistParam(),
+  isLoading: () => makeSelectIsLoading(),
+  visible: () => makeSelectVisibility(),
+  isOwner: () => makeSelectIsOwner(),
+  owner: () => makeSelectProfile(),
+});
+
+const mapDispatchToProps = {
+  toggleVisibility,
+  setPlaylist,
+}
+
+const withReducer = injectReducer({ key: sideBar, reducer });
+const withSaga = injectSaga({ key: sideBar, saga });
+
+const withConnect = connect({
+  mapDispatchToProps,
+  mapStateToProps,
+});
+
+export default compose({
+  withSaga,
+  withReducer,
+  withConnect,
+})(SidebarLeftOverlay);

@@ -13,7 +13,8 @@ import SideBar from 'containers/sideBar/SideBar';
 
 import {
   makeSelectProfileParam,
-  makeSelectProfileIsLoading,
+  makeSelectProfileError,
+  makeSelectIsLoading,
 } from './selectors';
 
 import { makeSelectUser } from '../UserContainer/selectors';
@@ -26,21 +27,21 @@ import saga from './saga';
 class RoutedContext extends React.Component {
 
   componentDidMount() {
+    this.setProfile();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.profileParam !== prevProps.profileParam) this.setProfile();
+  }
+
+  setProfile() {
     if (this.props.profileParam) this.props.getProfile(this.props.profileParam);
     else this.props.setProfile(this.props.user);
   }
 
-  componentDidUpdate(prevProps) {
-    if (this.props.profileParam !== prevProps.profileParam) {
-      if (this.props.profileParam) this.props.getProfile(this.props.profileParam);
-      else this.props.setProfile(this.props.user);
-    }
-
-  }
-
   render() {
     if (this.props.user) {
-      if (!this.props.profileIsLoading) {
+      if (!this.props.isLoading) {
         if (!this.props.profileError) return <SideBar />;
         return (
           <div>
@@ -54,7 +55,7 @@ class RoutedContext extends React.Component {
 }
 
 RoutedContext.propTypes = {
-  profileIsLoading: PropTypes.bool,
+  isLoading: PropTypes.bool,
   profileParam: PropTypes.number,
   profileError: PropTypes.object,
   getProfile: PropTypes.func,
@@ -63,7 +64,7 @@ RoutedContext.propTypes = {
 };
 
 const mapStateToProps = createStructuredSelector({
-  profileIsLoading: () => makeSelectProfileIsLoading(),
+  isLoading: () => makeSelectIsLoading(),
   profileParam: () => makeSelectProfileParam(),
   profileError: () => makeSelectProfileError(),
   user: () => makeSelectUser(),

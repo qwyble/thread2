@@ -52,12 +52,17 @@ export const makeSelectIsOwner = () => createSelector(
   }
 );
 
-export const makeSelectCatsIsLoading = () => createSelector(
+export const makeSelectCatsisLoading = () => createSelector(
   selectProfileContext,
-  profileContext => profileContext.get('catsIsLoading')
+  profileContext => profileContext.get('catsisLoading')
 );
 
-export const makeSelectProfileIsLoading = () => createSelector(
+export const makeSelectIsLoading = () => createSelector(
   selectProfileContext,
-  profileContext => profileContext.get('profileIsLoading')
+  profileContext => profileContext.get('isLoading')
+);
+
+export const makeSelectProfileError = () => createSelector(
+  selectProfileContext,
+  profileContext => profileContext.get('error')
 );
