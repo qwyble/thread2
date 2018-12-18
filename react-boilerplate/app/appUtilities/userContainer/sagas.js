@@ -1,11 +1,11 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
 import { authSuccess, authFailed } from './actions';
-import { AUTH } from './constants';
+import { AUTH_ATTEMPT } from './constants';
 
 
 export default function* rootSaga() {
-  yield takeLatest(AUTH, auth);
+  yield takeLatest(AUTH_ATTEMPT, auth);
 }
 
 function* auth(action) {

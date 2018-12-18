@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Sidebar, Segment, Button, Menu, Icon, Loader } from 'semantic-ui-react';
+import { Sidebar, Segment, Button, Menu, Icon } from 'semantic-ui-react';
 
 
 import { compose }  from 'redux';
@@ -10,11 +10,13 @@ import { createStructuredSelector } from 'reselect';
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 
-import CategoryMapper from 'containers/sideBarUtils/CategoryMapper';
+import CategoryMapper from 'components/sidebarUtilities/CategoryMapper';
+import CategoryListHeader from 'components/sidebarUtilities/CategoryListHeader';
 import WrappedPlaylistController from 'components/sidebarUtilities/wrappedPlaylistController';
 
 import {
   makeSelectIsLoading,
+  makeSelectCategories,
   makeSelectVisibility,
   makeSelectPlaylistParam,
 } from './selectors';
@@ -28,13 +30,12 @@ import {
 import reducer from './reducer';
 import saga from './saga';
 
-import AddCategory from '../addCategory';
-
 
 class SidebarLeftOverlay extends Component {
 
   componentDidMount() {
     this.props.setPlaylist(this.props.playlistParam);
+    this.props.getCategories();
   }
 
   render() {
@@ -49,42 +50,19 @@ class SidebarLeftOverlay extends Component {
               icon="labeled"
               animation="push"
               as={Menu}
-              visible={this.state.visible}>
+              visible={this.state.visible}
+            >
 
-              {this.props.owner ?
-                (
-                  <Menu.Item style={{color: '#54c8ff'}}>
-                    {
-                      !this.props.isOwner ?
-                        (
-                          <div>
-                            {this.props.owner.userName}
-                            's playlists:
-                          </div>
-                        )
-                        : <div>Your playlists:</div>
-                    }
-                  </Menu.Item>
-                )
-                : <div></div>
-              }
+              <CategoryListHeader
+                owner={this.props.owner}
+                isOwner={this.props.isOwner}
+              />
 
-
-              <div>
-                <CategoryMapper />
-                <div>
-                  {this.props.isLoading ?
-                    <Loader active />
-                    : (
-                      <div>
-                        {this.props.isOwner ?
-                          <AddCategory />
-                          : <div></div>}
-                      </div>
-                    )
-                  }
-                </div>
-              </div>
+              <CategoryMapper
+                isOwner={this.props.isOwner}
+                isLoading={this.props.isLoading}
+                categories={this.props.categories}
+              />
 
 
             </Sidebar>
@@ -115,6 +93,8 @@ class SidebarLeftOverlay extends Component {
 SidebarLeftOverlay.propTypes = {
   toggleVisibility: PropTypes.func,
   playlistParam: PropTypes.string,
+  getCategories: PropTypes.func,
+  categories: PropTypes.object,
   categories: PropTypes.object,
   setPlaylist: PropTypes.func,
   isLoading: PropTypes.bool,
@@ -126,14 +106,16 @@ SidebarLeftOverlay.propTypes = {
 
 const mapStateToProps = createStructuredSelector({
   playlistParam: () => makeSelectPlaylistParam(),
+  categories: () => makeSelectCategories(),
   isLoading: () => makeSelectIsLoading(),
   visible: () => makeSelectVisibility(),
   isOwner: () => makeSelectIsOwner(),
-  owner: () => makeSelectProfile(),
+  owner: () => makeSelectProfile()
 });
 
 const mapDispatchToProps = {
   toggleVisibility,
+  getCategories,
   setPlaylist,
 }
 

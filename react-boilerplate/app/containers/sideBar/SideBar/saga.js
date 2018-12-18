@@ -1,7 +1,7 @@
-import { call, takeLatest, put, select } from 'redux-saga';
+import { call, takeLatest, put, select } from 'redux-saga/effects';
 import axios from 'axios';
 import { GET_CATEGORIES } from './constants';
-import { getCatsSuccess, getCatsFailed } from './actions';
+import { getCategoriesSuccess, getCategoriesFailed } from './actions';
 import { makeSelectProfileId } from '../../../appUtilities/ProfileContext/selectors';
 
 
@@ -14,9 +14,9 @@ function* getCategories() {
     const profileId = yield select(makeSelectProfileId);
     const url = getUrl(profileId);
     const cats = yield call(getCatsRequest, url);
-    yield put(getCatsSuccess, cats);
+    yield put(getCategoriesSuccess, cats);
   } catch (error) {
-    yield put(getCatsFailed, error);
+    yield put(getCategoriesFailed, error);
   }
 }
 

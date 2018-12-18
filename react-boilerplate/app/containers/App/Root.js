@@ -11,7 +11,7 @@ import LoadableFollowing from 'containers/follower/Following/Loadable';
 import LoadableExplorer from 'containers/search/Explorer/Loadable';
 import LoadableTopBar from 'containers/topBar/Loadable';
 
-import LoadableRoutedContext from '../../appUtilities/RoutedContext/Loadable';
+import LoadableProfileContext from '../../appUtilities/ProfileContext/Loadable';
 
 import logo from './logo.svg';
 
@@ -21,17 +21,17 @@ const Root = () => (
       <div><LoadableTopBar logo={logo} /></div>
       <div>
         <Switch>
-          <Route path="/playlist/:playlist" component={LoadableRoutedContext} />
-          <Route path="/profile/:profile" component={LoadingRoutedContext} />
+          <Route path="/playlist/:playlist" component={LoadableProfileContext} />
+          <Route path="/profile/:profile" component={LoadableProfileContext} />
           <Route exact path="/edit" component={LoadableProfileContainer} />
           <Route path="/messages" component={LoadableMessagesContainer} />
           <Route path="/song/:song" component={LoadableSongDetails} />
-          <Route path="/stream" component={LoadableRoutedContext} />
+          <Route path="/stream" component={LoadableProfileContext} />
           <Route path="/followers" component={LoadableFollowers} />
           <Route path="/following" component={LoadableFollowing} />
           <Route path="/forum" component={LoadableForumSidebar} />
           <Route path="/explore" component={LoadableExplorer} />
-          <Route path="/" component={LoadableRoutedContext} />
+          <Route path="/" component={LoadableProfileContext} />
         </Switch>
       </div>
       <div><LoadableAudioPlayback /></div>

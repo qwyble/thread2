@@ -1,6 +1,6 @@
 import { fromJS } from 'immutable';
 
-import { AUTH, AUTH_SUCCESS, AUTH_FAILED } from './constants';
+import { AUTH_ATTEMPT, AUTH_SUCCESS, AUTH_FAILED } from './constants';
 
 
 const blankError = fromJS({});
@@ -14,7 +14,7 @@ const initialState = fromJS({
 
 function userReducer(state = initialState, action) {
   switch (action.type) {
-    case AUTH:
+    case AUTH_ATTEMPT:
       return state
         .set('isLoading', true)
         .set('error', blankError);

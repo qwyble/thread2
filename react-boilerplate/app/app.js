@@ -20,7 +20,7 @@ import './App.css';
 import './css.css';
 
 // Import root app
-import UserContainer from './appUtilities/userContainer/userContainer';
+import UserContainer from './appUtilities/UserContainer';
 
 // Load the favicon and the .htaccess file
 import '!file-loader?name=[name].[ext]!./images/favicon.ico';

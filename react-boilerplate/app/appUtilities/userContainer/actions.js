@@ -1,8 +1,8 @@
-import { AUTH, AUTH_SUCCESS, AUTH_FAILED } from './constants';
+import { AUTH_ATTEMPT, AUTH_SUCCESS, AUTH_FAILED } from './constants';
 
 export function authenticate(creds, ext) {
   return {
-    type: AUTH,
+    type: AUTH_ATTEMPT,
     creds,
     ext,
   };

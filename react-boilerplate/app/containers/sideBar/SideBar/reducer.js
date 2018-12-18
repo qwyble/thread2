@@ -4,7 +4,7 @@ import {
   TOGGLE_VISIBILITY,
   GET_CATEGORIES,
   GET_CATEGORIES_SUCCESS,
-  GET_CATEGORIES_FAILED
+  GET_CATEGORIES_FAILED,
 } from './constants';
 
 const blankError = fromJS({});
