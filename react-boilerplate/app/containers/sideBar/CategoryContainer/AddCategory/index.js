@@ -7,11 +7,11 @@ import { createStructuredSelector } from 'reselect';
 
 import AddCategoryForm from 'components/sidebarUtilities/AddCategoryForm';
 
-import { addCategory } from 'containers/sideBar/SideBar/actions';
+import { addCategory } from '../actions';
 
 import {
-  makeSelectIsAddCatLoading,
-  makeSelectAddCatError,
+  makeSelectIsCatLoading,
+  makeSelectCatError,
 } from './selectors';
 
 const AddCategory = props => (
@@ -21,7 +21,7 @@ const AddCategory = props => (
       : (
         <div>
           <AddCategoryForm
-            onAddCategory={props.onAddCategory}
+            onAddCategory={props.addCategory}
             error={props.error}
           />
         </div>
@@ -37,8 +37,8 @@ AddCategory.propTypes = {
 };
 
 const mapStateToProps = createStructuredSelector({
-  isLoading: () => makeSelectIsAddCatLoading(),
-  error: () => makeSelectAddCatError(),
+  isLoading: () => makeSelectIsCatLoading(),
+  error: () => makeSelectCatError(),
 })
 
 const mapDispatchToProps = {

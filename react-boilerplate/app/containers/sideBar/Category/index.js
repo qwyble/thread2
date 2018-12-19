@@ -1,38 +1,22 @@
 import React from 'react';
-import AddPlaylist from '../../../components/sidebarUtilities/addPlaylist.js';
-import PlaylistList from '../../../components/sidebarUtilities/playlistList.js';
-import EditCategories from '../editCategories.js';
+import PropTypes from 'prop-types';
 import {Button, Icon, Menu } from 'semantic-ui-react';
-import axios from 'axios';
+import { createStructuredSelector } from 'reselect';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
 
-/* renders the playlists in a single category,
-  holds the playlists in state. (change this?)
-*/
+import PlaylistContainer from 'containers/sideBar/PlaylistContainer';
+
+import { setCategory } from 'containers/sideBar/SideBar/actions';
+import { makeSelectDisplayLists } from './selectors';
+
+import EditCategories from './EditCategory/editCategories';
 
 class Category extends React.Component {
 
   handleSelectCategory = () => {
-    this.props.selectCategory(this.props.category.catid);
+    this.props.setCategory(this.props.category.catid);
   }
-
-  handleDeleteList = (e) => {
-    this.setState({_loading: true});
-
-    var data = {};
-    data['catid'] = this.props.id;
-    data['plid'] = e.target.id;
-
-    axios({
-      method: 'post',
-      url: 'https://thread-204819.appspot.com/deletePlaylist',
-      data: data,
-      withCredentials: true
-    }).then((result) => {
-      this.getPlaylists();
-      this.setState({_loading: false})
-    });
-  }
-
 
   render() {
     return(
@@ -53,15 +37,15 @@ class Category extends React.Component {
                 labelPosition='right'
                 onClick={this.handleSelectCategory}
               >
-                <Icon name={this.props.displayLists ?'down arrow' : 'right arrow'} />
-                {this.props.category.catName}
+                <Icon name={this.props.displayLists ? 'down arrow' : 'right arrow'} />
+                {this.props.category.get('catName')}
               </Button>
 
             </Menu.Item>
 
-            <PlaylistList
+            <PlaylistContainer
               displayLists={this.props.displayLists}
-              playlists={this.props.playLists}
+              playlists={this.props.category.get('pls')}
             />
           </div>
         </div>
@@ -70,16 +54,24 @@ class Category extends React.Component {
   }
 }
 
-PlaylistContainer.propTypes = {
-  selectCategory: PropTypes.func,
+Category.propTypes = {
+  setCategory: PropTypes.func,
   displayLists: PropTypes.bool,
   category: PropTypes.object,
+  isOwner: PropTypes.bool,
 }
 
 const mapStateToProps = () => createStructuredSelector({
   displayLists: () => makeSelectDisplayLists(),
+});
 
-})
+const mapDispatchToProps = {
+  setCategory,
+};
 
+const withConnect = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+);
 
-export default Category;
+export default compose(withConnect)(Category);

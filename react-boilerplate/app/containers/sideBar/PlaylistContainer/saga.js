@@ -4,6 +4,7 @@ import { ADD_PLAYLIST_ATTEMPT } from './constants';
 
 export default function* rootSaga() {
   yield takeLatest(ADD_PLAYLIST_ATTEMPT, addPlaylist);
+  yield takeLatest(DELETE_PLAYLIST_ATTEMPT, deletePlaylist);
 }
 
 function* addPlaylist(action) {
@@ -18,6 +19,18 @@ function* addPlaylist(action) {
   }
 }
 
+function* deletePlaylist(action) {
+  try {
+    let data;
+    data['catid'] = action.catId;
+    data['plid'] = action.plId;
+    yield call(deletePlaylistRequest, data);
+    yield put(deletePlaylistSuccess, data['plid']);
+  } catch (err) {
+    yield put(deletePlaylistFailed, err);
+  }
+}
+
 
 function addPlaylistRequest(data) {
   return (
@@ -29,6 +42,19 @@ function addPlaylistRequest(data) {
     }).then((result) => {
       return result.data;
     }).catch(error => {
+      throw new Error(error);
+    });
+  )
+}
+
+function deletePlaylistRequest(data) {
+  return (
+    axios({
+      method: 'post',
+      url: 'https://thread-204819.appspot.com/deletePlaylist',
+      data: data,
+      withCredentials: true
+    }).catch((error) => {
       throw new Error(error);
     });
   )

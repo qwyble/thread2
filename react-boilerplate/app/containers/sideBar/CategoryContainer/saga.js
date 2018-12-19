@@ -9,6 +9,7 @@ import {
   getCategoriesFailed,
   addCategorySuccess,
   addCategoryFailed,
+  categoryAttempt,
 } from '../SideBar/actions';
 import { makeSelectProfileId } from '../../../appUtilities/ProfileContext/selectors';
 
@@ -16,6 +17,8 @@ import { makeSelectProfileId } from '../../../appUtilities/ProfileContext/select
 export default function* sideBarSaga() {
   yield takeLatest(GET_CATEGORIES, getCategories);
   yield takeLatest(ADD_CATEGORY_ATTEMPT, addCategory);
+  yield takeLatest(DELETE_CATEGORY_ATTEMPT, deleteCategory);
+  yield takeLatest(EDIT_CATEGORY_ATTEMPT, editCategory);
 }
 
 function* getCategories() {
@@ -31,6 +34,7 @@ function* getCategories() {
 
 function* addCategory(action) {
   try {
+    yield put(categoryAttempt);
     const category = yield call(addCatRequest, action.category);
     yield put(addCategorySuccess, category);
   } catch (err) {

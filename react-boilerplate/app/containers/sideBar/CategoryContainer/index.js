@@ -8,24 +8,26 @@ import AddCategory from 'containers/sideBar/AddCategory';
 
 const CategoryContainer = props => (
   <div>
-    {props.categories.map((category, key) => (
-      <Menu.Item className="sideItems" key={key}>
-        <Category
-          category={category}
-          isOwner={props.isOwner}
-        />
-      </Menu.Item>
-    ))}
-    <div>
-      {props.isLoading ?
-        <Loader active />
-        : (
+    {props.isLoading ?
+      <Loader active />
+      : (
+        <div>
+          <div>
+            {props.categories.map((category, key) => (
+              <Menu.Item className="sideItems" key={key}>
+                <Category
+                  category={category}
+                  isOwner={props.isOwner}
+                />
+              </Menu.Item>
+            ))}
+          </div>
           <div>
             {props.isOwner ? <AddCategory /> : <div></div>}
           </div>
-        )
-      }
-    </div>
+        </div>
+      )
+    }
   </div>
 );
 
