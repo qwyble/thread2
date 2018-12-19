@@ -1,18 +1,21 @@
 import { call, takeLatest, put, select } from 'redux-saga/effects';
 import axios from 'axios';
-import { GET_CATEGORIES } from './constants';
+import {
+  ADD_CATEGORY_ATTEMPT,
+  GET_CATEGORIES
+} from '../SideBar/constants';
 import {
   getCategoriesSuccess,
   getCategoriesFailed,
   addCategorySuccess,
   addCategoryFailed,
-} from './actions';
+} from '../SideBar/actions';
 import { makeSelectProfileId } from '../../../appUtilities/ProfileContext/selectors';
 
 
 export default function* sideBarSaga() {
   yield takeLatest(GET_CATEGORIES, getCategories);
-  yield takeLatest(ADD_CATEGORY, addCategory);
+  yield takeLatest(ADD_CATEGORY_ATTEMPT, addCategory);
 }
 
 function* getCategories() {
@@ -26,7 +29,7 @@ function* getCategories() {
   }
 }
 
-function* addCategory() {
+function* addCategory(action) {
   try {
     const category = yield call(addCatRequest, action.category);
     yield put(addCategorySuccess, category);
@@ -34,7 +37,6 @@ function* addCategory() {
     yield put(addCategoryFailed, err);
   }
 }
-
 
 
 function getUrl(profileId) {

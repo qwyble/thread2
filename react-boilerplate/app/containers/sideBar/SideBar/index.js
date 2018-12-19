@@ -7,36 +7,24 @@ import { compose }  from 'redux';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
-import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 
-import CategoryMapper from 'components/sidebarUtilities/CategoryMapper';
+import CategoryContainer from 'containers/sideBar/CategoryContainer';
 import CategoryListHeader from 'components/sidebarUtilities/CategoryListHeader';
 import WrappedPlaylistController from 'components/sidebarUtilities/wrappedPlaylistController';
 
 import {
-  makeSelectIsLoading,
-  makeSelectCategories,
   makeSelectVisibility,
   makeSelectPlaylistParam,
 } from './selectors';
 import { makeSelectIsOwner, makeSelectProfile } from '../../../appUtilities/ProfileContext/selectors';
 
-import {
-  toggleVisibility,
-  setPlaylist,
-} from './actions';
+import { toggleVisibility } from './actions';
 
 import reducer from './reducer';
-import saga from './saga';
 
 
-class SidebarLeftOverlay extends Component {
-
-  componentDidMount() {
-    this.props.setPlaylist(this.props.playlistParam);
-    this.props.getCategories();
-  }
+const SideBar = props => {
 
   render() {
     return (
@@ -50,20 +38,12 @@ class SidebarLeftOverlay extends Component {
               icon="labeled"
               animation="push"
               as={Menu}
-              visible={this.state.visible}
+              visible={this.props.visible}
             >
 
-              <CategoryListHeader
-                owner={this.props.owner}
-                isOwner={this.props.isOwner}
-              />
+              <CategoryListHeader owner={props.owner} isOwner={props.isOwner} />
 
-              <CategoryMapper
-                isOwner={this.props.isOwner}
-                isLoading={this.props.isLoading}
-                categories={this.props.categories}
-              />
-
+              <CategoryContainer isOwner={props.isOwner} />
 
             </Sidebar>
             <Sidebar.Pusher className="pusherContainer">
@@ -74,8 +54,8 @@ class SidebarLeftOverlay extends Component {
                 color="blue"
                 attached="right"
                 className="sidebarButton"
-                onClick={this.props.toggleVisibility}>
-                <Icon name={this.props.visible ? 'left arrow' : 'right arrow'}/>
+                onClick={props.toggleVisibility}>
+                <Icon name={props.visible ? 'left arrow' : 'right arrow'}/>
               </Button>
 
               <WrappedPlaylistController />
@@ -92,12 +72,6 @@ class SidebarLeftOverlay extends Component {
 
 SidebarLeftOverlay.propTypes = {
   toggleVisibility: PropTypes.func,
-  playlistParam: PropTypes.string,
-  getCategories: PropTypes.func,
-  categories: PropTypes.object,
-  categories: PropTypes.object,
-  setPlaylist: PropTypes.func,
-  isLoading: PropTypes.bool,
   isOwner: PropTypes.bool,
   visible: PropTypes.bool,
   owner: PropTypes.object,
@@ -106,21 +80,14 @@ SidebarLeftOverlay.propTypes = {
 
 const mapStateToProps = createStructuredSelector({
   playlistParam: () => makeSelectPlaylistParam(),
-  categories: () => makeSelectCategories(),
-  isLoading: () => makeSelectIsLoading(),
   visible: () => makeSelectVisibility(),
   isOwner: () => makeSelectIsOwner(),
-  owner: () => makeSelectProfile()
+  owner: () => makeSelectProfile(),
 });
 
-const mapDispatchToProps = {
-  toggleVisibility,
-  getCategories,
-  setPlaylist,
-}
+const mapDispatchToProps = { toggleVisibility }
 
-const withReducer = injectReducer({ key: sideBar, reducer });
-const withSaga = injectSaga({ key: sideBar, saga });
+const withReducer = injectReducer({ key: 'SideBar', reducer });
 
 const withConnect = connect({
   mapDispatchToProps,
@@ -128,7 +95,6 @@ const withConnect = connect({
 });
 
 export default compose({
-  withSaga,
   withReducer,
   withConnect,
 })(SidebarLeftOverlay);

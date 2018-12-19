@@ -6,8 +6,8 @@ module.exports = function(app){
     playlist.addCategory(
       req.body.category,
       req.session.user.idUsers
-    ).then(result => {res.status(200).send('ok')})
-    .catch(err => {res.status(300).send({err: 'category name must be unique'})});
+    ).then(result => {res.status(200).send(result)})
+    .catch(err => {res.status(400).send(err)});
   })
 
   app.post('/deleteCategory', function(req, res){
@@ -22,8 +22,8 @@ module.exports = function(app){
       req.body.catid,
       req.body.playlist,
       req.session.user.idUsers
-    ).then((result) => {res.status(200).send('ok')})
-    .catch(err => {console.log(err)});
+    ).then((result) => {res.status(200).send(result)})
+    .catch(err => {res.status(400).send(err)});
   }),
 
   app.post('/deletePlaylist', function(req, res){

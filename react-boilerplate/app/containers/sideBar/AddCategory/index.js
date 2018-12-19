@@ -1,29 +1,28 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Loader } from 'semantic-ui-react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
-import RenderAddCategory from 'components/sidebarUtilities/renderAddCategory';
+import AddCategoryForm from 'components/sidebarUtilities/AddCategoryForm';
 
-import { handleAddCategory } from 'containers/sideBar/SideBar/actions';
+import { addCategory } from 'containers/sideBar/SideBar/actions';
 
 import {
   makeSelectIsAddCatLoading,
   makeSelectAddCatError,
 } from './selectors';
 
-
-
 const AddCategory = props => (
   <div>
-    {this.props.isLoading?
+    {props.isLoading ?
       <Loader active />
       : (
         <div>
-          <RenderAddCategory
-            onAddCategory={this.props.handleAddCategory}
-            error={this.props.error}
+          <AddCategoryForm
+            onAddCategory={props.onAddCategory}
+            error={props.error}
           />
         </div>
       )
@@ -31,13 +30,19 @@ const AddCategory = props => (
   </div>
 )
 
+AddCategory.propTypes = {
+  isLoading: PropTypes.bool,
+  error: PropTypes.object,
+  addCategory: PropTypes.func,
+};
+
 const mapStateToProps = createStructuredSelector({
   isLoading: () => makeSelectIsAddCatLoading(),
   error: () => makeSelectAddCatError(),
 })
 
 const mapDispatchToProps = {
-  handleAddCategory,
+  addCategory,
 };
 
 const withConnect = connect(

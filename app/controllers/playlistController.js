@@ -7,8 +7,8 @@ module.exports = {
   addCategory: function(category, owner){
     return (
       sequelize.query(
-        `INSERT INTO categories (name, owner, isPublic)
-        VALUES (?, ?, 0);`, {
+        `INSERT INTO categories (name, owner, isPublic) VALUES (?, ?, 0);
+        SELECT * FROM categories WHERE idcategories = LAST_INSERT_ID();`, {
           replacements: [category, owner],
           type: sequelize.QueryTypes.INSERT
         }
@@ -44,8 +44,8 @@ module.exports = {
   addPlaylist: function(catid, playlist, owner){
     return (
       sequelize.query(
-        `INSERT INTO playlists (name, category)
-        VALUES (?, ?);`,{
+        `INSERT INTO playlists (name, category) VALUES (?, ?);
+        SELECT * FROM playlists WHERE idplaylists = LAST_INSERT_ID();`,{
           replacements: [playlist, catid],
           type: sequelize.QueryTypes.INSERT
         }

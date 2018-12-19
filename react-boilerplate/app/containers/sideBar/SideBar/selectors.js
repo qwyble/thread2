@@ -2,7 +2,7 @@ import { createSelector } from 'reselect';
 import { makeSelectParams } from '../../../appUtilities/ProfileContext/selectors';
 
 
-const sideBarState = state => state.get('sideBar');
+export const sideBarState = state => state.get('sideBar');
 
 export const makeSelectPlaylistParam = () => createSelector(
   makeSelectParams,
@@ -19,12 +19,7 @@ export const makeSelectVisibility = () => createSelector(
   state => state.get('isVisible')
 );
 
-export const makeSelectIsLoading = () => createSelector(
+export const makeSelectSelectedCategory = () => createSelector(
   sideBarState,
-  state => state.get('isLoading')
-);
-
-export const makeSelectCategories = () => createSelector(
-  sideBarState,
-  state => state.get('categories')
+  state => state.get('selectedCategory')
 );

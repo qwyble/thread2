@@ -3,17 +3,16 @@ import PropTypes from 'prop-types';
 import { Menu, Loader } from 'semantic-ui-react';
 
 
-import Playlists from 'containers/sideBar/playlists';
-import AddCategory from 'containers/sideBar/addCategory';
+import Category from 'containers/sideBar/Category';
+import AddCategory from 'containers/sideBar/AddCategory';
 
-const CategoryMapper = props => (
+const CategoryContainer = props => (
   <div>
     {props.categories.map((category, key) => (
       <Menu.Item className="sideItems" key={key}>
-        <Playlists
-          catName={category.catname}
-          playLists={category.pls}
-          id={category.catid}
+        <Category
+          category={category}
+          isOwner={props.isOwner}
         />
       </Menu.Item>
     ))}
@@ -22,9 +21,7 @@ const CategoryMapper = props => (
         <Loader active />
         : (
           <div>
-            {props.isOwner ?
-              <AddCategory />
-              : <div></div>}
+            {props.isOwner ? <AddCategory /> : <div></div>}
           </div>
         )
       }
@@ -32,8 +29,10 @@ const CategoryMapper = props => (
   </div>
 );
 
-CategoryMapper.propTypes = {
+CategoryContainer.propTypes = {
   categories: PropTypes.object,
+  isLoading: PropTypes.bool,
+  isOwner: PropTypes.bool,
 };
 
-export default CategoryMapper;
+export default CategoryContainer;
