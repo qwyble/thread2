@@ -1,18 +1,23 @@
 import { call, takeLatest, put, select } from 'redux-saga/effects';
 import axios from 'axios';
 import {
+  DELETE_CATEGORY_ATTEMPT,
+  EDIT_CATEGORY_ATTEMPT,
   ADD_CATEGORY_ATTEMPT,
   GET_CATEGORIES
-} from '../SideBar/constants';
+} from './constants';
 import {
+  deleteCategorySuccess,
+  deleteCategoryFailed,
   getCategoriesSuccess,
   getCategoriesFailed,
+  editCategorySuccess,
+  editCategoryFailed,
   addCategorySuccess,
   addCategoryFailed,
   categoryAttempt,
-} from '../SideBar/actions';
+} from './actions';
 import { makeSelectProfileId } from '../../../appUtilities/ProfileContext/selectors';
-
 
 export default function* sideBarSaga() {
   yield takeLatest(GET_CATEGORIES, getCategories);
@@ -39,6 +44,26 @@ function* addCategory(action) {
     yield put(addCategorySuccess, category);
   } catch (err) {
     yield put(addCategoryFailed, err);
+  }
+}
+
+function* deleteCategory(action) {
+  try {
+    yield put(categoryAttempt);
+    yield call(deleteCategoryRequest, action.catId);
+    yield put(deleteCategorySuccess, action.catId);
+  } catch (err) {
+    yield put(deleteCategoryFailed, err);
+  }
+}
+
+function* editCategory(action) {
+  try {
+    yield put(categoryAttempt);
+    yield call(editCategoryRequest, action.category);
+    yield put(editCategorySuccess, action.category);
+  } catch (err) {
+    yield put(editCategoryFailed, err);
   }
 }
 
@@ -75,6 +100,28 @@ function addCatRequest(category) {
     data: { category },
     withCredentials: true,
   }).then(result => result.data).catch((err) => {
+    throw new Error(err);
+  });
+}
+
+function deleteCategoryRequest(id) {
+  return axios({
+    method: 'post',
+    url: 'https://thread-204819.appspot.com/deleteCategory',
+    data: { catid: id },
+    withCredentials: true
+  }).catch((err) => {
+    throw new Error(err);
+  });
+}
+
+function editCategoryRequest(category) {
+  return axios({
+    method: 'post',
+    url: 'https://thread-204819.appspot.com/renameCat',
+    data: category,
+    withCredentials: true
+  }).catch((err) => {
     throw new Error(err);
   });
 }

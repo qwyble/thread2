@@ -18,21 +18,21 @@ import {
 
 export function getCategories() {
   return {
-    type: GET_CATEGORIES
+    type: GET_CATEGORIES,
   };
 }
 
 export function getCategoriesSuccess(cats) {
   return {
     type: GET_CATEGORIES_SUCCESS,
-    cats
+    cats,
   };
 }
 
 export function getCategoriesFailed(error) {
   return {
     type: GET_CATEGORIES_FAILED,
-    error
+    error,
   };
 }
 
@@ -45,28 +45,28 @@ export function categoryAttempt() {
 export function addCategory(category) {
   return {
     type: ADD_CATEGORY_ATTEMPT,
-    category
+    category,
   };
 }
 
 export function addCategorySuccess(category) {
   return {
     type: ADD_CATEGORY_SUCCESS,
-    category
+    category,
   };
 }
 
 export function addCategoryFailed(error) {
   return {
     type: ADD_CATEGORY_FAILED,
-    error
+    error,
   };
 }
 
-export function deleteCategory(category) {
+export function deleteCategory(catId) {
   return {
     type: DELETE_CATEGORY_ATTEMPT,
-    category,
+    catId,
   };
 }
 

@@ -7,10 +7,15 @@ import { connect } from 'react-redux';
 
 import PlaylistContainer from 'containers/sideBar/PlaylistContainer';
 
+import {
+  deleteCategory,
+  editCategory,
+} from 'containers/sideBar/CategoryContainer/actions';
+
+import EditCategoryForm from 'components/sidebarUtilities/EditCategoryForm';
 import { setCategory } from 'containers/sideBar/SideBar/actions';
 import { makeSelectDisplayLists } from './selectors';
 
-import EditCategories from './EditCategory/editCategories';
 
 class Category extends React.Component {
 
@@ -25,7 +30,16 @@ class Category extends React.Component {
           <div>
             <Menu.Item className='sideBarItem'>
 
-              { this.props.isOwner ? <EditCategories /> : <div></div> }
+              { this.props.isOwner ?
+                (
+                  <EditCategoryForm
+                    id={this.props.category.get('catid')}
+                    catname={this.props.category.get('catname')}
+                    onCategoryRename={this.props.editCategory}
+                    onCategoryDelete={this.props.deleteCategory}
+                  />
+                )
+                : <div></div> }
 
               <Button
                 icon
@@ -38,7 +52,7 @@ class Category extends React.Component {
                 onClick={this.handleSelectCategory}
               >
                 <Icon name={this.props.displayLists ? 'down arrow' : 'right arrow'} />
-                {this.props.category.get('catName')}
+                {this.props.category.get('catname')}
               </Button>
 
             </Menu.Item>
@@ -55,8 +69,10 @@ class Category extends React.Component {
 }
 
 Category.propTypes = {
-  setCategory: PropTypes.func,
+  deleteCategory: PropTypes.func,
+  editCategory: PropTypes.func,
   displayLists: PropTypes.bool,
+  setCategory: PropTypes.func,
   category: PropTypes.object,
   isOwner: PropTypes.bool,
 }
@@ -66,6 +82,8 @@ const mapStateToProps = () => createStructuredSelector({
 });
 
 const mapDispatchToProps = {
+  deleteCategory,
+  editCategory,
   setCategory,
 };
 

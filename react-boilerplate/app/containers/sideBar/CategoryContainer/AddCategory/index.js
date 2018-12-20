@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
 import AddCategoryForm from 'components/sidebarUtilities/AddCategoryForm';
+import LoaderWrapper from 'containers/sideBar/CategoryContainer/LoaderWrapper';
 
 import { addCategory } from '../actions';
 
@@ -15,19 +16,9 @@ import {
 } from './selectors';
 
 const AddCategory = props => (
-  <div>
-    {props.isLoading ?
-      <Loader active />
-      : (
-        <div>
-          <AddCategoryForm
-            onAddCategory={props.addCategory}
-            error={props.error}
-          />
-        </div>
-      )
-    }
-  </div>
+  <LoaderWrapper isLoading={props.isLoading}>
+    <AddCategoryForm onAddCategory={props.addCategory} error={props.error} />
+  </LoaderWrapper>
 )
 
 AddCategory.propTypes = {

@@ -15,7 +15,6 @@ import WrappedPlaylistController from 'components/sidebarUtilities/wrappedPlayli
 
 import {
   makeSelectVisibility,
-  makeSelectPlaylistParam,
 } from './selectors';
 import { makeSelectIsOwner, makeSelectProfile } from '../../../appUtilities/ProfileContext/selectors';
 
@@ -79,7 +78,6 @@ SidebarLeftOverlay.propTypes = {
 
 
 const mapStateToProps = createStructuredSelector({
-  playlistParam: () => makeSelectPlaylistParam(),
   visible: () => makeSelectVisibility(),
   isOwner: () => makeSelectIsOwner(),
   owner: () => makeSelectProfile(),
