@@ -7,12 +7,17 @@ import {Menu, Loader} from 'semantic-ui-react';
 
 import Playlist from 'components/sidebarUtilities/Playlist';
 import AddPlaylist from 'components/sidebarUtilities/AddPlaylist';
+import IsOwner from 'containers/Wrappers/IsOwner';
 
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 
-import { makeSelectDisplayLists, makeSelectIsLoading } from './selectors';
+import saga from './saga';
+import reducer from './reducer';
+
+import { makeSelectDisplayLists } from './selectors';
 import { makeSelectIsOwner } from '../../../appUtilities/ProfileContext/selectors';
+
 
 import AnimationWrapper from './AnimationWrapper';
 
@@ -27,6 +32,10 @@ import {
 
 class PlaylistContainer extends React.PureComponent {
 
+  handleSelectPlaylist() {
+
+  }
+
   render() {
     return (
       <AnimationWrapper displayLists={this.props.displayLists}>
@@ -39,16 +48,15 @@ class PlaylistContainer extends React.PureComponent {
                 playlist={playlist.plname}
                 isOwner={this.props.isOwner}
                 isPublic={playlist.isPublic}
-                onEditPlaylist={}
+                onSetPlaylist={this.props.setPlaylist}
+                onEditPlaylist={this.props.editPlaylist}
+                onDeletePlaylist={this.props.deletePlaylist}
               />
             </Menu.Item>
           ))}
-          {this.props.isLoading ?
-            (
-              <Menu.Item style={{ padding: "1em 1em" }}>
-                <Loader active inverted size="mini" />
-              </Menu.Item>
-            ) : <div>{this.props.isOwner ? <AddPlaylist /> : <div />}</div>}
+          <IsOwner>
+            <AddPlaylist />
+          </IsOwner>
         </Menu.Menu>
       </AnimationWrapper>
     )
@@ -56,20 +64,17 @@ class PlaylistContainer extends React.PureComponent {
 }
 
 PlaylistContainer.propTypes = {
-  displayLists: PropTypes.bool,
-  playlists: PropTypes.array,
-  isOwner: PropTypes.bool,
-  isLoading: PropTypes.bool,
   deletePlaylist: PropTypes.func,
   selectPlaylist: PropTypes.func,
   editPlaylist: PropTypes.func,
-  addPlaylist: PropTypes.func,
+  displayLists: PropTypes.bool,
+  playlists: PropTypes.array,
+  isOwner: PropTypes.bool,
 }
 
 const mapStateToProps = () => createStructuredSelector({
-  isOwner: () => makeSelectIsOwner(),
-  isLoading: () => makeSelectIsLoading(),
   displayLists: () => makeSelectDisplayLists(),
+  isOwner: () => makeSelectIsOwner(),
 });
 
 const mapDispatchToProps = {

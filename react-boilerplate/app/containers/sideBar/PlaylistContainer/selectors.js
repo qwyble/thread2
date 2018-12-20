@@ -1,6 +1,7 @@
 import { createSelector } from 'reselect';
 import { makeSelectSelectedCategory } from 'containers/sideBar/SideBar/selectors';
 
+export const selectPlaylistState = state => state;
 const selectOwnProps = (state, ownProps) => ownProps;
 
 

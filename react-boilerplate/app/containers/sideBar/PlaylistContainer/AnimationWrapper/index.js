@@ -31,7 +31,7 @@ class AnimationWrapper extends React.Component {
     }
 
     return (
-      <Transition onExited={this.handleExited} onEnter={this.handleEnter} in={this.props.displayLists} timeout={250}>
+      <Transition onExited={this.handleExited} onEnter={this.handleEnter} in={this.props.displayLists} timeout={150}>
         {state => (
           <div className={className[state]}>
             {this.state.renderLists ? (

@@ -1,39 +1,41 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Loader } from 'semantic-ui-react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
-import AddCategoryForm from 'components/sidebarUtilities/AddCategoryForm';
-import LoaderWrapper from 'containers/sideBar/CategoryContainer/LoaderWrapper';
+import injectSaga from 'utils/injectSaga';
+import saga from './saga';
 
-import { addCategory } from '../actions';
+import AddPlaylistForm from 'components/sidebarUtilities/AddPlaylistForm';
+import LoaderWrapper from '../LoaderWrapper';
+
+import { addPlaylist } from './actions';
 
 import {
-  makeSelectIsCatLoading,
-  makeSelectCatError,
+  makeSelectAddIsLoading,
+  makeSelectAddError,
 } from './selectors';
 
-const AddCategory = props => (
+const AddPlaylist = props => (
   <LoaderWrapper isLoading={props.isLoading}>
-    <AddCategoryForm onAddCategory={props.addCategory} error={props.error} />
+    <AddPlaylistForm onAddPlaylist={props.addPlaylist} error={props.error} />
   </LoaderWrapper>
 )
 
-AddCategory.propTypes = {
+AddPlaylist.propTypes = {
   isLoading: PropTypes.bool,
   error: PropTypes.object,
-  addCategory: PropTypes.func,
+  addPlaylist: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
-  isLoading: () => makeSelectIsCatLoading(),
-  error: () => makeSelectCatError(),
+  isLoading: () => makeSelectAddIsLoading(),
+  error: () => makeSelectAddError(),
 })
 
 const mapDispatchToProps = {
-  addCategory,
+  addPlaylist,
 };
 
 const withConnect = connect(
@@ -41,4 +43,9 @@ const withConnect = connect(
   mapDispatchToProps,
 );
 
-export default compose(withConnect)(AddCategory);
+const withSaga = injectSaga({ key: 'AddPlaylist', saga });
+
+export default compose(
+  withSaga,
+  withConnect,
+)(AddPlaylist);

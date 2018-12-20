@@ -10,32 +10,35 @@ import {
 const blankError = fromJS({});
 
 const initialState = fromJS({
-  categories: fromJS({}),
-  selectedPlaylist: '',
-  selectedCategory: '',
-  isVisible: true,
-  isLoading: true,
-  isAddCatLoading: false,
-  isAddPlaylistLoading: false,
-  error: blankError,
-  addCatError: blankError,
-  addPlaylistError: blankError,
+  playlists: {},
+  addPlaylist: {
+    isLoading: true,
+    error: blankError,
+  },
+  deletePlaylist: {
+    isLoading: true,
+    error: blankError,
+  },
+  editPlaylist: {
+    isLoading: true,
+    error: blankError,
+  },
 });
 
 export default function CategoryContainerReducer(state = initialState, action) {
   switch (action.type) {
     case (ADD_PLAYLIST_ATTEMPT):
       return state
-        .set('isAddPlaylistLoading', true)
-        .set('addPlaylistError', blankError);
+        .setIn(['addPlaylist', 'isLoading'], true)
+        .setIn(['addPlaylist', 'error'], blankError);
     case (ADD_PLAYLIST_SUCCESS):
       return state
-        .set('isAddPlaylistLoading', false)
+        .setIn(['addPlaylist', 'isLoading'], false)
         .update('playlists', playlists => playlists.push(action.playlist));
     case (ADD_PLAYLIST_FAILED):
       return state
-        .set('isAddPlaylistLoading', false)
-        .set('addPlaylistError', action.error);
+        .setIn(['addPlaylist', 'isLoading'], false)
+        .setIn(['addPlaylist', 'error'], action.error);
     default:
       return state;
   }
