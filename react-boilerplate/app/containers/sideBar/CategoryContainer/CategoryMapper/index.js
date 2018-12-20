@@ -9,6 +9,9 @@ const CategoryMapper = props => (
         <Category
           category={category}
           isOwner={props.isOwner}
+          onSetCategory={this.props.onSetCategory}
+          onEditCategory={this.props.onEditCategory}
+          onDeleteCategory={this.props.onDeleteCategory}
         />
       </Menu.Item>
     ))}

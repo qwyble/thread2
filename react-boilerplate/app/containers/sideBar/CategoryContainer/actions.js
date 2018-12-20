@@ -15,7 +15,6 @@ import {
 } from './constants';
 
 
-
 export function getCategories() {
   return {
     type: GET_CATEGORIES,

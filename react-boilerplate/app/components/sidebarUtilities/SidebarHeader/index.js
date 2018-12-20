@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const CategoryListHeader = props => (
+const SidebarHeader = props => (
   <div>
     {props.owner ?
       (
@@ -23,9 +23,9 @@ const CategoryListHeader = props => (
   </div>
 );
 
-CategoryListHeader.propTypes = {
+SidebarHeader.propTypes = {
   owner: PropTypes.object,
   isOwner: PropTypes.bool,
 };
 
-export default index;
+export default SidebarHeader;

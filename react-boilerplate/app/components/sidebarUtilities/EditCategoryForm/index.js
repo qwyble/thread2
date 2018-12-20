@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {
   TransitionablePortal,
-  Dropdown
+  Dropdown,
   Button,
   Segment,
   Input,
@@ -113,11 +113,11 @@ class EditCategoryForm extends React.Component {
 }
 
 EditCategoryForm.propTypes = {
-  err = PropTypes.object,
-  id = PropTypes.string,
-  catName = PropTypes.string,
-  onCategoryRename = PropTypes.func,
-  onCategoryDelete = PropTypes.func,
+  err: PropTypes.object,
+  id: PropTypes.string,
+  catName: PropTypes.string,
+  onCategoryRename: PropTypes.func,
+  onCategoryDelete: PropTypes.func,
 }
 
 export default EditCategoryForm;

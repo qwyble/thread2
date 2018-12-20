@@ -1,67 +1,94 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { createStructuredSelector } from 'reselect';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
 import {Menu, Loader} from 'semantic-ui-react';
-import PlaylistTab from './playlistTab';
-import {Transition} from 'react-transition-group';
+
+import Playlist from 'components/sidebarUtilities/Playlist';
+import AddPlaylist from 'components/sidebarUtilities/AddPlaylist';
+
+import injectReducer from 'utils/injectReducer';
+import injectSaga from 'utils/injectSaga';
+
+import { makeSelectDisplayLists, makeSelectIsLoading } from './selectors';
+import { makeSelectIsOwner } from '../../../appUtilities/ProfileContext/selectors';
+
+import AnimationWrapper from './AnimationWrapper';
+
+import {
+  deletePlaylist,
+  selectPlaylist,
+  editPlaylist,
+  addPlaylist,
+} from './actions';
 
 
-class PlaylistList extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state={
-      renderLists: '',
-    };
-  }
 
-
-  handleExited = () => {
-    this.setState({renderLists: false})
-  }
-
-  handleEnter = () => {
-    this.setState({renderLists: true});
-
-  }
+class PlaylistContainer extends React.PureComponent {
 
   render() {
-
-    const className = {
-      entering: 'listSidebar displayed',
-      entered: 'listSidebar displayed',
-      exiting: 'listSidebar',
-      exited: 'listSidebar'
-    }
-
     return (
-      <Transition onExited={this.handleExited} onEnter={this.handleEnter} in={this.props.displayLists} timeout={250}>
-        {state => (
-          <div className={className[state]}>
-            {this.state.renderLists ? (
-              <Menu.Menu>
-                {this.props.playlists.map((playlist, key) => (
-                  <Menu.Item key={key} className={"playlistTab"}>
-                    <PlaylistTab
-                      key={key}
-                      id={playlist.plid}
-                      playlist={playlist.plname}
-                      isOwner={this.props.isOwner}
-                      isPublic={playlist.isPublic}
-                    />
-                  </Menu.Item>
-                ))}
-                {this.props._loading ?
-                  (
-                    <Menu.Item style={{ padding: "1em 1em" }}>
-                      <Loader active inverted size="mini" />
-                    </Menu.Item>
-                  ) : <div>{this.props.isOwner ? <AddPlaylist /> : <div />}</div>}
-              </Menu.Menu>
-            ) : <div />}
-          </div>
-        )}
-      </Transition>
-    );
+      <AnimationWrapper displayLists={this.props.displayLists}>
+        <Menu.Menu>
+          {this.props.playlists.map((playlist, key) => (
+            <Menu.Item key={key} className={"playlistTab"}>
+              <Playlist
+                key={key}
+                id={playlist.plid}
+                playlist={playlist.plname}
+                isOwner={this.props.isOwner}
+                isPublic={playlist.isPublic}
+                onEditPlaylist={}
+              />
+            </Menu.Item>
+          ))}
+          {this.props.isLoading ?
+            (
+              <Menu.Item style={{ padding: "1em 1em" }}>
+                <Loader active inverted size="mini" />
+              </Menu.Item>
+            ) : <div>{this.props.isOwner ? <AddPlaylist /> : <div />}</div>}
+        </Menu.Menu>
+      </AnimationWrapper>
+    )
   }
 }
 
+PlaylistContainer.propTypes = {
+  displayLists: PropTypes.bool,
+  playlists: PropTypes.array,
+  isOwner: PropTypes.bool,
+  isLoading: PropTypes.bool,
+  deletePlaylist: PropTypes.func,
+  selectPlaylist: PropTypes.func,
+  editPlaylist: PropTypes.func,
+  addPlaylist: PropTypes.func,
+}
 
-export default PlaylistList;
+const mapStateToProps = () => createStructuredSelector({
+  isOwner: () => makeSelectIsOwner(),
+  isLoading: () => makeSelectIsLoading(),
+  displayLists: () => makeSelectDisplayLists(),
+});
+
+const mapDispatchToProps = {
+  deletePlaylist,
+  selectPlaylist,
+  editPlaylist,
+  addPlaylist,
+};
+
+const withConnect = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+);
+
+const withReducer = injectReducer({ key: 'PlaylistContainer', reducer });
+const withSaga = injectSaga({ key: 'PlaylistContainer', saga });
+
+export default compose(
+  withSaga,
+  withReducer,
+  withConnect,
+)(PlaylistContainer);
