@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { Button, Segment } from 'semantic-ui-react';
 
 import injectSaga from 'utils/injectSaga';
 
@@ -11,7 +10,7 @@ import { deletePlaylist } from './actions';
 
 
 import { makeSelectIsLoading, makeSelectDidDelete, makeSelectError } from './selectors';
-import LoaderWrapper from '../LoaderWrapper';
+import DeletePlaylistForm from 'components/SideBar/Playlists/PlaylistModifiers/DeletePlaylistForm';
 
 
 class DeletePlaylist extends Component {
@@ -30,28 +29,13 @@ class DeletePlaylist extends Component {
 
   render() {
     return (
-      <div>
-        <Segment
-          style={{
-            top: '10%',
-            left: '15%',
-            width: '14%',
-            zIndex: 1000,
-            position: 'fixed',
-          }}
-        >
-          <LoaderWrapper isLoading={this.props.isLoading}>
-            <p>
-              Are you sure you want to delete the
-              {this.props.playlist}
-              playlist?
-            </p>
-            <Button onClick={this.handleDelete}>yes</Button>
-            <Button onClick={this.handleCancel}>no</Button>
-          </LoaderWrapper>
-        </Segment>
-      </div>
-    )
+      <DeletePlaylistForm
+        onCancel={this.handleCancel}
+        onDelete={this.handleDelete}
+        playlist={this.props.playlist}
+        isLoading={this.props.isLoading}
+      />
+    );
   }
 }
 

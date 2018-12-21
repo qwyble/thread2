@@ -1,22 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { createStructuredSelector } from 'reselect';
+
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { Menu } from 'semantic-ui-react';
+import { createStructuredSelector } from 'reselect';
 
+import IsOwner from 'containers/Wrappers/IsOwner';
 import Playlist from 'components/sidebarUtilities/Playlist';
 import AddPlaylist from 'components/sidebarUtilities/AddPlaylist';
-import IsOwner from 'containers/Wrappers/IsOwner';
+import AnimationWrapper from 'containers/Wrappers/AnimationWrapper';
+import { setPlaylist } from 'containers/SideBar/SideBarContainer/actions';
 
 import injectReducer from 'utils/injectReducer';
 
-import { setPlaylist } from 'containers/sideBar/SideBar/actions';
-
-import AnimationWrapper from 'containers/Wrappers/AnimationWrapper';
-
 import reducer from './reducer';
-
 import { makeSelectDisplayLists } from './selectors';
 
 
