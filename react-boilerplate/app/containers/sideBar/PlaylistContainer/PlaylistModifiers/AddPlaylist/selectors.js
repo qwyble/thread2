@@ -1,9 +1,9 @@
 import { createSelector } from 'reselect';
-import { playlistState } from 'containers/sideBar/PlaylistContainer/selectors';
+import { selectPlaylistState } from 'containers/sideBar/PlaylistContainer/selectors';
 
 
 export const makeSelectAddPlaylist = () => createSelector(
-  playlistState,
+  selectPlaylistState,
   state => state.get('addPlaylist')
 );
 

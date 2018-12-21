@@ -10,16 +10,15 @@ import AddPlaylist from 'components/sidebarUtilities/AddPlaylist';
 import IsOwner from 'containers/Wrappers/IsOwner';
 
 import injectReducer from 'utils/injectReducer';
-import injectSaga from 'utils/injectSaga';
 
 import { setPlaylist } from 'containers/sideBar/SideBar/actions';
 
-import saga from './saga';
+import AnimationWrapper from 'containers/Wrappers/AnimationWrapper';
+
 import reducer from './reducer';
 
 import { makeSelectDisplayLists } from './selectors';
 
-import AnimationWrapper from './AnimationWrapper';
 
 class PlaylistContainer extends React.PureComponent {
 
@@ -67,10 +66,8 @@ const withConnect = connect(
 );
 
 const withReducer = injectReducer({ key: 'PlaylistContainer', reducer });
-const withSaga = injectSaga({ key: 'PlaylistContainer', saga });
 
 export default compose(
-  withSaga,
   withReducer,
   withConnect,
 )(PlaylistContainer);

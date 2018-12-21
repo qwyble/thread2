@@ -3,7 +3,6 @@ import {
   takeLatest, select, call, put,
 } from 'redux-saga/effects';
 import { makeSelectSelectedCategory } from 'containers/sideBar/SideBar/selectors';
-import { addPlaylistToCategory } from 'containers/sideBar/CategoryContainer/actions';
 
 import { ADD_PLAYLIST } from './constants';
 
