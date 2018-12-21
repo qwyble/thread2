@@ -6,6 +6,8 @@ import PlaylistContainer from 'containers/sideBar/PlaylistContainer';
 
 import EditCategoryForm from 'components/sidebarUtilities/EditCategoryForm';
 
+
+
 class Category extends React.Component {
 
   handleSelectCategory = () => {

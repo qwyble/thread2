@@ -1,4 +1,9 @@
 import { fromJS } from "immutable";
+
+import { ADD_PL_TO_CAT } from 'containers/sideBar/PlaylistContainer/AddPlaylist/constants';
+import { REMOVE_PL_FROM_CAT } from 'containers/sideBar/PlaylistContainer/DeletePlaylist/constants';
+import { UPDATE_PL_IN_CAT }  from 'containers/sideBar/PlaylistContainer/EditPlaylist/constants';
+
 import {
   GET_CATEGORIES,
   GET_CATEGORIES_SUCCESS,
@@ -11,6 +16,7 @@ import {
   EDIT_CATEGORY_SUCCESS,
   EDIT_CATEGORY_FAILED,
 } from './constants';
+
 
 const blankError = fromJS({});
 
@@ -66,6 +72,18 @@ function sideBarReducer(state = initialState, action) {
       return state
         .set('isCatLoading', false)
         .set('catError', fromJS(action.error));
+    case ADD_PL_TO_CAT:
+      return state
+        .update('categories', cats => cats.find(cat => cat.catid === action.catId).update('pls', pls => pls.push(fromJS(action.playlist))));
+    case REMOVE_PL_FROM_CAT:
+      return state
+        .update('categories', cats => cats.find(cat => cat.catid === action.catid).update('pls', pls => pls.filter(pl =>  pl.plid !== action.plId )));
+    case UPDATE_PL_IN_CAT: {
+      const catIndex = state.get('categories').findIndex(cat => cat.catid === action.catId);
+      const plIndex = state.getIn(['categories', catIndex, 'pls']).findIndex(pl => pl.plid === action.playlist.plId);
+      return state
+        .updateIn(['categories', catIndex, 'pls'], pls => pls.set(plIndex, fromJS(action.playlist)));
+    }
     default:
       return state;
   }

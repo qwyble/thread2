@@ -4,10 +4,10 @@ import {
   TOGGLE_VISIBILITY,
 } from './constants';
 
-export function setPlaylist(plId) {
+export function setPlaylist(e) {
   return {
     type: SELECT_PLAYLIST,
-    plId,
+    plId: e.target.value,
   };
 }
 

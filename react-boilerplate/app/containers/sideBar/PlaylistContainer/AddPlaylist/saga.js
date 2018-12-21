@@ -3,11 +3,16 @@ import {
   takeLatest, select, call, put,
 } from 'redux-saga/effects';
 import { makeSelectSelectedCategory } from 'containers/sideBar/SideBar/selectors';
+import { addPlaylistToCategory } from 'containers/sideBar/CategoryContainer/actions';
+
 import { ADD_PLAYLIST } from './constants';
+
 import {
   addPlaylistSuccess,
   addPlaylistFailed,
+  addPlaylistToCategory,
 } from './actions';
+
 
 
 export default function* rootSaga() {
@@ -20,7 +25,8 @@ function* addPlaylist(action) {
     data.catid = yield select(makeSelectSelectedCategory);
     data.playlist = action.plName;
     const playlist = yield call(addPlaylistRequest, data);
-    yield put(addPlaylistSuccess, [playlist, data.catid]);
+    yield put(addPlaylistSuccess);
+    yield put(addPlaylistToCategory, [playlist, data.catid]);
   } catch (err) {
     yield put(addPlaylistFailed, err);
   }

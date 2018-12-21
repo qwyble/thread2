@@ -2,7 +2,7 @@
 import { call, select, takeLatest, put } from 'redux-saga';
 
 export default function* rootSaga() {
-  yield takeLatest(DELETE_PLAYLIST_ATTEMPT, deletePlaylist);
+  yield takeLatest(DELETE_PLAYLIST, deletePlaylist);
 }
 
 

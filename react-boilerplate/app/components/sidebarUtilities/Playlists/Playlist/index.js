@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Button } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
-import EditPlaylistForm from 'components/sidebarUtilities/EditPlaylistForm';
+import EditPlaylist from 'containers/sideBar/PlaylistContainer/EditPlaylist';
 import IsOwner from 'containers/Wrappers/IsOwner';
 
 const Playlist = props => (
@@ -21,12 +21,7 @@ const Playlist = props => (
       </Button>
     </Link>
     <IsOwner>
-      <EditPlaylistForm
-        id={props.id}
-        playlist={props.playlist}
-        onEditCategory={props.onEditPlaylist}
-        onDeleteCategory={props.onDeletePlaylist}
-      />
+      <EditPlaylist id={props.id} playlist={props.playlist} />
     </IsOwner>
   </div>
 );
@@ -34,7 +29,6 @@ const Playlist = props => (
 Playlist.propTypes = {
   id: PropTypes.string,
   playlist: PropTypes.string,
-  onDeleteList: PropTypes.func,
   onSelectPlaylist: PropTypes.func,
 };
 

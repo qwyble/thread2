@@ -7,21 +7,21 @@ import {
 export function addPlaylist(playlist) {
   return {
     type: ADD_PLAYLIST_ATTEMPT,
-    playlist
+    playlist,
   };
 }
 
 export function addPlaylistSuccess(playlist, catId) {
   return {
     type: ADD_PLAYLIST_SUCCESS,
-    playlists,
-    catId
+    playlist,
+    catId,
   };
 }
 
 export function addPlaylistFailed(error) {
   return {
     type: ADD_PLAYLIST_FAILED,
-    error
+    error,
   };
 }

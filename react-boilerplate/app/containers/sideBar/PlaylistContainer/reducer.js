@@ -34,11 +34,21 @@ export default function CategoryContainerReducer(state = initialState, action) {
     case (ADD_PLAYLIST_SUCCESS):
       return state
         .setIn(['addPlaylist', 'isLoading'], false)
-        .update('playlists', playlists => playlists.push(action.playlist));
     case (ADD_PLAYLIST_FAILED):
       return state
         .setIn(['addPlaylist', 'isLoading'], false)
-        .setIn(['addPlaylist', 'error'], action.error);
+        .setIn(['addPlaylist', 'error'], fromJS(action.error));
+    case (DELETE_PLAYLIST):
+      return state
+        .setIn(['deletePlaylist', 'isLoading'], true)
+        .setIn(['deletePlaylist', 'error'], blankError);
+    case (DELETE_PLAYLIST_SUCCESS):
+      return state
+        .setIn(['deletePlaylist', 'isLoading'], false)
+    case (DELETE_PLAYLIST_FAILED):
+      return state
+        .setIn(['deletePlaylist', 'isLoading'], false)
+        .setIn(['deletePlaylist', 'error'], fromJS(action.error))
     default:
       return state;
   }

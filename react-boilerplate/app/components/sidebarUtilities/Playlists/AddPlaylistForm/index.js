@@ -86,8 +86,8 @@ class RenderAddPlaylist extends React.Component {
                       <Input
                         size="mini"
                         placeholder="new playlist"
-                        value={this.props.playlistToAdd}
-                        onChange={this.props.onInputChange}
+                        value={this.state.playlistToAdd}
+                        onChange={this.handleInputChange}
                       />
                       <Button
                         fluid
@@ -96,7 +96,7 @@ class RenderAddPlaylist extends React.Component {
                         icon="plus"
                         color="blue"
                         className="button2"
-                        disabled={this.props.toggleSubmit}
+                        disabled={this.state.toggleSubmit}
                       />
                     </Form>
                   )
@@ -109,6 +109,11 @@ class RenderAddPlaylist extends React.Component {
       </div>
     );
   }
+}
+
+AddPlaylistForm.propTypes = {
+  onAddPlaylist: PropTypes.func,
+
 }
 
 export default RenderAddPlaylist;
