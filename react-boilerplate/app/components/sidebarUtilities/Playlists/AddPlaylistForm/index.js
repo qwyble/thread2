@@ -1,73 +1,113 @@
 import React from 'react';
-import {Transition} from 'react-transition-group';
-import {Form, Input, Button } from 'semantic-ui-react';
+import { Transition } from 'react-transition-group';
+import { Form, Input, Button } from 'semantic-ui-react';
 
 
-
-class RenderAddPlaylist extends React.Component{
+class RenderAddPlaylist extends React.Component {
   state = {
-    _renderAdd: false,
+    renderAdd: false,
+    openForm: false,
+    toggleSubmit: true,
+    playlistToAdd: '',
   }
 
-  handleEnter = () => {
+  handleFormSubmit = () => {
+    this.props.onAddPlaylist(this.state.playlistToAdd);
+    this.handleOpenForm();
+  }
 
-    this.setState({_renderAdd: true});
+  handleOpenForm = () => {
+    if (this.state.openForm) { this.setState({ openForm: false }); } else { this.setState({ openForm: true }); }
+  }
+
+  handleInputChange = (e) => {
+    if (e.target.value.length > 2) {
+      this.setState({
+        ...this.state,
+        playlistToAdd: e.target.value,
+        toggleSubmit: false,
+      });
+    } else {
+      this.setState({
+        ...this.state,
+        playlistToAdd: e.target.value,
+        toggleSubmit: true,
+      });
+    }
+  }
+
+
+  handleEnter = () => {
+    this.setState({ renderAdd: true });
   }
 
   handleExited = () => {
-
-    this.setState({_renderAdd: false});
+    this.setState({ renderAdd: false });
   }
 
 
-  render(){
-
+  render() {
     const className = {
       entering: 'listSidebar displayed',
       entered: 'listSidebar displayed',
       exiting: 'listSidebar',
-      exited: 'listSidebar'
-    }
+      exited: 'listSidebar',
+    };
 
-    return(
+    return (
+      <div>
 
-      <Transition
-        onExited={this.handleExited}
-        onEnter={this.handleEnter}
-        in={this.props.openForm}
-        timeout={250}
-      >
-        {
-          (state) => (
-            <div className={className[state]}>
-              {this.state._renderAdd ?
-                <Form onSubmit={() => {
-                  this.props.onFormSubmit(this.props.playlistToAdd);
-                  this.props.onOpenForm();
-                }}>
-                <Input
-                  size='mini'
-                  placeholder='new playlist'
-                  value={this.props.playlistToAdd}
-                  onChange={this.props.onInputChange}>
-                </Input>
-                <Button
-                  className='button2'
-                  inverted fluid color='blue'
-                  size='mini'
-                  icon='plus'
-                  disabled={this.props.toggleSubmit}
-                />
-              </Form>
-                :
-                <div></div>
-              }
-            </div>
-          )
-        }
-      </Transition>
+        <div>
+          <Button
+            fluid
+            inverted
+            size="mini"
+            color="blue"
+            className="button2"
+            onClick={this.handleOpenForm}
+          >
+            <Icon name={this.state.openForm ? 'minus' : 'plus'} />
+            Playlist
+          </Button>
+        </div>
 
-    )
+        <Transition
+          onExited={this.handleExited}
+          onEnter={this.handleEnter}
+          in={this.state.openForm}
+          timeout={250}
+        >
+          {
+            state => (
+              <div className={className[state]}>
+                {this.state.renderAdd
+                  ? (
+                    <Form onSubmit={this.handleFormSubmit}>
+                      <Input
+                        size="mini"
+                        placeholder="new playlist"
+                        value={this.props.playlistToAdd}
+                        onChange={this.props.onInputChange}
+                      />
+                      <Button
+                        fluid
+                        inverted
+                        size="mini"
+                        icon="plus"
+                        color="blue"
+                        className="button2"
+                        disabled={this.props.toggleSubmit}
+                      />
+                    </Form>
+                  )
+                  : <div></div>
+                }
+              </div>
+            )
+          }
+        </Transition>
+      </div>
+    );
   }
 }
 
