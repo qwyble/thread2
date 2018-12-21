@@ -1,13 +1,18 @@
 import { createSelector } from 'reselect';
-import { sideBarState } from 'containers/sideBar/SideBar/selectors';
+import { selectCategoryContainer } from 'containers/SideBar/CategoryContainer/selectors';
 
 
-export const makeSelectIsCatLoading = () => createSelector(
-  sideBarState,
-  state => state.get('isCatLoading')
+export const makeSelectAddCategory = () => createSelector(
+  selectCategoryContainer,
+  state => state.get('AddCategory'),
+)
+
+export const makeSelectIsLoading = () => createSelector(
+  makeSelectAddCategory,
+  state => state.get('isLoading')
 );
 
-export const makeSelectCatError = () => createSelector(
-  sideBarState,
-  state => state.get('catError')
+export const makeSelectError = () => createSelector(
+  makeSelectAddCategory,
+  state => state.get('error')
 );

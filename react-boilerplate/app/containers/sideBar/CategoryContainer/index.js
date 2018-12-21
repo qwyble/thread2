@@ -17,6 +17,8 @@ import CategoryMapper from './CategoryMapper';
 import LoaderWrapper from './LoaderWrapper';
 import AddCategory from './AddCategory';
 
+import { IsOwner } from 'containers/Wrappers/IsOwner';
+
 import {
   getCategories,
   deleteCategory,
@@ -38,27 +40,23 @@ class CategoryContainer extends React.Component {
     return (
       <LoaderWrapper isLoading={this.props.isLoading}>
         <CategoryMapper
-          isOwner={this.props.isOwner}
           categories={this.props.categories}
           onSetCategory={this.props.setCategory}
-          onEditCategory={this.props.editCategory}
-          onDeleteCategory={this.props.deleteCategory}
         />
-        {props.isOwner ? <AddCategory /> : <div></div>}
+        <IsOwner >
+          <AddCategory />
+        </IsOwner>
       </LoaderWrapper>
     );
   }
 };
 
 CategoryContainer.propTypes = {
-  deleteCategory: PropTypes.func,
   getCategories: PropTypes.func,
-  editCategory: PropTypes.func,
   categories: PropTypes.object,
   setCategory: PropTypes.func,
   isLoading: PropTypes.bool,
   ownerId: PropTypes.string,
-  isOwner: PropTypes.bool,
 };
 
 const mapStateToProps = () => createStructuredSelector({

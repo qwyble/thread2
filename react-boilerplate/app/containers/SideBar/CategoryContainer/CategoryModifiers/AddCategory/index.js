@@ -1,18 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Loader } from 'semantic-ui-react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
-import AddCategoryForm from 'components/sidebarUtilities/AddCategoryForm';
-import LoaderWrapper from 'containers/sideBar/CategoryContainer/LoaderWrapper';
+import AddCategoryForm from 'components/SideBar/Categories/CategoryModifiers/AddCategoryForm';
+import LoaderWrapper from 'containers/SideBar/CategoryContainer/utils/LoaderWrapper';
 
-import { addCategory } from '../actions';
+import { addCategory } from './actions';
 
 import {
-  makeSelectIsCatLoading,
-  makeSelectCatError,
+  makeSelectIsLoading,
+  makeSelectError,
 } from './selectors';
 
 const AddCategory = props => (
@@ -28,8 +27,8 @@ AddCategory.propTypes = {
 };
 
 const mapStateToProps = createStructuredSelector({
-  isLoading: () => makeSelectIsCatLoading(),
-  error: () => makeSelectCatError(),
+  isLoading: () => makeSelectIsLoading(),
+  error: () => makeSelectError(),
 })
 
 const mapDispatchToProps = {

@@ -1,13 +1,3 @@
 export const GET_CATEGORIES = 'boilerplate/SideBar/SET_PLAYLIST';
-export const CATEGORY_ATTEMPT = 'boilerplate/SideBar/CATEGORY_ATTEMPT';
 export const GET_CATEGORIES_SUCCESS = 'boilerplate/SideBar/SET_PLAYLIST';
 export const GET_CATEGORIES_FAILED = 'boilerplate/SideBar/SET_PLAYLIST';
-export const ADD_CATEGORY_ATTEMPT = 'boilerplate/SideBar/ADD_CATEGORY_ATTEMPT';
-export const ADD_CATEGORY_SUCCESS = 'boilerplate/SideBar/ADD_CATEGORY_SUCCESS';
-export const ADD_CATEGORY_FAILED = 'boilerplate/SideBar/ADD_CATEGORY_FAILED';
-export const DELETE_CATEGORY_ATTEMPT = 'boilerplate/SideBar/DELETE_CATEGORY_ATTEMPT';
-export const DELETE_CATEGORY_SUCCESS = 'boilerplate/SideBar/DELETE_CATEGORY_SUCCESS';
-export const DELETE_CATEGORY_FAILED = 'boilerplate/SideBar/DELETE_CATEGORY_FAILED';
-export const EDIT_CATEGORY_ATTEMPT = 'boilerplate/SideBar/EDIT_CATEGORY_ATTEMPT';
-export const EDIT_CATEGORY_SUCCESS = 'boilerplate/SideBar/EDIT_CATEGORY_SUCCESS';
-export const EDIT_CATEGORY_FAILED = 'boilerplate/SideBar/EDIT_CATEGORY_FAILED';

@@ -6,11 +6,10 @@ import { createStructuredSelector } from 'reselect';
 
 import injectSaga from 'utils/injectSaga';
 
-import { deletePlaylist } from './actions';
-
-
-import { makeSelectIsLoading, makeSelectDidDelete, makeSelectError } from './selectors';
 import DeletePlaylistForm from 'components/SideBar/Playlists/PlaylistModifiers/DeletePlaylistForm';
+
+import { deletePlaylist } from './actions';
+import { makeSelectIsLoading, makeSelectDidDelete, makeSelectError } from './selectors';
 
 
 class DeletePlaylist extends Component {
