@@ -1,5 +1,5 @@
 import React from 'react';
-import ClonePortal from './clonePortal.js';
+import ClonePortal from './index.js';
 import {Button} from 'semantic-ui-react';
 
 

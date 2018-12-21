@@ -21,9 +21,6 @@ import { makeSelectDisplayLists } from './selectors';
 
 import AnimationWrapper from './AnimationWrapper';
 
-
-
-
 class PlaylistContainer extends React.PureComponent {
 
 
