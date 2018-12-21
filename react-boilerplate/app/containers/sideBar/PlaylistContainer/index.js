@@ -22,7 +22,6 @@ import { makeSelectDisplayLists } from './selectors';
 
 class PlaylistContainer extends React.PureComponent {
 
-
   render() {
     return (
       <AnimationWrapper displayLists={this.props.displayLists}>
