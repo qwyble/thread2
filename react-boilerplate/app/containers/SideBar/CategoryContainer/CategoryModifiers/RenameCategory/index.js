@@ -14,8 +14,9 @@ import { makeSelectIsLoading, makeSelectError } from './selectors';
 const RenameCategory = props => (
   <LoaderWrapper isLoading={props.isLoading}>
     <RenameCategoryForm
-      onRenameCategory={props.editCategory}
       error={props.error}
+      onCancel={props.onClosePortal}
+      onRenameCategory={props.editCategory}
     />
   </LoaderWrapper>
 );

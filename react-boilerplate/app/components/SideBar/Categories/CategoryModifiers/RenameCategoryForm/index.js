@@ -40,7 +40,7 @@ class EditCategoryForm extends React.Component {
             onChange={this.handleRenameChange}
           />
           {this.state.err}
-          <Button onClick={this.props.onClose}>Cancel</Button>
+          <Button onClick={this.props.onCancel}>Cancel</Button>
           <Button type="submit">Ok</Button>
         </Form>
       </div>
@@ -53,6 +53,7 @@ EditCategoryForm.propTypes = {
   id: PropTypes.string,
   catName: PropTypes.string,
   onRenameCategory: PropTypes.func,
+  onCancel: PropTypes.func,
 };
 
 export default EditCategoryForm;

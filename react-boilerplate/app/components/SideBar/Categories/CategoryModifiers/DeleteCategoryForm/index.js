@@ -1,37 +1,23 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { Segment, Button } from "semantic-ui-react";
-import LoaderWrapper from "containers/Wrappers/LoaderWrapper";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Button } from 'semantic-ui-react';
 
 const DeleteCategoryForm = props => (
   <div>
-    <Segment
-      style={{
-        top: "10%",
-        left: "15%",
-        width: "14%",
-        zIndex: 1000,
-        position: "fixed"
-      }}
-    >
-      <LoaderWrapper isLoading={props.isLoading}>
-        <p>
-          Are you sure you want to delete the
-          {props.catname}
-          category?
-        </p>
-        <Button onClick={props.onDelete}>yes</Button>
-        <Button onClick={props.onCancel}>no</Button>
-      </LoaderWrapper>
-    </Segment>
+    <p>
+      Are you sure you want to delete the
+      {props.catname}
+      category?
+    </p>
+    <Button onClick={props.onDelete}>yes</Button>
+    <Button onClick={props.onCancel}>no</Button>
   </div>
 );
 
-DeletePlaylistForm.propTypes = {
+DeleteCategoryForm.propTypes = {
   onDelete: PropTypes.func,
   onCancel: PropTypes.func,
-  isLoading: PropTypes.bool,
-  playlist: PropTypes.string
+  catname: PropTypes.string,
 };
 
-export default DeletePlaylistForm;
+export default DeleteCategoryForm;

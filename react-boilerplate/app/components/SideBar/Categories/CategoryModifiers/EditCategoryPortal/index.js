@@ -36,7 +36,7 @@ class EditCategoryPortal extends React.Component {
     const portalProps = {
       id: this.props.id,
       err: this.props.error,
-      onClose: this.handleClose,
+      onClosePortal: this.handleClose,
     };
 
     return (

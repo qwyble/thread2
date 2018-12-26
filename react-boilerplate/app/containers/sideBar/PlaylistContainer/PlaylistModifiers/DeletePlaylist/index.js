@@ -8,6 +8,7 @@ import injectSaga from 'utils/injectSaga';
 
 import DeletePlaylistForm from 'components/SideBar/Playlists/PlaylistModifiers/DeletePlaylistForm';
 
+import LoaderWrapper from 'containers/Wrappers/LoaderWrapper';
 import { deletePlaylist } from './actions';
 import {
   makeSelectIsLoading,
@@ -26,12 +27,13 @@ class DeletePlaylist extends Component {
 
   render() {
     return (
-      <DeletePlaylistForm
-        onDelete={this.handleDelete}
-        playlist={this.props.playlist}
-        isLoading={this.props.isLoading}
-        onCancel={this.props.onClosePortal}
-      />
+      <LoaderWrapper isLoading={this.props.isLoading}>
+        <DeletePlaylistForm
+          plname={this.props.plname}
+          onDelete={this.handleDelete}
+          onCancel={this.props.onClosePortal}
+        />
+      </LoaderWrapper>
     );
   }
 }

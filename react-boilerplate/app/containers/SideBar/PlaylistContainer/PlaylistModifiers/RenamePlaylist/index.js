@@ -1,12 +1,24 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+
 import { createStructuredSelector } from 'reselect';
-import RenamePlaylistForm from 'components/SideBar/Playlists/PlaylistModifiers';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+
+import injectSaga from 'utils/injectSaga';
+
+import RenamePlaylistForm from 'components/SideBar/Playlists/PlaylistModifiers/RenamePlaylistForm';
+
+import LoaderWrapper from 'containers/Wrappers/LoaderWrapper';
+import renamePlaylist from './actions';
+
 import {
   makeSelectDidRename,
   makeSelectIsLoading,
   makeSelectError,
 } from './selectors';
+
+import renamePlaylistSaga from './saga';
 
 class RenamePlaylist extends Component {
   componentDidUpdate() {
@@ -19,11 +31,14 @@ class RenamePlaylist extends Component {
 
   render() {
     return (
-      <RenamePlaylistForm
-        error={this.props.error}
-        isLoading={this.props.isLoading}
-        onRenamePlaylist={this.handleRenamePlaylist}
-      />
+      <LoaderWrapper isLoading={this.props.isLoading}>
+        <RenamePlaylistForm
+          error={this.props.error}
+          plname={this.props.plname}
+          onCancel={this.props.onClosePortal}
+          onRenamePlaylist={this.handleRenamePlaylist}
+        />
+      </LoaderWrapper>
     );
   }
 }
@@ -54,4 +69,12 @@ const withConnect = connect(
   mapDispatchToProps
 );
 
-export default RenamePlaylist;
+const withSaga = injectSaga({
+  key: 'RenamePlaylistSaga',
+  saga: renamePlaylistSaga,
+});
+
+export default compose(
+  withSaga,
+  withConnect
+)(RenamePlaylist);
