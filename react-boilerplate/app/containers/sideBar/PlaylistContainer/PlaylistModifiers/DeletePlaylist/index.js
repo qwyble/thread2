@@ -24,17 +24,13 @@ class DeletePlaylist extends Component {
     this.props.deletePlaylist(this.props.id);
   }
 
-  handleCancel() {
-    this.props.onClosePortal();
-  }
-
   render() {
     return (
       <DeletePlaylistForm
-        onCancel={this.handleCancel}
         onDelete={this.handleDelete}
         playlist={this.props.playlist}
         isLoading={this.props.isLoading}
+        onCancel={this.props.onClosePortal}
       />
     );
   }

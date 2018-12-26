@@ -12,7 +12,8 @@ function* deletePlaylist(action) {
     data['catid'] = action.catId;
     data['plid'] = action.plId;
     yield call(deletePlaylistRequest, data);
-    yield put(deletePlaylistSuccess, data['plid']);
+    yield put(deletePlaylistSuccess);
+    yield put(removePlFromCategory, data);
   } catch (err) {
     yield put(deletePlaylistFailed, err);
   }

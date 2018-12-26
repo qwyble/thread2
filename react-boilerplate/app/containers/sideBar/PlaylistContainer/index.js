@@ -7,7 +7,7 @@ import { Menu } from 'semantic-ui-react';
 import { createStructuredSelector } from 'reselect';
 
 import IsOwner from 'containers/Wrappers/IsOwner';
-import Playlist from 'components/SideBar/Playlist';
+import Playlist from 'components/SideBar/Playlists/Playlist';
 import AddPlaylist from 'containers/SideBar/PlaylistContainer/PlaylistModifiers/AddPlaylist';
 import AnimationWrapper from 'containers/Wrappers/AnimationWrapper';
 import { setPlaylist } from 'containers/SideBar/SideBarContainer/actions';
@@ -17,9 +17,7 @@ import injectReducer from 'utils/injectReducer';
 import reducer from './reducer';
 import { makeSelectDisplayLists } from './selectors';
 
-
 class PlaylistContainer extends React.PureComponent {
-
   render() {
     return (
       <AnimationWrapper displayLists={this.props.displayLists}>
@@ -39,8 +37,7 @@ class PlaylistContainer extends React.PureComponent {
           </IsOwner>
         </Menu.Menu>
       </AnimationWrapper>
-
-    )
+    );
   }
 }
 
@@ -48,11 +45,12 @@ PlaylistContainer.propTypes = {
   setPlaylist: PropTypes.func,
   displayLists: PropTypes.bool,
   playlists: PropTypes.array,
-}
+};
 
-const mapStateToProps = () => createStructuredSelector({
-  displayLists: () => makeSelectDisplayLists(),
-});
+const mapStateToProps = () =>
+  createStructuredSelector({
+    displayLists: () => makeSelectDisplayLists(),
+  });
 
 const mapDispatchToProps = {
   setPlaylist,
@@ -60,12 +58,12 @@ const mapDispatchToProps = {
 
 const withConnect = connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 );
 
 const withReducer = injectReducer({ key: 'PlaylistContainer', reducer });
 
 export default compose(
   withReducer,
-  withConnect,
+  withConnect
 )(PlaylistContainer);

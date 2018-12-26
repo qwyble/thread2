@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Button } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
-import EditPlaylist from 'containers/sideBar/PlaylistContainer/EditPlaylist';
+import RenamePlaylist from 'containers/SideBar/PlaylistContainer/PlaylistModifiers/RenamePlaylist';
 import IsOwner from 'containers/Wrappers/IsOwner';
 
 const Playlist = props => (
@@ -21,7 +21,7 @@ const Playlist = props => (
       </Button>
     </Link>
     <IsOwner>
-      <EditPlaylist id={props.id} playlist={props.playlist} />
+      <RenamePlaylist id={props.id} playlist={props.playlist} />
     </IsOwner>
   </div>
 );
@@ -31,6 +31,5 @@ Playlist.propTypes = {
   playlist: PropTypes.string,
   onSelectPlaylist: PropTypes.func,
 };
-
 
 export default Playlist;

@@ -12,10 +12,9 @@ export function deletePlaylist(plId) {
   };
 }
 
-export function deletePlaylistSuccess(plId) {
+export function deletePlaylistSuccess() {
   return {
     type: DELETE_PLAYLIST_SUCCESS,
-    plId,
   };
 }
 
@@ -24,7 +23,7 @@ export function removePlaylistFromCategory(plId, catId) {
     type: REMOVE_PL_FROM_CAT,
     plId,
     catId,
-  }
+  };
 }
 
 export function deletePlaylistFailed(error) {

@@ -5,10 +5,9 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
 import injectSaga from 'utils/injectSaga';
-import AddPlaylistForm from 'components/sidebarUtilities/AddPlaylistForm';
+import AddPlaylistForm from 'components/SideBar/Playlists/PlaylistModifiers/AddPlaylistForm';
+import LoaderWrapper from 'containers/Wrappers/LoaderWrapper';
 import saga from './saga';
-
-import LoaderWrapper from '../LoaderWrapper';
 
 import { addPlaylist } from './actions';
 

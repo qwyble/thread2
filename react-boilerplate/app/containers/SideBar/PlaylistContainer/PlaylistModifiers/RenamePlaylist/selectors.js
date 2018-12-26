@@ -2,26 +2,26 @@ import { createSelector } from 'reselect';
 
 import { selectPlaylistState } from '../../selectors';
 
-export const makeSelectDeletePlaylistState = () =>
+export const makeSelectRenamePlaylistState = () =>
   createSelector(
     selectPlaylistState,
-    state => state.get('deletePlaylist')
+    state => state.get('renamePlaylist')
   );
 
 export const makeSelectIsLoading = () =>
   createSelector(
-    makeSelectDeletePlaylistState,
-    deletePlaylist => deletePlaylist.get('isLoading')
+    makeSelectRenamePlaylistState,
+    renamePlaylist => renamePlaylist.get('isLoading')
   );
 
-export const makeSelectDidDelete = () =>
+export const makeSelectDidRename = () =>
   createSelector(
-    makeSelectDeletePlaylistState,
-    state => state.get('didDelete')
+    makeSelectRenamePlaylistState,
+    state => state.get('didRename')
   );
 
 export const makeSelectError = () =>
   createSelector(
-    makeSelectDeletePlaylistState,
+    makeSelectRenamePlaylistState,
     state => state.get('error')
   );
