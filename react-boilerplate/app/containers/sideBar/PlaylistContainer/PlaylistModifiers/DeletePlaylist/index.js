@@ -9,13 +9,15 @@ import injectSaga from 'utils/injectSaga';
 import DeletePlaylistForm from 'components/SideBar/Playlists/PlaylistModifiers/DeletePlaylistForm';
 
 import { deletePlaylist } from './actions';
-import { makeSelectIsLoading, makeSelectDidDelete, makeSelectError } from './selectors';
-
+import {
+  makeSelectIsLoading,
+  makeSelectDidDelete,
+  makeSelectError,
+} from './selectors';
 
 class DeletePlaylist extends Component {
-
   componentDidUpdate() {
-    if(this.props.didDelete) this.props.onClosePortal();
+    if (this.props.didDelete) this.props.onClosePortal();
   }
 
   handleDelete() {
@@ -45,13 +47,14 @@ DeletePlaylist.propTypes = {
   playlist: PropTypes.string,
   onClosePortal: PropTypes.func,
   deletePlaylist: PropTypes.func,
-}
+};
 
-const mapStateToProps = () => createStructuredSelector({
-  isLoading: () => makeSelectIsLoading(),
-  didDelete: () => makeSelectDidDelete(),
-  error: () => makeSelectError(),
-});
+const mapStateToProps = () =>
+  createStructuredSelector({
+    isLoading: () => makeSelectIsLoading(),
+    didDelete: () => makeSelectDidDelete(),
+    error: () => makeSelectError(),
+  });
 
 const mapDispatchToProps = {
   deletePlaylist,
@@ -59,12 +62,12 @@ const mapDispatchToProps = {
 
 const withConnect = connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 );
 
 const withSaga = injectSaga({ key: DeletePlaylist, saga });
 
 export default compose(
   withSaga,
-  withConnect,
+  withConnect
 )(DeletePlaylist);

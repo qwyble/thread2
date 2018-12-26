@@ -9,7 +9,7 @@ import { compose } from 'redux';
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 
-import SideBar from 'containers/sideBar/SideBar';
+import SideBar from 'containers/SideBar/SideBarContainer';
 
 import {
   makeSelectProfileParam,

@@ -1,7 +1,6 @@
 import React from 'react';
 import axios from 'axios';
 import {Redirect} from 'react-router-dom';
-import {AppContext} from '../../appUtilities/ownerContext.js';
 import ThreadView from '../../components/forum/threadView.js';
 import NewComment from './newComment.js';
 import CommentList from './commentList.js';
@@ -74,15 +73,13 @@ class ThreadViewContainer extends React.Component{
 
         {this.state.success ? <Redirect to='/forum' /> : <div></div>}
 
-        <AppContext.Consumer>{context => (
           <ThreadView
-            isOwner={context.user.idUsers === this.state.thread.UserId}
+            isOwner={props.user.idUsers === this.state.thread.UserId}
             thread={this.state.thread}
             onOpenComment={this.handleOpenComment}
             onDeleteThread={this.handleDeleteThread}
             _loading={this.state._loading}
-          />)}
-        </AppContext.Consumer>
+          />
 
         {
           this.state.openComment ?

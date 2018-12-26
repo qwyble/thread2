@@ -2,36 +2,29 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Menu } from 'semantic-ui-react';
 
+import IsOwner from 'containers/Wrappers/IsOwner';
+
 import PlaylistContainer from 'containers/sideBar/PlaylistContainer';
 
-import EditCategoryForm from 'components/sidebarUtilities/EditCategoryForm';
-
-
+import EditCategoryPortal from 'components/SideBar/Categories/CategoryModifiers/EditCategoryPortal';
 
 class Category extends React.Component {
-
   handleSelectCategory = () => {
     this.props.onSetCategory(this.props.category.catid);
-  }
+  };
 
   render() {
-
     return (
       <div>
         <div>
           <div>
             <Menu.Item className="sideBarItem">
-
-              { this.props.isOwner
-                ? (
-                  <EditCategoryForm
-                    id={this.props.category.get('catid')}
-                    catname={this.props.category.get('catname')}
-                    onCategoryRename={this.props.onEditCategory}
-                    onCategoryDelete={this.props.onDeleteCategory}
-                  />
-                )
-                : <div /> }
+              <IsOwner>
+                <EditCategoryPortal
+                  id={this.props.category.get('catid')}
+                  catname={this.props.category.get('catname')}
+                />
+              </IsOwner>
 
               <Button
                 icon
@@ -45,7 +38,6 @@ class Category extends React.Component {
               >
                 {this.props.category.get('catname')}
               </Button>
-
             </Menu.Item>
 
             <PlaylistContainer
@@ -60,11 +52,8 @@ class Category extends React.Component {
 }
 
 Category.propTypes = {
-  onDeleteCategory: PropTypes.func,
-  onEditCategory: PropTypes.func,
   onSetCategory: PropTypes.func,
   category: PropTypes.object,
-  isOwner: PropTypes.bool,
 };
 
 export default Category;

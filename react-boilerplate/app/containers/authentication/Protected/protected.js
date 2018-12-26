@@ -2,8 +2,6 @@ import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import Root from '../../App/Root';
 import Logout from './logout';
-import { AppProvider } from '../../../appUtilities/context';
-import { AppOwnerProvider } from '../../../appUtilities/ownerContext';
 
 // component protects the route to the main app
 // if user isn't logged in, they can only access the login screen

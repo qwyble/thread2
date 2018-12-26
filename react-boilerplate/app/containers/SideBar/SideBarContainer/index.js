@@ -10,8 +10,8 @@ import { createStructuredSelector } from 'reselect';
 import injectReducer from 'utils/injectReducer';
 
 import CategoryContainer from 'containers/sideBar/CategoryContainer';
-import CategoryListHeader from 'components/sidebarUtilities/CategoryListHeader';
-import WrappedPlaylistController from 'components/sidebarUtilities/wrappedPlaylistController';
+import CategoryListHeader from 'components/SideBar/SidebarHeader';
+import PlaylistContainer from 'container/SideBar/PlaylistContainer';
 
 import {
   makeSelectVisibility,
@@ -23,50 +23,45 @@ import { toggleVisibility } from './actions';
 import reducer from './reducer';
 
 
-const SideBar = props => {
+const SideBar = props => (
+  <div>
+    <div>
+      <Sidebar.Pushable as={Segment} className='primaryContainer'>
+        <Sidebar
+          inverted
+          vertical
+          width="thin"
+          icon="labeled"
+          animation="push"
+          as={Menu}
+          visible={this.props.visible}
+        >
 
-  render() {
-    return (
-      <div>
-        <div>
-          <Sidebar.Pushable as={Segment} className='primaryContainer'>
-            <Sidebar
-              inverted
-              vertical
-              width="thin"
-              icon="labeled"
-              animation="push"
-              as={Menu}
-              visible={this.props.visible}
-            >
+          <CategoryListHeader owner={props.owner} isOwner={props.isOwner} />
 
-              <CategoryListHeader owner={props.owner} isOwner={props.isOwner} />
+          <CategoryContainer isOwner={props.isOwner} />
 
-              <CategoryContainer isOwner={props.isOwner} />
+        </Sidebar>
+        <Sidebar.Pusher className="pusherContainer">
 
-            </Sidebar>
-            <Sidebar.Pusher className="pusherContainer">
+          <Button
+            icon
+            inverted
+            color="blue"
+            attached="right"
+            className="sidebarButton"
+            onClick={props.toggleVisibility}>
+            <Icon name={props.visible ? 'left arrow' : 'right arrow'}/>
+          </Button>
 
-              <Button
-                icon
-                inverted
-                color="blue"
-                attached="right"
-                className="sidebarButton"
-                onClick={props.toggleVisibility}>
-                <Icon name={props.visible ? 'left arrow' : 'right arrow'}/>
-              </Button>
+          <PlaylistContainer />
 
-              <WrappedPlaylistController />
+        </Sidebar.Pusher>
+      </Sidebar.Pushable>
+    </div>
 
-            </Sidebar.Pusher>
-          </Sidebar.Pushable>
-        </div>
-
-      </div>
-    );
-  }
-}
+  </div>
+);
 
 
 SidebarLeftOverlay.propTypes = {

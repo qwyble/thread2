@@ -7,8 +7,8 @@ import { Menu } from 'semantic-ui-react';
 import { createStructuredSelector } from 'reselect';
 
 import IsOwner from 'containers/Wrappers/IsOwner';
-import Playlist from 'components/sidebarUtilities/Playlist';
-import AddPlaylist from 'components/sidebarUtilities/AddPlaylist';
+import Playlist from 'components/SideBar/Playlist';
+import AddPlaylist from 'containers/SideBar/PlaylistContainer/PlaylistModifiers/AddPlaylist';
 import AnimationWrapper from 'containers/Wrappers/AnimationWrapper';
 import { setPlaylist } from 'containers/SideBar/SideBarContainer/actions';
 
@@ -39,6 +39,7 @@ class PlaylistContainer extends React.PureComponent {
           </IsOwner>
         </Menu.Menu>
       </AnimationWrapper>
+
     )
   }
 }

@@ -1,6 +1,6 @@
-import React, { PropTypes } from 'react'
+import React, { PropTypes } from 'react';
 import { Menu } from 'semantic-ui-react';
-import Category from 'containers/sideBar/Category';
+import Category from 'components/SideBar/Categories/Category';
 
 const CategoryMapper = props => (
   <div>
@@ -8,19 +8,15 @@ const CategoryMapper = props => (
       <Menu.Item className="sideItems" key={key}>
         <Category
           category={category}
-          isOwner={props.isOwner}
           onSetCategory={this.props.onSetCategory}
-          onEditCategory={this.props.onEditCategory}
-          onDeleteCategory={this.props.onDeleteCategory}
         />
       </Menu.Item>
     ))}
   </div>
-)
+);
 
 CategoryMapper.propTypes = {
   categories: PropTypes.object,
-  isOwner: PropTypes.bool,
-}
+};
 
 export default CategoryMapper;
