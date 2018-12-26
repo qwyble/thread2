@@ -10,13 +10,10 @@ import injectReducer from 'utils/injectReducer';
 
 import CategoryContainer from 'containers/SideBar/CategoryContainer';
 import CategoryListHeader from 'components/SideBar/SidebarHeader';
-import PlaylistContainer from 'containers/SideBar/PlaylistContainer';
+import SongsContainer from 'containers/SongsContainer/SongsContainer';
 
 import { makeSelectVisibility } from './selectors';
-import {
-  makeSelectIsOwner,
-  makeSelectProfile,
-} from '../../../appUtilities/ProfileContext/selectors';
+import { makeSelectProfile } from '../../../appUtilities/ProfileContext/selectors';
 
 import { toggleVisibility } from './actions';
 
@@ -35,9 +32,9 @@ const SideBar = props => (
           as={Menu}
           visible={props.visible}
         >
-          <CategoryListHeader owner={props.owner} isOwner={props.isOwner} />
+          <CategoryListHeader owner={props.owner} />
 
-          <CategoryContainer isOwner={props.isOwner} />
+          <CategoryContainer />
         </Sidebar>
         <Sidebar.Pusher className="pusherContainer">
           <Button
@@ -51,7 +48,7 @@ const SideBar = props => (
             <Icon name={props.visible ? 'left arrow' : 'right arrow'} />
           </Button>
 
-          <PlaylistContainer />
+          <SongsContainer />
         </Sidebar.Pusher>
       </Sidebar.Pushable>
     </div>
@@ -60,14 +57,12 @@ const SideBar = props => (
 
 SideBar.propTypes = {
   toggleVisibility: PropTypes.func,
-  isOwner: PropTypes.bool,
   visible: PropTypes.bool,
   owner: PropTypes.object,
 };
 
 const mapStateToProps = createStructuredSelector({
   visible: () => makeSelectVisibility(),
-  isOwner: () => makeSelectIsOwner(),
   owner: () => makeSelectProfile(),
 });
 

@@ -2,12 +2,11 @@ import { fromJS } from 'immutable';
 import { combineReducers } from 'redux';
 
 import { ADD_PL_TO_CAT } from 'containers/sideBar/PlaylistContainer/AddPlaylist/constants';
+import { REMOVE_PL_FROM_CAT } from 'containers/sideBar/PlaylistContainer/DeletePlaylist/constants';
 import AddCategory from './CategoryModifiers/AddCategory/reducer';
 import DeleteCategory from './CategoryModifiers/DeleteCategory/reducer';
 import RenameCategory from './CategoryModifiers/RenameCategory/reducer';
 
-import { REMOVE_PL_FROM_CAT } from 'containers/sideBar/PlaylistContainer/DeletePlaylist/constants';
-import { UPDATE_PL_IN_CAT } from 'containers/sideBar/PlaylistContainer/EditPlaylist/constants';
 
 import {
   GET_CATEGORIES,

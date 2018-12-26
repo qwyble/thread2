@@ -9,7 +9,7 @@ import { compose } from 'redux';
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 
-import SideBar from 'containers/SideBar/SideBarContainer';
+import SideBarContainer from 'containers/SideBar/SideBarContainer';
 
 import {
   makeSelectProfileParam,
@@ -25,7 +25,6 @@ import saga from './saga';
 // sets the profile being viewed,
 
 class RoutedContext extends React.Component {
-
   componentDidMount() {
     this.setProfile();
   }
@@ -42,12 +41,8 @@ class RoutedContext extends React.Component {
   render() {
     if (this.props.user) {
       if (!this.props.isLoading) {
-        if (!this.props.profileError) return <SideBar />;
-        return (
-          <div>
-            {this.props.profileError}
-          </div>
-        );
+        if (!this.props.profileError) return <SideBarContainer />;
+        return <div>{this.props.profileError}</div>;
       }
     }
     return <Loader active />;
@@ -86,5 +81,5 @@ const withConnect = connect({
 export default compose(
   withSaga,
   withReducer,
-  withConnect,
+  withConnect
 )(RoutedContext);

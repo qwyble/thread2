@@ -7,26 +7,24 @@ import { makeSelectIsOwner } from '../../../appUtilities/ProfileContext/selector
 
 const IsOwner = props => (
   <div>
-    {
-      props.isOwner
-        ? (
-          <div>
-            {props.children}
-          </div>
-        )
-        : <div></div>
-    }
+    {props.isOwner ? (
+      <div>{props.children}</div>
+    ) : (
+      <div>{props.alt ? <div>{props.alt}</div> : <div />}</div>
+    )}
   </div>
 );
 
 IsOwner.propTypes = {
+  alt: PropTypes.element,
   isOwner: PropTypes.bool,
   children: PropTypes.element,
 };
 
-const mapStateToProps = () => createStructuredSelector({
-  isOwner: () => makeSelectIsOwner(),
-})
+const mapStateToProps = () =>
+  createStructuredSelector({
+    isOwner: () => makeSelectIsOwner(),
+  });
 
 const withConnect = connect(mapStateToProps);
 
