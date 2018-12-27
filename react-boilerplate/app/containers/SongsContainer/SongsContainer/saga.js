@@ -8,20 +8,20 @@ export default function* songsContainerSaga() {
   yield takeLatest(GET_SONGS, getSongs);
 }
 
-function* getSongs(action) {
+function* getSongs() {
   try {
-    const songs = yield call(songsRequest, [action.sortBy, action.descending]);
+    const songs = yield call(songsRequest);
     yield put(getSongsSuccess, songs);
   } catch (err) {
     yield put(getSongsFailed, err);
   }
 }
 
-function* songsRequest(sortBy, descending) {
+function* songsRequest() {
   const url = yield select(makeSelectUrl);
   const currentPage = yield select(makeSelectCurrentPage);
-  const sortByParam = sortBy || 'dateUploaded';
-  const descendingParam = descending ? 'ASC' : 'DESC';
+  const sortByParam = yield select(makeSelectSortBy);
+  const descendingParam = yield select(makeSelectDescending);
 
   return getSongsRequest(url, sortByParam, descendingParam, currentPage);
 }

@@ -7,11 +7,9 @@ import {
   SET_CURRENT_PAGE,
 } from './constants';
 
-export function getSongs(sortBy, desc) {
+export function getSongs() {
   return {
     type: GET_SONGS,
-    sortBy,
-    desc,
   };
 }
 
