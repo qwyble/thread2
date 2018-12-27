@@ -3,6 +3,12 @@ import { createSelector } from 'reselect';
 const selectSongsContainerState = state => state;
 const selectSongsContainerOwnProps = (state, ownProps) => ownProps;
 
+export const selectSongsTableState = () =>
+  createSelector(
+    selectSongsContainerState,
+    state => state.get('songsTable')
+  );
+
 export const makeSelectPathname = () =>
   createSelector(
     selectSongsContainerOwnProps,
@@ -23,7 +29,6 @@ export const makeSelectCurrentPage = () =>
     selectSongsContainerState,
     state => state.get('currentPage')
   );
-
 export const makeSelectSongs = () =>
   createSelector(
     selectSongsContainerState,
@@ -34,4 +39,10 @@ export const makeSelectIsLoading = () =>
   createSelector(
     selectSongsContainerState,
     state => state.get('isLoading')
+  );
+
+export const makeSelectSortBy = () =>
+  createSelector(
+    selectSongsTableState,
+    songsTable => songsTable.get('sortBy')
   );

@@ -5,6 +5,10 @@ import {
   REMOVE_SONGS_FROM_PLAYLIST,
   ADD_SONGS_TO_PLAYLIST,
   SET_CURRENT_PAGE,
+  SORT_BY,
+  SORT_BY_REDUCTION,
+  SET_DESCENDING,
+  SET_DESCENDING_REDUCTION,
 } from './constants';
 
 export function getSongs() {
@@ -13,7 +17,7 @@ export function getSongs() {
   };
 }
 
-export function getSongsSUccess(songs) {
+export function getSongsSuccess(songs) {
   return {
     type: GET_SONGS_SUCCESS,
     songs,
@@ -45,5 +49,31 @@ export function addSongsToPlaylist(songs) {
   return {
     type: ADD_SONGS_TO_PLAYLIST,
     songs,
+  };
+}
+
+export function sortBy(sortParam) {
+  return {
+    type: SORT_BY,
+    sortParam,
+  };
+}
+
+export function sortByReduction(sortParam) {
+  return {
+    type: SORT_BY_REDUCTION,
+    sortParam,
+  };
+}
+
+export function setDescending() {
+  return {
+    type: SET_DESCENDING,
+  };
+}
+
+export function setDescendingReduction() {
+  return {
+    type: SET_DESCENDING_REDUCTION,
   };
 }

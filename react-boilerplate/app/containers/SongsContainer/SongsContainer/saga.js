@@ -1,13 +1,34 @@
 import { call, put, takeLatest, select } from 'redux-saga/effects';
 import axios from 'axios';
-import { GET_SONGS } from './constants';
-import { getSongsSuccess, getSongsFailed } from './actions';
-import { makeSelectCurrentPage, makeSelectUrl } from './selectors';
+import { GET_SONGS, SORT_BY, SET_DESCENDING } from './constants';
+import {
+  getSongsSuccess,
+  getSongsFailed,
+  sortByReduction,
+  setDescendingReduction,
+} from './actions';
+import {
+  makeSelectCurrentPage,
+  makeSelectUrl,
+  makeSelectSortBy,
+  makeSelectDescending,
+} from './selectors';
 
 export default function* songsContainerSaga() {
   yield takeLatest(GET_SONGS, getSongs);
+  yield takeLatest(SORT_BY, sortBy);
+  yield takeLatest(SET_DESCENDING, setDescending);
 }
 
+function* setDescending() {
+  yield put(setDescendingReduction);
+  yield call(getSongs);
+}
+
+function* sortBy(action) {
+  yield put(sortByReduction, action.sortParam);
+  yield call(getSongs);
+}
 function* getSongs() {
   try {
     const songs = yield call(songsRequest);

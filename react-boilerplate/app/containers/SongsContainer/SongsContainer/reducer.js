@@ -7,12 +7,16 @@ import {
   REMOVE_SONGS_FROM_PLAYLIST,
   SET_CURRENT_PAGE,
   ADD_SONGS_TO_PLAYLIST,
+  SELECT_SONG,
+  DESELECT_SONG,
+  SET_DESCENDING_REDUCTION,
+  SORT_BY_REDUCTION,
 } from './constants';
 
 export default combineReducers({
   songsContainer,
-  addToPlaylist,
-  removeFromPlaylist,
+  addSongToPlaylist,
+  removeSongFromPlaylist,
 });
 
 const blankError = fromJS({});
@@ -62,10 +66,10 @@ export function songsContainer(state = initialState, action) {
       return state.updateIn(['songsTable', 'selectedSongs'], selectedSongs =>
         selectedSongs.filter(idSongs => idSongs !== action.idSongs)
       );
-    case SET_DESCENDING:
+    case SET_DESCENDING_REDUCTION:
       return state.set('descending', !state.get('descending'));
-    case SORT_BY:
-      return state.set('sortBy', action.sortBy);
+    case SORT_BY_REDUCTION:
+      return state.set('sortBy', action.sortParam);
     default:
       return state;
   }

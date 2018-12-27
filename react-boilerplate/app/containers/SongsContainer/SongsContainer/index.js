@@ -7,8 +7,10 @@ import SongsTable from 'containers/SongsContainer/SongsTable';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import injectReducer from 'utils/injectReducer';
-import { getSongs } from './actions';
+import injectSaga from 'utils/injectSaga';
+import { getSongs, sortBy } from './actions';
 import reducer from './reducer';
+import { makeSelectIsLoading } from './selectors';
 
 class SongsContainer extends React.Component {
   componentDidMount() {
@@ -24,23 +26,37 @@ class SongsContainer extends React.Component {
   render() {
     return (
       <div className="SongSorter">
-        <SongsTable />
+        <SongsTable
+          onSortBy={this.props.sortBy}
+          isLoading={this.props.isLoading}
+          onSetDescending={this.props.setDescending}
+        />
       </div>
     );
   }
 }
 
 SongsContainer.propTypes = {
+  sortBy: PropTypes.func,
   getSongs: PropTypes.func,
+  isLoading: PropTypes.bool,
   location: PropTypes.object,
+  setDescending: PropTypes.func,
 };
 
-const mapStateToProps = () => createStructuredSelector({});
+const mapStateToProps = () =>
+  createStructuredSelector({
+    isLoading: () => makeSelectIsLoading(),
+  });
+
 const mapDispatchToProps = {
+  sortBy,
   getSongs,
+  setDescending,
 };
 
-const withReducer = injectReducer({ key: 'songsContainerReducer', reducer });
+const withReducer = injectReducer({ key: 'songsContainer', reducer });
+const withSaga = injectSaga({ key: 'songsContainerSaga', saga });
 
 const withConnect = connect(
   mapStateToProps,
@@ -49,6 +65,7 @@ const withConnect = connect(
 
 export default compose(
   withRouter,
+  withSaga,
   withReducer,
   withConnect
 )(SongsContainer);
