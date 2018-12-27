@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Sidebar, Segment, Button, Menu, Icon } from 'semantic-ui-react';
-
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -47,7 +46,6 @@ const SideBar = props => (
           >
             <Icon name={props.visible ? 'left arrow' : 'right arrow'} />
           </Button>
-
           <SongsContainer />
         </Sidebar.Pusher>
       </Sidebar.Pushable>

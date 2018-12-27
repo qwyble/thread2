@@ -1,11 +1,12 @@
 import { createSelector } from 'reselect';
 
 const selectSongsContainerState = state => state;
+const selectSongsContainerOwnProps = (state, ownProps) => ownProps;
 
-const makeSelectPathname = () =>
+export const makeSelectPathname = () =>
   createSelector(
-    window.location,
-    location => location.pathName
+    selectSongsContainerOwnProps,
+    ownProps => ownProps.location.pathname
   );
 
 export const makeSelectUrl = () =>
