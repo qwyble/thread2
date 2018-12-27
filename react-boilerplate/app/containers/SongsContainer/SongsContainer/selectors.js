@@ -17,6 +17,12 @@ export const makeSelectUrl = () =>
     }
   );
 
+export const makeSelectCurrentPage = () =>
+  createSelector(
+    selectSongsContainerState,
+    state => state.get('currentPage')
+  );
+
 export const makeSelectSongs = () =>
   createSelector(
     selectSongsContainerState,
