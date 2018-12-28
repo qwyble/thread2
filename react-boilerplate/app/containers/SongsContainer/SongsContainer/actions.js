@@ -77,3 +77,17 @@ export function setDescendingReduction() {
     type: SET_DESCENDING_REDUCTION,
   };
 }
+
+export function selectSong() {
+  return {
+    type: SELECT_SONG,
+    idSongs,
+  };
+}
+
+export function deselectSong() {
+  return {
+    type: DESELECT_SONG,
+    idSongs,
+  };
+}

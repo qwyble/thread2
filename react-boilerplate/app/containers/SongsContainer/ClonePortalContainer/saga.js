@@ -1,4 +1,5 @@
-import { call, put, takeLatest, select } from 'redux-saga/effects';
+import { axios } from 'axios';
+import { call, put, takeLatest } from 'redux-saga/effects';
 import { addPlaylistToCategory } from 'containers/SideBar/PlaylistContainer/PlaylistModifiers/AddPlaylist/actions';
 import { CLONE_PLAYLIST } from './constants';
 import { clonePlaylistSuccess, clonePlaylistFailed } from './actions';
@@ -23,17 +24,19 @@ function* clonePlaylist(action) {
 }
 
 // TODO: make sure this returns the added playlist
-
-axios
-  .post(
-    'https://thread-204819.appspot.com/clonePlaylist',
-    {
-      selectedCat: this.state.selectedCatId,
-      plToClone: this.state.plToClone,
-      plname: this.state.plname,
-    },
-    { withCredentials: true }
-  )
-  .then(result => {
-    this.setState({ _loading: false, success: true });
-  });
+function clonePlaylistRequest(catId, plname, plToClone) {
+  return axios
+    .post(
+      'https://thread-204819.appspot.com/clonePlaylist',
+      {
+        selectedCat: catId,
+        plToClone,
+        plname,
+      },
+      { withCredentials: true }
+    )
+    .then(result => result.data)
+    .catch(err => {
+      throw new Error(err);
+    });
+}

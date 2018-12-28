@@ -115,7 +115,7 @@ const mapStateToProps = () =>
     isLoading: () => makeSelectIsLoading(),
     plToClone: () => makeSelectSelectedPlaylist(),
     categories: () => makeSelectCategories(),
-    error: () => makeSelectError();
+    error: () => makeSelectError(),
   });
 
 const mapDispatchToProps = {

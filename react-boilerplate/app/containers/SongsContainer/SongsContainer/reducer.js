@@ -1,16 +1,18 @@
 import { fromJS } from 'immutable';
 import { combineReducers } from 'redux';
+import addSongToPlaylist from 'containers/SongsContainer/PlaylistModifiers/AddToPlaylist/AddToPlaylistForm/reducer';
+import removeSongFromPlaylist from 'containers/SongsContainer/PlaylistModifiers/RemoveFromPlaylist/RemoveFromPlaylistForm/reducer';
 import {
   GET_SONGS,
-  GET_SONGS_SUCCESS,
-  GET_SONGS_FAILED,
-  REMOVE_SONGS_FROM_PLAYLIST,
-  SET_CURRENT_PAGE,
-  ADD_SONGS_TO_PLAYLIST,
   SELECT_SONG,
   DESELECT_SONG,
-  SET_DESCENDING_REDUCTION,
+  SET_CURRENT_PAGE,
+  GET_SONGS_FAILED,
   SORT_BY_REDUCTION,
+  GET_SONGS_SUCCESS,
+  ADD_SONGS_TO_PLAYLIST,
+  SET_DESCENDING_REDUCTION,
+  REMOVE_SONGS_FROM_PLAYLIST,
 } from './constants';
 
 export default combineReducers({
@@ -60,7 +62,7 @@ export function songsContainer(state = initialState, action) {
       return state.setIn(['songsTable', 'currentPage'], action.currentPage);
     case SELECT_SONG:
       return state.updateIn(['songsTable', 'selectedSongs'], selectedSongs =>
-        selectedSongs.push(action.song)
+        selectedSongs.push(action.idSongs)
       );
     case DESELECT_SONG:
       return state.updateIn(['songsTable', 'selectedSongs'], selectedSongs =>

@@ -46,3 +46,15 @@ export const makeSelectSortBy = () =>
     selectSongsTableState,
     songsTable => songsTable.get('sortBy')
   );
+
+export const makeSelectSelectedSongs = () =>
+  createSelector(
+    selectSongsTableState,
+    songsTable => songsTable.get('selectedSongs')
+  );
+
+export const makeSelectNoneSelected = () =>
+  createSelector(
+    makeSelectSelectedSongs,
+    selectedSongs => selectedSongs.length < 1
+  );

@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Table } from 'semantic-ui-react';
-import PlaylistPortal from 'containers/songRenderers/PlaylistPortal';
+
+import AddToPlaylistPortal from 'containers/SongsContainer/AddToPlaylistPortal';
 import LoaderWrapper from 'containers/Wrappers/LoaderWrapper';
 import ClonePortalWrapper from 'components/SongsTable/ClonePortalWrapper';
-import WrappedSongRows from '../../../components/SongTableUtilities/wrappedSongRows.js';
 import RemoveSongFromPlaylist from '../../components/SongTableUtilities/removeSongFromPlaylist.js';
+import SongRowsContainer from 'containers/SongsContainer/SongRowsContainer';
 import MakePublic from '../../components/sidebarUtilities/makePublic.js';
 import FollowContainer from '../../follower/followContainer.js';
 import Paginator from '../../utilities/paginator.js';
@@ -30,7 +31,7 @@ const SongsTable = props => (
       />
 
       <LoaderWrapper isLoading={props.isLoading}>
-        <WrappedSongRows />
+        <SongRowsContainer />
       </LoaderWrapper>
 
       <Table.Footer className="stickyBottom">
@@ -38,7 +39,7 @@ const SongsTable = props => (
           <Table.HeaderCell colSpan="4">
             <ClonePortalWrapper />
 
-            <PlaylistPortal />
+            <AddToPlaylistPortal />
 
             <FollowContainer />
 
