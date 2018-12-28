@@ -1,134 +1,137 @@
 import React from 'react';
-import axios from 'axios';
-import {Dropdown, Button, Loader, Segment, Input} from 'semantic-ui-react';
+import PropTypes from 'prop-types';
 
+import { compose } from 'redux';
+import { connect } from 'react-redux';
 
+import { createStructuredSelector } from 'reselect';
 
-class ClonePortal extends React.Component{
+import injectReducer from 'utils/injectReducer';
+import injectSaga from 'utils/injectSaga';
 
-  state={
-    plToClone: '',
-    categories: [],
+import { Segment } from 'semantic-ui-react';
+
+import Error from 'components/common/Error';
+import PropChecker from 'components/common/PropChecker';
+import LoaderWrapper from 'containers/Wrappers/LoaderWrapper';
+
+import ClonePortalForm from 'components/SongsTable/ClonePortal/ClonePortalForm';
+
+import { makeSelectSelectedPlaylist } from 'containers/SideBar/SideBarContainer/selectors';
+import { makeSelectCategories } from 'containers/SideBar/CategoryContainer/selectors';
+import { makeSelectIsLoading, makeSelectError } from './selectors';
+
+import { clonePlaylist } from './actions';
+
+import reducer from './reducer';
+import saga from './saga';
+
+class ClonePortalContainer extends React.Component {
+  state = {
     selectedCatId: '',
     selectedCatName: '',
     plname: '',
-    _loading: false,
-    err: '',
-    _disabled: true,
-    success: false
-  }
+    error: '',
+    disabled: true,
+  };
 
-
-  static getDerivedStateFromProps(props, state){
-    if(props.selectedPlaylist !== state.selectedPlaylist){
-      return { plToClone: props.selectedPlaylist }
-    } else return {}
-  }
-
-  componentDidMount(){
-    this.getUserCats();
-  }
-
-
-  handleInputChange = (e) => {
-    var plname = e.target.value;
-    this.setState({plname: plname}, () => {
+  handleInputChange = e => {
+    const plname = e.target.value;
+    this.setState({ plname }, () => {
       this.validateInput();
     });
-  }
-
-  validateInput = () => {
-    if(this.state.plname.length < 2){
-      this.setState({
-        err: 'playlist name must be at least two characters',
-        _disabled: true
-      });
-    }else if(!this.state.selectedCatId){
-      this.setState({err: 'you must selected a category', _disabled: true});
-    }else{
-      this.setState({err: '', _disabled: false});
-    }
-  }
+  };
 
   handleCatSelect = (e, d) => {
-    this.setState({selectedCatId: d.value, selectedCatName: d.text}, () => {this.validateInput()})
-  }
+    this.setState({ selectedCatId: d.value, selectedCatName: d.text }, () => {
+      this.validateInput();
+    });
+  };
+
+  validateInput = () => {
+    if (this.state.plname.length < 2) {
+      this.setState({
+        error: 'playlist name must be at least two characters',
+        disabled: true,
+      });
+    } else if (!this.state.selectedCatId) {
+      this.setState({ error: 'you must select a category', disabled: true });
+    } else {
+      this.setState({ error: '', disabled: false });
+    }
+  };
 
   handleClonePlaylist = () => {
-    this.setState({_loading: true});
-    axios.post('https://thread-204819.appspot.com/clonePlaylist',{
-      selectedCat: this.state.selectedCatId,
-      plToClone: this.state.plToClone,
-      plname: this.state.plname},
-      {withCredentials: true}
-    ).then((result) => {
-      this.setState({_loading: false, success: true});
-      this.props.refreshCategories();
-    });
-  }
+    this.props.clonePlaylist(this.state.selectedCatId, this.state.plname);
+  };
 
-  handlePortalClose = () => {
-    this.setState({success: false});
-  }
-
-  getUserCats = () => {
-    this.setState({_loading: true});
-    axios({
-      method: 'get',
-      url: 'https://thread-204819.appspot.com/getCatsOnly',
-      withCredentials: true
-    }).then(result => this.setState({categories: result.data, _loading:false}));
-  }
-
-
-  render(){
-
-    return(
-
-          <Segment inverted style={{ width: '200px', position: 'fixed', left: '15%', bottom:'10%'}}>
-            {this.state._loading ? <Loader active={true} /> : <div></div>}
-            {this.state.plToClone ?
-
-              <div>
-                {this.state.success ? <div>Playlist successfully cloned.</div> :
-                  <div>
-                    <Segment>
-                      <Dropdown text={this.state.selectedCatName || 'Select Category: '}>
-                        <Dropdown.Menu>
-                          {this.state.categories.map((cat, i) =>
-                            <Dropdown.Item
-                              key={i}
-                              onClick={this.handleCatSelect}
-                              value={cat.idcategories}
-                              text={cat.name}
-                            />
-                          )}
-                        </Dropdown.Menu>
-                      </Dropdown>
-                    </Segment>
-                    <div>
-                      Enter a new playlist name:
-                    </div>
-                    <Segment>
-                      <Input size='mini' onChange={this.handleInputChange} />
-                    </Segment>
-                      <Button
-                        disabled={this.state._disabled}
-                        onClick={this.handleClonePlaylist}>
-                        Submit
-                      </Button>
-                  </div>
-                }
-              </div>:
-              <div>You must select a playlist, you can't clone a stream.</div>
-            }
-            {this.state.err ?
-              <div> {this.state.err} </div>
-              : <div></div>}
-            </Segment>
-
-    )
+  render() {
+    const PortalMessage = (
+      <div>You must select a playlist, you can‘t clone a stream.</div>
+    );
+    const SuccessMessage = <div>Playlist successfully cloned.</div>;
+    return (
+      <div>
+        <Segment
+          inverted
+          style={{
+            left: '15%',
+            bottom: '10%',
+            width: '200px',
+            position: 'fixed',
+          }}
+        >
+          <LoaderWrapper isLoading={this.props.isLoading}>
+            <PropChecker field={this.props.plToClone} alt={PortalMessage}>
+              <PropChecker field={!this.state.success} alt={SuccessMessage}>
+                <ClonePortalForm
+                  categories={this.props.categories}
+                  onCatSelect={this.handleCatSelect}
+                  onInputChange={this.handleInputChange}
+                  onClonePlaylist={this.handleClonePlaylist}
+                  disabled={this.state.disabled}
+                  selectedCatName={this.state.selectedCatName}
+                />
+              </PropChecker>
+            </PropChecker>
+            <Error error={this.state.error || this.props.error} />
+          </LoaderWrapper>
+        </Segment>
+      </div>
+    );
   }
 }
 
-export default ClonePortal;
+ClonePortalContainer.propTypes = {
+  isLoading: PropTypes.bool,
+  plToClone: PropTypes.string,
+  categories: PropTypes.array,
+  clonePlaylist: PropTypes.func,
+  error: PropTypes.object,
+};
+
+const mapStateToProps = () =>
+  createStructuredSelector({
+    isLoading: () => makeSelectIsLoading(),
+    plToClone: () => makeSelectSelectedPlaylist(),
+    categories: () => makeSelectCategories(),
+    error: () => makeSelectError();
+  });
+
+const mapDispatchToProps = {
+  clonePlaylist,
+};
+
+const withConnect = connect(
+  mapStateToProps,
+  mapDispatchToProps
+);
+
+const withReducer = injectReducer({ key: 'clonePortal', reducer });
+const withSaga = injectSaga({ key: 'clonePortalSaga', saga });
+
+export default compose(
+  withSaga,
+  withReducer,
+  withConnect
+)(ClonePortalContainer);

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Table } from 'semantic-ui-react';
 import PlaylistPortal from 'containers/songRenderers/PlaylistPortal';
 import LoaderWrapper from 'containers/Wrappers/LoaderWrapper';
-import RenderClonePortal from '../../components/sidebarUtilities/renderClonePortal.js';
+import ClonePortalWrapper from 'components/SongsTable/ClonePortalWrapper';
 import WrappedSongRows from '../../../components/SongTableUtilities/wrappedSongRows.js';
 import RemoveSongFromPlaylist from '../../components/SongTableUtilities/removeSongFromPlaylist.js';
 import MakePublic from '../../components/sidebarUtilities/makePublic.js';
@@ -36,7 +36,7 @@ const SongsTable = props => (
       <Table.Footer className="stickyBottom">
         <Table.Row>
           <Table.HeaderCell colSpan="4">
-            <RenderClonePortal />
+            <ClonePortalWrapper />
 
             <PlaylistPortal />
 

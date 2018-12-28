@@ -1,8 +1,8 @@
 import React from 'react';
 import { Button } from 'semantic-ui-react';
-import ClonePortal from '../../../containers/SongsContainer/ClonePortalContainer/index.js';
+import ClonePortalContainer from 'containers/SongsContainer/ClonePortalContainer';
 
-class RenderClonePortal extends React.Component {
+class ClonePortalWrapper extends React.Component {
   state = {
     openPortal: false,
   };
@@ -19,10 +19,10 @@ class RenderClonePortal extends React.Component {
           {' '}
           Clone Playlist{' '}
         </Button>
-        {this.state.openPortal ? <ClonePortal /> : <div />}
+        {this.state.openPortal ? <ClonePortalContainer /> : <div />}
       </span>
     );
   }
 }
 
-export default RenderClonePortal;
+export default ClonePortalWrapper;
