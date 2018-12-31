@@ -25,9 +25,3 @@ export function renamePlaylistFailed(error) {
   };
 }
 
-export function renamePlInCategory(playlist) {
-  return {
-    type: RENAME_PL_IN_CAT,
-    playlist,
-  };
-}

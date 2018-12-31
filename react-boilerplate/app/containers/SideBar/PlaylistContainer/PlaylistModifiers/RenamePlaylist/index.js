@@ -18,7 +18,7 @@ import {
   makeSelectError,
 } from './selectors';
 
-import renamePlaylistSaga from './saga';
+import { renamePlaylistSaga } from './saga';
 
 class RenamePlaylist extends Component {
   componentDidUpdate() {

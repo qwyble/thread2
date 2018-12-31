@@ -14,7 +14,8 @@ const Playlist = props => (
         size="mini"
         color="blue"
         className="playlistButton"
-        value={props.id}
+        value={props.playlist}
+        id={props.id}
         onClick={props.onSelectPlaylist}
       >
         {props.playlist}

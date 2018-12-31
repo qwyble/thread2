@@ -5,14 +5,15 @@ import { Table } from 'semantic-ui-react';
 import AddToPlaylistPortal from 'containers/SongsContainer/AddToPlaylistPortal';
 import LoaderWrapper from 'containers/Wrappers/LoaderWrapper';
 import ClonePortalWrapper from 'components/SongsTable/ClonePortalWrapper';
-import RemoveSongFromPlaylist from '../../components/SongTableUtilities/removeSongFromPlaylist.js';
+import RemoveSongFromPlaylist from 'containers/SongsContainer/PlaylistModifiers/RemoveFromPlaylist';
 import SongRowsContainer from 'containers/SongsContainer/SongRowsContainer';
-import MakePublic from '../../components/sidebarUtilities/makePublic.js';
+import MakePublic from 'containers/SongsContainer/PlaylistModifiers/PublicityPortal';
 import FollowContainer from '../../follower/followContainer.js';
 import Paginator from '../../utilities/paginator.js';
 import TableHeader from '../TableHeader';
-// renders the lst of songs, controls adding and deleting songs to/from playlists
-//
+import IsOwner from 'containers/Wrappers/IsOwner';
+
+
 const SongsTable = props => (
   <div>
     <Table
@@ -43,12 +44,22 @@ const SongsTable = props => (
 
             <FollowContainer />
 
-            <RemoveSongFromPlaylist />
+            <IsOwner>
+              <RemoveSongFromPlaylist />
+            </IsOwner>
+
           </Table.HeaderCell>
-          <Table.HeaderCell colSpan="1" />
-          <MakePublic />
+          <Table.HeaderCell colSpan="1" >
+
+            <IsOwner>
+              <MakePublic />
+            </IsOwner>
+
+          </Table.HeaderCell>
           <Table.Cell collapsing>
+
             <Paginator />
+
           </Table.Cell>
         </Table.Row>
       </Table.Footer>

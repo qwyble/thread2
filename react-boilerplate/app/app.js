@@ -20,7 +20,7 @@ import './App.css';
 import './css.css';
 
 // Import root app
-import UserContainer from './appUtilities/UserContainer';
+import UserContainer from 'containers/AppUtilities/UserContainer';
 
 // Load the favicon and the .htaccess file
 import '!file-loader?name=[name].[ext]!./images/favicon.ico';
@@ -49,13 +49,11 @@ const render = () => {
         <UserContainer />
       </ConnectedRouter>
     </Provider>,
-    MOUNT_NODE,
+    MOUNT_NODE
   );
 };
 
-
 render();
-
 
 // Install ServiceWorker and AppCache in the end since
 // it's not most important operation and if main code fails,

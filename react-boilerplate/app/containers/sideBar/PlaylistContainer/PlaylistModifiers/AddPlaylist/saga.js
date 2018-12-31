@@ -2,7 +2,7 @@ import axios from 'axios';
 import {
   takeLatest, select, call, put,
 } from 'redux-saga/effects';
-import { makeSelectSelectedCategory } from 'containers/sideBar/SideBar/selectors';
+import { makeSelectSelectedCategory } from 'containers/SideBar/SideBarContainer/selectors';
 
 import { ADD_PLAYLIST } from './constants';
 

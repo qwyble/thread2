@@ -11,7 +11,7 @@ import { setCategory } from 'containers/SideBar/SideBarContainer/actions';
 
 import { makeSelectSelectedCategory } from 'containers/SideBar/SideBarContainer/selectors';
 import IsOwner from 'containers/Wrappers/IsOwner';
-import { makeSelectProfileId } from '../../../appUtilities/ProfileContext/selectors';
+import { makeSelectProfileId } from 'containers/AppUtilities/ProfileContext/selectors';
 import { makeSelectCategories, makeSelectIsLoading } from './selectors';
 
 import CategoryMapper from './utils/CategoryMapper';

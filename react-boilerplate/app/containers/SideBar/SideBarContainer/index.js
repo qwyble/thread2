@@ -12,7 +12,7 @@ import CategoryListHeader from 'components/SideBar/SidebarHeader';
 import SongsContainer from 'containers/SongsContainer/SongsContainer';
 
 import { makeSelectVisibility } from './selectors';
-import { makeSelectProfile } from '../../../appUtilities/ProfileContext/selectors';
+import { makeSelectProfile } from 'containers/AppUtilities/ProfileContext/selectors';
 
 import { toggleVisibility } from './actions';
 

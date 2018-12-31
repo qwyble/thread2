@@ -1,5 +1,6 @@
 import { call, put, takeLatest, select } from 'redux-saga/effects';
 import axios from 'axios';
+import { setError } from 'containers/Wrappers/ErrorWrapper/actions';
 import { GET_SONGS, SORT_BY, SET_DESCENDING } from './constants';
 import {
   getSongsSuccess,
@@ -29,12 +30,14 @@ function* sortBy(action) {
   yield put(sortByReduction, action.sortParam);
   yield call(getSongs);
 }
+
 function* getSongs() {
   try {
     const songs = yield call(songsRequest);
     yield put(getSongsSuccess, songs);
   } catch (err) {
-    yield put(getSongsFailed, err);
+    yield put(getSongsFailed);
+    yield put(setError, err.message);
   }
 }
 

@@ -62,7 +62,7 @@ class ClonePortalContainer extends React.Component {
   };
 
   handleClonePlaylist = () => {
-    this.props.clonePlaylist(this.state.selectedCatId, this.state.plname);
+    this.props.clonePlaylist(this.state.selectedCatId, this.state.plname, this.state.plToClone);
   };
 
   render() {

@@ -8,6 +8,10 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 
+import ErrorWrapper from 'containers/Wrappers/ErrorWrapper';
+import Loader from 'components/common/Loader';
+import LoadableProtected from 'containers/authentication/Protected/Loadable';
+import LoadableLoginContainer from 'containers/authentication/LoginContainer/Loadable';
 import {
   makeSelectIsLoggedIn,
   makeSelectIsLoading,
@@ -18,10 +22,6 @@ import { authenticate } from './actions';
 import reducer from './reducers';
 import saga from './sagas';
 
-import Loader from '../../components/common/Loader';
-import LoadableProtected from '../../containers/authentication/Protected/Loadable';
-import LoadableLoginContainer from '../../containers/authentication/LoginContainer/Loadable';
-
 
 class UserContainer extends React.Component {
   componentDidMount() {
@@ -30,21 +30,20 @@ class UserContainer extends React.Component {
 
   handleLogout = () => {
     this.props.onLogout({}, 'logout');
-  }
+  };
 
   render() {
     if (this.props.isLoading) {
       return (
         <div>
           <Loader style={{ marginTop: '30vh' }} active inline="centered" />
-          <div>
-            Authenticating . . .
-          </div>
+          <div>Authenticating . . .</div>
         </div>
       );
     }
     return (
       <BrowserRouter>
+        <ErrorWrapper />
         <div>
           <Switch>
             <Route
@@ -75,11 +74,9 @@ class UserContainer extends React.Component {
   }
 }
 
-
 UserContainer.propTypes = {
   isLoggedIn: PropTypes.bool,
 };
-
 
 const mapStateToProps = createStructuredSelector({
   isLoggedIn: makeSelectIsLoggedIn(),
@@ -95,7 +92,7 @@ function mapDispatchToProps(dispatch) {
 
 const withConnect = connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 );
 
 const withReducer = injectReducer({ key: 'UserContainer', reducer });
@@ -104,5 +101,5 @@ const withSaga = injectSaga({ key: 'UserContainer', saga });
 export default compose(
   withReducer,
   withSaga,
-  withConnect,
+  withConnect
 )(UserContainer);

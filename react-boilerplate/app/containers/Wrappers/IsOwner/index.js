@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
-import { makeSelectIsOwner } from '../../../appUtilities/ProfileContext/selectors';
+import { makeSelectIsOwner } from 'containers/AppUtilities/ProfileContext/selectors';
 
 const IsOwner = props => (
   <div>

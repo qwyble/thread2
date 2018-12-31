@@ -10,6 +10,6 @@ export const makeSelectIsLoading = () =>
 
 export const makeSelectError = () =>
   createSelector(
-    selectError,
+    selectAddToPlaylistState,
     state => state.get('error')
   );

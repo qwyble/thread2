@@ -7,7 +7,8 @@ import {
 export function setPlaylist(e) {
   return {
     type: SELECT_PLAYLIST,
-    plId: e.target.value,
+    plId: e.target.id,
+    plName: e.target.value,
   };
 }
 
@@ -16,6 +17,7 @@ export function setCategory(catId) {
     type: SELECT_CATEGORY,
     catId,
   }
+  selectedPlName: '',
 }
 
 export function toggleVisibility() {

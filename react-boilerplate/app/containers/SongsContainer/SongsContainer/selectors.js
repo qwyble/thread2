@@ -47,6 +47,12 @@ export const makeSelectSortBy = () =>
     songsTable => songsTable.get('sortBy')
   );
 
+export const makeSelectDescending = () =>
+  createSelector(
+    selectSongsContainerState,
+    state => state.get('descending')
+  );
+
 export const makeSelectSelectedSongs = () =>
   createSelector(
     selectSongsTableState,

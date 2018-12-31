@@ -1,8 +1,8 @@
 import React from 'react';
 import { Header, Container, Grid, Icon } from 'semantic-ui-react';
 import axios from 'axios';
-import { AppContext } from '../../../appUtilities/context.js';
-import PlaylistPortal from 'containers/songRenderers/PlaylistPortal';
+import { AppContext } from 'containers/AppUtilities/context.js';
+import AddToPlaylistPortalWrapper from 'containers/SongsContainer/PlaylistModifiers/AddToPlaylist/AddToPlaylistPortalWrapper';
 
 
 class SongDetails extends React.Component{
@@ -70,7 +70,7 @@ class SongDetails extends React.Component{
             </Grid.Row>
             <Grid.Row>
               <Grid.Column>
-                <PlaylistPortal selectedSongs={[song.idSongs]}/>
+                <AddToPlaylistPortalWrapper selectedSongs={[song.idSongs]}/>
               </Grid.Column>
             </Grid.Row>
           </Grid>

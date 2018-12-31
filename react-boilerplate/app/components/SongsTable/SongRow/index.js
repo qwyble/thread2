@@ -1,87 +1,45 @@
 import React from 'react';
-import {Table, Icon, Checkbox, Rating} from 'semantic-ui-react';
-import axios from 'axios';
+import PropTypes from 'prop-types';
+import { Table, Checkbox, Rating } from 'semantic-ui-react';
+import LoaderWrapper from 'containers/Wrappers/LoaderWrapper';
+import PlayIcon from 'components/common/PlayIcon';
+const SongRow = props => (
+  <Table.Row className="row">
+    <Table.Cell collapsing>
+      <Checkbox
+        size="mini"
+        id={props.song.idSongs}
+        checked={props.selected}
+        onChange={props.onSongSelect}
+      />
+      <span className="checkboxSpan" />
+    </Table.Cell>
+    <Table.Cell collapsing id={props.song.idSongs} onClick={props.onPlayToggle}>
+      <PlayIcon isPlaying={props.isPlaying} />
+    </Table.Cell>
+    <Table.Cell>{props.song.title}</Table.Cell>
+    <Table.Cell>{props.song.userName}</Table.Cell>
+    <Table.Cell>
+      <LoaderWrapper isLoading={props.isLoading}>
+        <Rating
+          maxRating={5}
+          rating={props.song.rating}
+          onRate={props.onRate}
+        />
+      </LoaderWrapper>
+    </Table.Cell>
+    <Table.Cell>{props.song.genres}</Table.Cell>
+    <Table.Cell>{props.song.dateUploaded.substr(0, 10)}</Table.Cell>
+  </Table.Row>
+);
 
-
-class SongRow extends React.Component{
-  constructor(props){
-    super(props);
-    this.state={
-      rating: 0,
-      _playToggle: false
-    }
-    this.handlePlayToggle = this.handlePlayToggle.bind(this);
-    this.handleRatingChange = this.handleRatingChange.bind(this);
-  }
-
-  static getDerivedStateFromProps(props, state){
-    return{
-      rating: props.song.rating,
-      _playToggle: props.playing && !props.paused
-    }
-  }
-
-
-  handlePlayToggle() {
-    if(!this.state._playToggle){
-      this.props.onPlaying(this.props.song.idSongs);
-    }else{
-      this.props.onPausing()
-    }
-
-  }
-
-  handleRatingChange(e, d) {
-    this.setState({rating: d.rating}, () => {
-      axios({
-        method: 'post',
-        url: 'https://thread-204819.appspot.com/rateSong',
-        data:{
-          songId: this.props.song.idSongs,
-          rating: this.state.rating
-        },
-        withCredentials: true
-      }).then(() => {this.props.onRefresh()})
-    });
-  }
-
-  render(){
-      var className = this.props._loading ? 'rows loading' : 'rows';
-    return(
-      <Table.Row className={className}>
-        <Table.Cell collapsing>
-          <Checkbox size = 'mini' id={this.props.song.idSongs} checked={this.props.selected} onChange={this.props.onSongSelect} />
-          <span className='checkboxSpan' ></span>
-        </Table.Cell>
-        <Table.Cell collapsing onClick={this.handlePlayToggle}>
-          {this.state._playToggle ?
-            <Icon name="pause circle outline"/> :
-            <Icon name="play circle outline"/>
-          }
-        </Table.Cell>
-        <Table.Cell>
-          {this.props.song.title}
-        </Table.Cell>
-        <Table.Cell>
-          {this.props.song.userName}
-        </Table.Cell>
-        <Table.Cell>
-          <Rating
-            rating={this.state.rating}
-            maxRating={5}
-            onRate={this.handleRatingChange}/>
-        </Table.Cell>
-        <Table.Cell>
-          {this.props.song.genres}
-        </Table.Cell>
-        <Table.Cell>
-          {this.props.song.dateUploaded.substr(0, 10)}
-        </Table.Cell>
-      </Table.Row>
-    )
-
-
-  }
-}
-
+SongRow.propTypes = {
+  onRate: PropTypes.func,
+  song: PropTypes.object,
+  selected: PropTypes.bool,
+  isLoading: PropTypes.bool,
+  isPlaying: PropTypes.bool,
+  onPlayToggle: PropTypes.func,
+  onSongSelect: PropTypes.func,
+};
 export default SongRow;

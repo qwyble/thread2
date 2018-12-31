@@ -2,23 +2,26 @@ import { call, put, takeLatest } from 'redux-saga/effects';
 import {
   renamePlaylistSuccess,
   renamePlaylistFailed,
-  renamePlInCategory,
 } from './actions';
+
+import {
+  getCategoriesSuccess
+} from 'containers/SideBar/CategoryContainer/actions';
 
 import { RENAME_PLAYLIST } from './constants';
 
 export default function* renamePlaylistSaga() {
   yield takeLatest(RENAME_PLAYLIST, renamePlaylist);
 }
-
+// TODO: make sure renamePlaylistRequest returns getCats object
 function* renamePlaylist(action) {
   try {
     let data;
     data.plid = action.playlist.plid;
     data.plname = action.playlist.plname;
-    yield call(renamePlaylistRequest, data);
+    const newCats = yield call(renamePlaylistRequest, data);
     yield put(renamePlaylistSuccess);
-    yield put(renamePlInCategory, data);
+    yield put(getCategoriesSuccess, newCats);
   } catch (err) {
     yield put(renamePlaylistFailed, err);
   }

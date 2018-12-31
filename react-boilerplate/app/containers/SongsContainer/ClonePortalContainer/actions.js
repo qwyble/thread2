@@ -4,11 +4,12 @@ import {
   CLONE_PLAYLIST_FAILED,
 } from './constants';
 
-export function clonePlaylist(catId, plName) {
+export function clonePlaylist(catId, plName, plToClone) {
   return {
     type: CLONE_PLAYLIST,
     catId,
     plName,
+    plToClone,
   };
 }
 

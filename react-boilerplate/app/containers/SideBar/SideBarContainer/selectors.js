@@ -8,6 +8,12 @@ export const makeSelectSelectedPlaylist = () =>
     state => state.get('selectedPlaylist')
   );
 
+export const makeSelectedSelectedPlName = () =>
+  createSelector(
+    sideBarState,
+    state => state.get('selectedPlName');
+  )
+
 export const makeSelectVisibility = () =>
   createSelector(
     sideBarState,

@@ -7,6 +7,7 @@ import {
 
 const initialState = fromJS({
   selectedPlaylist: '',
+  selectedPlName: '',
   selectedCategory: '',
   isVisible: true,
 });
@@ -18,7 +19,7 @@ function sideBarReducer(state = initialState, action) {
         .set('selectedCategory', action.catId);
     case (SELECT_PLAYLIST):
       return state
-        .set('selectedPlaylist', action.plId);
+        .set('selectedPlaylist', action.plId).set('selectedPlName', action.plName);
     case (TOGGLE_VISIBILITY):
       return state.set('isVisible', !state.get('isVisible'));
     default:

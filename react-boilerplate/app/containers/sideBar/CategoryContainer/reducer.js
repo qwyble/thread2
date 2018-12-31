@@ -69,17 +69,6 @@ function Categories(state = initialState, action) {
           .find(cat => cat.catid === action.catid)
           .update('pls', pls => pls.filter(pl => pl.plid !== action.plId))
       );
-    case RENAME_PL_IN_CAT: {
-      const catIndex = state
-        .get('categories')
-        .findIndex(cat => cat.catid === action.catId);
-      const plIndex = state
-        .getIn(['categories', catIndex, 'pls'])
-        .findIndex(pl => pl.plid === action.playlist.plId);
-      return state.updateIn(['categories', catIndex, 'pls'], pls =>
-        pls.set(plIndex, fromJS(action.playlist))
-      );
-    }
     default:
       return state;
   }

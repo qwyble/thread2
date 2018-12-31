@@ -34,15 +34,7 @@ function getCatsRequest(url) {
     url,
     withCredentials: true,
   }).then((categories) => {
-    const catpls = categories.data;
-    const categories2 = Object.values(
-      catpls.reduce((cats, { catname, catid, plname, plid, isPublic }) => {
-        if (!(catid in cats)) { cats[catid] = { catname, catid, pls: [] }; }
-        if (plid) { cats[catid].pls.push({ plname, plid, isPublic }); }
-        return cats;
-      }, {})
-    );
-    return categories2;
+    return categories.data;
   }).catch((err) => {
     throw new Error(err);
   });
