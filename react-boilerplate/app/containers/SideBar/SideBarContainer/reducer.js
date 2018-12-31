@@ -14,13 +14,13 @@ const initialState = fromJS({
 
 function sideBarReducer(state = initialState, action) {
   switch (action.type) {
-    case (SELECT_CATEGORY):
+    case SELECT_CATEGORY:
+      return state.set('selectedCategory', action.catId);
+    case SELECT_PLAYLIST:
       return state
-        .set('selectedCategory', action.catId);
-    case (SELECT_PLAYLIST):
-      return state
-        .set('selectedPlaylist', action.plId).set('selectedPlName', action.plName);
-    case (TOGGLE_VISIBILITY):
+        .set('selectedPlaylist', action.plId)
+        .set('selectedPlName', action.plName);
+    case TOGGLE_VISIBILITY:
       return state.set('isVisible', !state.get('isVisible'));
     default:
       return state;

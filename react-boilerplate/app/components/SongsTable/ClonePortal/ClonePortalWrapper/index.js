@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from 'semantic-ui-react';
+import { Button, Portal } from 'semantic-ui-react';
 import ClonePortalContainer from 'containers/SongsContainer/ClonePortalContainer';
 
 class ClonePortalWrapper extends React.Component {
@@ -19,7 +19,13 @@ class ClonePortalWrapper extends React.Component {
           {' '}
           Clone Playlist{' '}
         </Button>
-        {this.state.openPortal ? <ClonePortalContainer /> : <div />}
+        {this.state.openPortal ? (
+          <Portal open={this.state.openPortal}>
+            <ClonePortalContainer />
+          </Portal>
+        ) : (
+          <div />
+        )}
       </span>
     );
   }

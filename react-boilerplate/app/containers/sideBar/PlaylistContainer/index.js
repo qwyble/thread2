@@ -14,10 +14,21 @@ import { setPlaylist } from 'containers/SideBar/SideBarContainer/actions';
 
 import injectReducer from 'utils/injectReducer';
 
+import { makeSelectPlaylistParam } from 'containers/SideBar/SideBarContainer/selectors';
 import reducer from './reducer';
 import { makeSelectDisplayLists } from './selectors';
 
 class PlaylistContainer extends React.PureComponent {
+  componentDidMount() {
+    const plid = this.props.playlistParam;
+    if (plid) {
+      const playlist = this.props.playlists.find(pl => pl.plid === plid);
+      if (playlist) {
+        this.props.setPlaylist(this.props.playlistParam, playlist.plname);
+      }
+    }
+  }
+
   render() {
     return (
       <AnimationWrapper displayLists={this.props.displayLists}>
@@ -27,7 +38,7 @@ class PlaylistContainer extends React.PureComponent {
               <Playlist
                 key={key}
                 id={playlist.plid}
-                playlist={playlist.plname}
+                value={playlist.plname}
                 onSetPlaylist={this.props.setPlaylist}
               />
             </Menu.Item>
@@ -45,11 +56,13 @@ PlaylistContainer.propTypes = {
   setPlaylist: PropTypes.func,
   displayLists: PropTypes.bool,
   playlists: PropTypes.array,
+  playlistParam: PropTypes.string,
 };
 
 const mapStateToProps = () =>
   createStructuredSelector({
     displayLists: () => makeSelectDisplayLists(),
+    playlistParam: () => makeSelectPlaylistParam(),
   });
 
 const mapDispatchToProps = {

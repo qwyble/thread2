@@ -1,37 +1,79 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Portal, Button } from 'semantic-ui-react';
+import { Button } from 'semantic-ui-react';
 
-import { compose  } from 'redux';
-import { connect  } from 'react-redux';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
+
+import { PortalWrapper } from 'components/common/PortalWrapper';
+
+import { createStructuredSelector } from 'reselect';
+
+import injectReducer from 'utils/injectReducer';
+import injectSaga from 'utils/injectSaga';
+
+import { makeSelectSelectedPlName } from 'containers/SideBar/SideBarContainer/selectors';
 
 import reducer from './reducer';
 import saga from './saga';
 
-import { makeSelectIsLoading, makeSelectError, makeSelectIsPublic, makeSelectSelectedPlName } from './selectors';
+import { makeSelectIsLoading, makeSelectIsPublic } from './selectors';
+
 import { makePublic } from './actions';
 
-class PublicityPortal extends React.Component {
+const PublicityPortal = props => {
+  const isPublicButton = (
+    <Button>
+      {props.isPublic ? <div>Make Private</div> : <div>Make Public</div>}
+    </Button>
+  );
 
-  render(){
+  const pubPriv = (
+    <span>{props.isPublic ? <span>private</span> : <span>public</span>}</span>
+  );
 
-    const isPublicButton = (
-      <Button>
-        {this.props.isPublic ? <div>Make Private</div> : <div>Make Public</div>}
-      </Button>
-    )
+  return (
+    <div>
+      <PortalWrapper trigger={isPublicButton}>
+        Set {props.plname} to {pubPriv}?
+        <div>
+          <Button onClick={props.makePublic}>yes</Button>
+          <Button onClick={props.closePortal}>no</Button>
+        </div>
+      </PortalWrapper>
+    </div>
+  );
+};
 
-    return(
-      <div>
-        <Portal trigger={isPublicButton}>
-          <div>
-            <Segment>
-              Set {this.props.plname}
-            </Segment>
-          </div>
-        </Portal>
-      </div>
-    )
-  }
-}
+PublicityPortal.propTypes = {
+  isLoading: PropTypes.bool,
+  isPublic: PropTypes.bool,
+  plname: PropTypes.string,
+  closePortal: PropTypes.func,
+  makePublic: PropTypes.func,
+};
 
+const mapStateToProps = () =>
+  createStructuredSelector({
+    isLoading: () => makeSelectIsLoading(),
+    isPublic: () => makeSelectIsPublic(),
+    plname: () => makeSelectSelectedPlName(),
+  });
+
+const mapDispatchToProps = {
+  makePublic,
+};
+
+const withConnect = connect(
+  mapStateToProps,
+  mapDispatchToProps
+);
+
+const withReducer = injectReducer({ key: 'PublicityPortal', reducer });
+const withSaga = injectSaga({ key: 'PublicityPortalSaga', saga });
+
+export default compose(
+  withSaga,
+  withReducer,
+  withConnect
+)(PublicityPortal);
