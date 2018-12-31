@@ -7,11 +7,12 @@ import { createStructuredSelector } from 'reselect';
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 
+import IsOwner from 'containers/Wrappers/IsOwner';
+
 import { setCategory } from 'containers/SideBar/SideBarContainer/actions';
 
-import { makeSelectSelectedCategory } from 'containers/SideBar/SideBarContainer/selectors';
-import IsOwner from 'containers/Wrappers/IsOwner';
 import { makeSelectProfileId } from 'containers/AppUtilities/ProfileContext/selectors';
+import { makeSelectSelectedCategoryId } from 'containers/SideBar/SideBarContainer/selectors';
 import { makeSelectCategories, makeSelectIsLoading } from './selectors';
 
 import CategoryMapper from './utils/CategoryMapper';
@@ -35,6 +36,7 @@ class CategoryContainer extends React.Component {
         <CategoryMapper
           categories={this.props.categories}
           onSetCategory={this.props.setCategory}
+          selectedCategoryId={this.props.selectedCategoryId}
         />
         <IsOwner>
           <AddCategory />
@@ -50,11 +52,12 @@ CategoryContainer.propTypes = {
   setCategory: PropTypes.func,
   isLoading: PropTypes.bool,
   ownerId: PropTypes.string,
+  selectedCategoryId: PropTypes.string,
 };
 
 const mapStateToProps = () =>
   createStructuredSelector({
-    selectedCategory: () => makeSelectSelectedCategory(),
+    selectedCategoryId: () => makeSelectSelectedCategoryId(),
     categories: () => makeSelectCategories(),
     isLoading: () => makeSelectIsLoading(),
     ownerId: () => makeSelectProfileId(),

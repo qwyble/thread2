@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Dropdown, TransitionablePortal } from 'semantic-ui-react';
-import DeletePlaylist from 'containers/sideBar/PlaylistContainer/DeletePlaylist';
-import RenamePlaylist from 'containers/sideBar/PlaylistContainer/RenamePlaylist';
-
+import DeletePlaylist from 'containers/SideBar/PlaylistContainer/PlaylistModifiers/DeletePlaylist';
+import RenamePlaylist from 'containers/SideBar/PlaylistContainer/PlaylistModifiers/RenamePlaylist';
 
 class EditPlaylistPortal extends Component {
   state = {
@@ -11,20 +10,20 @@ class EditPlaylistPortal extends Component {
     whichPortal: 0,
   };
 
-  handleOpen = (whichPortal) => {
+  handleOpen = whichPortal => {
     this.setState({ openPortal: true, whichPortal });
-  }
+  };
 
   handleClose = () => {
     this.setState({ openPortal: false });
-  }
-
+  };
 
   handleDropdownChange = (e, d) => {
+    e.preventDefault();
     const val = d.value;
     if (val === 'delete') this.handleOpen(0);
     else if (val === 'rename') this.handleOpen(1);
-  }
+  };
 
   render() {
     const options = [
@@ -43,10 +42,13 @@ class EditPlaylistPortal extends Component {
           options={options}
           onChange={this.handleDropdownChange}
         />
-        <TransitionablePortal onClose={this.handleClose} open={this.state.openPortal}>
-          { this.state.openPortal ? (
+        <TransitionablePortal
+          onClose={this.handleClose}
+          open={this.state.openPortal}
+        >
+          {this.state.openPortal ? (
             <div>
-              { this.state.whichPortal ? (
+              {this.state.whichPortal ? (
                 <DeletePlaylist
                   id={this.props.id}
                   playlist={this.props.playlist}
@@ -56,10 +58,13 @@ class EditPlaylistPortal extends Component {
                 <RenamePlaylist
                   id={this.props.id}
                   playlist={this.props.playlist}
+                  onClosePortal={this.handleClose}
                 />
-              ) }
+              )}
             </div>
-          ) : <div /> }
+          ) : (
+            <div />
+          )}
         </TransitionablePortal>
       </div>
     );

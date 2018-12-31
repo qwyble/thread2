@@ -1,9 +1,4 @@
-import {
-  GET_CATEGORIES,
-  GET_CATEGORIES_SUCCESS,
-  GET_CATEGORIES_FAILED,
-} from './constants';
-
+import { GET_CATEGORIES, GET_CATEGORIES_COMPLETED } from './constants';
 
 export function getCategories() {
   return {
@@ -11,16 +6,9 @@ export function getCategories() {
   };
 }
 
-export function getCategoriesSuccess(cats) {
+export function getCategoriesCompleted(cats) {
   return {
-    type: GET_CATEGORIES_SUCCESS,
+    type: GET_CATEGORIES_COMPLETED,
     cats,
-  };
-}
-
-export function getCategoriesFailed(error) {
-  return {
-    type: GET_CATEGORIES_FAILED,
-    error,
   };
 }

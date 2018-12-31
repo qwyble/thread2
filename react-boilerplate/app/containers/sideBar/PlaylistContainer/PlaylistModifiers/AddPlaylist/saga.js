@@ -1,8 +1,6 @@
 import axios from 'axios';
-import {
-  takeLatest, select, call, put,
-} from 'redux-saga/effects';
-import { makeSelectSelectedCategory } from 'containers/SideBar/SideBarContainer/selectors';
+import { takeLatest, select, call, put } from 'redux-saga/effects';
+import { makeSelectSelectedCategoryId } from 'containers/SideBar/SideBarContainer/selectors';
 
 import { ADD_PLAYLIST } from './constants';
 
@@ -12,8 +10,6 @@ import {
   addPlaylistToCategory,
 } from './actions';
 
-
-
 export default function* rootSaga() {
   yield takeLatest(ADD_PLAYLIST, addPlaylist);
 }
@@ -21,7 +17,7 @@ export default function* rootSaga() {
 function* addPlaylist(action) {
   try {
     let data;
-    data.catid = yield select(makeSelectSelectedCategory);
+    data.catid = yield select(makeSelectSelectedCategoryId);
     data.playlist = action.plName;
     const playlist = yield call(addPlaylistRequest, data);
     yield put(addPlaylistSuccess);
@@ -32,14 +28,14 @@ function* addPlaylist(action) {
 }
 
 function addPlaylistRequest(data) {
-  return (
-    axios({
-      method: 'post',
-      url: 'https://thread-204819.appspot.com/addPlaylist',
-      data,
-      withCredentials: true,
-    }).then(result => result.data).catch((error) => {
+  return axios({
+    method: 'post',
+    url: 'https://thread-204819.appspot.com/addPlaylist',
+    data,
+    withCredentials: true,
+  })
+    .then(result => result.data)
+    .catch(error => {
       throw new Error(error);
-    })
-  );
+    });
 }

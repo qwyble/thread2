@@ -5,7 +5,8 @@ import { Button } from 'semantic-ui-react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 
-import { PortalWrapper } from 'components/common/PortalWrapper';
+import PortalWrapper from 'components/common/PortalWrapper';
+import LoaderWrapper from 'containers/Wrappers/LoaderWrapper';
 
 import { createStructuredSelector } from 'reselect';
 
@@ -35,11 +36,13 @@ const PublicityPortal = props => {
   return (
     <div>
       <PortalWrapper trigger={isPublicButton}>
-        Set {props.plname} to {pubPriv}?
-        <div>
-          <Button onClick={props.makePublic}>yes</Button>
-          <Button onClick={props.closePortal}>no</Button>
-        </div>
+        <LoaderWrapper isLoading={props.isLoading}>
+          Set {props.plname} to {pubPriv}?
+          <div>
+            <Button onClick={props.makePublic}>yes</Button>
+            <Button onClick={props.closePortal}>no</Button>
+          </div>
+        </LoaderWrapper>
       </PortalWrapper>
     </div>
   );

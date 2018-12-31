@@ -4,16 +4,21 @@ import { Button, Menu } from 'semantic-ui-react';
 
 import IsOwner from 'containers/Wrappers/IsOwner';
 
-import PlaylistContainer from 'containers/sideBar/PlaylistContainer';
+import PlaylistContainer from 'containers/SideBar/PlaylistContainer';
 
 import EditCategoryPortal from 'components/SideBar/Categories/CategoryModifiers/EditCategoryPortal';
 
+import AnimationWrapper from 'containers/Wrappers/AnimationWrapper';
+
 class Category extends React.Component {
   handleSelectCategory = () => {
-    this.props.onSetCategory(this.props.category.catid);
+    this.props.onSetCategory(this.props.category);
   };
 
   render() {
+    const displayLists =
+      this.props.selectedCategoryId === this.props.category.get('catId');
+
     return (
       <div>
         <div>
@@ -40,10 +45,16 @@ class Category extends React.Component {
               </Button>
             </Menu.Item>
 
-            <PlaylistContainer
-              playlists={this.props.category.get('pls')}
-              catId={this.props.category.get('catid')}
-            />
+            {displayLists ? (
+              <AnimationWrapper displayLists={displayLists}>
+                <PlaylistContainer
+                  playlists={this.props.category.get('pls')}
+                  catId={this.props.category.get('catid')}
+                />
+              </AnimationWrapper>
+            ) : (
+              <div />
+            )}
           </div>
         </div>
       </div>
@@ -52,6 +63,7 @@ class Category extends React.Component {
 }
 
 Category.propTypes = {
+  selectedCategoryId: PropTypes.string,
   onSetCategory: PropTypes.func,
   category: PropTypes.object,
 };

@@ -1,22 +1,18 @@
 import { fromJS } from 'immutable';
 import { combineReducers } from 'redux';
 
-import { ADD_PL_TO_CAT } from 'containers/sideBar/PlaylistContainer/AddPlaylist/constants';
-import { REMOVE_PL_FROM_CAT } from 'containers/sideBar/PlaylistContainer/DeletePlaylist/constants';
+import { ADD_PL_TO_CAT } from 'containers/SideBar/PlaylistContainer/PlaylistModifiers/AddPlaylist/constants';
+import { REMOVE_PL_FROM_CAT } from 'containers/SideBar/PlaylistContainer/PlaylistModifiers/DeletePlaylist/constants';
+
 import AddCategory from './CategoryModifiers/AddCategory/reducer';
 import DeleteCategory from './CategoryModifiers/DeleteCategory/reducer';
 import RenameCategory from './CategoryModifiers/RenameCategory/reducer';
 
-
-import {
-  GET_CATEGORIES,
-  GET_CATEGORIES_SUCCESS,
-  GET_CATEGORIES_FAILED,
-} from './constants';
+import { GET_CATEGORIES, GET_CATEGORIES_COMPLETED } from './constants';
 
 import { ADD_CAT_TO_CATS } from './CategoryModifiers/AddCategory/constants';
-import { DELETE_CAT_FROM_CATS } from './CategoryModifiers/AddCategory/constants';
-import { EDIT_CAT_IN_CATS } from './CategoryModifiers/AddCategory/constants';
+import { DELETE_CAT_FROM_CATS } from './CategoryModifiers/DeleteCategory/constants';
+import { EDIT_CAT_IN_CATS } from './CategoryModifiers/RenameCategory/constants';
 
 const blankError = fromJS({});
 
@@ -37,12 +33,10 @@ function Categories(state = initialState, action) {
   switch (action.type) {
     case GET_CATEGORIES:
       return state.set('isLoading', true).set('error', blankError);
-    case GET_CATEGORIES_SUCCESS:
+    case GET_CATEGORIES_COMPLETED:
       return state
         .set('categories', fromJS(action.cats))
         .set('isLoading', false);
-    case GET_CATEGORIES_FAILED:
-      return state.set('isLoading', false).set('error', fromJS(action.error));
     case ADD_CAT_TO_CATS:
       return state.update('categories', categories =>
         categories.push(fromJS(action.category))
@@ -69,6 +63,8 @@ function Categories(state = initialState, action) {
           .find(cat => cat.catid === action.catid)
           .update('pls', pls => pls.filter(pl => pl.plid !== action.plId))
       );
+    case RENAME_CAT_IN_CAT:
+      return state.update('categories', cats => )
     default:
       return state;
   }

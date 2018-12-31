@@ -12,15 +12,21 @@ export const makeSelectPlaylistParam = () =>
 
 export const makeSelectSelectedPlaylist = () =>
   createSelector(
-    makeSelectPlaylistParam,
+    makeSelectedPlaylistByParam,
     sideBarState,
-    (playlistParam, state) => state.get('selectedPlaylist') || playlistParam
+    (playlist, state) => state.get('selectedPlaylist') || playlist
+  );
+
+export const makeSelectSelectedPlid = () =>
+  createSelector(
+    makeSelectSelectedPlaylist,
+    playlist => playlist.get('plid')
   );
 
 export const makeSelectSelectedPlName = () =>
   createSelector(
-    sideBarState,
-    state => state.get('selectedPlName')
+    makeSelectSelectedPlaylist,
+    playlist => playlist.get('plname')
   );
 
 export const makeSelectVisibility = () =>
@@ -33,4 +39,10 @@ export const makeSelectSelectedCategory = () =>
   createSelector(
     sideBarState,
     state => state.get('selectedCategory')
+  );
+
+export const makeSelectSelectedCategoryId = () =>
+  createSelector(
+    makeSelectSelectedCategory,
+    cat => cat.get('catid')
   );

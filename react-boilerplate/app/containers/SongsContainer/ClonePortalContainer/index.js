@@ -17,7 +17,7 @@ import LoaderWrapper from 'containers/Wrappers/LoaderWrapper';
 
 import ClonePortalForm from 'components/SongsTable/ClonePortal/ClonePortalForm';
 
-import { makeSelectSelectedPlaylist } from 'containers/SideBar/SideBarContainer/selectors';
+import { makeSelectSelectedPlaylistId } from 'containers/SideBar/SideBarContainer/selectors';
 import { makeSelectCategories } from 'containers/SideBar/CategoryContainer/selectors';
 import { makeSelectIsLoading, makeSelectError } from './selectors';
 
@@ -62,7 +62,11 @@ class ClonePortalContainer extends React.Component {
   };
 
   handleClonePlaylist = () => {
-    this.props.clonePlaylist(this.state.selectedCatId, this.state.plname, this.state.plToClone);
+    this.props.clonePlaylist(
+      this.state.selectedCatId,
+      this.state.plname,
+      this.state.plToClone
+    );
   };
 
   render() {
@@ -113,7 +117,7 @@ ClonePortalContainer.propTypes = {
 const mapStateToProps = () =>
   createStructuredSelector({
     isLoading: () => makeSelectIsLoading(),
-    plToClone: () => makeSelectSelectedPlaylist(),
+    plToClone: () => makeSelectSelectedPlaylistId(),
     categories: () => makeSelectCategories(),
     error: () => makeSelectError(),
   });

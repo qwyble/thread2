@@ -3,14 +3,13 @@ import PropTypes from 'prop-types';
 import { Table } from 'semantic-ui-react';
 
 import AddToPlaylistPortal from 'containers/SongsContainer/PlaylistModifiers/AddToPlaylist/AddToPlaylistPortalWrapper';
-import RemoveSongFromPlaylist from 'containers/SongsContainer/PlaylistModifiers/RemoveFromPlaylist';
+import RemoveSongFromPlaylistWrapper from 'components/SongsTable/PlaylistModifiers/RemoveSongFromPlaylistWrapper';
+import PublicityPortalWrapper from 'components/SongsTable/PlaylistModifiers/Publicity/PublicityPortalWrapper';
 import ClonePortalWrapper from 'components/SongsTable/ClonePortal/ClonePortalWrapper';
-import MakePublic from 'containers/SongsContainer/PlaylistModifiers/PublicityPortal';
 import SongRowsContainer from 'containers/SongsContainer/SongRowsContainer';
 import FollowContainer from 'containers/FollowContainer/FollowContainer';
 import LoaderWrapper from 'containers/Wrappers/LoaderWrapper';
 import TableHeader from 'components/SongsTable/TableHeader';
-import IsOwner from 'containers/Wrappers/IsOwner';
 import Paginator from '../../utilities/paginator.js';
 
 const SongsTable = props => (
@@ -38,14 +37,10 @@ const SongsTable = props => (
             <ClonePortalWrapper />
             <AddToPlaylistPortal />
             <FollowContainer />
-            <IsOwner>
-              <RemoveSongFromPlaylist />
-            </IsOwner>
+            <RemoveSongFromPlaylistWrapper />
           </Table.HeaderCell>
           <Table.HeaderCell colSpan="1">
-            <IsOwner>
-              <MakePublic />
-            </IsOwner>
+            <PublicityPortalWrapper />
           </Table.HeaderCell>
           <Table.Cell collapsing>
             <Paginator />

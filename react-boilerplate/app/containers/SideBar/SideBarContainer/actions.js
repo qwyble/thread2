@@ -4,20 +4,18 @@ import {
   TOGGLE_VISIBILITY,
 } from './constants';
 
-export function setPlaylist(e) {
+export function setPlaylist(playlist) {
   return {
     type: SELECT_PLAYLIST,
-    plId: e.target.id,
-    plName: e.target.value,
+    playlist,
   };
 }
 
-export function setCategory(catId) {
+export function setCategory(category) {
   return {
     type: SELECT_CATEGORY,
-    catId,
-  }
-  selectedPlName: '',
+    category,
+  };
 }
 
 export function toggleVisibility() {
