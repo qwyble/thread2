@@ -2,14 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Table } from 'semantic-ui-react';
 
-import AddToPlaylistPortal from 'containers/SongsContainer/PlaylistModifiers/AddToPlaylist/AddToPlaylistPortalWrapper';
-import RemoveSongFromPlaylistWrapper from 'components/SongsTable/PlaylistModifiers/RemoveSongFromPlaylistWrapper';
-import PublicityPortalWrapper from 'components/SongsTable/PlaylistModifiers/Publicity/PublicityPortalWrapper';
-import ClonePortalWrapper from 'components/SongsTable/ClonePortal/ClonePortalWrapper';
-import SongRowsContainer from 'containers/SongsContainer/SongRowsContainer';
-import FollowContainer from 'containers/FollowContainer/FollowContainer';
-import LoaderWrapper from 'containers/Wrappers/LoaderWrapper';
 import TableHeader from 'components/SongsTable/TableHeader';
+import LoaderWrapper from 'containers/Wrappers/LoaderWrapper';
+import SongRowsContainer from 'containers/SongsContainer/SongRowsContainer';
+import ClonePortalWrapper from 'components/SongsTable/ClonePortal/ClonePortalWrapper';
+import AddToPlaylistPortal from 'containers/SongsContainer/PlaylistModifiers/AddToPlaylist/AddToPlaylistPortalWrapper';
+import FollowContainer from 'containers/FollowContainer/FollowContainer';
+import SongRemoverPortalWrapper from 'components/SongsTable/PlaylistModifiers/SongRemover/SongRemoverPortalWrapper';
+import PublicityPortalWrapper from 'components/SongsTable/PlaylistModifiers/Publicity/PublicityPortalWrapper';
 import Paginator from '../../utilities/paginator.js';
 
 const SongsTable = props => (
@@ -37,7 +37,7 @@ const SongsTable = props => (
             <ClonePortalWrapper />
             <AddToPlaylistPortal />
             <FollowContainer />
-            <RemoveSongFromPlaylistWrapper />
+            <SongRemoverPortalWrapper />
           </Table.HeaderCell>
           <Table.HeaderCell colSpan="1">
             <PublicityPortalWrapper />

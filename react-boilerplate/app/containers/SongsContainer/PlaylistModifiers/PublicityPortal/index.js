@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button } from 'semantic-ui-react';
+import { Button, Icon } from 'semantic-ui-react';
 
 import { compose } from 'redux';
 import { connect } from 'react-redux';
@@ -25,7 +25,19 @@ import { makePublic } from './actions';
 const PublicityPortal = props => {
   const isPublicButton = (
     <Button>
-      {props.isPublic ? <div>Make Private</div> : <div>Make Public</div>}
+      {props.isPublic ? (
+        <Button icon primary size="mini" floated="right" labelPosition="left">
+          <div>
+            <Icon name="privacy" /> Make Private{' '}
+          </div>
+        </Button>
+      ) : (
+        <Button icon primary size="mini" floated="right" labelPosition="left">
+          <div>
+            <Icon name="user" /> Make Public{' '}
+          </div>
+        </Button>
+      )}
     </Button>
   );
 

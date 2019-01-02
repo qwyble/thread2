@@ -8,7 +8,12 @@ import AddCategory from './CategoryModifiers/AddCategory/reducer';
 import DeleteCategory from './CategoryModifiers/DeleteCategory/reducer';
 import RenameCategory from './CategoryModifiers/RenameCategory/reducer';
 
-import { GET_CATEGORIES, GET_CATEGORIES_COMPLETED } from './constants';
+import {
+  RENAME_PL_IN_CAT,
+  SET_IS_PUBLIC,
+  GET_CATEGORIES,
+  GET_CATEGORIES_COMPLETED,
+} from './constants';
 
 import { ADD_CAT_TO_CATS } from './CategoryModifiers/AddCategory/constants';
 import { DELETE_CAT_FROM_CATS } from './CategoryModifiers/DeleteCategory/constants';
@@ -63,8 +68,30 @@ function Categories(state = initialState, action) {
           .find(cat => cat.catid === action.catid)
           .update('pls', pls => pls.filter(pl => pl.plid !== action.plId))
       );
-    case RENAME_CAT_IN_CAT:
-      return state.update('categories', cats => )
+    case RENAME_PL_IN_CAT: {
+      const catIndex = state
+        .get('categories')
+        .findIndex(cat => cat.pls.findIndex(pl => pl.plid === action.plid));
+      const plIndex = state
+        .getIn(['categories', catIndex, 'pls'])
+        .findIndex(pl => pl.plid === action.plid);
+      return state.updateIn(
+        ['categories', catIndex, 'pls', plIndex, 'plname'],
+        action.plname
+      );
+    }
+    case SET_IS_PUBLIC: {
+      const catIndex = state
+        .get('categories')
+        .findIndex(cat => cat.pls.findIndex(pl => pl.plid === action.plid));
+      const plIndex = state
+        .getIn(['categories', catIndex, 'pls'])
+        .findIndex(pl => pl.plid === action.plid);
+      return state.updateIn(
+        ['categories', catIndex, 'pls', plIndex, 'isPublic'],
+        action.isPublic
+      );
+    }
     default:
       return state;
   }

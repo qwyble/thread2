@@ -1,12 +1,7 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
-import {
-  renamePlaylistSuccess,
-  renamePlaylistFailed,
-} from './actions';
-
-import {
-  getCategoriesSuccess
-} from 'containers/SideBar/CategoryContainer/actions';
+import axios from 'axios';
+import { renamePlInCat } from 'containers/SideBar/CategoryContainer/actions';
+import { renamePlaylistSuccess, renamePlaylistFailed } from './actions';
 
 import { RENAME_PLAYLIST } from './constants';
 
@@ -19,9 +14,9 @@ function* renamePlaylist(action) {
     let data;
     data.plid = action.playlist.plid;
     data.plname = action.playlist.plname;
-    const newCats = yield call(renamePlaylistRequest, data);
+    yield call(renamePlaylistRequest, data);
     yield put(renamePlaylistSuccess);
-    yield put(getCategoriesSuccess, newCats);
+    yield put(renamePlInCat, [data.plid, data.plname]);
   } catch (err) {
     yield put(renamePlaylistFailed, err);
   }
@@ -35,5 +30,7 @@ function renamePlaylistRequest() {
     withCredentials: true,
   })
     .then(result => result.data)
-    .catch(err => throw new Error(err));
+    .catch(err => {
+      throw new Error(err);
+    });
 }

@@ -2,7 +2,6 @@ import {
   RENAME_PLAYLIST,
   RENAME_PLAYLIST_SUCCESS,
   RENAME_PLAYLIST_FAILED,
-  RENAME_PL_IN_CAT,
 } from './constants';
 
 export function renamePlaylist(playlist) {
@@ -24,4 +23,3 @@ export function renamePlaylistFailed(error) {
     error,
   };
 }
-

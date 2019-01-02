@@ -17,11 +17,15 @@ class PortalWrapper extends React.Component {
       <div>
         <Portal open={this.state.isOpen} trigger={this.props.trigger}>
           <div>
-            <Segment>
-              {React.cloneElement(this.props.children, {
-                closePortal: this.closePortal,
-              })}
-            </Segment>
+            {this.state.isOpen ? (
+              <Segment>
+                {React.cloneElement(this.props.children, {
+                  closePortal: this.toggleOpen,
+                })}
+              </Segment>
+            ) : (
+              <div />
+            )}
           </div>
         </Portal>
       </div>
