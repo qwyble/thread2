@@ -1,5 +1,11 @@
 import { fromJS } from 'immutable';
 
+import {
+  REMOVE_SONGS,
+  REMOVE_SONGS_COMPLETED,
+  REMOVE_SONGS_FAILED,
+} from './constants';
+
 const initialState = fromJS({
   isLoading: false,
   didSucceed: false,

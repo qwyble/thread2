@@ -23,6 +23,12 @@ export const makeSelectSelectedPlid = () =>
     playlist => playlist.get('plid')
   );
 
+export const makeSelectSelectedPlIsOwner = () =>
+  createSelector(
+    makeSelectSelectPlaylist,
+    selectedPlaylist => selectedPlaylist.get('isOwner')
+  );
+
 export const makeSelectSelectedPlName = () =>
   createSelector(
     makeSelectSelectedPlaylist,

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import PathWrapper from 'containers/Wrappers/PathWrapper';
 import { createStructuredSelector } from 'reselect';
-import IsOwner from 'containers/Wrappers/IsOwner';
+import IsNotPlaylistOwner from 'containers/Wrappers/IsNotPlaylistOwner';
 import { makeSelectProfileId } from 'containers/AppUtilities/ProfileContext/selectors';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
@@ -23,13 +23,13 @@ class FollowContainer extends React.Component {
     return (
       <div style={{ float: 'left' }}>
         <PathWrapper>
-          <IsOwner>
+          <IsNotPlaylistOwner>
             <FollowButton
               follow={this.props.follow}
               isFollowing={this.props.isFollowing}
               isLoading={this.props.isLoading}
             />
-          </IsOwner>
+          </IsNotPlaylistOwner>
         </PathWrapper>
       </div>
     );

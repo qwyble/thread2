@@ -9,6 +9,8 @@ import {
   SORT_BY_REDUCTION,
   SET_DESCENDING,
   SET_DESCENDING_REDUCTION,
+  SELECT_SONG,
+  DESELECT_SONG,
 } from './constants';
 
 export function getSongs() {
@@ -78,14 +80,14 @@ export function setDescendingReduction() {
   };
 }
 
-export function selectSong() {
+export function selectSong(idSongs) {
   return {
     type: SELECT_SONG,
     idSongs,
   };
 }
 
-export function deselectSong() {
+export function deselectSong(idSongs) {
   return {
     type: DESELECT_SONG,
     idSongs,

@@ -6,7 +6,7 @@ import TableHeader from 'components/SongsTable/TableHeader';
 import LoaderWrapper from 'containers/Wrappers/LoaderWrapper';
 import SongRowsContainer from 'containers/SongsContainer/SongRowsContainer';
 import ClonePortalWrapper from 'components/SongsTable/ClonePortal/ClonePortalWrapper';
-import AddToPlaylistPortal from 'containers/SongsContainer/PlaylistModifiers/AddToPlaylist/AddToPlaylistPortalWrapper';
+import AddToPlaylistPortalWrapper from 'containers/SongsContainer/PlaylistModifiers/AddToPlaylist/AddToPlaylistPortalWrapper';
 import FollowContainer from 'containers/FollowContainer/FollowContainer';
 import SongRemoverPortalWrapper from 'components/SongsTable/PlaylistModifiers/SongRemover/SongRemoverPortalWrapper';
 import PublicityPortalWrapper from 'components/SongsTable/PlaylistModifiers/Publicity/PublicityPortalWrapper';
@@ -35,7 +35,7 @@ const SongsTable = props => (
         <Table.Row>
           <Table.HeaderCell colSpan="4">
             <ClonePortalWrapper />
-            <AddToPlaylistPortal />
+            <AddToPlaylistPortalWrapper />
             <FollowContainer />
             <SongRemoverPortalWrapper />
           </Table.HeaderCell>
