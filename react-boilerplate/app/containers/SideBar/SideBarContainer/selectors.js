@@ -12,9 +12,8 @@ export const makeSelectPlaylistParam = () =>
 
 export const makeSelectSelectedPlaylist = () =>
   createSelector(
-    makeSelectedPlaylistByParam,
     sideBarState,
-    (playlist, state) => state.get('selectedPlaylist') || playlist
+    state => state.get('selectedPlaylist') || undefined
   );
 
 export const makeSelectSelectedPlid = () =>
@@ -25,7 +24,7 @@ export const makeSelectSelectedPlid = () =>
 
 export const makeSelectSelectedPlIsOwner = () =>
   createSelector(
-    makeSelectSelectPlaylist,
+    makeSelectSelectedPlaylist,
     selectedPlaylist => selectedPlaylist.get('isOwner')
   );
 

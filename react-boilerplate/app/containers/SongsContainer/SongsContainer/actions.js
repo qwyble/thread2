@@ -5,6 +5,7 @@ import {
   REMOVE_SONGS_FROM_PLAYLIST,
   ADD_SONGS_TO_PLAYLIST,
   SET_CURRENT_PAGE,
+  SET_CURRENT_PAGE_REDUCTION,
   SORT_BY,
   SORT_BY_REDUCTION,
   SET_DESCENDING,
@@ -43,6 +44,13 @@ export function removeSongsFromPlaylist(songIds) {
 export function setCurrentPage(page) {
   return {
     type: SET_CURRENT_PAGE,
+    page,
+  };
+}
+
+export function setCurrentPageReduction(page) {
+  return {
+    type: SET_CURRENT_PAGE_REDUCTION,
     page,
   };
 }

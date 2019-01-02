@@ -26,9 +26,16 @@ export const makeSelectUrl = () =>
 
 export const makeSelectCurrentPage = () =>
   createSelector(
-    selectSongsContainerState,
+    selectSongsTableState,
     state => state.get('currentPage')
   );
+
+export const makeSelectTotalPages = () =>
+  createSelector(
+    selectSongsTableState,
+    songsTable => songsTable.get('totalPages')
+  );
+
 export const makeSelectSongs = () =>
   createSelector(
     selectSongsContainerState,

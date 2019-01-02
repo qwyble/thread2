@@ -1,12 +1,18 @@
 import { call, put, takeLatest, select } from 'redux-saga/effects';
 import axios from 'axios';
 import { setError } from 'containers/Wrappers/ErrorWrapper/actions';
-import { GET_SONGS, SORT_BY, SET_DESCENDING } from './constants';
+import {
+  GET_SONGS,
+  SORT_BY,
+  SET_DESCENDING,
+  SET_CURRENT_PAGE,
+} from './constants';
 import {
   getSongsSuccess,
   getSongsFailed,
   sortByReduction,
   setDescendingReduction,
+  setCurrentPageReduction,
 } from './actions';
 import {
   makeSelectCurrentPage,
@@ -19,6 +25,12 @@ export default function* songsContainerSaga() {
   yield takeLatest(GET_SONGS, getSongs);
   yield takeLatest(SORT_BY, sortBy);
   yield takeLatest(SET_DESCENDING, setDescending);
+  yield takeLatest(SET_CURRENT_PAGE, setCurrentPage);
+}
+
+function* setCurrentPage(action) {
+  yield put(setCurrentPageReduction, action.page);
+  yield call(getSongs);
 }
 
 function* setDescending() {

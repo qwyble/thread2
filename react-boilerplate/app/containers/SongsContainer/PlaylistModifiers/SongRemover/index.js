@@ -5,7 +5,6 @@ import { Button } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 
-import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 
 import { createStructuredSelector } from 'reselect';
@@ -14,7 +13,6 @@ import { makeSelectSelectedPlName } from 'containers/SideBar/SideBarContainer/se
 
 import LoaderWrapper from 'containers/Wrappers/LoaderWrapper';
 
-import reducer from './reducer';
 import saga from './saga';
 
 import { removeSongs } from './actions';
@@ -73,11 +71,9 @@ const withConnect = connect(
   mapStateToProps,
   mapDispatchToProps
 );
-const withReducer = injectReducer({ key: 'SongRemover', reducer });
 const withSaga = injectSaga({ key: 'SongRemoverSaga', saga });
 
 export default compose(
   withSaga,
-  withReducer,
   withConnect
 )(SongRemover);

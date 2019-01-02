@@ -1,7 +1,7 @@
 import { fromJS } from 'immutable';
 import { combineReducers } from 'redux';
-import addSongToPlaylist from 'containers/SongsContainer/PlaylistModifiers/AddToPlaylist/AddToPlaylistForm/reducer';
-import removeSongFromPlaylist from 'containers/SongsContainer/PlaylistModifiers/RemoveFromPlaylist/RemoveFromPlaylistForm/reducer';
+import songAdder from 'containers/SongsContainer/PlaylistModifiers/AddToPlaylist/AddToPlaylistForm/reducer';
+import songRemover from 'containers/SongsContainer/PlaylistModifiers/SongRemover/reducer';
 import { CHANGE_RATING } from 'containers/SongsContainer/SongRowsContainer/constants';
 import {
   GET_SONGS,
@@ -18,8 +18,8 @@ import {
 
 export default combineReducers({
   songsContainer,
-  addSongToPlaylist,
-  removeSongFromPlaylist,
+  songAdder,
+  songRemover,
 });
 
 const initialState = {

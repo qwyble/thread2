@@ -10,7 +10,7 @@ import AddToPlaylistPortalWrapper from 'containers/SongsContainer/PlaylistModifi
 import FollowContainer from 'containers/FollowContainer/FollowContainer';
 import SongRemoverPortalWrapper from 'components/SongsTable/PlaylistModifiers/SongRemover/SongRemoverPortalWrapper';
 import PublicityPortalWrapper from 'components/SongsTable/PlaylistModifiers/Publicity/PublicityPortalWrapper';
-import Paginator from '../../utilities/paginator.js';
+import Paginator from 'containers/SongsContainer/Paginator';
 
 const SongsTable = props => (
   <div>
