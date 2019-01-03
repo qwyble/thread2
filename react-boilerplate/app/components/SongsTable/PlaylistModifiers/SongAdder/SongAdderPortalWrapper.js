@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { Portal, Button } from 'semantic-ui-react';
-import AddToPlaylistForm from 'containers/SongsContainer/PlaylistModifiers/AddToPlaylist/AddToPlaylistForm';
+import SongAdder from 'containers/SongsContainer/PlaylistModifiers/SongAdder';
 import { makeSelectNoneSelected } from 'containers/SongsContainer/SongsContainer/selectors';
 class AddToPlaylistPortalWrapper extends Component {
   state = {
@@ -30,7 +30,7 @@ class AddToPlaylistPortalWrapper extends Component {
           </Button>
         }
       >
-        {this.state.isOpen ? <AddToPlaylistForm /> : <div />}
+        {this.state.isOpen ? <SongAdder /> : <div />}
       </Portal>
     );
   }

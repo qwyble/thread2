@@ -7,7 +7,7 @@ import { createStructuredSelector } from 'reselect';
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 
-import IsOwner from 'containers/Wrappers/IsOwner';
+import IsSideBarOwner from 'containers/Wrappers/IsSideBarOwner';
 
 import { setCategory } from 'containers/SideBar/SideBarContainer/actions';
 
@@ -38,9 +38,9 @@ class CategoryContainer extends React.Component {
           onSetCategory={this.props.setCategory}
           selectedCategoryId={this.props.selectedCategoryId}
         />
-        <IsOwner>
+        <IsSideBarOwner>
           <AddCategory />
-        </IsOwner>
+        </IsSideBarOwner>
       </LoaderWrapper>
     );
   }

@@ -2,20 +2,21 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Menu } from 'semantic-ui-react';
 
+import { createStructuredSelector } from 'reselect';
+
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 
 import injectSaga from 'utils/injectSaga';
 
-import { makeSelectCategories } from 'containers/SideBar/CategoryContainer/selectors';
-import { createStructuredSelector } from 'reselect';
 import LoaderWrapper from 'containers/Wrappers/LoaderWrapper';
-import Error from 'components/common/Error';
+
+import { makeSelectCategories } from 'containers/SideBar/CategoryContainer/selectors';
+
 import { addSongsToPlaylist } from './actions';
+import { makeSelectIsLoading } from './selectors';
 
-import { makeSelectIsLoading, makeSelectError } from './selectors';
-
-class AddToPlaylistPortalForm extends React.Component {
+class SongAdder extends React.Component {
   handleAddToPlaylist = e => {
     this.props.addSongsToPlaylist(e.target.value);
   };
@@ -57,24 +58,21 @@ class AddToPlaylistPortalForm extends React.Component {
             </Menu.Item>
           ))}
         </LoaderWrapper>
-        <Error error={this.props.error} />
       </Menu>
     );
   }
 }
 
-AddToPlaylistPortalForm.propTypes = {
+SongAdder.propTypes = {
   categories: PropTypes.array,
   addSongsToPlaylist: PropTypes.func,
   isLoading: PropTypes.bool,
-  error: PropTypes.string,
 };
 
 const mapStateToProps = () =>
   createStructuredSelector({
     categories: () => makeSelectCategories(),
     isLoading: () => makeSelectIsLoading(),
-    error: () => makeSelectError(),
   });
 
 const mapDispatchToProps = {
@@ -86,7 +84,7 @@ const withConnect = connect(
   mapDispatchToProps
 );
 
-const withSaga = injectSaga({ key: AddToPlaylistSaga, saga });
+const withSaga = injectSaga({ key: 'SongAdderSaga', saga });
 
 export default compose(
   withSaga,

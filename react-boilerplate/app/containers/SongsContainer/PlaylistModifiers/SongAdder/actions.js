@@ -17,9 +17,8 @@ export function addSongsToPlSuccess() {
   };
 }
 
-export function addSongsToPlFailed(error) {
+export function addSongsToPlFailed() {
   return {
     type: ADD_SONGS_TO_PL_FAILED,
-    error,
   };
 }

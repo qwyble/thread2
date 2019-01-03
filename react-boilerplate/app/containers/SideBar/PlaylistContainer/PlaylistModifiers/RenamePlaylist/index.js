@@ -10,7 +10,7 @@ import injectSaga from 'utils/injectSaga';
 import RenamePlaylistForm from 'components/SideBar/Playlists/PlaylistModifiers/RenamePlaylistForm';
 
 import LoaderWrapper from 'containers/Wrappers/LoaderWrapper';
-import renamePlaylist from './actions';
+import { renamePlaylist } from './actions';
 
 import {
   makeSelectDidRename,
@@ -18,7 +18,7 @@ import {
   makeSelectError,
 } from './selectors';
 
-import { renamePlaylistSaga } from './saga';
+import renamePlaylistSaga from './saga';
 
 class RenamePlaylist extends Component {
   componentDidUpdate() {

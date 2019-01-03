@@ -7,9 +7,3 @@ export const makeSelectIsLoading = () =>
     selectAddToPlaylistState,
     state => state.get('isLoading')
   );
-
-export const makeSelectError = () =>
-  createSelector(
-    selectAddToPlaylistState,
-    state => state.get('error')
-  );

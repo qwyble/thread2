@@ -5,7 +5,8 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { Menu } from 'semantic-ui-react';
 
-import IsOwner from 'containers/Wrappers/IsOwner';
+import IsSideBarOwner from 'containers/Wrappers/IsSideBarOwner';
+
 import Playlist from 'components/SideBar/Playlists/Playlist';
 import AddPlaylist from 'containers/SideBar/PlaylistContainer/PlaylistModifiers/AddPlaylist';
 import { setPlaylist } from 'containers/SideBar/SideBarContainer/actions';
@@ -32,9 +33,9 @@ class PlaylistContainer extends React.PureComponent {
             />
           </Menu.Item>
         ))}
-        <IsOwner>
+        <IsSideBarOwner>
           <AddPlaylist />
-        </IsOwner>
+        </IsSideBarOwner>
       </Menu.Menu>
     );
   }

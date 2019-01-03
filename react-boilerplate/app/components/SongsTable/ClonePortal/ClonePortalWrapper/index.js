@@ -21,7 +21,7 @@ class ClonePortalWrapper extends React.Component {
         </Button>
         {this.state.openPortal ? (
           <Portal open={this.state.openPortal}>
-            <ClonePortalContainer />
+            <ClonePortalContainer onClosePortal={this.openPortal} />
           </Portal>
         ) : (
           <div />

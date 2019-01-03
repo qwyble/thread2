@@ -6,47 +6,47 @@ import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 
-import {
-  makeSelectSelectedSongs,
-  makeSelectSongs,
-} from 'containers/SongsContainer/SongsContainer/selectors';
-import { makeSelectIsPlaying } from 'containers/Audio/PlaybackContainer/selectors';
-import { makeSelectIsLoading, makeSelectSongId } from './selectors';
+import { makeSelectSongs } from 'containers/SongsContainer/SongsContainer/selectors';
+import { makeSelectNowPlayingId } from 'containers/Audio/PlaybackContainer/selectors';
 
 import {
   selectSong,
   deselectSong,
 } from 'containers/SongsContainer/SongsContainer/actions';
 
-import { play, pause } from 'containers/Audio/PlaybackContainer/actions';
-import Error from 'components/common/Error';
+import {
+  handlePlaying,
+  handlePausing,
+} from 'containers/Audio/PlaybackContainer/actions';
+
+import { makeSelectIsLoading, makeSelectSongId } from './selectors';
+import { rateSong } from './actions';
 
 class SongRowsContainer extends Component {
   handlePlayToggle = e => {
-    if (!this.props.isPlaying === e.target.id) this.props.play(e.target.id);
-    else this.props.pause();
+    if (!this.props.nowPlayingId === e.target.id)
+      this.props.handlePlaying(e.target.id);
+    else this.props.handlePausing();
   };
 
   handleSongSelect = e => {
-    const idSongs = e.target.id;
-    if (!this.props.selectedSongs.includes(idSongs))
-      this.props.selectSong(e.target.id);
+    console.log(e.target);
+    if (!e.target.value) this.props.selectSong(e.target.id);
     else this.props.deselectSong(e.target.id);
   };
 
   render() {
     return (
       <div>
-        <Error error={this.props.error} />
         {this.props.songs.map((song, key) => (
           <SongRow
             key={key}
-            onPlay={this.props.play}
-            onPause={this.props.pause}
+            onPlay={this.props.handlePlaying}
+            onPause={this.props.handlePausing}
             onRate={this.props.rateSong}
             onSongSelect={this.handleSongSelect}
-            isPlaying={this.props.isPlaying === song.idSongs}
-            selected={this.props.selectedSongs.includes(song.idSongs)}
+            isPlaying={this.props.nowPlayingId === song.idSongs}
+            selected={!!song.isSelected}
             isLoading={
               this.props.isLoading && this.props.songId === song.idSongs
             }
@@ -58,15 +58,15 @@ class SongRowsContainer extends Component {
 }
 
 SongRowsContainer.propTypes = {
-  play: PropTypes.func,
+  handlePlaying: PropTypes.func,
+  handlePausing: PropTypes.func,
+  rateSong: PropTypes.func,
   songs: PropTypes.array,
-  pause: PropTypes.func,
   songId: PropTypes.string,
   isLoading: PropTypes.bool,
   selectSong: PropTypes.func,
-  isPlaying: PropTypes.string,
   deselectSong: PropTypes.func,
-  selectedSongs: PropTypes.array,
+  nowPlayingId: PropTypes.number,
 };
 
 const mapStateToProps = () =>
@@ -74,15 +74,15 @@ const mapStateToProps = () =>
     songs: () => makeSelectSongs(),
     songId: () => makeSelectSongId(),
     isLoading: () => makeSelectIsLoading(),
-    isPlaying: () => makeSelectIsPlaying(),
-    selectedSongs: () => makeSelectSelectedSongs(),
+    isPlaying: () => makeSelectNowPlayingId(),
   });
 
 const mapDispatchToProps = {
   selectSong,
   deselectSong,
-  pause,
-  play,
+  handlePausing,
+  handlePlaying,
+  rateSong,
 };
 
 const withConnect = connect(

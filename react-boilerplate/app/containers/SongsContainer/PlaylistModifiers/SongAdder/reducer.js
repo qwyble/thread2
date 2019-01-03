@@ -5,21 +5,18 @@ import {
   ADD_SONGS_TO_PL_SUCCESS,
 } from './constants';
 
-const blankError = fromJS({});
-
-const initialState = {
+const initialState = fromJS({
   isLoading: false,
-  error: blankError,
-};
+});
 
 export default function addSongToPlaylist(state = initialState, action) {
   switch (action.type) {
     case ADD_SONGS_TO_PL:
-      return state.set('isLoading', true).set('error', blankError);
+      return state.set('isLoading', true);
     case ADD_SONGS_TO_PL_SUCCESS:
       return state.set('isLoading', false);
     case ADD_SONGS_TO_PL_FAILED:
-      return state.set('isLoading', false).set('error', action.error);
+      return state.set('isLoading', false);
     default:
       return state;
   }

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Menu } from 'semantic-ui-react';
 
-import IsOwner from 'containers/Wrappers/IsOwner';
+import IsSideBarOwner from 'containers/Wrappers/IsSideBarOwner';
 
 import PlaylistContainer from 'containers/SideBar/PlaylistContainer';
 
@@ -24,12 +24,12 @@ class Category extends React.Component {
         <div>
           <div>
             <Menu.Item className="sideBarItem">
-              <IsOwner>
+              <IsSideBarOwner>
                 <EditCategoryPortal
                   id={this.props.category.get('catid')}
                   catname={this.props.category.get('catname')}
                 />
-              </IsOwner>
+              </IsSideBarOwner>
 
               <Button
                 icon

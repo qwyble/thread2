@@ -4,7 +4,7 @@ import { Button } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
 import EditPlaylistPortal from 'components/SideBar/Playlists/PlaylistModifiers/EditPlaylistPortal';
-import IsOwner from 'containers/Wrappers/IsOwner';
+import IsSideBarOwner from 'containers/Wrappers/IsSideBarOwner';
 
 const Playlist = props => (
   <div>
@@ -21,9 +21,9 @@ const Playlist = props => (
         {props.playlist}
       </Button>
     </Link>
-    <IsOwner>
+    <IsSideBarOwner>
       <EditPlaylistPortal id={props.id} playlist={props.playlist} />
-    </IsOwner>
+    </IsSideBarOwner>
   </div>
 );
 

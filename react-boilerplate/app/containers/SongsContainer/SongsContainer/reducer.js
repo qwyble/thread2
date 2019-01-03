@@ -1,6 +1,6 @@
 import { fromJS } from 'immutable';
 import { combineReducers } from 'redux';
-import songAdder from 'containers/SongsContainer/PlaylistModifiers/AddToPlaylist/AddToPlaylistForm/reducer';
+import songAdder from 'containers/SongsContainer/PlaylistModifiers/SongAdder/reducer';
 import songRemover from 'containers/SongsContainer/PlaylistModifiers/SongRemover/reducer';
 import { CHANGE_RATING } from 'containers/SongsContainer/SongRowsContainer/constants';
 import {
@@ -28,7 +28,7 @@ const initialState = {
   songsTable: {
     currentPage: 0,
     totalPages: 1,
-    selectedSongs: fromJS({}),
+    selectedSongs: fromJS([]),
     noneSelected: true,
     descending: true,
     sortBy: 'dateUploaded',
@@ -57,14 +57,30 @@ export function songsContainer(state = initialState, action) {
       return state.update('songs', songs => songs.concat(action.songs));
     case SET_CURRENT_PAGE:
       return state.setIn(['songsTable', 'currentPage'], action.currentPage);
-    case SELECT_SONG:
-      return state.updateIn(['songsTable', 'selectedSongs'], selectedSongs =>
-        selectedSongs.push(action.idSongs)
-      );
-    case DESELECT_SONG:
-      return state.updateIn(['songsTable', 'selectedSongs'], selectedSongs =>
-        selectedSongs.filter(idSongs => idSongs !== action.idSongs)
-      );
+    case SELECT_SONG: {
+      const songIndex = state
+        .get('songs')
+        .findIndex(song => song.get('idSongs') === action.idSongs);
+      return state
+        .updateIn(['songsTable', 'selectedSongs'], selectedSongs =>
+          selectedSongs.push(action.idSongs)
+        )
+        .updateIn(['songs', songIndex], song =>
+          song.merge({ isSelected: true })
+        );
+    }
+    case DESELECT_SONG: {
+      const songIndex = state
+        .get('songs')
+        .findIndex(song => song.get('idSongs') === action.idSongs);
+      return state
+        .updateIn(['songsTable', 'selectedSongs'], selectedSongs =>
+          selectedSongs.filter(idSongs => idSongs !== action.idSongs)
+        )
+        .updateIn(['songs', songIndex], song =>
+          song.merge({ isSelected: false })
+        );
+    }
     case SET_DESCENDING_REDUCTION:
       return state.set('descending', !state.get('descending'));
     case SORT_BY_REDUCTION:

@@ -1,6 +1,7 @@
 import { axios } from 'axios';
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { addPlaylistToCategory } from 'containers/SideBar/PlaylistContainer/PlaylistModifiers/AddPlaylist/actions';
+import { setError } from 'containers/Wrappers/ErrorWrapper/actions';
 import { CLONE_PLAYLIST } from './constants';
 import { clonePlaylistSuccess, clonePlaylistFailed } from './actions';
 
@@ -19,7 +20,8 @@ function* clonePlaylist(action) {
     yield put(clonePlaylistSuccess);
     yield put(addPlaylistToCategory, [plToAdd, catId]);
   } catch (err) {
-    yield put(clonePlaylistFailed, err);
+    yield put(clonePlaylistFailed);
+    yield put(setError, err.message);
   }
 }
 
@@ -37,6 +39,6 @@ function clonePlaylistRequest(catId, plname, plToClone) {
     )
     .then(result => result.data)
     .catch(err => {
-      throw new Error(err);
+      throw new Error(err.message);
     });
 }

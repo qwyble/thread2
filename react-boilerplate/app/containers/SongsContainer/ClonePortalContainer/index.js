@@ -11,15 +11,14 @@ import injectSaga from 'utils/injectSaga';
 
 import { Segment } from 'semantic-ui-react';
 
-import Error from 'components/common/Error';
 import PropChecker from 'components/common/PropChecker';
 import LoaderWrapper from 'containers/Wrappers/LoaderWrapper';
 
 import ClonePortalForm from 'components/SongsTable/ClonePortal/ClonePortalForm';
 
-import { makeSelectSelectedPlaylistId } from 'containers/SideBar/SideBarContainer/selectors';
+import { makeSelectSelectedPlid } from 'containers/SideBar/SideBarContainer/selectors';
 import { makeSelectCategories } from 'containers/SideBar/CategoryContainer/selectors';
-import { makeSelectIsLoading, makeSelectError } from './selectors';
+import { makeSelectIsLoading, makeSelectDidSucceed } from './selectors';
 
 import { clonePlaylist } from './actions';
 
@@ -27,40 +26,6 @@ import reducer from './reducer';
 import saga from './saga';
 
 class ClonePortalContainer extends React.Component {
-  state = {
-    selectedCatId: '',
-    selectedCatName: '',
-    plname: '',
-    error: '',
-    disabled: true,
-  };
-
-  handleInputChange = e => {
-    const plname = e.target.value;
-    this.setState({ plname }, () => {
-      this.validateInput();
-    });
-  };
-
-  handleCatSelect = (e, d) => {
-    this.setState({ selectedCatId: d.value, selectedCatName: d.text }, () => {
-      this.validateInput();
-    });
-  };
-
-  validateInput = () => {
-    if (this.state.plname.length < 2) {
-      this.setState({
-        error: 'playlist name must be at least two characters',
-        disabled: true,
-      });
-    } else if (!this.state.selectedCatId) {
-      this.setState({ error: 'you must select a category', disabled: true });
-    } else {
-      this.setState({ error: '', disabled: false });
-    }
-  };
-
   handleClonePlaylist = () => {
     this.props.clonePlaylist(
       this.state.selectedCatId,
@@ -87,18 +52,14 @@ class ClonePortalContainer extends React.Component {
         >
           <LoaderWrapper isLoading={this.props.isLoading}>
             <PropChecker field={this.props.plToClone} alt={PortalMessage}>
-              <PropChecker field={!this.state.success} alt={SuccessMessage}>
+              <PropChecker field={!this.props.didSucceed} alt={SuccessMessage}>
                 <ClonePortalForm
                   categories={this.props.categories}
-                  onCatSelect={this.handleCatSelect}
-                  onInputChange={this.handleInputChange}
                   onClonePlaylist={this.handleClonePlaylist}
-                  disabled={this.state.disabled}
-                  selectedCatName={this.state.selectedCatName}
+                  onClosePortal={this.props.onClosePortal}
                 />
               </PropChecker>
             </PropChecker>
-            <Error error={this.state.error || this.props.error} />
           </LoaderWrapper>
         </Segment>
       </div>
@@ -111,15 +72,16 @@ ClonePortalContainer.propTypes = {
   plToClone: PropTypes.string,
   categories: PropTypes.array,
   clonePlaylist: PropTypes.func,
-  error: PropTypes.object,
+  didSucceed: PropTypes.bool,
+  onClosePortal: PropTypes.func,
 };
 
 const mapStateToProps = () =>
   createStructuredSelector({
     isLoading: () => makeSelectIsLoading(),
-    plToClone: () => makeSelectSelectedPlaylistId(),
+    plToClone: () => makeSelectSelectedPlid(),
     categories: () => makeSelectCategories(),
-    error: () => makeSelectError(),
+    didSucceed: () => makeSelectDidSucceed(),
   });
 
 const mapDispatchToProps = {

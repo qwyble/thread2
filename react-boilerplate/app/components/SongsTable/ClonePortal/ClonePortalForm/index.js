@@ -2,39 +2,79 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Segment, Dropdown, Button, Input } from 'semantic-ui-react';
 
-const ClonePortalForm = props => (
-  <div>
-    <Segment>
-      <Dropdown text={props.selectedCatName || 'Select Category: '}>
-        <Dropdown.Menu>
-          {props.categories.map((cat, i) => (
-            <Dropdown.Item
-              key={i}
-              onClick={props.onCatSelect}
-              value={cat.idcategories}
-              text={cat.name}
-            />
-          ))}
-        </Dropdown.Menu>
-      </Dropdown>
-    </Segment>
-    <div>Enter a new playlist name:</div>
-    <Segment>
-      <Input size="mini" onChange={props.onInputChange} />
-    </Segment>
-    <Button disabled={props.disabled} onClick={props.onClonePlaylist}>
-      Submit
-    </Button>
-  </div>
-);
+class ClonePortalForm extends React.Component {
+  state = {
+    selectedCatId: '',
+    selectedCatName: '',
+    plname: '',
+    error: '',
+    disabled: true,
+  };
+
+  handleInputChange = e => {
+    const plname = e.target.value;
+    this.setState({ plname }, () => {
+      this.validateInput();
+    });
+  };
+
+  handleCatSelect = (e, d) => {
+    this.setState({ selectedCatId: d.value, selectedCatName: d.text }, () => {
+      this.validateInput();
+    });
+  };
+
+  validateInput = () => {
+    if (this.state.plname.length < 2) {
+      this.setState({
+        error: 'playlist name must be at least two characters',
+        disabled: true,
+      });
+    } else if (!this.state.selectedCatId) {
+      this.setState({ error: 'you must select a category', disabled: true });
+    } else {
+      this.setState({ error: '', disabled: false });
+    }
+  };
+
+  render() {
+    return (
+      <div>
+        <Segment>
+          <Dropdown text={this.state.selectedCatName || 'Select Category: '}>
+            <Dropdown.Menu>
+              {this.props.categories.map((cat, i) => (
+                <Dropdown.Item
+                  key={i}
+                  onClick={this.handleCatSelect}
+                  value={cat.idcategories}
+                  text={cat.name}
+                />
+              ))}
+            </Dropdown.Menu>
+          </Dropdown>
+        </Segment>
+        <div>playlist name:</div>
+        <Segment>
+          <Input size="mini" onChange={this.handleInputChange} />
+        </Segment>
+        <Button onClick={this.props.onClosePortal}>Cancel</Button>
+        <Button
+          disabled={this.state.disabled}
+          onClick={this.props.onClonePlaylist}
+        >
+          Submit
+        </Button>
+        {this.state.error}
+      </div>
+    );
+  }
+}
 
 ClonePortalForm.propTypes = {
-  disabled: PropTypes.bool,
   categories: PropTypes.array,
-  onCatSelect: PropTypes.func,
-  onInputChange: PropTypes.func,
   onClonePlaylist: PropTypes.func,
-  selectedCatName: PropTypes.string,
+  onClosePortal: PropTypes.func,
 };
 
 export default ClonePortalForm;

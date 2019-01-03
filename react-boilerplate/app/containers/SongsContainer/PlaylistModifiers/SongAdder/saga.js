@@ -1,10 +1,14 @@
 import axios from 'axios';
 import { call, takeLatest, put, select } from 'redux-saga/effects';
+
 import { addSongsToPlaylist } from 'containers/SongsContainer/SongsContainer/actions';
 import { makeSelectSelectedSongs } from 'containers/SongsContainer/SongsContainer/selectors';
-import { ADD_SONGS_TO_PL } from './constants';
 
+import { setError } from 'containers/Wrappers/ErrorWrapper/actions';
+
+import { ADD_SONGS_TO_PL } from './constants';
 import { addSongsToPlSuccess, addSongsToPlFailed } from './actions';
+
 export default function* addToPlaylistSaga() {
   yield takeLatest(ADD_SONGS_TO_PL, addSongs);
 }
@@ -16,8 +20,9 @@ function* addSongs(action) {
     yield call(addSongsRequest, [songsToAdd, plid]);
     yield put(addSongsToPlSuccess);
     yield put(addSongsToPlaylist, songsToAdd);
-  } catch (error) {
-    yield put(addSongsToPlFailed, error);
+  } catch (err) {
+    yield put(addSongsToPlFailed);
+    yield put(setError, err.message);
   }
 }
 
@@ -31,6 +36,6 @@ function addSongsRequest(songsToAdd, plid) {
     },
     withCredentials: true,
   }).catch(err => {
-    throw new Error(err);
+    throw new Error(err.message);
   });
 }

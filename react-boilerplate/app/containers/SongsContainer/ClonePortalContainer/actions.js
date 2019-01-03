@@ -19,9 +19,8 @@ export function clonePlaylistSuccess() {
   };
 }
 
-export function clonePlaylistFailed(error) {
+export function clonePlaylistFailed() {
   return {
     type: CLONE_PLAYLIST_FAILED,
-    error,
   };
 }

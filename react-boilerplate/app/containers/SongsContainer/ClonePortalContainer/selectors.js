@@ -8,8 +8,8 @@ export const makeSelectIsLoading = () =>
     state => state.get('isLoading')
   );
 
-export const makeSelectError = () =>
+export const makeSelectDidSucceed = () =>
   createSelector(
     selectClonePortalState,
-    state => state.get('error')
+    state => state.get('didSucceed')
   );

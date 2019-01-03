@@ -6,25 +6,19 @@ import {
   CLONE_PLAYLIST_FAILED,
 } from './constants';
 
-const blankError = fromJS({});
-
 const initialState = fromJS({
   isLoading: false,
-  error: blankError,
-  success: false,
+  didSucceed: false,
 });
 
 export default function clonePortalReducer(state = initialState, action) {
   switch (action.type) {
     case CLONE_PLAYLIST:
-      return state
-        .set('isLoading', true)
-        .set('error', blankError)
-        .set(success, false);
+      return state.set('isLoading', true).set('didSucceed', false);
     case CLONE_PLAYLIST_SUCCESS:
-      return state.set('isLoading', false).set('success', true);
+      return state.set('isLoading', false).set('didSucceed', true);
     case CLONE_PLAYLIST_FAILED:
-      return state.set('isLoading', false).set('error', action.error);
+      return state.set('isLoading', false);
     default:
       return state;
   }
