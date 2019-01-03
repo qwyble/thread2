@@ -1,4 +1,4 @@
-import { select, takeLatest, put, call } from 'redux-saga/effects';
+import { select, takeLatest, put } from 'redux-saga/effects';
 
 import { HANDLE_END, HANDLE_SKIP_BACK } from './constants';
 import { makeSelectNextSong, makeSelectPrevSong } from './selectors';

@@ -43,3 +43,9 @@ export const makeSelectPrevSong = () =>
       return prevSong;
     }
   );
+
+export const makeSelectIsPaused = () =>
+  createSelector(
+    selectPlaybackContainerState,
+    state => state.get('paused')
+  );
