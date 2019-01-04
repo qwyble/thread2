@@ -2,29 +2,22 @@ import { createSelector } from 'reselect';
 
 const selectUserContainer = state => state.get('UserContainer');
 
-const makeSelectUser = () => createSelector(
-  selectUserContainer,
-  userContainer => userContainer.get('user')
-);
+const makeSelectUser = () =>
+  createSelector(
+    selectUserContainer,
+    userContainer => userContainer.get('user')
+  );
 
-const makeSelectIsLoggedIn = () => createSelector(
-  selectUserContainer,
-  userContainer => userContainer.get('isLoggedIn')
-);
+const makeSelectIsLoggedIn = () =>
+  createSelector(
+    selectUserContainer,
+    userContainer => userContainer.get('isLoggedIn')
+  );
 
-const makeSelectIsLoading = () => createSelector(
-  selectUserContainer,
-  userContainer => userContainer.get('isLoading')
-);
+const makeSelectIsLoading = () =>
+  createSelector(
+    selectUserContainer,
+    userContainer => userContainer.get('isLoading')
+  );
 
-const makeSelectErrorMsg = () => createSelector(
-  selectUserContainer,
-  userContainer => userContainer.get('error')
-);
-
-export {
-  makeSelectUser,
-  makeSelectIsLoggedIn,
-  makeSelectIsLoading,
-  makeSelectErrorMsg,
-};
+export { makeSelectUser, makeSelectIsLoggedIn, makeSelectIsLoading };

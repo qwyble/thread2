@@ -1,7 +1,6 @@
 import React from 'react';
 import { Header, Container, Grid, Icon } from 'semantic-ui-react';
 import axios from 'axios';
-import { AppContext } from 'containers/AppUtilities/context.js';
 import SongAdderPortalWrapper from 'components/SongsTable/PlaylistModifiers/SongAdder/SongAdderPortalWrapper';
 
 class SongDetails extends React.Component {

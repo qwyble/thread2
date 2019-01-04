@@ -11,11 +11,7 @@ import injectSaga from 'utils/injectSaga';
 
 import SideBarContainer from 'containers/SideBar/SideBarContainer';
 
-import {
-  makeSelectProfileParam,
-  makeSelectProfileError,
-  makeSelectIsLoading,
-} from './selectors';
+import { makeSelectProfileParam, makeSelectIsLoading } from './selectors';
 
 import { makeSelectUser } from '../UserContainer/selectors';
 import { setProfile, getProfile } from './actions';
@@ -41,8 +37,7 @@ class RoutedContext extends React.Component {
   render() {
     if (this.props.user) {
       if (!this.props.isLoading) {
-        if (!this.props.profileError) return <SideBarContainer />;
-        return <div>{this.props.profileError}</div>;
+        return <SideBarContainer />;
       }
     }
     return <Loader active />;
@@ -52,17 +47,15 @@ class RoutedContext extends React.Component {
 RoutedContext.propTypes = {
   isLoading: PropTypes.bool,
   profileParam: PropTypes.number,
-  profileError: PropTypes.object,
   getProfile: PropTypes.func,
   setProfile: PropTypes.func,
   user: PropTypes.object,
 };
 
 const mapStateToProps = createStructuredSelector({
-  isLoading: () => makeSelectIsLoading(),
-  profileParam: () => makeSelectProfileParam(),
-  profileError: () => makeSelectProfileError(),
-  user: () => makeSelectUser(),
+  isLoading: makeSelectIsLoading(),
+  profileParam: makeSelectProfileParam(),
+  user: makeSelectUser(),
 });
 
 const mapDispatchToProps = {

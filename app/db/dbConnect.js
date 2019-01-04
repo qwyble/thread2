@@ -1,24 +1,19 @@
-var env = process.env.NODE_ENV || "development";
-const fs = require('fs');
+var env = process.env.NODE_ENV || 'development';
 var config = require('../config/config.json')[env];
-var Sequelize = require('sequelize');
-var sequelize =
-  new Sequelize(
-    config.database,
-    config.username,
-    config.password,
+Sequelize = require('sequelize');
+var sequelize = new Sequelize(
+  config.database,
+  config.username,
+  config.password,
 
-    {
-    host: '/cloudsql/thread-204819:us-central1:thread-db',
+  {
+    host: '127.0.0.1',
+    port: '3306',
     dialect: 'mysql',
-    dialectOptions: {
-      socketPath: '/cloudsql/thread-204819:us-central1:thread-db'
-    },
     define: {
-      timestamps: false
-    }
-    }
-
+      timestamps: false,
+    },
+  }
 );
 
 sequelize
@@ -30,4 +25,4 @@ sequelize
     console.error('unable to connect to db', err);
   });
 
-module.exports = {sequelize, Sequelize};
+module.exports = { sequelize, Sequelize };

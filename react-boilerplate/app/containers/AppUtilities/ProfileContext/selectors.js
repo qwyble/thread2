@@ -62,9 +62,3 @@ export const makeSelectIsLoading = () =>
     selectProfileContext,
     profileContext => profileContext.get('isLoading')
   );
-
-export const makeSelectProfileError = () =>
-  createSelector(
-    selectProfileContext,
-    profileContext => profileContext.get('error')
-  );

@@ -1,4 +1,5 @@
-import { put, takeLatest, delay } from 'redux-saga/effects';
+import { put, takeLatest, call } from 'redux-saga/effects';
+import { delay } from 'redux-saga';
 import { SET_ERROR } from './constants';
 import { removeError } from './actions';
 
@@ -7,6 +8,6 @@ export default function* errorSaga() {
 }
 
 function* errorDelay() {
-  yield delay(1000);
-  yield put(removeError);
+  yield call(delay, 5000);
+  yield put(removeError());
 }

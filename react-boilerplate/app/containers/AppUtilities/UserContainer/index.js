@@ -12,16 +12,11 @@ import ErrorWrapper from 'containers/Wrappers/ErrorWrapper';
 import Loader from 'components/common/Loader';
 import LoadableProtected from 'containers/authentication/Protected/Loadable';
 import LoadableLoginContainer from 'containers/authentication/LoginContainer/Loadable';
-import {
-  makeSelectIsLoggedIn,
-  makeSelectIsLoading,
-  makeSelectErrorMsg,
-} from './selectors';
+import { makeSelectIsLoggedIn, makeSelectIsLoading } from './selectors';
 import { authenticate } from './actions';
 
 import reducer from './reducers';
 import saga from './sagas';
-
 
 class UserContainer extends React.Component {
   componentDidMount() {
@@ -33,6 +28,7 @@ class UserContainer extends React.Component {
   };
 
   render() {
+    console.log('rendering in UserContainer');
     if (this.props.isLoading) {
       return (
         <div>
@@ -43,8 +39,8 @@ class UserContainer extends React.Component {
     }
     return (
       <BrowserRouter>
-        <ErrorWrapper />
         <div>
+          <ErrorWrapper />
           <Switch>
             <Route
               path="/auth"
@@ -52,8 +48,7 @@ class UserContainer extends React.Component {
                 <LoadableLoginContainer
                   {...props}
                   isLoggedIn={this.props.isLoggedIn}
-                  onLogin={this.props.onLogin}
-                  errorMsg={this.props.errorMsg}
+                  onAuth={this.props.onAuth}
                 />
               )}
             />
@@ -81,7 +76,6 @@ UserContainer.propTypes = {
 const mapStateToProps = createStructuredSelector({
   isLoggedIn: makeSelectIsLoggedIn(),
   isLoading: makeSelectIsLoading(),
-  errorMsg: makeSelectErrorMsg(),
 });
 
 function mapDispatchToProps(dispatch) {

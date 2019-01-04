@@ -1,32 +1,81 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import Signup from '../../../components/authentication/signup';
-import Login from '../../../components/authentication/login';
+import isEmail from 'validator/lib/isEmail';
 
+import Signup from 'components/authentication/signup';
+import Login from 'components/authentication/login';
 
 class LoginContainer extends React.Component {
   state = {
     email: '',
     password: '',
     userName: '',
-  }
+    errors: {
+      password: '',
+      email: '',
+    },
+    disabled: true,
+  };
 
   reset = () => {
     this.setState({ email: '', password: '', userName: '' });
-  }
+  };
 
-  handleInputChange = (e) => {
-    this.setState({ [e.target.name]: e.target.value });
-  }
+  handleInputChange = e => {
+    this.setState({ [e.target.name]: e.target.value }, () => this.validate());
+  };
 
-  handleSignupSubmit = () => {
+  validate = () => {
+    let disabled = false;
+    if (!this.state.email) disabled = true;
+    else if (!isEmail(this.state.email)) disabled = true;
+    else if (!this.state.password) disabled = true;
+    this.setState({ disabled });
+  };
+
+  handleFocus = e => {
+    const name = e.target.name;
+    this.setState(prevState => ({
+      errors: { ...prevState.errors, [name]: '' },
+    }));
+  };
+
+  handleBlur = e => {
+    if (e.target.name === 'email') {
+      if (!this.state.email)
+        this.setState(prevState => ({
+          errors: { ...prevState.errors, email: 'email is required' },
+        }));
+      else if (!isEmail(this.state.email))
+        this.setState(prevState => ({
+          errors: { ...prevState.errors, email: 'invalid email' },
+        }));
+      else
+        this.setState(prevState => ({
+          errors: { ...prevState.errors, email: '' },
+        }));
+    } else if (e.target.name === 'password') {
+      if (!this.state.password)
+        this.setState(prevState => ({
+          errors: { ...prevState.errors, password: 'password is required' },
+        }));
+      else
+        this.setState(prevState => ({
+          errors: { ...prevState.errors, password: '' },
+        }));
+    }
+  };
+
+  handleSignupSubmit = e => {
+    e.preventDefault();
     this.props.onAuth(this.state, 'signup');
-  }
+  };
 
-  handleLoginSubmit = () => {
+  handleLoginSubmit = e => {
+    e.preventDefault();
     this.props.onAuth(this.state, 'login');
-  }
+  };
 
   getRedirectUrl = () => {
     const loc = this.props.location.state;
@@ -36,8 +85,7 @@ class LoginContainer extends React.Component {
       }
     }
     return '/stream';
-  }
-
+  };
 
   render() {
     if (this.props.isLoggedIn) {
@@ -53,7 +101,9 @@ class LoginContainer extends React.Component {
               password={this.state.password}
               username={this.state.username}
               onSubmit={this.handleSignupSubmit}
-              error={this.props.error}
+              onBlur={this.handleBlur}
+              onFocus={this.handleFocus}
+              errors={this.state.errors}
             />
           </Route>
           <Route path="/auth">
@@ -62,7 +112,9 @@ class LoginContainer extends React.Component {
               password={this.state.password}
               email={this.state.email}
               onSubmit={this.handleLoginSubmit}
-              error={this.state.error}
+              onBlur={this.handleBlur}
+              onFocus={this.handleFocus}
+              errors={this.state.errors}
             />
           </Route>
         </Switch>
@@ -75,8 +127,6 @@ LoginContainer.propTypes = {
   onAuth: PropTypes.func,
   location: PropTypes.object,
   isLoggedIn: PropTypes.bool,
-  error: PropTypes.object,
 };
-
 
 export default LoginContainer;

@@ -5,8 +5,6 @@ import {
   GET_PROFILE_SUCCESS,
 } from './constants';
 
-
-
 export function setProfile(profile) {
   return {
     type: SET_PROFILE,
@@ -28,9 +26,8 @@ export function getProfileSuccess(profile) {
   };
 }
 
-export function getProfileFailed(error) {
+export function getProfileFailed() {
   return {
     type: GET_PROFILE_FAILED,
-    error,
   };
 }

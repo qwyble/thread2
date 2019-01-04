@@ -15,9 +15,8 @@ export function authSuccess(user) {
   };
 }
 
-export function authFailed(error) {
+export function authFailed() {
   return {
     type: AUTH_FAILED,
-    error,
   };
 }
