@@ -16,7 +16,7 @@ PathWrapper.propTypes = {
 
 const mapStateToProps = () =>
   createStructuredSelector({
-    isNotStream: () => makeSelectIsNotStream(),
+    isNotStream: makeSelectIsNotStream(),
   });
 
 const withConnect = connect(mapStateToProps);

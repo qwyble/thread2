@@ -17,11 +17,11 @@ const initialState = fromJS({
 export default function renamePlaylistReducer(state = initialState, action) {
   switch (action.type) {
     case RENAME_PLAYLIST:
-      return state.set('isLoading', true).set('error', blankError);
+      return state.set('isLoading', true);
     case RENAME_PLAYLIST_SUCCESS:
       return state.set('isLoading', false).set('didRename', true);
     case RENAME_PLAYLIST_FAILED:
-      return state.set('isLoading', false).set('error', fromJS(action.error));
+      return state.set('isLoading', false);
     default:
       return state;
   }

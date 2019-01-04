@@ -22,26 +22,34 @@ function* makePublic() {
   try {
     if (isPublic) yield call(makePrivateRequest, plid);
     else yield call(makePublicRequest, plid);
-    yield put(makePublicComplete);
-    yield put(setIsPublic, [!isPublic, plid]);
+    yield put(makePublicComplete());
+    yield put(setIsPublic(!isPublic, plid));
   } catch (err) {
-    yield put(makePublicComplete);
-    yield put(setError, err.message);
+    yield put(makePublicComplete());
+    yield put(setError(err.message));
   }
 }
 
 function makePrivateRequest(plid) {
-  return axios.post(getUrl('makePrivate'), {
-    plid,
-    withCredentials: true,
-  });
+  return axios
+    .post(getUrl('makePrivate'), {
+      plid,
+      withCredentials: true,
+    })
+    .catch(err => {
+      throw err;
+    });
 }
 
 function makePublicRequest(plid) {
-  return axios.post(getUrl('makePublic'), {
-    plid,
-    withCredentials: true,
-  });
+  return axios
+    .post(getUrl('makePublic'), {
+      plid,
+      withCredentials: true,
+    })
+    .catch(err => {
+      throw err;
+    });
 }
 
 const getUrl = slug => `https://thread-204819.appspot.com/${slug}`;

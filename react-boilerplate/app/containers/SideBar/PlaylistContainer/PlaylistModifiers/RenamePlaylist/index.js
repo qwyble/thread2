@@ -12,11 +12,7 @@ import RenamePlaylistForm from 'components/SideBar/Playlists/PlaylistModifiers/R
 import LoaderWrapper from 'containers/Wrappers/LoaderWrapper';
 import { renamePlaylist } from './actions';
 
-import {
-  makeSelectDidRename,
-  makeSelectIsLoading,
-  makeSelectError,
-} from './selectors';
+import { makeSelectDidRename, makeSelectIsLoading } from './selectors';
 
 import renamePlaylistSaga from './saga';
 
@@ -33,7 +29,6 @@ class RenamePlaylist extends Component {
     return (
       <LoaderWrapper isLoading={this.props.isLoading}>
         <RenamePlaylistForm
-          error={this.props.error}
           plname={this.props.plname}
           onCancel={this.props.onClosePortal}
           onRenamePlaylist={this.handleRenamePlaylist}
@@ -45,7 +40,6 @@ class RenamePlaylist extends Component {
 
 RenamePlaylist.propTypes = {
   plid: PropTypes.string,
-  error: PropTypes.object,
   plname: PropTypes.string,
   didRename: PropTypes.bool,
   isLoading: PropTypes.bool,
@@ -55,9 +49,8 @@ RenamePlaylist.propTypes = {
 
 const mapStateToProps = () =>
   createStructuredSelector({
-    didRename: () => makeSelectDidRename(),
-    isLoading: () => makeSelectIsLoading(),
-    error: () => makeSelectError(),
+    didRename: makeSelectDidRename(),
+    isLoading: makeSelectIsLoading(),
   });
 
 const mapDispatchToProps = {

@@ -1,34 +1,37 @@
-
-import { call, select, takeLatest, put } from 'redux-saga';
+import { call, takeLatest, put } from 'redux-saga';
+import { setError } from 'containers/Wrappers/ErrorWrapper/actions';
+import { DELETE_PLAYLIST } from './constants';
+import {
+  removePlaylistFromCategory,
+  deletePlaylistSuccess,
+  deletePlaylistFailed,
+} from './actions';
 
 export default function* rootSaga() {
   yield takeLatest(DELETE_PLAYLIST, deletePlaylist);
 }
 
-
 function* deletePlaylist(action) {
   try {
     let data;
-    data['catid'] = action.catId;
-    data['plid'] = action.plId;
+    data.catid = action.catId;
+    data.plid = action.plId;
     yield call(deletePlaylistRequest, data);
-    yield put(deletePlaylistSuccess);
-    yield put(removePlFromCategory, data);
+    yield put(deletePlaylistSuccess());
+    yield put(removePlaylistFromCategory(data));
   } catch (err) {
-    yield put(deletePlaylistFailed, err);
+    yield put(setError(err.message));
+    yield put(deletePlaylistFailed());
   }
 }
 
-
 function deletePlaylistRequest(data) {
-  return (
-    axios({
-      method: 'post',
-      url: 'https://thread-204819.appspot.com/deletePlaylist',
-      data: data,
-      withCredentials: true
-    }).catch((error) => {
-      throw new Error(error);
-    });
-  )
+  return axios({
+    method: 'post',
+    url: 'https://thread-204819.appspot.com/deletePlaylist',
+    data,
+    withCredentials: true,
+  }).catch(error => {
+    throw error;
+  });
 }

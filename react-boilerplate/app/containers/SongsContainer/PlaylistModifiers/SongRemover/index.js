@@ -57,10 +57,10 @@ SongRemover.propTypes = {
 
 const mapStateToProps = () =>
   createStructuredSelector({
-    plname: () => makeSelectSelectedPlName(),
-    selectedSongsLength: () => makeSelectSelectedSongsLength(),
-    didSucceed: () => makeSelectDidSucceed(),
-    isLoading: () => makeSelectIsLoading(),
+    plname: makeSelectSelectedPlName(),
+    selectedSongsLength: makeSelectSelectedSongsLength(),
+    didSucceed: makeSelectDidSucceed(),
+    isLoading: makeSelectIsLoading(),
   });
 
 const mapDispatchToProps = {

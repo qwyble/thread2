@@ -16,7 +16,7 @@ IsPlaylistPathWrapper.propTypes = {
 
 const mapStateToProps = () =>
   createStructuredSelector({
-    isPlaylist: () => makeSelectIsPlaylist(),
+    isPlaylist: makeSelectIsPlaylist(),
   });
 
 const withConnect = connect(mapStateToProps);

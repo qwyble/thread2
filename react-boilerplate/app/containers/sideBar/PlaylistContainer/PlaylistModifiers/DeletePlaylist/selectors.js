@@ -19,9 +19,3 @@ export const makeSelectDidDelete = () =>
     makeSelectDeletePlaylistState,
     state => state.get('didDelete')
   );
-
-export const makeSelectError = () =>
-  createSelector(
-    makeSelectDeletePlaylistState,
-    state => state.get('error')
-  );

@@ -1,21 +1,17 @@
 import React from 'react';
 import axios from 'axios';
-import UploadDropdown from '../../components/uploader/uploadDropdown.js';
+import UploadDropdown from './UploadModal.js';
 
 const initialState = {
-  songUploadFields: {
-    title: '',
-    description: '',
-    songFile: [],
-    genre: '',
-    songURL: '',
-  },
+  title: '',
+  description: '',
+  songFile: [],
+  genre: '',
   songURL: '',
-  uploadButtonToggle: true,
-  isLoading: false,
+  disabled: true,
 };
 
-class UploadHandlers extends React.Component {
+class UploaderForm extends React.Component {
   state = initialState;
 
   reset = () => {
@@ -65,11 +61,9 @@ class UploadHandlers extends React.Component {
 
   render() {
     return (
-      <UploadDropdown
-        onUpload={this.handleUpload}
+      <UploaderFields
         onInputChange={this.handleInputChange}
-        data={this.state}
-        _loading={this.state.isLoading}
+        fields={this.state}
       />
     );
   }

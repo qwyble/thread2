@@ -11,9 +11,9 @@ import {
   GET_SONGS_FAILED,
   SORT_BY_REDUCTION,
   GET_SONGS_SUCCESS,
-  ADD_SONGS_TO_PLAYLIST,
   SET_DESCENDING_REDUCTION,
   REMOVE_SONGS_FROM_PLAYLIST,
+  ADD_SONG_TO_STREAM,
 } from './constants';
 
 export default combineReducers({
@@ -53,8 +53,6 @@ export function songsContainer(state = initialState, action) {
       return state.update('songs', songs =>
         songs.filter(song => action.songIds.indexOf(song.idSongs) === -1)
       );
-    case ADD_SONGS_TO_PLAYLIST:
-      return state.update('songs', songs => songs.concat(action.songs));
     case SET_CURRENT_PAGE:
       return state.setIn(['songsTable', 'currentPage'], action.currentPage);
     case SELECT_SONG: {
@@ -91,6 +89,8 @@ export function songsContainer(state = initialState, action) {
         .findIndex(song => song.idSongs === action.idSongs);
       return state.updateIn(['songs', songIndex, 'rating'], action.rating);
     }
+    case ADD_SONG_TO_STREAM:
+      return state.set('songs', state.get('songs').concat(fromJS(action.song)));
     default:
       return state;
   }

@@ -2,6 +2,8 @@ import axios from 'axios';
 import { takeLatest, select, call, put } from 'redux-saga/effects';
 import { makeSelectSelectedCategoryId } from 'containers/SideBar/SideBarContainer/selectors';
 
+import { setError } from 'containers/Wrappers/ErrorWrapper/actions';
+
 import { ADD_PLAYLIST } from './constants';
 
 import {
@@ -20,10 +22,11 @@ function* addPlaylist(action) {
     data.catid = yield select(makeSelectSelectedCategoryId);
     data.playlist = action.plName;
     const playlist = yield call(addPlaylistRequest, data);
-    yield put(addPlaylistSuccess);
-    yield put(addPlaylistToCategory, [playlist, data.catid]);
+    yield put(addPlaylistSuccess());
+    yield put(addPlaylistToCategory(playlist, data.catid));
   } catch (err) {
-    yield put(addPlaylistFailed, err);
+    yield put(addPlaylistFailed());
+    yield put(setError(err.message));
   }
 }
 
@@ -36,6 +39,6 @@ function addPlaylistRequest(data) {
   })
     .then(result => result.data)
     .catch(error => {
-      throw new Error(error);
+      throw error;
     });
 }

@@ -27,9 +27,8 @@ export function addPlaylistToCategory(playlist, catId) {
   };
 }
 
-export function addPlaylistFailed(error) {
+export function addPlaylistFailed() {
   return {
     type: ADD_PLAYLIST_FAILED,
-    error,
   };
 }

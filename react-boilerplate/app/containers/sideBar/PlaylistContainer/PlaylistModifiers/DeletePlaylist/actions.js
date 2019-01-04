@@ -26,9 +26,8 @@ export function removePlaylistFromCategory(plId, catId) {
   };
 }
 
-export function deletePlaylistFailed(error) {
+export function deletePlaylistFailed() {
   return {
     type: DELETE_PLAYLIST_FAILED,
-    error,
   };
 }

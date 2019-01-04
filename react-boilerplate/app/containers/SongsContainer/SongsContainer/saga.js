@@ -29,27 +29,27 @@ export default function* songsContainerSaga() {
 }
 
 function* setCurrentPage(action) {
-  yield put(setCurrentPageReduction, action.page);
+  yield put(setCurrentPageReduction(action.page));
   yield call(getSongs);
 }
 
 function* setDescending() {
-  yield put(setDescendingReduction);
+  yield put(setDescendingReduction());
   yield call(getSongs);
 }
 
 function* sortBy(action) {
-  yield put(sortByReduction, action.sortParam);
+  yield put(sortByReduction(action.sortParam));
   yield call(getSongs);
 }
 
 function* getSongs() {
   try {
     const songs = yield call(songsRequest);
-    yield put(getSongsSuccess, songs);
+    yield put(getSongsSuccess(songs));
   } catch (err) {
-    yield put(getSongsFailed);
-    yield put(setError, err.message);
+    yield put(getSongsFailed());
+    yield put(setError(err.message));
   }
 }
 

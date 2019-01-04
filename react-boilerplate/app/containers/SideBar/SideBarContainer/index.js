@@ -60,8 +60,8 @@ SideBar.propTypes = {
 };
 
 const mapStateToProps = createStructuredSelector({
-  visible: () => makeSelectVisibility(),
-  owner: () => makeSelectProfile(),
+  visible: makeSelectVisibility(),
+  owner: makeSelectProfile(),
 });
 
 const mapDispatchToProps = { toggleVisibility };

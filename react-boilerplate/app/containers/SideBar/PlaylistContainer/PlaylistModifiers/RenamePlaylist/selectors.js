@@ -19,9 +19,3 @@ export const makeSelectDidRename = () =>
     makeSelectRenamePlaylistState,
     state => state.get('didRename')
   );
-
-export const makeSelectError = () =>
-  createSelector(
-    makeSelectRenamePlaylistState,
-    state => state.get('error')
-  );

@@ -23,7 +23,7 @@ IsPlaylistOwner.propTypes = {
 
 const mapStateToProps = () =>
   createStructuredSelector({
-    isOwner: () => makeSelectSelectedPlIsOwner(),
+    isOwner: makeSelectSelectedPlIsOwner(),
   });
 
 const withConnect = connect(mapStateToProps);

@@ -11,7 +11,7 @@ import saga from './saga';
 
 import { addPlaylist } from './actions';
 
-import { makeSelectAddIsLoading, makeSelectAddError } from './selectors';
+import { makeSelectAddIsLoading } from './selectors';
 
 const AddPlaylist = props => (
   <LoaderWrapper isLoading={props.isLoading}>
@@ -26,8 +26,7 @@ AddPlaylist.propTypes = {
 };
 
 const mapStateToProps = createStructuredSelector({
-  isLoading: () => makeSelectAddIsLoading(),
-  error: () => makeSelectAddError(),
+  isLoading: makeSelectAddIsLoading(),
 });
 
 const mapDispatchToProps = {

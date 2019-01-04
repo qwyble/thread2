@@ -17,9 +17,8 @@ export function renamePlaylistSuccess() {
   };
 }
 
-export function renamePlaylistFailed(error) {
+export function renamePlaylistFailed() {
   return {
     type: RENAME_PLAYLIST_FAILED,
-    error,
   };
 }

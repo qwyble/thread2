@@ -8,10 +8,10 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 
 import injectSaga from 'utils/injectSaga';
-
 import LoaderWrapper from 'containers/Wrappers/LoaderWrapper';
 
 import { makeSelectCategories } from 'containers/SideBar/CategoryContainer/selectors';
+import saga from './saga';
 
 import { addSongsToPlaylist } from './actions';
 import { makeSelectIsLoading } from './selectors';
@@ -71,8 +71,8 @@ SongAdder.propTypes = {
 
 const mapStateToProps = () =>
   createStructuredSelector({
-    categories: () => makeSelectCategories(),
-    isLoading: () => makeSelectIsLoading(),
+    categories: makeSelectCategories(),
+    isLoading: makeSelectIsLoading(),
   });
 
 const mapDispatchToProps = {

@@ -2,14 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { createStructuredSelector } from 'reselect';
 import { withRouter } from 'react-router';
+
 import SongsTable from 'components/SongsTable/SongsTable';
 
 import { compose } from 'redux';
 import { connect } from 'react-redux';
+
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
+
 import { getSongs, sortBy, setDescending } from './actions';
+
 import reducer from './reducer';
+
 import { makeSelectIsLoading } from './selectors';
 
 class SongsContainer extends React.Component {
@@ -46,7 +51,7 @@ SongsContainer.propTypes = {
 
 const mapStateToProps = () =>
   createStructuredSelector({
-    isLoading: () => makeSelectIsLoading(),
+    isLoading: makeSelectIsLoading(),
   });
 
 const mapDispatchToProps = {

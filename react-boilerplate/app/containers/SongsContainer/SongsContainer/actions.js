@@ -3,7 +3,6 @@ import {
   GET_SONGS_SUCCESS,
   GET_SONGS_FAILED,
   REMOVE_SONGS_FROM_PLAYLIST,
-  ADD_SONGS_TO_PLAYLIST,
   SET_CURRENT_PAGE,
   SET_CURRENT_PAGE_REDUCTION,
   SORT_BY,
@@ -12,6 +11,7 @@ import {
   SET_DESCENDING_REDUCTION,
   SELECT_SONG,
   DESELECT_SONG,
+  ADD_SONG_TO_STREAM,
 } from './constants';
 
 export function getSongs() {
@@ -55,13 +55,6 @@ export function setCurrentPageReduction(page) {
   };
 }
 
-export function addSongsToPlaylist(songs) {
-  return {
-    type: ADD_SONGS_TO_PLAYLIST,
-    songs,
-  };
-}
-
 export function sortBy(sortParam) {
   return {
     type: SORT_BY,
@@ -99,5 +92,12 @@ export function deselectSong(idSongs) {
   return {
     type: DESELECT_SONG,
     idSongs,
+  };
+}
+
+export function addSongToStream(song) {
+  return {
+    type: ADD_SONG_TO_STREAM,
+    song,
   };
 }

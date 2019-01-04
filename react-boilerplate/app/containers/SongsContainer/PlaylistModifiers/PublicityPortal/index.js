@@ -70,9 +70,9 @@ PublicityPortal.propTypes = {
 
 const mapStateToProps = () =>
   createStructuredSelector({
-    isLoading: () => makeSelectIsLoading(),
-    isPublic: () => makeSelectIsPublic(),
-    plname: () => makeSelectSelectedPlName(),
+    isLoading: makeSelectIsLoading(),
+    isPublic: makeSelectIsPublic(),
+    plname: makeSelectSelectedPlName(),
   });
 
 const mapDispatchToProps = {

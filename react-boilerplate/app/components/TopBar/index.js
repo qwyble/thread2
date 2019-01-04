@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Menu, Icon } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
-import UploadHandlers from 'containers/UploadHandler/index';
+import UploadButton from 'components/Uploader/UploadButton';
 import SearchBar from 'containers/search/searchBar';
 
 /* Top bar renders components for uploading songs,
@@ -33,7 +33,7 @@ const TopBar = props => (
       </Menu.Item>
 
       <Menu.Item link name="upload">
-        <UploadHandlers />
+        <UploadButton />
       </Menu.Item>
 
       <Menu.Item link name="explore">

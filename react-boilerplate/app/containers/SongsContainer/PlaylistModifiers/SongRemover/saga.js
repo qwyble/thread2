@@ -21,11 +21,11 @@ function* removeSongs() {
     const selectedPlaylist = yield select(makeSelectSelectedPlaylist);
     yield call(removeSongsRequest, [selectedSongs, selectedPlaylist]);
     const selectedSongIds = selectedSongs.map(song => song.idsongs);
-    yield put(removeSongsFromPlaylist, selectedSongIds);
-    yield put(removeSongsCompleted);
+    yield put(removeSongsFromPlaylist(selectedSongIds));
+    yield put(removeSongsCompleted());
   } catch (err) {
-    yield put(removeSongsFailed);
-    yield put(setError, err.message);
+    yield put(removeSongsFailed());
+    yield put(setError(err.message));
   }
 }
 
@@ -39,6 +39,6 @@ function removeSongsRequest(songs, playlist) {
     },
     withCredentials: true,
   }).catch(err => {
-    throw new Error(err.message);
+    throw err;
   });
 }

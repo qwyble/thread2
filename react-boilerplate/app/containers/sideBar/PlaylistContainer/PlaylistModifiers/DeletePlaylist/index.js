@@ -10,11 +10,7 @@ import DeletePlaylistForm from 'components/SideBar/Playlists/PlaylistModifiers/D
 
 import LoaderWrapper from 'containers/Wrappers/LoaderWrapper';
 import { deletePlaylist } from './actions';
-import {
-  makeSelectIsLoading,
-  makeSelectDidDelete,
-  makeSelectError,
-} from './selectors';
+import { makeSelectIsLoading, makeSelectDidDelete } from './selectors';
 
 class DeletePlaylist extends Component {
   componentDidUpdate() {
@@ -42,16 +38,14 @@ DeletePlaylist.propTypes = {
   id: PropTypes.string,
   isLoading: PropTypes.bool,
   didDelete: PropTypes.bool,
-  playlist: PropTypes.string,
   onClosePortal: PropTypes.func,
   deletePlaylist: PropTypes.func,
 };
 
 const mapStateToProps = () =>
   createStructuredSelector({
-    isLoading: () => makeSelectIsLoading(),
-    didDelete: () => makeSelectDidDelete(),
-    error: () => makeSelectError(),
+    isLoading: makeSelectIsLoading(),
+    didDelete: makeSelectDidDelete(),
   });
 
 const mapDispatchToProps = {

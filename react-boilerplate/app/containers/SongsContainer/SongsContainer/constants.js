@@ -1,5 +1,4 @@
 export const GET_SONGS = 'boilerplate/SongsContainer/GET_SONGS';
-export const ADD_SONGS_TO_PLAYLIST = 'boilerplate/SongsContainer/ADD_SONGS';
 export const SET_CURRENT_PAGE = 'boilerplate/SongsContainer/SET_CURRENT_PAGE';
 export const SET_CURRENT_PAGE_REDUCTION =
   'boilerplate/SongsContainer/SET_CURRENT_PAGE_REDUCTION';
@@ -14,3 +13,5 @@ export const SET_DESCENDING_REDUCTION =
   'boilerplate/SongsContainer/SET_DESCENDING_REDUCTION';
 export const SELECT_SONG = 'boilerplate/SongsContainer/SELECT_SONG';
 export const DESELECT_SONG = 'boilerplate/SongsContainer/DESELECT_SONG';
+export const ADD_SONG_TO_STREAM =
+  'boilerplate/SongsContainer/ADD_SONG_TO_STREAM';

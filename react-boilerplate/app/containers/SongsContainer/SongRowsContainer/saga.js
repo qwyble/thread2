@@ -12,11 +12,11 @@ function* rateSong(action) {
   try {
     const { idSongs, rating } = { ...action };
     yield call(rateSongRequest, [idSongs, rating]);
-    yield put(rateSongCompleted);
-    yield put(changeRating, [idSongs, rating]);
+    yield put(rateSongCompleted());
+    yield put(changeRating(idSongs, rating));
   } catch (err) {
-    yield put(rateSongCompleted);
-    yield put(setError, err.message);
+    yield put(rateSongCompleted());
+    yield put(setError(err.message));
   }
 }
 
@@ -30,6 +30,6 @@ function rateSongRequest() {
     },
     withCredentials: true,
   }).catch(err => {
-    throw new Error(err);
+    throw err;
   });
 }

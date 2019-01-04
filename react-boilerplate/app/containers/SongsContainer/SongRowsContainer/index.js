@@ -71,10 +71,10 @@ SongRowsContainer.propTypes = {
 
 const mapStateToProps = () =>
   createStructuredSelector({
-    songs: () => makeSelectSongs(),
-    songId: () => makeSelectSongId(),
-    isLoading: () => makeSelectIsLoading(),
-    isPlaying: () => makeSelectNowPlayingId(),
+    songs: makeSelectSongs(),
+    songId: makeSelectSongId(),
+    isLoading: makeSelectIsLoading(),
+    isPlaying: makeSelectNowPlayingId(),
   });
 
 const mapDispatchToProps = {

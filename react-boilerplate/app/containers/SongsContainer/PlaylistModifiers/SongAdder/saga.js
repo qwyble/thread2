@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { call, takeLatest, put, select } from 'redux-saga/effects';
 
-import { addSongsToPlaylist } from 'containers/SongsContainer/SongsContainer/actions';
 import { makeSelectSelectedSongs } from 'containers/SongsContainer/SongsContainer/selectors';
 
 import { setError } from 'containers/Wrappers/ErrorWrapper/actions';
@@ -18,11 +17,10 @@ function* addSongs(action) {
     const songsToAdd = yield select(makeSelectSelectedSongs);
     const { plid } = { ...action };
     yield call(addSongsRequest, [songsToAdd, plid]);
-    yield put(addSongsToPlSuccess);
-    yield put(addSongsToPlaylist, songsToAdd);
+    yield put(addSongsToPlSuccess());
   } catch (err) {
-    yield put(addSongsToPlFailed);
-    yield put(setError, err.message);
+    yield put(addSongsToPlFailed());
+    yield put(setError(err.message));
   }
 }
 
@@ -36,6 +34,6 @@ function addSongsRequest(songsToAdd, plid) {
     },
     withCredentials: true,
   }).catch(err => {
-    throw new Error(err.message);
+    throw err;
   });
 }

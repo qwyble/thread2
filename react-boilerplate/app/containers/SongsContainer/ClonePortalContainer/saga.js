@@ -17,11 +17,11 @@ function* clonePlaylist(action) {
       plName,
       plToClone,
     ]);
-    yield put(clonePlaylistSuccess);
-    yield put(addPlaylistToCategory, [plToAdd, catId]);
+    yield put(clonePlaylistSuccess());
+    yield put(addPlaylistToCategory(plToAdd, catId));
   } catch (err) {
-    yield put(clonePlaylistFailed);
-    yield put(setError, err.message);
+    yield put(clonePlaylistFailed());
+    yield put(setError(err.message));
   }
 }
 
@@ -39,6 +39,6 @@ function clonePlaylistRequest(catId, plname, plToClone) {
     )
     .then(result => result.data)
     .catch(err => {
-      throw new Error(err.message);
+      throw err;
     });
 }

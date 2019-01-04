@@ -78,10 +78,10 @@ ClonePortalContainer.propTypes = {
 
 const mapStateToProps = () =>
   createStructuredSelector({
-    isLoading: () => makeSelectIsLoading(),
-    plToClone: () => makeSelectSelectedPlid(),
-    categories: () => makeSelectCategories(),
-    didSucceed: () => makeSelectDidSucceed(),
+    isLoading: makeSelectIsLoading(),
+    plToClone: makeSelectSelectedPlid(),
+    categories: makeSelectCategories(),
+    didSucceed: makeSelectDidSucceed(),
   });
 
 const mapDispatchToProps = {

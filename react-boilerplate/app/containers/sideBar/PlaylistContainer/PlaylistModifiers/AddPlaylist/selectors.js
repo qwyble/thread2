@@ -12,9 +12,3 @@ export const makeSelectAddIsLoading = () =>
     makeSelectAddPlaylist,
     addPlaylist => addPlaylist.get('isLoading')
   );
-
-export const makeSelectAddError = () =>
-  createSelector(
-    makeSelectAddPlaylist,
-    addPlaylist => addPlaylist.get('error')
-  );

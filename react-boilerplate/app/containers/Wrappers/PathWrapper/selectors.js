@@ -6,3 +6,9 @@ export const makeSelectIsNotStream = () =>
     makeSelectPathname,
     path => path.includes('profile') || path.includes('playlist')
   );
+
+export const makeSelectIsStream = () =>
+  createSelector(
+    makeSelectPathname,
+    path => path.includes('stream')
+  );

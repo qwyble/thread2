@@ -23,7 +23,7 @@ IsOwner.propTypes = {
 
 const mapStateToProps = () =>
   createStructuredSelector({
-    isOwner: () => makeSelectIsOwner(),
+    isOwner: makeSelectIsOwner(),
   });
 
 const withConnect = connect(mapStateToProps);
