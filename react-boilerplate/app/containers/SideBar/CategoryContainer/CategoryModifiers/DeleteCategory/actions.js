@@ -5,8 +5,6 @@ import {
   DELETE_CAT_FROM_CATS,
 } from './constants';
 
-
-
 export function deleteCategory(catId) {
   return {
     type: DELETE_CATEGORY,
@@ -20,16 +18,15 @@ export function deleteCategorySuccess() {
   };
 }
 
-export function deleteCategoryFromCats(catId)  {
+export function deleteCategoryFromCats(catId) {
   return {
     type: DELETE_CAT_FROM_CATS,
     catId,
-  }
+  };
 }
 
-export function deleteCategoryFailed(error) {
+export function deleteCategoryFailed() {
   return {
     type: DELETE_CATEGORY_FAILED,
-    error,
   };
 }

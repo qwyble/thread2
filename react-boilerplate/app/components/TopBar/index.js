@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Menu, Icon } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
-import UploadHandlers from 'containers/UploadHandler/index.js';
-import SearchBar from 'containers/search/searchBar.js';
+import UploadHandlers from 'containers/UploadHandler/index';
+import SearchBar from 'containers/search/searchBar';
 
 /* Top bar renders components for uploading songs,
 sending messages, and navigating the app. */

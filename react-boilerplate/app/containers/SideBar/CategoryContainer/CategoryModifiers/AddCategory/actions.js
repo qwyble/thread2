@@ -5,7 +5,6 @@ import {
   ADD_CAT_TO_CATS,
 } from './constants';
 
-
 export function addCategory(category) {
   return {
     type: ADD_CATEGORY,
@@ -23,12 +22,11 @@ export function addCategoryToCats(category) {
   return {
     type: ADD_CAT_TO_CATS,
     category,
-  }
+  };
 }
 
-export function addCategoryFailed(error) {
+export function addCategoryFailed() {
   return {
     type: ADD_CATEGORY_FAILED,
-    error,
   };
 }

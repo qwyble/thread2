@@ -9,11 +9,11 @@ import LoaderWrapper from 'containers/SideBar/CategoryContainer/utils/LoaderWrap
 
 import { addCategory } from './actions';
 
-import { makeSelectIsLoading, makeSelectError } from './selectors';
+import { makeSelectIsLoading } from './selectors';
 
 const AddCategory = props => (
   <LoaderWrapper isLoading={props.isLoading}>
-    <AddCategoryForm onAddCategory={props.addCategory} error={props.error} />
+    <AddCategoryForm onAddCategory={props.addCategory} />
   </LoaderWrapper>
 );
 
@@ -24,8 +24,7 @@ AddCategory.propTypes = {
 };
 
 const mapStateToProps = createStructuredSelector({
-  isLoading: () => makeSelectIsLoading(),
-  error: () => makeSelectError(),
+  isLoading: makeSelectIsLoading(),
 });
 
 const mapDispatchToProps = {

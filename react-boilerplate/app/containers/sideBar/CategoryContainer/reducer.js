@@ -19,12 +19,9 @@ import { ADD_CAT_TO_CATS } from './CategoryModifiers/AddCategory/constants';
 import { DELETE_CAT_FROM_CATS } from './CategoryModifiers/DeleteCategory/constants';
 import { EDIT_CAT_IN_CATS } from './CategoryModifiers/RenameCategory/constants';
 
-const blankError = fromJS({});
-
 const initialState = fromJS({
   categories: fromJS({}),
   isLoading: true,
-  error: blankError,
 });
 
 export default combineReducers({
@@ -37,7 +34,7 @@ export default combineReducers({
 function Categories(state = initialState, action) {
   switch (action.type) {
     case GET_CATEGORIES:
-      return state.set('isLoading', true).set('error', blankError);
+      return state.set('isLoading', true);
     case GET_CATEGORIES_COMPLETED:
       return state
         .set('categories', fromJS(action.cats))

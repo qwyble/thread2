@@ -2,17 +2,14 @@ import { createSelector } from 'reselect';
 
 import { selectCategoryContainer } from 'containers/SideBar/CategoryContainer/selectors';
 
-export const makeSelectRenameCategory = () => createSelector(
-  selectCategoryContainer,
-  state => state.get('RenameCategory'),
-);
+export const makeSelectRenameCategory = () =>
+  createSelector(
+    selectCategoryContainer,
+    state => state.get('RenameCategory')
+  );
 
-export const makeSelectIsLoading = () => createSelector(
-  makeSelectRenameCategory,
-  state => state.get('isLoading')
-);
-
-export const makeSelectError = () => createSelector(
-  makeSelectRenameCategory,
-  state => state.get('error')
-);
+export const makeSelectIsLoading = () =>
+  createSelector(
+    makeSelectRenameCategory,
+    state => state.get('isLoading')
+  );

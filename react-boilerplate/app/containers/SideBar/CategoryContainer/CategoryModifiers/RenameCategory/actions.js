@@ -1,4 +1,4 @@
-import{
+import {
   EDIT_CATEGORY,
   EDIT_CATEGORY_SUCCESS,
   EDIT_CATEGORY_FAILED,
@@ -22,12 +22,11 @@ export function editCategoryInCats(category) {
   return {
     type: EDIT_CAT_IN_CATS,
     category,
-  }
+  };
 }
 
-export function editCategoryFailed(error) {
+export function editCategoryFailed() {
   return {
     type: EDIT_CATEGORY_FAILED,
-    error,
   };
 }

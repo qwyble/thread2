@@ -5,7 +5,7 @@ import Logout from './logout';
 
 // component protects the route to the main app
 // if user isn't logged in, they can only access the login screen
-const Protected = (props) => {
+const Protected = props => {
   if (!props.isLoggedIn) {
     return (
       <Redirect
@@ -22,17 +22,9 @@ const Protected = (props) => {
         path="/logout"
         render={props2 => <Logout {...props2} onLogout={props.onLogout} />}
       />
-      <Route
-        path="/"
-        render={() => (
-          <AppProvider>
-            <Root />
-          </AppProvider>
-        )}
-      />
+      <Route path="/" component={Root} />
     </Switch>
   );
 };
-
 
 export default Protected;

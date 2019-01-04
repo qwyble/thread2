@@ -95,9 +95,9 @@ PlaybackContainer.propTypes = {
 
 const mapStateToProps = () =>
   createStructuredSelector({
-    paused: () => makeSelectIsPaused(),
-    nowPlaying: () => makeSelectNowPlaying(),
-    songs: () => makeSelectSongs(),
+    paused: makeSelectIsPaused(),
+    nowPlaying: makeSelectNowPlaying(),
+    songs: makeSelectSongs(),
   });
 
 const mapDispatchToProps = {

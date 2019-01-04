@@ -9,12 +9,11 @@ import LoaderWrapper from 'containers/SideBar/CategoryContainer/utils/LoaderWrap
 
 import { editCategory } from './actions';
 
-import { makeSelectIsLoading, makeSelectError } from './selectors';
+import { makeSelectIsLoading } from './selectors';
 
 const RenameCategory = props => (
   <LoaderWrapper isLoading={props.isLoading}>
     <RenameCategoryForm
-      error={props.error}
       onCancel={props.onClosePortal}
       onRenameCategory={props.editCategory}
     />
@@ -23,13 +22,11 @@ const RenameCategory = props => (
 
 RenameCategory.propTypes = {
   isLoading: PropTypes.bool,
-  error: PropTypes.object,
   editCategory: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
-  isLoading: () => makeSelectIsLoading(),
-  error: () => makeSelectError(),
+  isLoading: makeSelectIsLoading(),
 });
 
 const mapDispatchToProps = {

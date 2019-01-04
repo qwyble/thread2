@@ -19,10 +19,10 @@ function* getIsFollowing() {
     const ownerId = yield select(makeSelectProfileId);
     const userId = yield select(makeSelectUserId);
     const isFollowing = yield call(getIsFollowingRequest, [ownerId, userId]);
-    yield put(getIsFollowingComplete, isFollowing);
+    yield put(getIsFollowingComplete(isFollowing));
   } catch (err) {
-    yield put(getIsFollowingComplete, false);
-    yield put(setError, err.message);
+    yield put(getIsFollowingComplete(false));
+    yield put(setError(err.message));
   }
 }
 
@@ -32,14 +32,14 @@ function* followUser() {
   try {
     if (isFollowing) {
       yield call(unfollowUserRequest, [ownerId]);
-      yield put(followUserComplete, false);
+      yield put(followUserComplete(false));
     } else {
       yield call(followUserRequest, [ownerId]);
-      yield put(followUserComplete, true);
+      yield put(followUserComplete(true));
     }
   } catch (err) {
-    yield put(followUserComplete, isFollowing);
-    yield put(setError, err.message);
+    yield put(followUserComplete(isFollowing));
+    yield put(setError(err.message));
   }
 }
 
@@ -56,7 +56,7 @@ function getIsFollowingRequest(owner, user) {
       return true;
     })
     .catch(err => {
-      throw new Error(err.message);
+      throw err;
     });
 }
 
@@ -69,7 +69,7 @@ function unfollowUserRequest(owner) {
     },
     withCredentials: true,
   }).catch(err => {
-    throw new Error(err.message);
+    throw err;
   });
 }
 
@@ -82,6 +82,6 @@ function followUserRequest(owner) {
     },
     withCredentials: true,
   }).catch(err => {
-    throw new Error(err.message);
+    throw err;
   });
 }

@@ -17,7 +17,7 @@ class Category extends React.Component {
 
   render() {
     const displayLists =
-      this.props.selectedCategoryId === this.props.category.get('catId');
+      this.props.selectedCategoryId === this.props.category.get('catid');
 
     return (
       <div>

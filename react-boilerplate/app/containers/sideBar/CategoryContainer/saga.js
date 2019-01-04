@@ -1,4 +1,4 @@
-import { call, takeLatest, put, select, all } from 'redux-saga/effects';
+import { call, takeLatest, put, select } from 'redux-saga/effects';
 import axios from 'axios';
 
 import { makeSelectProfileId } from 'containers/AppUtilities/ProfileContext/selectors';
@@ -20,11 +20,11 @@ function* getCategories() {
     const plParam = yield select(makeSelectPlaylistParam);
     const url = getUrl(profileId, plParam || 0);
     const { categories2, playlist } = yield call(getCatsRequest, url);
-    yield put(getCategoriesCompleted, categories2);
-    yield put(setPlaylist, playlist);
+    yield put(getCategoriesCompleted(categories2));
+    yield put(setPlaylist(playlist));
   } catch (error) {
-    yield put(getCategoriesCompleted, []);
-    yield put(setError, error.message);
+    yield put(getCategoriesCompleted([]));
+    yield put(setError(error.message));
   }
 }
 
@@ -40,7 +40,7 @@ function getCatsRequest(url) {
   })
     .then(categories => categories.data)
     .catch(err => {
-      throw new Error(err);
+      throw err;
     });
 }
 /*

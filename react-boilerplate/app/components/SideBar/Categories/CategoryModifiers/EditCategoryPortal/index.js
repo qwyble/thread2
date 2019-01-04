@@ -35,7 +35,6 @@ class EditCategoryPortal extends React.Component {
 
     const portalProps = {
       id: this.props.id,
-      err: this.props.error,
       onClosePortal: this.handleClose,
     };
 
@@ -81,7 +80,6 @@ class EditCategoryPortal extends React.Component {
 }
 
 EditCategoryPortal.propTypes = {
-  err: PropTypes.object,
   id: PropTypes.string,
   catname: PropTypes.string,
 };

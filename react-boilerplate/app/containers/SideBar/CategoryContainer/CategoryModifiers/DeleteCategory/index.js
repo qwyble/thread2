@@ -9,12 +9,11 @@ import LoaderWrapper from 'containers/SideBar/CategoryContainer/utils/LoaderWrap
 
 import { deleteCategory } from './actions';
 
-import { makeSelectIsLoading, makeSelectError } from './selectors';
+import { makeSelectIsLoading } from './selectors';
 
 const DeleteCategory = props => (
   <LoaderWrapper isLoading={props.isLoading}>
     <DeleteCategoryForm
-      error={props.error}
       onCancel={props.onClosePortal}
       onDeleteCategory={props.deleteCategory}
     />
@@ -29,8 +28,7 @@ DeleteCategory.propTypes = {
 };
 
 const mapStateToProps = createStructuredSelector({
-  isLoading: () => makeSelectIsLoading(),
-  error: () => makeSelectError(),
+  isLoading: makeSelectIsLoading(),
 });
 
 const mapDispatchToProps = {

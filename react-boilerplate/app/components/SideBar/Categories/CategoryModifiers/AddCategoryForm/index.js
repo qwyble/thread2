@@ -98,13 +98,6 @@ class RenderAddCategory extends React.Component {
                 ) : (
                   <div />
                 )}
-                {this.props.error ? (
-                  <Button fluid icon inverted size="mini" color="blue">
-                    {this.props.error}
-                  </Button>
-                ) : (
-                  <div />
-                )}
               </div>
             </div>
             {this.state.displayForm ? (

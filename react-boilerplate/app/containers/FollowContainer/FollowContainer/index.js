@@ -46,9 +46,9 @@ FollowContainer.propTypes = {
 
 const mapStateToProps = () =>
   createStructuredSelector({
-    isLoading: () => makeSelectIsLoading(),
-    isFollowing: () => makeSelectIsFollowing(),
-    idOwner: () => makeSelectProfileId(),
+    isLoading: makeSelectIsLoading(),
+    isFollowing: makeSelectIsFollowing(),
+    idOwner: makeSelectProfileId(),
   });
 
 const mapDispatchToProps = {

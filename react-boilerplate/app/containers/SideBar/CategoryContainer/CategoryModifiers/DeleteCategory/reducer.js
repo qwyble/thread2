@@ -6,23 +6,18 @@ import {
   DELETE_CATEGORY_FAILED,
 } from './constants';
 
-const blankError = fromJS({});
-
 const initialState = fromJS({
   isLoading: false,
-  error: blankError,
 });
 
 function DeleteCategory(state = initialState, action) {
   switch (action.type) {
     case DELETE_CATEGORY:
-      return state.set('isLoading', true).set('error', blankError);
+      return state.set('isLoading', true);
     case DELETE_CATEGORY_SUCCESS:
       return state.set('isLoading', false);
     case DELETE_CATEGORY_FAILED:
-      return state
-        .set('isLoading', false)
-        .update('error', fromJS(action.error));
+      return state.set('isLoading', false);
     default:
       return state;
   }

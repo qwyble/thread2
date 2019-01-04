@@ -1,16 +1,14 @@
 import React from 'react';
 import axios from 'axios';
 import Users from 'components/explorer/users';
-import {Grid } from 'semantic-ui-react';
+import { Grid } from 'semantic-ui-react';
 
-
-class Following extends React.Component{
-
+class Following extends React.Component {
   state = {
-    users: []
-  }
+    users: [],,
+  };
 
-  componentDidMount(){
+  componentDidMount() {
     this.getFollowing();
   }
 
@@ -18,25 +16,21 @@ class Following extends React.Component{
     axios({
       method: 'get',
       url: 'https://thread-204819.appspot.com/getFollowing',
-      withCredentials: true
+      withCredentials: true,,
     }).then(result => {
-      this.setState({users: result.data});
-    })
-  }
+      this.setState({ users: result.data });
+    });
+  };
 
-  render(){
-    return(
-        <div  style={{top: '30vh'}}>
-          <Grid container columns={4}>
-            <Users users={this.state.users} />
-          </Grid>
-
-        </div>
-
-
-    )
+  render() {
+    return (
+      <div  style={{top: '30vh'}}>
+        <Grid container columns={4}>
+          <Users users={this.state.users} />
+        </Grid>
+      </div>
+    );
   }
 }
-
 
 export default Following;
