@@ -1,43 +1,69 @@
 import React from 'react';
-import axios from 'axios';
-import Users from 'components/explorer/users';
-import { Grid, Header } from 'semantic-ui-react';
+import PropTypes from 'prop-types';
+import { Grid } from 'semantic-ui-react';
+import { createStructuredSelector } from 'reselect';
+
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+
+import injectReducer from 'utils/injectReducer';
+import injectSaga from 'utils/injectSaga';
+
+import LoaderWrapper from 'containers/Wrappers/LoaderWrapper';
+import Users from 'components/Explorer/Users';
+
+import HasFollowers from './HasFollowers';
+
+import reducer from './reducer';
+import saga from './saga';
+
+import { makeSelectIsLoading, makeSelectFollowers } from './selectors';
+import { getFollowers } from './actions';
 
 class Followers extends React.Component {
-  state = {
-    users: [],,
-  };
-
   componentDidMount() {
     this.getFollowers();
   }
 
-  getFollowers = () => {
-    axios({
-      method: 'get',
-      url: 'https://thread-204819.appspot.com/getFollowers',
-      withCredentials: true,,
-    }).then(result => {
-      this.setState({ users: result.data });
-    });
-  };
-
   render() {
     return (
-      <div >
+      <div>
         <Grid container columns={4}>
-          {this.state.users.length !== 0 ?
-            <Users users={this.state.users} />
-            : <div style={{marginTop: '20vh'}}>
-              <Header>
-                    Looks like you don't have any followers yet... :(
-              </Header>
-            </div>}
+          <LoaderWrapper isLoading={this.props.isLoading}>
+            <HasFollowers followers={this.props.followers}>
+              <Users users={this.props.followers} />
+            </HasFollowers>
+          </LoaderWrapper>
         </Grid>
-
       </div>
     );
   }
 }
 
-export default Followers;
+Followers.propTypes = {
+  isLoading: PropTypes.bool,
+  followers: PropTypes.array,
+};
+
+const mapStateToProps = () =>
+  createStructuredSelector({
+    isLoading: makeSelectIsLoading(),
+    followers: makeSelectFollowers(),
+  });
+
+const mapDispatchToProps = {
+  getFollowers,
+};
+
+const withConnect = connect(
+  mapStateToProps,
+  mapDispatchToProps
+);
+const withReducer = injectReducer({ key: 'Followers', reducer });
+const withSaga = injectSaga({ key: 'Followers', saga });
+
+export default compose(
+  withReducer,
+  withSaga,
+  withConnect
+)(Followers);

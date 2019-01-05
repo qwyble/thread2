@@ -1,42 +1,42 @@
-.checkboxSpan{
+.checkboxSpan {
   height: 25px;
   width: 25px;
   background-color: #eee;
 }
-.ui.fluid.search .results{
-  opacity: .95;
+.ui.fluid.search .results {
+  opacity: 0.95;
 }
 
-
-.messagePortal{
+.messagePortal {
   position: relative !important;
   margin: auto !important;
 }
 
-.ui.segment{
-  background-color: rgba(255,255,255, .9) !important;
+.ui.segment {
+  background-color: rgba(255, 255, 255, 0.9) !important;
+  border-radius: 0px;
 }
 
-.messageCheckbox{
+.messageCheckbox {
   z-index: 1000000;
 }
 
-.ui.segment.messagesTable{
+.ui.segment.messagesTable {
   position: fixed;
   top: 10vh !important;
   margin-top: 1% !important;
   left: 25vw;
 }
 
-.ui.thin.left.sidebar.messagesSidebar{
+.ui.thin.left.sidebar.messagesSidebar {
   height: 60vh;
   max-height: 60vh;
   position: relative;
-  background-color: rgba(255,255,255,0.6);
+  background-color: rgba(255, 255, 255, 0.6);
 }
 
-.fillerDiv{
-  background-color: rgba(0,0,0,1);
+.fillerDiv {
+  background-color: rgba(0, 0, 0, 1);
   height: 10vh;
 }
 
@@ -48,28 +48,27 @@
   max-height: 50px !important;
 }
 
-.ui.search > .results .result .image.searchImage{
+.ui.search > .results .result .image.searchImage {
   float: left;
   width: 35px;
   height: auto;
   border-radius: 500rem;
 }
 
-.ui.fluid.search .results{
+.ui.fluid.search .results {
   height: 70vh;
   overflow: auto;
 }
 
-.prompt{
+.prompt {
   border-radius: 2px !important;
-  opacity: .8;
+  opacity: 0.8;
 }
 
-.ui.modal.profileModal{
+.ui.modal.profileModal {
   margin: auto;
-
 }
-.ui.button.playlistButton{
+.ui.button.playlistButton {
   padding-right: 1cm !important;
   width: 100% !important;
   color: white !important;
@@ -77,42 +76,38 @@
   opacity: 0.8;
 }
 
-.songInfoContainer{
+.songInfoContainer {
   position: relative;
   top: 100px;
 }
 
-#pButton{
-	border: none;
+#pButton {
+  border: none;
 
-	background-position: center;
+  background-position: center;
   margin: 0;
   padding: 0;
   height: 100% !important;
   width: 100% !important;
-
-
 }
 
 .ui.progress .bar {
   height: 80% !important;
 }
-.progress{
+.progress {
   margin: 0 !important;
 
   height: 80% !important;
 }
 
-
-.primaryContainer{
+.primaryContainer {
   height: 86vh !important;
   margin: 0 !important;
 }
 
-
-.audioContainer{
+.audioContainer {
   text-align: center;
-  background-color: rgba(0, 0, 0, .9) !important;
+  background-color: rgba(0, 0, 0, 0.9) !important;
   color: #2bbbff !important;
   position: fixed;
   bottom: 0;
@@ -125,94 +120,86 @@
   margin-bottom: 0em !important;
 }
 
-
-
-.playerCol{
+.playerCol {
   color: #2bbbff !important;
 }
 
-.sideBarLoader{
+.sideBarLoader {
   padding-top: 20% !important;
 
   padding-bottom: 20% !important;
 }
 
-.stickyTop{
+.stickyTop {
   position: -webkit-sticky !important;
   position: sticky !important;
   top: 0 !important;
-  background: rgba(0, 0, 0, .3) !important;
+  background: rgba(0, 0, 0, 0.3) !important;
   z-index: 100;
 }
-.stickyBottom{
+.stickyBottom {
   position: -webkit-sticky !important;
   position: sticky !important;
   bottom: 0 !important;
-  background: rgba(0, 0, 0, .5) !important;
+  background: rgba(0, 0, 0, 0.5) !important;
 }
 
-.ui.inverted.table.t1{
+.ui.inverted.table.t1 {
   margin: 0 !important;
-  color: rgba(255, 255, 255, .8) !important;
+  color: rgba(255, 255, 255, 0.8) !important;
 }
 
-.ui.rating .active.icon{
-  color: rgba(43, 187, 255, .9) !important;
+.ui.rating .active.icon {
+  color: rgba(43, 187, 255, 0.9) !important;
 }
 
-.ui.labeled.icon.button.button2{
-
+.ui.labeled.icon.button.button2 {
   width: 100%;
   right: 0%;
   height: 100%;
   padding-left: 0px;
 }
 
-.ui.labeled.icon.menu .item .sideBarItem{
+.ui.labeled.icon.menu .item .sideBarItem {
   width: 100%;
   padding: 0;
-  font-size: .5rem;
+  font-size: 0.5rem;
 }
 
-.ui.inverted.menu .item.sideBarItem{
+.ui.inverted.menu .item.sideBarItem {
   width: 100%;
   padding: 0;
-  font-size: .5rem;
+  font-size: 0.5rem;
 }
 
-
-
-.ui.labeled.icon.menu .item > .icon:not(.dropdown).button2{
+.ui.labeled.icon.menu .item > .icon:not(.dropdown).button2 {
   margin: 0 !important;
   height: auto;
 }
 
-.ui.floating.dropdown .menu{
+.ui.floating.dropdown .menu {
   z-index: 1000000 !important;
 }
 
-
-
-.ui.dropdown.dropOverlay{
+.ui.dropdown.dropOverlay {
   position: absolute;
-  font-size: .9rem;
+  font-size: 0.9rem;
   float: left;
   left: 1%;
   top: 20%;
 
   z-index: 100;
   color: #2bbbff !important;
-
 }
 
-.ui.modal.uploadModal{
+.ui.modal.uploadModal {
   vertical-align: middle !important;
   position: relative;
   margin: auto !important;
   margin-top: 0vh !important;
 }
 
-.button{
+.button {
   border-radius: 0 !important;
   border-style: hidden !important;
   border-width: 0px !important;
@@ -221,62 +208,55 @@
 
 .ui.menu .sideItems {
   padding: 0em !important;
-
 }
-.ui.labeled.icon.menu .item{
-
+.ui.labeled.icon.menu .item {
 }
 
-.ui.icon.button.trashcan{
+.ui.icon.button.trashcan {
   position: fixed !important;
   float: right;
   z-index: 10000 !important;
   right: 0%;
 }
 
-
-
 .pushable > .pusher.pusherContainer {
   height: 100%;
-  background-color: rgba(0,0,0,.8) ;
+  background-color: rgba(0, 0, 0, 0.8);
   margin: 0 !important;
   width: 100%;
 }
 
-
-.ui.inverted.blue.button.sidebarButton{
+.ui.inverted.blue.button.sidebarButton {
   position: fixed;
   z-index: 123421;
 }
 
-.ui.thin.left.sidebar, .ui.thin.right.sidebar {
-    width: 13vw !important;
+.ui.thin.left.sidebar,
+.ui.thin.right.sidebar {
+  width: 13vw !important;
 }
 
 .ui.visible.thin.left.sidebar ~ .pusher {
-    -webkit-transform: translate3d(15vw, 0, 0);
-    transform: translate3d(15vw, 0, 0);
-    transition: transform 1s;
-  }
-
+  -webkit-transform: translate3d(15vw, 0, 0);
+  transform: translate3d(15vw, 0, 0);
+  transition: transform 1s;
+}
 
 .ui.visible.thin.left.sidebar ~ .pusher {
-      width: 87% !important;
-      transform: scale(85%, 100%) !important;
-      overflow: auto !important;
-      transition: width .5s, transform .5s ;
+  width: 87% !important;
+  transform: scale(85%, 100%) !important;
+  overflow: auto !important;
+  transition: width 0.5s, transform 0.5s;
 }
 
-.ui.visible.left.sidebar ~ .pusher{
-  transform: translate3d(13vw,0,0) !important;
-
+.ui.visible.left.sidebar ~ .pusher {
+  transform: translate3d(13vw, 0, 0) !important;
 }
 
-.ui.thin.left.sidebar ~ .pusher{
+.ui.thin.left.sidebar ~ .pusher {
   width: 100%;
-  transition: width .5s, transform .5s;
+  transition: width 0.5s, transform 0.5s;
 }
-
 
 .App {
   text-align: center;
@@ -303,6 +283,10 @@
 }
 
 @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }

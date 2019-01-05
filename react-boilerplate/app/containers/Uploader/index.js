@@ -10,7 +10,7 @@ import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 
 import ModalDescription from 'components/Uploader/ModalDescription';
-import UploaderFields from 'components/Uploader/UploaderFields';
+import UploaderForm from 'components/Uploader/UploaderForm';
 
 import reducer from './reducer';
 import saga from './saga';
@@ -30,7 +30,7 @@ class Uploader extends React.Component {
         <ModalDescription isLoading={this.props.isLoading} />
         <Modal.Content>
           <div>
-            <UploaderFields onUploadSong={this.props.uploadSong} />
+            <UploaderForm onUploadSong={this.props.uploadSong} />
           </div>
         </Modal.Content>
       </div>

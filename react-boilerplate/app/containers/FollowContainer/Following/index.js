@@ -1,36 +1,69 @@
 import React from 'react';
-import axios from 'axios';
-import Users from 'components/explorer/users';
+import PropTypes from 'prop-types';
 import { Grid } from 'semantic-ui-react';
+import { createStructuredSelector } from 'reselect';
+
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+
+import injectReducer from 'utils/injectReducer';
+import injectSaga from 'utils/injectSaga';
+
+import LoaderWrapper from 'containers/Wrappers/LoaderWrapper';
+import Users from 'components/Explorer/Users';
+
+import HasFollowing from './HasFollowing';
+
+import reducer from './reducer';
+import saga from './saga';
+
+import { makeSelectIsLoading, makeSelectFollowing } from './selectors';
+import { getFollowing } from './actions';
 
 class Following extends React.Component {
-  state = {
-    users: [],,
-  };
-
   componentDidMount() {
     this.getFollowing();
   }
 
-  getFollowing = () => {
-    axios({
-      method: 'get',
-      url: 'https://thread-204819.appspot.com/getFollowing',
-      withCredentials: true,,
-    }).then(result => {
-      this.setState({ users: result.data });
-    });
-  };
-
   render() {
     return (
-      <div  style={{top: '30vh'}}>
+      <div>
         <Grid container columns={4}>
-          <Users users={this.state.users} />
+          <LoaderWrapper isLoading={this.props.isLoading}>
+            <HasFollowing following={this.props.following}>
+              <Users users={this.props.following} />
+            </HasFollowing>
+          </LoaderWrapper>
         </Grid>
       </div>
     );
   }
 }
 
-export default Following;
+Following.propTypes = {
+  isLoading: PropTypes.bool,
+  following: PropTypes.array,
+};
+
+const mapStateToProps = () =>
+  createStructuredSelector({
+    isLoading: makeSelectIsLoading(),
+    following: makeSelectFollowing(),
+  });
+
+const mapDispatchToProps = {
+  getFollowing,
+};
+
+const withConnect = connect(
+  mapStateToProps,
+  mapDispatchToProps
+);
+const withReducer = injectReducer({ key: 'Following', reducer });
+const withSaga = injectSaga({ key: 'Following', saga });
+
+export default compose(
+  withReducer,
+  withSaga,
+  withConnect
+)(Following);

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Form, Button, Input } from 'semantic-ui-react';
 
 /* Uploader is the form for uploading songs */
@@ -14,8 +15,9 @@ const UploaderFields = props => (
         />
       </Form.Field>
       <Form.Field>
-        <label>Title</label>
+        <label htmlFor="title">Title</label>
         <Input
+          id="title"
           type="text"
           name="title"
           placeholder="Title"
@@ -24,8 +26,9 @@ const UploaderFields = props => (
         />
       </Form.Field>
       <Form.Field>
-        <label>Description</label>
+        <label htmlFor="description">Description</label>
         <Input
+          id="description"
           type="text"
           name="description"
           placeholder="Description"
@@ -34,8 +37,9 @@ const UploaderFields = props => (
         />
       </Form.Field>
       <Form.Field>
-        <label>Genre</label>
+        <label htmlFor="genre">Genre</label>
         <Input
+          id="genre"
           name="genre"
           type="text"
           value={props.fields.genre}
@@ -48,4 +52,10 @@ const UploaderFields = props => (
     </Form>
   </div>
 );
+
+UploaderFields.propTypes = {
+  onInputChange: PropTypes.func,
+  onUpload: PropTypes.func,
+  fields: PropTypes.object,
+};
 export default UploaderFields;

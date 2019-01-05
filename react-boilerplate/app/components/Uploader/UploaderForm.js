@@ -1,6 +1,7 @@
 import React from 'react';
-import axios from 'axios';
-import UploadDropdown from './UploadModal.js';
+import PropTypes from 'prop-types';
+
+import UploaderFields from 'components/Uploader/UploaderFields';
 
 const initialState = {
   title: '',
@@ -14,59 +15,37 @@ const initialState = {
 class UploaderForm extends React.Component {
   state = initialState;
 
-  reset = () => {
-    this.setState(initialState);
-  };
-
   handleInputChange = e => {
-    const name = e.target.name;
-    let value = e.target.value;
-    const songUploadFields = Object.assign({}, this.state.songUploadFields);
-    /* Title and SongFile are required to enable the upload button */
-    if (name === 'title' && value.length > 0) {
-      this.setState({ uploadButtonToggle: false });
-    } else if (name === 'title') {
-      this.setState({ uploadButtonToggle: true });
-    }
-    // in case of songFile, change 'value' to handle file upload
-    if (name === 'songFile') {
-      value = e.target.files[0];
-    }
-    // update the state
-    songUploadFields[name] = value;
-    this.setState({ songUploadFields });
+    let { name, value, files } = { ...e.target }; // eslint-disable-line
+
+    if (name === 'songFile') this.setState({ [name]: files[0] });
+    else this.setState({ [name]: value });
   };
 
-  handleUpload = () => {
-    const data = new FormData();
-    const songFile = this.state.songUploadFields.songFile;
+  validate = () => {
+    if (this.state.title.length < 1) this.setState({ disabled: true });
+    else if (this.state.songFile.length < 1) this.setState({ disabled: true });
+    else this.setState({ disabled: false });
+  };
 
-    data.append('songFile', songFile);
-    data.append('title', this.state.songUploadFields.title);
-    data.append('description', this.state.songUploadFields.description);
-    data.append('genres', this.state.songUploadFields.genre);
-    data.append('URL', this.state.songUploadFields.songURL);
-    this.setState({ isLoading: true });
-    axios({
-      method: 'post',
-      url: 'https://thread-204819.appspot.com/uploadSong',
-      data,
-      withCredentials: true,
-    }).then(result => {
-      // access results....
-
-      this.reset();
-    });
+  handleUpload = e => {
+    e.preventDefault();
+    this.props.onUploadSong(this.state);
   };
 
   render() {
     return (
       <UploaderFields
         onInputChange={this.handleInputChange}
+        onUpload={this.handleUpload}
         fields={this.state}
       />
     );
   }
 }
 
-export default UploadHandlers;
+UploaderForm.propTypes = {
+  onUploadSong: PropTypes.func,
+};
+
+export default UploaderForm;
