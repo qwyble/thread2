@@ -28,7 +28,7 @@ function* searchChange(action) {
 function usersRequest(string) {
   return axios({
     method: 'get',
-    url: `https://thread-204819.appspot.com/searchUsers/${escape(
+    url: `https://thread-204819.appspot.com/searchUsersAll/${escape(
       string || '%'
     )}`,
   });
@@ -36,7 +36,7 @@ function usersRequest(string) {
 function playlistsRequest(string) {
   return axios({
     method: 'get',
-    url: `https://thread-204819.appspot.com/searchPlaylists/${escape(
+    url: `https://thread-204819.appspot.com/searchPlaylistsAll/${escape(
       string || '%'
     )}`,
   });
@@ -44,7 +44,7 @@ function playlistsRequest(string) {
 function songsRequest(string) {
   return axios({
     method: 'get',
-    url: `https://thread-204819.appspot.com/searchSongs/${escape(
+    url: `https://thread-204819.appspot.com/searchSongsAll/${escape(
       string || '%'
     )}`,
   });

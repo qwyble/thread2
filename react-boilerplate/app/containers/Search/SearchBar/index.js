@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Search, Image } from 'semantic-ui-react';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 import debounce from 'utils/debounce';
 
+import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 
@@ -19,19 +19,14 @@ import {
   makeSelectUsers,
   makeSelectSongs,
   makeSelectPlaylists,
+  makeSelectIsLoading,
 } from './selectors';
 
 import { searchChange } from './actions';
 
 class SearchBar extends React.Component {
   handleSearchChange = e => {
-    debounce(this.props.searchChange, 250, true);
-    axios({
-      method: 'get',
-      url: `https://thread-204819.appspot.com/searchBar/${escape(
-        this.state.searchString || '%'
-      )}`,
-    });
+    debounce(this.props.searchChange, 250, true)(e.target.value);
   };
 
   render() {
@@ -81,7 +76,38 @@ class SearchBar extends React.Component {
 
 SearchBar.propTypes = {
   searchString: PropTypes.string,
+  searchChange: PropTypes.func,
+  users: PropTypes.object,
+  songs: PropTypes.object,
+  playlists: PropTypes.object,
+  isLoading: PropTypes.bool,
 };
+
+const mapStateToProps = () =>
+  createStructuredSelector({
+    users: makeSelectUsers(),
+    songs: makeSelectSongs(),
+    playlists: makeSelectPlaylists(),
+    isLoading: makeSelectIsLoading(),
+  });
+
+const mapDispatchToProps = {
+  searchChange,
+};
+
+const withConnect = connect(
+  mapStateToProps,
+  mapDispatchToProps
+);
+
+const withReducer = injectReducer({ key: 'SearchBar', reducer });
+const withSaga = injectSaga({ key: 'SearchBar', saga });
+
+export default compose(
+  withReducer,
+  withSaga,
+  withConnect
+)(SearchBar);
 
 const resultRenderer = ({ title, url, image }) => (
   <div>
@@ -98,4 +124,8 @@ const resultRenderer = ({ title, url, image }) => (
   </div>
 );
 
-export default SearchBar;
+resultRenderer.propTypes = {
+  title: PropTypes.string,
+  url: PropTypes.string,
+  image: PropTypes.string,
+};
