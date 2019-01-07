@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -7,16 +8,10 @@ import { createStructuredSelector } from 'reselect';
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 
-import IsSideBarOwner from 'containers/Wrappers/IsSideBarOwner';
 import LoaderWrapper from 'containers/Wrappers/LoaderWrapper';
+import ForumCategoriesList from 'components/Forum/ForumSidebar/ForumCategoriesList';
 
 import { setCategory } from 'containers/SideBar/SideBarContainer/actions';
-import { makeSelectProfileId } from 'containers/AppUtilities/ProfileContext/selectors';
-import { makeSelectSelectedCategoryId } from 'containers/SideBar/SideBarContainer/selectors';
-
-import CategoryMapper from './utils/CategoryMapper';
-import LoaderWrapper from './utils/LoaderWrapper';
-import AddCategory from './CategoryModifiers/AddCategory';
 
 import { makeSelectCategories, makeSelectIsLoading } from './selectors';
 import { getCategories } from './actions';
@@ -28,21 +23,13 @@ class CategoryContainer extends React.Component {
     this.props.getCategories();
   }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.ownerId !== this.props.ownerId) this.props.getCategories();
-  }
-
   render() {
     return (
       <LoaderWrapper isLoading={this.props.isLoading}>
-        <CategoryMapper
+        <ForumCategoriesList
           categories={this.props.categories}
-          onSetCategory={this.props.setCategory}
-          selectedCategoryId={this.props.selectedCategoryId}
+          onSelectCategory={this.props.setCategory}
         />
-        <IsSideBarOwner>
-          <AddCategory />
-        </IsSideBarOwner>
       </LoaderWrapper>
     );
   }
@@ -53,16 +40,12 @@ CategoryContainer.propTypes = {
   categories: PropTypes.object,
   setCategory: PropTypes.func,
   isLoading: PropTypes.bool,
-  ownerId: PropTypes.string,
-  selectedCategoryId: PropTypes.string,
 };
 
 const mapStateToProps = () =>
   createStructuredSelector({
-    selectedCategoryId: makeSelectSelectedCategoryId(),
     categories: makeSelectCategories(),
     isLoading: makeSelectIsLoading(),
-    ownerId: makeSelectProfileId(),
   });
 
 const mapDispatchToProps = {
@@ -75,8 +58,8 @@ const withConnect = connect(
   mapDispatchToProps
 );
 
-const withReducer = injectReducer({ key: 'CategoryContainer', reducer });
-const withSaga = injectSaga({ key: 'CategoryContainer', saga });
+const withReducer = injectReducer({ key: 'ForumCategoryContainer', reducer });
+const withSaga = injectSaga({ key: 'ForumCategoryContainer', saga });
 
 export default compose(
   withSaga,

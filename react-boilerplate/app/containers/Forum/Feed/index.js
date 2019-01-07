@@ -1,36 +1,34 @@
-import React from 'react'
-import { Feed, Loader } from 'semantic-ui-react'
-import FeedEvent from './feedEvent';
+import React from 'react';
+import { Feed, Loader } from 'semantic-ui-react';
 import axios from 'axios';
+import FeedEvent from '../../../components/Forum/Feed/Event';
 
-class ForumFeed extends React.Component{
-
+class ForumFeed extends React.Component {
   state = {
     feedEvents: [],
     _loading: false,
-  }
+  };
 
-  componentDidMount(){
+  componentDidMount() {
     this.getFeedItems();
   }
 
   getFeedItems = () => {
-    this.setState({_loading: true});
+    this.setState({ _loading: true });
     axios({
       method: 'get',
       url: 'https://thread-204819.appspot.com/getForumFeed',
-      withCredentials: true
+      withCredentials: true,
     }).then(result => {
-      this.setState({feedEvents: result.data, _loading: false});
+      this.setState({ feedEvents: result.data, _loading: false });
     });
-  }
+  };
 
-
-  render(){
-    return(
+  render() {
+    return (
       <Feed>
-        {this.state._loading ? <Loader active /> : <div></div>}
-        {this.state.feedEvents.map((evt, i) =>
+        {this.state._loading ? <Loader active /> : <div />}
+        {this.state.feedEvents.map((evt, i) => (
           <FeedEvent
             key={i}
             body={evt.body}
@@ -38,9 +36,9 @@ class ForumFeed extends React.Component{
             subject={evt.subject}
             threadId={evt.idThreadPost}
           />
-        )}
+        ))}
       </Feed>
-    )
+    );
   }
 }
 

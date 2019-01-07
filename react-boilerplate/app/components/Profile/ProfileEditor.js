@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Button } from 'semantic-ui-react';
 import isEmail from 'validator/lib/isEmail';
 
 import ImageUploadPortal from 'components/Profile/ImageUploadPortal';
@@ -40,7 +39,6 @@ class ProfileEditor extends React.Component {
           onImageUpload={this.props.onImageUpload}
           imageLoading={this.props.imageIsLoading}
         />
-        <Button onClick={this.handleOpen}>Edit Profile</Button>
         <LoaderWrapper isLoading={this.props.editIsLoading}>
           <ProfileEditFields
             fields={this.state.fields}
