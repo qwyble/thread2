@@ -31,6 +31,8 @@ function usersRequest(string) {
     url: `https://thread-204819.appspot.com/searchUsers/${escape(
       string || '%'
     )}`,
+  }).catch(err => {
+    throw err;
   });
 }
 function playlistsRequest(string) {
@@ -39,6 +41,8 @@ function playlistsRequest(string) {
     url: `https://thread-204819.appspot.com/searchPlaylists/${escape(
       string || '%'
     )}`,
+  }).catch(err => {
+    throw err;
   });
 }
 function songsRequest(string) {
@@ -47,5 +51,7 @@ function songsRequest(string) {
     url: `https://thread-204819.appspot.com/searchSongs/${escape(
       string || '%'
     )}`,
+  }).catch(err => {
+    throw err;
   });
 }
