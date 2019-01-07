@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Grid, Image, Icon, Popup, List } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
@@ -40,5 +41,9 @@ const Users = props => (
     ))}
   </Grid.Row>
 );
+
+Users.propTypes = {
+  users: PropTypes.array,
+};
 
 export default Users;

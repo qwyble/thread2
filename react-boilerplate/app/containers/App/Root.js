@@ -9,7 +9,7 @@ import LoadableForumSidebar from 'containers/forum/ForumSidebar/Loadable';
 import LoadableFollowers from 'containers/FollowContainer/Followers/Loadable';
 import LoadableFollowing from 'containers/FollowContainer/Following/Loadable';
 import LoadableExplorer from 'containers/search/Explorer/Loadable';
-import LoadableTopBar from 'containers/topBar/Loadable';
+import LoadableTopBar from 'components/TopBar/Loadable';
 
 import LoadableProfileContext from 'containers/AppUtilities/ProfileContext/Loadable';
 
