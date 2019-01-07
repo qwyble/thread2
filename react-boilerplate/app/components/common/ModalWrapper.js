@@ -19,6 +19,7 @@ class ModalWrapper extends React.Component {
           className="uploadModal"
           open={this.state.isOpen}
           trigger={this.props.trigger}
+          {...this.props}
         >
           <Dimmer.Dimmable as={Segment}>
             <div>
