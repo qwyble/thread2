@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { Sidebar, Segment } from 'semantic-ui-react';
 
-import ForumGrid from 'containers/Forum/forumGrid';
+import Forum from 'components/Forum';
 import ForumCategoryContainer from 'containers/Forum/ForumCategoryContainer';
 
 import StyledButton from './StyledButton';
 import SideBar from './SideBar';
 
-class ForumSidebarLeftOverlay extends Component {
+class ForumSidebar extends Component {
   state = { visible: true };
 
   toggleVis = () => {
@@ -26,7 +26,7 @@ class ForumSidebarLeftOverlay extends Component {
               toggleVis={this.toggleVis}
               visibile={this.state.visible}
             />
-            <ForumGrid />
+            <Forum />
           </Sidebar.Pusher>
         </Sidebar.Pushable>
       </div>
@@ -34,4 +34,4 @@ class ForumSidebarLeftOverlay extends Component {
   }
 }
 
-export default ForumSidebarLeftOverlay;
+export default ForumSidebar;

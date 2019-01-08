@@ -6,6 +6,7 @@ const LoaderWrapper = props => (
   <div>
     {props.isLoading ? (
       <div>
+        {props.dimmer ? <Dimmer inverted active /> : <div />}
         <Loader active />
       </div>
     ) : (

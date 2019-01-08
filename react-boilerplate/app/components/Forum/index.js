@@ -2,7 +2,7 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 import { Grid } from 'semantic-ui-react';
 import ForumFeed from 'containers/Forum/ForumFeed';
-import ThreadContainer from 'containers/Forum/ThreadContainer.js';
+import ThreadsContainer from 'containers/Forum/ThreadsContainer';
 import ThreadComposer from 'containers/Forum/ThreadComposer.js';
 import ThreadViewContainer from '/containers/Forum/ThreadViewContainer.js';
 
@@ -12,7 +12,7 @@ const ForumGrid = () => (
       <Grid.Column width={13}>
         <Route path="/forum/post" component={ThreadComposer} />
         <Route path="/forum/thread/:id" component={ThreadViewContainer} />
-        <Route exact path="/forum" component={ThreadContainer} />
+        <Route exact path="/forum" component={ThreadsContainer} />
       </Grid.Column>
       <Grid.Column width={3}>
         <ForumFeed />

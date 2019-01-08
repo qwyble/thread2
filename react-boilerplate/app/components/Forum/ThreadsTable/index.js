@@ -1,7 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import { Table, Button, Icon, Menu } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
-import ThreadList from '../../containers/Forum/ForumContainer/threadList.js';
+
+import ThreadList from 'components/Forum/ThreadsTable/ThreadList';
 
 const ThreadTable = ({ threads }) => (
   <Table celled>
@@ -37,5 +40,9 @@ const ThreadTable = ({ threads }) => (
     </Table.Footer>
   </Table>
 );
+
+ThreadTable.propTypes = {
+  threads: PropTypes.array,
+};
 
 export default ThreadTable;
