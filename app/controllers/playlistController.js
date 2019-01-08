@@ -4,8 +4,7 @@ const User = require('../models/user.js')(sequelize, Sequelize);
 module.exports = {
   addCategory: function(category, owner) {
     return sequelize.query(
-      `INSERT INTO categories (name, owner, isPublic) VALUES (?, ?, 0);
-        SELECT * FROM categories WHERE idcategories = LAST_INSERT_ID();`,
+      `INSERT INTO categories (name, owner, isPublic) VALUES (?, ?, 0);`,
       {
         replacements: [category, owner],
         type: sequelize.QueryTypes.INSERT,
@@ -38,8 +37,7 @@ module.exports = {
 
   addPlaylist: function(catid, playlist, owner) {
     return sequelize.query(
-      `INSERT INTO playlists (name, category) VALUES (?, ?);
-        SELECT * FROM playlists WHERE idplaylists = LAST_INSERT_ID();`,
+      `INSERT INTO playlists (name, category) VALUES (?, ?);`,
       {
         replacements: [playlist, catid],
         type: sequelize.QueryTypes.INSERT,
@@ -120,14 +118,7 @@ module.exports = {
       );
     }
   },
-  /*
-  getPlaylist: function(plid) {
-    return sequelize.query(`SELECT * from playlists WHERE idplaylists = ?;`, {
-      replacements: [plid],
-      type: sequelize.QueryTypes.SELECT,
-    });
-  },
-*/
+
   makePublic: function(plid) {
     return sequelize.query(
       `UPDATE playlists
