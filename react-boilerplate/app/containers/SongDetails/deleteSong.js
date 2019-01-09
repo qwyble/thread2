@@ -19,9 +19,6 @@ class DeleteSongs extends React.Component{
 
   render(){
     return(
-      <Button size='mini' onClick={this.handleDeleteSongs} disabled={(this.props.selectedSongs.length < 1)}>
-        Delete Song(s)
-      </Button>
     )
   }
 }
