@@ -38,7 +38,7 @@ const SongDetails = props => (
           </Grid.Column>
           <Grid.Column>
             <Button size="mini" onClick={props.onDeleteSong}>
-              Delete Song(s)
+              Delete Song
             </Button>
           </Grid.Column>
         </Grid.Row>
