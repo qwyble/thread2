@@ -1,149 +1,59 @@
-import React from 'react';
-import axios from 'axios';
-import { Redirect } from 'react-router-dom';
-import { Container, Dimmer, Form, Loader, Button } from 'semantic-ui-react';
-import FieldComponent from '../../../components/Forum/ThreadComposer/fieldComponent.js';
-import TextComponent from '../../../components/Forum/ThreadComposer/textComponent.js';
-import CategoryDropdownComponent from './categoryDropdownComponent';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { Redirect } from 'react-router-dom'
 
-class ThreadComposer extends React.Component {
-  state = {
-    thread: {
-      category: null,
-      subject: '',
-      body: '',
-    },
-    fieldErrors: {
-      category: '',
-      subject: '',
-      body: '',
-    },
-    _loading: false,
-    success: false,
-  };
+import { createStructuredSelector } from 'reselect';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
 
-  handleInputChange = ({ name, value, error }) => {
-    const thread = { ...this.state.thread };
-    const fieldErrors = { ...this.state.fieldErrors };
+import injectReducer from 'utils/injectReducer';
+import injectSaga from 'utils/injectSaga';
 
-    thread[name] = value;
-    fieldErrors[name] = error;
+import reducer from './reducer';
+import saga from './saga';
 
-    this.setState({ thread, fieldErrors });
-  };
+import { makeSelectCategories } from 'containers/Forum/ForumCategories/selectors';
+import { makeSelectIsLoading, makeSelectDidSucceed } from './selectors';
 
-  validate = () => {
-    const thread = { ...this.state.thread };
-    const fieldErrors = { ...this.state.fieldErrors };
-    const errMessages = Object.keys(fieldErrors).filter(k => fieldErrors[k]);
+import { postThread } from './actions';
 
-    if (!thread.category) return true;
-    if (!thread.subject) return true;
-    if (!thread.body) return true;
-    if (errMessages.length) return true;
-
-    return false;
-  };
-
-  handleFormSubmit = e => {
-    e.preventDefault();
-
-    if (this.validate()) return;
-
-    this.sendThreadToDb();
-  };
-
-  sendThreadToDb = () => {
-    this.setState({ _loading: true });
-
-    threadPost(
-      this.state.thread.subject,
-      this.state.thread.body,
-      this.state.thread.category,
-      new Date()
-    ).then(() => {
-      this.setState({
-        _loading: false,
-        success: true,
-        thread: {
-          category: null,
-          subject: '',
-          body: '',
-        },
-      });
-    });
-  };
-
+class ThreadComposer extends Component {
   render() {
-    if (this.state.success) return <Redirect to="/forum" />;
-
+    if (this.props.didSucceed) {
+      return (
+        <Redirect to='/forum' />
+      )
+    }
     return (
-      <Container>
-        {this.state._loading ? (
-          <Dimmer inverted active>
-            <Loader active />
-          </Dimmer>
-        ) : (
-          <div />
-        )}
-
-        <Form onSubmit={this.handleFormSubmit}>
-          <Form.Field required error={!!this.state.fieldErrors.recipient}>
-            <CategoryDropdownComponent
-              name="category"
-              placeholder="Choose thread category"
-              value={this.state.thread.category}
-              onChange={this.handleInputChange}
-              validate={val => (val ? false : 'category is required')}
-            />
-            {this.state.fieldErrors.category}
-          </Form.Field>
-
-          <Form.Field required error={!!this.state.fieldErrors.subject}>
-            <FieldComponent
-              name="subject"
-              placeholder="Subject"
-              value={this.state.thread.subject}
-              onChange={this.handleInputChange}
-              validate={val => (val ? false : 'Subject is required')}
-            />
-            {this.state.fieldErrors.subject}
-          </Form.Field>
-
-          <Form.Field required error={!!this.state.fieldErrors.body}>
-            <TextComponent
-              name="body"
-              placeholder="Body"
-              value={this.state.thread.body}
-              onChange={this.handleInputChange}
-              validate={val => (val ? false : 'body is required')}
-            />
-            {this.state.fieldErrors.body}
-          </Form.Field>
-
-          <Button type="submit" disabled={this.validate()}>
-            Post
-          </Button>
-        </Form>
-      </Container>
+      <div>
+        <ThreadComposerForm
+          onPostThread={this.props.postThread}
+          isLoading={this.props.isLoading}
+          categories={this.props.categories}
+        />
+      </div>
     );
   }
 }
 
-export default ThreadComposer;
+ThreadComposer.propTypes = {
+  categories: PropTypes.array,
+  isLoading: PropTypes.bool,
+  postThread: PropTypes.func,
+};
 
-const threadPost = (subject, body, category) =>
-  axios({
-  method: 'post',
-  url: 'https://thread-204819.appspot.com/postThread',
-  data: {
-    subject,
-    body,
-    category,
-    date: new Date()
-      .toISOString()
-      .substring(0, 19)
-      .replace('T', ' '),
-  },
-  withCredentials: true,
+const mapStateToProps = () = createStructuredSelector({
+  isLoading: makeSelectIsLoading(),
+  categories: makeSelectCategories(),
+  didSucceed: makeSelectDidSucceed(),
 });
+
+const mapDispatchToProps = {
+  postThread,
+};
+
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
+const withReducer = injectReducer({ key: 'ThreadComposer', reducer });
+const withSaga = injectSaga({ key: 'ThreadComposer', saga });
+
+export default compose(withReducer, withSaga, withConnect)(ThreadComposer);
