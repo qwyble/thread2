@@ -20,7 +20,11 @@ module.exports = {
   },
 
   deleteSong: function(req) {
-    return deleteFile(req.body.songIds, req.session.user.idUsers);
+    return deleteFile(
+      req.body.songId,
+      req.session.user.idUsers,
+      req.body.fileName
+    );
   },
 };
 
@@ -62,12 +66,13 @@ function getPublicUrl(file_name) {
   return `https://storage.googleapis.com/${BUCKET_NAME}/${file_name}`;
 }
 
-deleteFile = (songIds, user) => {
+deleteFile = (songId, user, filename) => {
+  await myBucket.file(filename).delete();
   return sequelize.query(
     `DELETE FROM songs
-      WHERE idSongs IN (?) AND owner = ?`,
+      WHERE idSongs = ? AND owner = ?`,
     {
-      replacements: [songIds, user],
+      replacements: [songId, user],
       type: sequelize.QueryTypes.DELETE,
     }
   );
