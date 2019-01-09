@@ -1,45 +1,74 @@
 import React from 'react';
-import { Feed, Loader } from 'semantic-ui-react';
-import axios from 'axios';
-import FeedEvent from '../../../components/Forum/Feed/Event';
+import PropTypes from 'prop-types';
+
+import { Feed } from 'semantic-ui-react';
+
+import { createStructuredSelector } from 'reselect';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+
+import injectReducer from 'utils/injectReducer';
+import injectSaga from 'utils/injectSaga';
+
+import Event from 'components/Forum/Feed/Event';
+import LoaderWrapper from 'containers/Wrappers/LoaderWrapper';
+
+import reducer from './reducer';
+import saga from './saga';
+
+import { makeSelectIsLoading, makeSelectFeedEvents } from './selectors';
+import { getFeed } from './actions';
 
 class ForumFeed extends React.Component {
-  state = {
-    feedEvents: [],
-    _loading: false,
-  };
-
   componentDidMount() {
-    this.getFeedItems();
+    this.props.getFeed();
   }
-
-  getFeedItems = () => {
-    this.setState({ _loading: true });
-    axios({
-      method: 'get',
-      url: 'https://thread-204819.appspot.com/getForumFeed',
-      withCredentials: true,
-    }).then(result => {
-      this.setState({ feedEvents: result.data, _loading: false });
-    });
-  };
 
   render() {
     return (
       <Feed>
-        {this.state._loading ? <Loader active /> : <div />}
-        {this.state.feedEvents.map((evt, i) => (
-          <FeedEvent
-            key={i}
-            body={evt.body}
-            user={evt.userName}
-            subject={evt.subject}
-            threadId={evt.idThreadPost}
-          />
-        ))}
+        <LoaderWrapper isLoading={this.props.isLoading}>
+          {this.props.feedEvents.map((evt, i) => (
+            <Event
+              key={i}
+              body={evt.get('body')}
+              user={evt.get('userName')}
+              subject={evt.get('subject')}
+              threadId={evt.get('idThreadPost')}
+            />
+          ))}
+        </LoaderWrapper>
       </Feed>
     );
   }
 }
 
-export default ForumFeed;
+ForumFeed.propTypes = {
+  feedEvents: PropTypes.array,
+  isLoading: PropTypes.bool,
+  getFeed: PropTypes.func,
+};
+
+const mapStateToProps = () =>
+  createStructuredSelector({
+    isLoading: makeSelectIsLoading(),
+    feedEvents: makeSelectFeedEvents(),
+  });
+
+const mapDispatchToProps = {
+  getFeed,
+};
+
+const withConnect = connect(
+  mapStateToProps,
+  mapDispatchToProps
+);
+
+const withReducer = injectReducer({ key: 'ForumFeedContainer', reducer });
+const withSaga = injectSaga({ key: 'ForumFeedContainer', saga });
+
+export default compose(
+  withReducer,
+  withSaga,
+  withConnect
+)(ForumFeed);

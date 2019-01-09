@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 
 export const selectCategoryContainer = state =>
-  state.get('ForumCategoryContainer');
+  state.get('ForumCategoriesContainer');
 
 export const makeSelectIsLoading = () =>
   createSelector(

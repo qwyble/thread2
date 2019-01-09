@@ -18,7 +18,7 @@ import { getCategories } from './actions';
 import reducer from './reducer';
 import saga from './saga';
 
-class CategoryContainer extends React.Component {
+class ForumCategories extends React.Component {
   componentDidMount() {
     this.props.getCategories();
   }
@@ -35,7 +35,7 @@ class CategoryContainer extends React.Component {
   }
 }
 
-CategoryContainer.propTypes = {
+ForumCategories.propTypes = {
   getCategories: PropTypes.func,
   categories: PropTypes.object,
   setCategory: PropTypes.func,
@@ -58,11 +58,11 @@ const withConnect = connect(
   mapDispatchToProps
 );
 
-const withReducer = injectReducer({ key: 'ForumCategoryContainer', reducer });
-const withSaga = injectSaga({ key: 'ForumCategoryContainer', saga });
+const withReducer = injectReducer({ key: 'ForumCategoriesContainer', reducer });
+const withSaga = injectSaga({ key: 'ForumCategoriesContainer', saga });
 
 export default compose(
   withSaga,
   withReducer,
   withConnect
-)(CategoryContainer);
+)(ForumCategories);

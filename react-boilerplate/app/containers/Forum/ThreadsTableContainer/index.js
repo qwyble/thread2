@@ -60,10 +60,15 @@ const mapDispatchToProps = {
   getThreads,
 };
 
-const withConnect = connect(mapStateToProps, mapDispatchToProps);
+const withConnect = connect(
+  mapStateToProps,
+  mapDispatchToProps
+);
 const withReducer = injectReducer({ key: 'ThreadsContainer', reducer });
-const withSaga = injectSaga({ key: 'ThreadsContainer', saga }):
+const withSaga = injectSaga({ key: 'ThreadsContainer', saga });
 
-
-
-export default compose(withReducer, withSaga, withConnect)(ThreadsContainer);
+export default compose(
+  withReducer,
+  withSaga,
+  withConnect
+)(ThreadsContainer);
