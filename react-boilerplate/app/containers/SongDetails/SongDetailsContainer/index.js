@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Redirect } from 'react-router-dom';
 
 import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
@@ -24,6 +25,7 @@ import {
   makeSelectSong,
   makeSelectIsLoading,
   makeSelectIsPlaying,
+  makeSelectDidSucceed,
 } from './selectors';
 import { deleteSong, getSong } from './actions';
 
@@ -38,6 +40,7 @@ class SongDetailsContainer extends React.Component {
   };
 
   render() {
+    if (this.props.didSucceed) return <Redirect to="/stream" />;
     return (
       <div>
         <LoaderWrapper isLoading={this.props.isLoading}>
@@ -62,6 +65,7 @@ SongDetailsContainer.propTypes = {
   deleteSong: PropTypes.func,
   isLoading: PropTypes.bool,
   getSong: PropTypes.func,
+  didSucceed: PropTypes.bool,
 };
 
 const mapStateToProps = () =>
@@ -70,6 +74,7 @@ const mapStateToProps = () =>
     isLoading: makeSelectIsLoading(),
     isPlaying: makeSelectIsPlaying(),
     isPaused: makeSelectIsPaused(),
+    didSucceed: makeSelectDidSucceed(),
   });
 
 const mapDispatchToProps = {
