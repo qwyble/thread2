@@ -15,7 +15,6 @@ import { makeSelectProfileId } from 'containers/AppUtilities/ProfileContext/sele
 import { makeSelectSelectedCategoryId } from 'containers/SideBar/SideBarContainer/selectors';
 
 import CategoryMapper from './utils/CategoryMapper';
-import LoaderWrapper from './utils/LoaderWrapper';
 import AddCategory from './CategoryModifiers/AddCategory';
 
 import { makeSelectCategories, makeSelectIsLoading } from './selectors';

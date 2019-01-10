@@ -11,7 +11,7 @@ const initialState = fromJS({
   didSucceed: false,
 });
 
-export function ThreadComposerReducer(state = initialState, action) {
+export default function ThreadComposerReducer(state = initialState, action) {
   switch (action.type) {
     case POST_THREAD:
       return state.set('isLoading', true);

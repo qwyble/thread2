@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Table, Checkbox, Rating } from 'semantic-ui-react';
 import LoaderWrapper from 'containers/Wrappers/LoaderWrapper';
-import PlayIcon from 'components/common/PlayIcon';
+import PlayIcon from 'components/common/Icons/PlayIcon';
 const SongRow = props => (
   <Table.Row className="row">
     <Table.Cell collapsing>

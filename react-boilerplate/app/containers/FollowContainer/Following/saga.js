@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { takeLatest, call, put } from 'redux-saga/effects';
 import { setError } from 'containers/Wrappers/ErrorWrapper/actions';
 import { GET_FOLLOWING } from './constants';
@@ -19,10 +20,10 @@ function* getFollowing() {
 
 function getFollowingRequest() {
   return axios({
-      method: 'get',
-      url: 'https://thread-204819.appspot.com/getFollowing',
-      withCredentials: true,,
-    })
+    method: 'get',
+    url: 'https://thread-204819.appspot.com/getFollowing',
+    withCredentials: true,
+  })
     .then(response => response.data)
     .catch(err => {
       throw err;

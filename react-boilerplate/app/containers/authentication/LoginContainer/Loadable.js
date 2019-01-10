@@ -3,7 +3,7 @@ import Loadable from 'react-loadable';
 import Loader from '../../../components/common/Loader';
 
 const LoadableLoginContainer = Loadable({
-  loader: () => import('./loginContainer'),
+  loader: () => import('./index'),
   loading: Loader,
   render(loaded, props) {
     const Component = loaded.default;

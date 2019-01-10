@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
 import DeleteCategoryForm from 'components/SideBar/Categories/CategoryModifiers/DeleteCategoryForm';
-import LoaderWrapper from 'containers/SideBar/CategoryContainer/utils/LoaderWrapper';
+import LoaderWrapper from 'containers/Wrappers/LoaderWrapper';
 
 import { deleteCategory } from './actions';
 

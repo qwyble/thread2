@@ -6,7 +6,7 @@ const initialState = fromJS({
   threads: [],
 });
 
-export function reducer(state = initialState, action) {
+export default function reducer(state = initialState, action) {
   switch (action.type) {
     case GET_THREADS:
       return state.set('isLoading', true);

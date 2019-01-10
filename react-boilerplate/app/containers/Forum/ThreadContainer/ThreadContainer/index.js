@@ -9,19 +9,19 @@ import { compose } from 'redux';
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 
-import reducer from './reducer';
-import saga from './saga';
-
 import LoaderWrapper from 'containers/Wrappers/LoaderWrapper';
 import ModalWrapper from 'components/common/ModalWrapper';
 import IsThreadOwner from 'containers/Wrappers/IsThreadOwner';
 
-import Subscribe from 'containers/Forum/ThreadView/ThreadModifiers/Subscribe';
-import AddCommentContainer from 'containers/Forum/ThreadView/ThreadModifiers/AddCommentContainer';
-import DeleteThread from 'containers/Forum/ThreadView/ThreadModifiers/DeleteThread';
+import Subscribe from 'containers/Forum/ThreadContainer/ThreadModifiers/Subscribe';
+import AddCommentContainer from 'containers/Forum/ThreadContainer/ThreadModifiers/AddComment';
+import DeleteThread from 'containers/Forum/ThreadContainer/ThreadModifiers/DeleteThread';
 
 import ThreadView from 'components/Forum/Thread/ThreadView';
 import CommentList from 'components/Forum/Thread/CommentList';
+
+import reducer from './reducer';
+import saga from './saga';
 
 import {
   makeSelectThread,
@@ -32,7 +32,7 @@ import {
 
 import { getThread } from './actions';
 
-class ThreadView extends React.Component {
+class ThreadContainer extends React.Component {
   componentDidMount() {
     this.props.getThread();
   }
@@ -52,12 +52,12 @@ class ThreadView extends React.Component {
         <LoaderWrapper isLoading={this.props.isLoading}>
           <ThreadView thread={this.props.thread} />
           <ModalWrapper trigger={commentTrigger}>
-            <AddCommentContainer onCloseModal={this.props.onCloseModal} />
+            <AddCommentContainer />
           </ModalWrapper>
           <Subscribe />
           <IsThreadOwner>
             <ModalWrapper trigger={deleteTrigger}>
-              <DeleteThread onCloseModal={this.props.onCloseModal} />
+              <DeleteThread />
             </ModalWrapper>
           </IsThreadOwner>
           <CommentList comments={this.props.comments} />
@@ -67,7 +67,7 @@ class ThreadView extends React.Component {
   }
 }
 
-ThreadView.propTypes = {
+ThreadContainer.propTypes = {
   getThread: PropTypes.func,
   comments: PropTypes.array,
   thread: PropTypes.object,
@@ -98,4 +98,4 @@ export default compose(
   withReducer,
   withSaga,
   withConnect
-)(ThreadView);
+)(ThreadContainer);

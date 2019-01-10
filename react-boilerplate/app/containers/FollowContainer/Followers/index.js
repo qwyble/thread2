@@ -10,7 +10,7 @@ import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 
 import LoaderWrapper from 'containers/Wrappers/LoaderWrapper';
-import Users from 'components/Explorer/Users';
+import Users from 'components/Search/Users';
 
 import HasFollowers from './HasFollowers';
 

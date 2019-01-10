@@ -1,6 +1,6 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import Root from '../../App/Root';
+import Root from 'containers/App/Root';
 import Logout from './logout';
 
 // component protects the route to the main app

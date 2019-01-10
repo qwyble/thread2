@@ -19,7 +19,7 @@ import saga from './saga';
 
 import {
   makeSelectUser,
-  makeSelectIsLoading,
+  makeSelectEditIsLoading,
   makeSelectImageIsLoading,
   makeSelectGetUserIsLoading,
 } from './selectors';
@@ -66,7 +66,7 @@ ProfileContainer.propTypes = {
 const mapStateToProps = () =>
   createStructuredSelector({
     user: makeSelectUser(),
-    isLoading: makeSelectIsLoading(),
+    editIsLoading: makeSelectEditIsLoading(),
     imageIsLoading: makeSelectImageIsLoading(),
     getUserIsLoading: makeSelectGetUserIsLoading(),
   });

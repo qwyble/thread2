@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Sidebar, Segment } from 'semantic-ui-react';
 
 import Forum from 'components/Forum';
-import ForumCategoryContainer from 'containers/Forum/ForumCategoryContainer';
+import ForumCategories from 'containers/Forum/ForumCategories';
 
 import StyledButton from './StyledButton';
 import SideBar from './SideBar';
@@ -19,7 +19,7 @@ class ForumSidebar extends Component {
       <div className="primaryContainer">
         <Sidebar.Pushable as={Segment}>
           <SideBar visible={this.state.visible}>
-            <ForumCategoryContainer />
+            <ForumCategories />
           </SideBar>
           <Sidebar.Pusher>
             <StyledButton

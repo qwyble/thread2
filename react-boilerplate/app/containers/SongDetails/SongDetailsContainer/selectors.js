@@ -1,5 +1,6 @@
 import { createSelector } from 'reselect';
 import { makeSelectParams } from 'containers/AppUtilities/ProfileContext/selectors';
+import { makeSelectNowPlayingId } from 'containers/Audio/PlaybackContainer/selectors';
 
 export const selectSongDetailsState = state =>
   state.get('SongDetailsContainer');
@@ -20,4 +21,20 @@ export const makeSelectSongIdParam = () =>
   createSelector(
     makeSelectParams,
     params => params.song
+  );
+
+export const makeSelectSong = () =>
+  createSelector(
+    selectSongDetailsState,
+    state => state.get('song')
+  );
+
+export const makeSelectIsPlaying = () =>
+  createSelector(
+    makeSelectSongIdParam,
+    makeSelectNowPlayingId,
+    (songId, nowPlayingId) => {
+      if (songId === nowPlayingId) return true;
+      return false;
+    }
   );

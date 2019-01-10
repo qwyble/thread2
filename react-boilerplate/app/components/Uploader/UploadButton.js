@@ -1,11 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Icon } from 'semantic-ui-react';
 
 import ModalWrapper from 'components/common/ModalWrapper';
 import Uploader from 'containers/Uploader';
 
-const UploadButton = props => {
+const UploadButton = () => {
   const trigger = (
     <div>
       <Icon name="angle double up" />
@@ -15,14 +14,10 @@ const UploadButton = props => {
   return (
     <div>
       <ModalWrapper trigger={trigger}>
-        <Uploader onCloseModal={props.onCloseModal} />
+        <Uploader />
       </ModalWrapper>
     </div>
   );
-};
-
-UploadButton.propTypes = {
-  onCloseModal: PropTypes.func,
 };
 
 export default UploadButton;

@@ -10,8 +10,8 @@ import injectSaga from 'utils/injectSaga';
 
 import ErrorWrapper from 'containers/Wrappers/ErrorWrapper';
 import Loader from 'components/common/Loader';
-import LoadableProtected from 'containers/authentication/Protected/Loadable';
-import LoadableLoginContainer from 'containers/authentication/LoginContainer/Loadable';
+import LoadableProtected from 'components/Authentication/Protected/Loadable';
+import LoadableLoginContainer from 'containers/Authentication/LoginContainer/Loadable';
 import { makeSelectIsLoggedIn, makeSelectIsLoading } from './selectors';
 import { authenticate } from './actions';
 
