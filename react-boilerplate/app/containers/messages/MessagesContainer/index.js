@@ -6,55 +6,16 @@ import { Route } from 'react-router-dom';
 import MessagesUtil from '../../../components/Messages/SideBar';
 import MessagesList from '../messagesList';
 import SentMessagesList from '../../../components/Messages/MessageList/sentMessagesList';
-import ViewMessage from '../../../components/Messages/MessageView/Index';
+import ViewMessage from '../../../components/Messages/MessageView/index';
 import Composer from '../composer';
 
 class MessagesContainer extends React.Component {
-  state = {
-    selectedMessages: [],
-    messages: [],
-    _loading: false,
-  };
-
-  componentDidMount = () => {
-    this.getMessages();
-  };
-
-  getMessages = () => {
-    this.setState({ _loading: true });
-    messagesGet().then(result => {
-      this.setState({ messages: result.data, _loading: false });
-    });
-  };
-
-  getSentMessages = () => {
-    this.setState({ _loading: true });
-    sentMessagesGet().then(result =>
-      this.setState({ _loading: false, messages: result.data })
-    );
-  };
-
-  handleMessageSelect = e => {
-    const id = parseInt(e.target.id, 10);
-    const selected = this.state.selectedMessages;
-
-    if (selected.includes(id)) {
-      this.setState({ selectedMessages: selected.filter(m => m !== id) });
-    } else {
-      this.setState({ selectedMessages: selected.concat(id) });
-    }
-  };
-
-  handleDelete = () => {
-    deletePost(this.state.selectedMessages).then(() => {
-      this.getMessages();
-    });
-  };
+  componentDidMount() {}
 
   render() {
     return (
       <div>
-        <MessagesList messages={this.props.messages} sent={this.props.sent} />
+        <MessagesList messages={this.props.messages} />
       </div>
     );
   }

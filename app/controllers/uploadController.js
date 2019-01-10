@@ -37,7 +37,7 @@ songFileToBucket = (req, res) => {
     gzip: true,
   });
   stream.on('error', err => {
-    res.status(400).end(err);
+    res.status(400).send(err);
   });
   stream.on('finish', () => {
     file
@@ -55,7 +55,7 @@ songFileToBucket = (req, res) => {
         };
 
         Song.create(song);
-        res.status(200).end(song);
+        res.status(200).send(song);
       });
   });
   stream.end(file.buffer);

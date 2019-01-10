@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 
@@ -10,6 +10,8 @@ import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 
 import { makeSelectCategories } from 'containers/Forum/ForumCategories/selectors';
+import ThreadComposerForm from 'components/Forum/ThreadComposerForm';
+
 import reducer from './reducer';
 import saga from './saga';
 
@@ -36,6 +38,7 @@ ThreadComposer.propTypes = {
   categories: PropTypes.array,
   isLoading: PropTypes.bool,
   postThread: PropTypes.func,
+  didSucceed: PropTypes.func,
 };
 
 const mapStateToProps = () =>

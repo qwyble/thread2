@@ -1,83 +1,39 @@
 import React from 'react';
-import { Loader, Button, Container, Divider } from 'semantic-ui-react';
-import { Redirect } from 'react-router-dom';
-import axios from 'axios';
-import Composer from './composer.js';
+import PropTypes from 'prop-types';
 
-class MessageView extends React.Component {
-  state = {
-    message: {},
-    messageId: '',
-    redirect: false,
-    reply: false,
-  };
+import { Container, Divider } from 'semantic-ui-react';
 
-  static getDerivedStateFromProps(props, state) {
-    if (props.location.state) {
-      return { messageId: props.location.state.id };
-    } 
-      return { redirect: true };
-    
-  }
+import PropChecker from 'components/common/Conditional/PropChecker';
+import LoaderWrapper from 'containers/Wrappers/LoaderWrapper';
+import ConditionalBasicClosed from 'components/common/Conditional/ConditionalBasicClosed';
 
-  componentDidMount() {
-    if (!this.state.redirect) {
-      this.getMessage();
-    }
-  }
+import MessageComposer from 'containers/Messages/MessageComposer';
 
-  getMessage = () => {
-    this.setState({ _loading: true });
-    axios({
-      method: 'get',
-      url: 'https://thread-204819.appspot.com/getMessage',
-      params: {
-        id: this.state.messageId,
-      },
-      withCredentials: true,
-    }).then(result => {
-      this.setState({ message: result.data[0], _loading: false });
-    });
-  };
+const MessageView = props => {
+  const buttonProps = { icon: 'reply' };
+  return (
+    <Container>
+      <LoaderWrapper isLoading={props.isLoading}>
+        <PropChecker field={props.message}>
+          <div style={{ float: 'right' }}>{props.message.date}</div>
+          From: {props.message.senderName}
+          <Divider />
+          Subject: {props.message.subject}
+          <Divider />
+          {props.message.text}
+          <Divider />
+          <ConditionalBasicClosed buttonProps={buttonProps}>
+            <MessageComposer recipient={props.message.sender} />
+          </ConditionalBasicClosed>
+        </PropChecker>
+      </LoaderWrapper>
+    </Container>
+  );
+};
 
-  handleReply = () => {
-    if (this.state.reply) {
-      this.setState({ reply: false });
-    } else {
-      this.setState({ reply: true });
-    }
-  };
-
-  render() {
-    if (this.state.redirect) {
-      return <Redirect to="/messages" />;
-    }
-
-    return (
-      <Container>
-        {this.state.loading ? <Loader active /> : <div />}
-        {this.state.message ? (
-          <div>
-            <div style={{ float: 'right' }}>{this.state.message.date}</div>
-            From: {this.state.message.senderName}
-            <Divider />
-            Subject: {this.state.message.subject}
-            <Divider />
-            {this.state.message.text}
-            <Divider />
-            <Button icon="reply" onClick={this.handleReply} />
-            {this.state.reply ? (
-              <Composer recipient={this.state.message.sender} />
-            ) : (
-              <div />
-            )}
-          </div>
-        ) : (
-          <div />
-        )}
-      </Container>
-    );
-  }
-}
+MessageView.propTypes = {
+  message: PropTypes.object,
+  isLoading: PropTypes.bool,
+};
 
 export default MessageView;

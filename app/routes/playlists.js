@@ -40,9 +40,9 @@ module.exports = function(app) {
   app.post('/renamePlaylist', function(req, res) {
     playlist
       .renamePlaylist(req.body.plid, req.body.plname, req.session.user.idUsers)
-      .then(() => res.status(200).end('success'))
+      .then(() => res.status(200).send('success'))
       .catch(err => {
-        res.status(400).end(err);
+        res.status(400).send(err);
       });
   });
 
@@ -73,18 +73,6 @@ module.exports = function(app) {
       });
   });
 
-  /*
-  app.get('/getPlaylist/:plid', function(req, res) {
-    playlist
-      .getPlaylist(req.params.plid)
-      .then(data => {
-        res.status(200).end(data);
-      })
-      .catch(err => {
-        res.status(400).end(err);
-      });
-  });
-*/
   app.post('/renameCat', function(req, res) {
     playlist
       .renameCategory(req.body.catid, req.body.name, req.session.user.idUsers)

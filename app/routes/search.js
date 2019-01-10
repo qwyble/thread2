@@ -1,4 +1,5 @@
 var search = require('../controllers/searchController.js');
+var follower = require('../controllers/followerController');
 
 module.exports = function(app) {
   app.get('/searchUsersAll/:searchString?', function(req, res) {
@@ -38,8 +39,10 @@ module.exports = function(app) {
   });
 
   app.get('/emailSearch', function(req, res) {
-    search.getUsers(req.query.searchString).then(users => {
-      res.status(200).send(users);
+    follower.getFollowers(req.session.user.idUsers).then(followers => {
+      follower
+        .getFollowing(req.session.user.idUsers)
+        .then(following => ({ ...followers, ...following }));
     });
   });
 };

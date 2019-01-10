@@ -11,7 +11,7 @@ import injectSaga from 'utils/injectSaga';
 
 import { Segment } from 'semantic-ui-react';
 
-import PropChecker from 'components/common/PropChecker';
+import PropChecker from 'components/common/Conditional/PropChecker';
 import LoaderWrapper from 'containers/Wrappers/LoaderWrapper';
 
 import ClonePortalForm from 'components/SongsTable/ClonePortal/ClonePortalForm';

@@ -1,20 +1,16 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Table, Menu, Icon, Checkbox } from 'semantic-ui-react';
 import { Redirect } from 'react-router-dom';
 
 class MessagesList extends React.Component {
   state = {
-    messages: [],
     messageToView: '',
     redirect: false,
   };
 
-  static getDerivedStateFromProps(props, state) {
-    return { messages: props.messages };
-  }
-
-  handleViewMessage = m => {
-    this.setState({ redirect: true, messageToView: m.idmessages });
+  handleViewMessage = e => {
+    this.setState({ redirect: true, messageToView: e.target.id });
   };
 
   render() {
@@ -23,9 +19,7 @@ class MessagesList extends React.Component {
         <Redirect
           to={{
             pathname: `/messages/view`,
-            state: {
-              id: this.state.messageToView,
-            },
+            state: { id: this.state.messageToView },
           }}
         />
       );
@@ -53,20 +47,18 @@ class MessagesList extends React.Component {
                       className="messageCheckbox"
                       size="mini"
                       id={m.idmessages}
-                      checked={this.props.selectedMessages.includes(
-                        m.idmessages
-                      )}
+                      checked={!!m.selected}
                       onChange={this.props.onMessageSelect}
                     />
                     <span />
                   </Table.Cell>
-                  <Table.Cell onClick={this.handleViewMessage.bind(this, m)}>
+                  <Table.Cell id={m.id} onClick={this.handleViewMessage}>
                     {m.senderName}
                   </Table.Cell>
-                  <Table.Cell onClick={this.handleViewMessage.bind(this, m)}>
+                  <Table.Cell id={m.id} onClick={this.handleViewMessage}>
                     {m.subject}
                   </Table.Cell>
-                  <Table.Cell onClick={this.handleViewMessage.bind(this, m)}>
+                  <Table.Cell id={m.id} onClick={this.handleViewMessage}>
                     {m.date.slice(0, 10)}
                   </Table.Cell>
                 </Table.Row>
@@ -97,5 +89,10 @@ class MessagesList extends React.Component {
     );
   }
 }
+
+MessagesList.propTypes = {
+  onMessageSelect: PropTypes.func,
+  messages: PropTypes.array,
+};
 
 export default MessagesList;
