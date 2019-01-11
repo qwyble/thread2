@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import LoadableMessagesContainer from 'containers/messages/MessagesContainer/Loadable';
+import LoadableMessagesRouter from 'components/Messages/MessagesRouter/Loadable';
 import LoadableProfileContainer from 'containers/Profile/ProfileContainer/Loadable';
 import LoadableAudioPlayback from 'containers/Audio/PlaybackContainer/Loadable';
 import LoadableSongDetails from 'containers/SongDetails/SongDetailsContainer/Loadable';
@@ -34,7 +34,7 @@ const Root = () => (
           <Route path="/forum" component={LoadableForumSidebar} />
           <Route path="/profile/:profile" component={LoadableProfileContext} />
           <Route exact path="/edit" component={LoadableProfileContainer} />
-          <Route path="/messages" component={LoadableMessagesContainer} />
+          <Route path="/messages" component={LoadableMessagesRouter} />
           <Route path="/song/:song" component={LoadableSongDetails} />
           <Route path="/" component={LoadableProfileContext} />
         </Switch>

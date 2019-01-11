@@ -12,8 +12,8 @@ class LoginContainer extends React.Component {
     password: '',
     userName: '',
     errors: {
-      password: '',
-      email: '',
+      password: false,
+      email: false,
     },
     disabled: true,
   };
@@ -35,34 +35,31 @@ class LoginContainer extends React.Component {
   };
 
   handleFocus = e => {
-    const name = e.target.name;
-    this.setState(prevState => ({
-      errors: { ...prevState.errors, [name]: '' },
-    }));
+    this.setState({ errors: { password: false, email: false } });
   };
 
   handleBlur = e => {
     if (e.target.name === 'email') {
       if (!this.state.email)
         this.setState(prevState => ({
-          errors: { ...prevState.errors, email: 'email is required' },
+          errors: { ...prevState.errors, email: true },
         }));
       else if (!isEmail(this.state.email))
         this.setState(prevState => ({
-          errors: { ...prevState.errors, email: 'invalid email' },
+          errors: { ...prevState.errors, email: true },
         }));
       else
         this.setState(prevState => ({
-          errors: { ...prevState.errors, email: '' },
+          errors: { ...prevState.errors, email: false },
         }));
     } else if (e.target.name === 'password') {
       if (!this.state.password)
         this.setState(prevState => ({
-          errors: { ...prevState.errors, password: 'password is required' },
+          errors: { ...prevState.errors, password: true },
         }));
       else
         this.setState(prevState => ({
-          errors: { ...prevState.errors, password: '' },
+          errors: { ...prevState.errors, password: false },
         }));
     }
   };
@@ -104,6 +101,7 @@ class LoginContainer extends React.Component {
               onBlur={this.handleBlur}
               onFocus={this.handleFocus}
               errors={this.state.errors}
+              disabled={this.state.disabled}
             />
           </Route>
           <Route path="/auth">
@@ -115,6 +113,7 @@ class LoginContainer extends React.Component {
               onBlur={this.handleBlur}
               onFocus={this.handleFocus}
               errors={this.state.errors}
+              disabled={this.state.disabled}
             />
           </Route>
         </Switch>

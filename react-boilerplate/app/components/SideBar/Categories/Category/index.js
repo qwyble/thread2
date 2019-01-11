@@ -1,14 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, Menu } from 'semantic-ui-react';
+import { Menu } from 'semantic-ui-react';
 
 import IsSideBarOwner from 'containers/Wrappers/IsSideBarOwner';
-
 import PlaylistContainer from 'containers/SideBar/PlaylistContainer';
+import AnimationWrapper from 'containers/Wrappers/AnimationWrapper';
+import PropChecker from 'components/common/Conditional/PropChecker';
 
 import EditCategoryPortal from 'components/SideBar/Categories/CategoryModifiers/EditCategoryPortal';
 
-import AnimationWrapper from 'containers/Wrappers/AnimationWrapper';
+import StyledButton from './StyledButton';
 
 class Category extends React.Component {
   handleSelectCategory = () => {
@@ -16,9 +17,6 @@ class Category extends React.Component {
   };
 
   render() {
-    const displayLists =
-      this.props.selectedCategoryId === this.props.category.get('catid');
-
     return (
       <div>
         <div>
@@ -31,30 +29,18 @@ class Category extends React.Component {
                 />
               </IsSideBarOwner>
 
-              <Button
-                icon
-                inverted
-                size="mini"
-                color="blue"
-                floated="right"
-                className="button2"
-                labelPosition="right"
-                onClick={this.handleSelectCategory}
-              >
+              <StyledButton onClick={this.handleSelectCategory}>
                 {this.props.category.get('catname')}
-              </Button>
+              </StyledButton>
             </Menu.Item>
-
-            {displayLists ? (
+            <PropChecker field={this.props.selected}>
               <AnimationWrapper displayLists={displayLists}>
                 <PlaylistContainer
                   playlists={this.props.category.get('pls')}
                   catId={this.props.category.get('catid')}
                 />
               </AnimationWrapper>
-            ) : (
-              <div />
-            )}
+            </PropChecker>
           </div>
         </div>
       </div>
@@ -63,9 +49,9 @@ class Category extends React.Component {
 }
 
 Category.propTypes = {
-  selectedCategoryId: PropTypes.string,
   onSetCategory: PropTypes.func,
   category: PropTypes.object,
+  selected: PropTypes.bool,
 };
 
 export default Category;

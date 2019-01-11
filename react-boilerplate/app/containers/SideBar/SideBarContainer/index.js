@@ -8,7 +8,7 @@ import { createStructuredSelector } from 'reselect';
 import injectReducer from 'utils/injectReducer';
 
 import CategoryContainer from 'containers/SideBar/CategoryContainer';
-import CategoryListHeader from 'components/SideBar/SidebarHeader';
+import SideBarHeader from 'components/SideBar/SidebarHeader';
 import SongsContainer from 'containers/SongsContainer/SongsContainer';
 
 import { makeSelectProfile } from 'containers/AppUtilities/ProfileContext/selectors';
@@ -31,7 +31,7 @@ const SideBar = props => (
           as={Menu}
           visible={props.visible}
         >
-          <CategoryListHeader owner={props.owner} />
+          <SideBarHeader owner={props.owner} />
 
           <CategoryContainer />
         </Sidebar>

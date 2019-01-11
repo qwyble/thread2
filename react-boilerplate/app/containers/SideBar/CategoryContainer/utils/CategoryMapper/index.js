@@ -8,7 +8,8 @@ const CategoryMapper = props => (
       <Menu.Item className="sideItems" key={key}>
         <Category
           category={category}
-          onSetCategory={this.props.onSetCategory}
+          onSetCategory={props.onSetCategory}
+          selected={category.get('catid') === props.selectedCategoryId}
         />
       </Menu.Item>
     ))}
@@ -17,6 +18,8 @@ const CategoryMapper = props => (
 
 CategoryMapper.propTypes = {
   categories: PropTypes.object,
+  onSetCategory: PropTypes.func,
+  selectedCategoryId: PropTypes.number,
 };
 
 export default CategoryMapper;

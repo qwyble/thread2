@@ -16,7 +16,7 @@ const Login = props => (
       <Grid verticalAlign="middle" centered columns={3}>
         <Segment>
           <Form size="tiny" id="signup" name="signup" onSubmit={props.onSubmit}>
-            <Form.Field>
+            <Form.Field error={props.errors.email}>
               <label htmlFor="email">Email</label>
               <Input
                 id="email"
@@ -28,7 +28,7 @@ const Login = props => (
                 onFocus={props.onFocus}
               />
             </Form.Field>
-            <Form.Field>
+            <Form.Field error={props.errors.password}>
               <label htmlFor="password">Password</label>
               <Input
                 id="password"
@@ -40,11 +40,11 @@ const Login = props => (
                 onFocus={props.onFocus}
               />
             </Form.Field>
-            <Button type="submit">Login </Button>
+            <Button type="submit" disabled={props.disabled}>
+              Login{' '}
+            </Button>
           </Form>
           <br />
-          <div> {props.errors.email} </div>
-          <div> {props.errors.password} </div>
           <Link to="/auth/signup"> Signup </Link>
         </Segment>
       </Grid>
@@ -60,6 +60,7 @@ Login.propTypes = {
   password: PropTypes.string,
   errors: PropTypes.object,
   onSubmit: PropTypes.func,
+  disabled: PropTypes.bool,
 };
 
 export default Login;

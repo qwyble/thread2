@@ -22,7 +22,6 @@ const DeleteCategory = props => (
 
 DeleteCategory.propTypes = {
   isLoading: PropTypes.bool,
-  error: PropTypes.object,
   deleteCategory: PropTypes.func,
   onClosePortal: PropTypes.func,
 };

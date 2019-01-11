@@ -19,7 +19,6 @@ const AddCategory = props => (
 
 AddCategory.propTypes = {
   isLoading: PropTypes.bool,
-  error: PropTypes.object,
   addCategory: PropTypes.func,
 };
 

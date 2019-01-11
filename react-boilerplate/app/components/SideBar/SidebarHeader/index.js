@@ -1,21 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { Link } from 'react-router-dom';
+import { Menu, Image } from 'semantic-ui-react';
+
 const SidebarHeader = props => (
   <div>
     {props.owner ? (
-      <Menu.Item style={{ color: '#54c8ff' }}>
-        <IsOwner
-          alt={
-            <div>
-              {props.owner.userName}
-              's playlists:
-            </div>
-          }
-        >
-          <div>Your Playlists</div>
-        </IsOwner>
-      </Menu.Item>
+      <Link to={`/profile/${props.owner.idUsers}`}>
+        <Menu.Item link style={{ color: '#54c8ff' }}>
+          <Image src={props.owner.imageUrl} floated="left" size="mini" spaced />
+          <div>{props.owner.userName}</div>
+        </Menu.Item>
+      </Link>
     ) : (
       <div />
     )}
@@ -24,7 +21,6 @@ const SidebarHeader = props => (
 
 SidebarHeader.propTypes = {
   owner: PropTypes.object,
-  isOwner: PropTypes.bool,
 };
 
 export default SidebarHeader;

@@ -8,9 +8,9 @@ import { compose } from 'redux';
 import { makeSelectMessages } from 'containers/Messages/MessagesContainer/selectors';
 import { selectMessage } from 'containers/Messages/MessagesContainer/actions';
 
-import MessagesList from 'components/Messages/MessageList/MessagesList';
-import MessagesTableHeader from 'components/Messages/MessagesTable/MessagesTableHeader';
-import MessagesTableFooter from 'components/Messages/MessagesTable/MessagesTableFooter';
+import MessagesList from 'components/Messages/MessageTable/MessagesList';
+import MessagesTableHeader from 'components/Messages/MessageTable/MessagesTableHeader';
+import MessagesTableFooter from 'components/Messages/MessageTable/MessagesTableFooter';
 
 import { makeSelectIsInbox } from './selectors';
 
@@ -30,6 +30,7 @@ const MessagesListContainer = props => (
 MessagesListContainer.propTypes = {
   selectMessage: PropTypes.func,
   messages: PropTypes.array,
+  isInbox: PropTypes.bool,
 };
 
 const mapStateToProps = () =>
