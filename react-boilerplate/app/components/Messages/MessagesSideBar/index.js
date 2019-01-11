@@ -20,7 +20,7 @@ const MessagesSideBar = props => (
           Compose
         </Menu.Item>
       </Link>
-      <Link to="/messages" onClick={props.onGetInbox}>
+      <Link to="/messages/inbox" onClick={props.onGetInbox}>
         <Menu.Item name="inbox">
           <Icon name="mail" />
           Inbox

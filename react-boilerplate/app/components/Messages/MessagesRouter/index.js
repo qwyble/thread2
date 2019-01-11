@@ -1,23 +1,23 @@
 import React from 'react';
 import { Container, Segment } from 'semantic-ui-react';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 
 import MessageViewContainer from 'containers/Messages/MessageViewContainer';
 import MessageComposer from 'containers/Messages/MessageComposer';
+import MessagesListContainer from 'containers/Messages/MessagesListContainer';
 import MessagesContainer from 'containers/Messages/MessagesContainer';
-import MessagesSideBar from 'components/Messages/MessagesSideBar';
 
 const MessagesRouter = () => (
   <div>
-    <MessagesSideBar />
+    <MessagesContainer />
 
     <Segment style={{ width: '50%', margin: 'auto' }} className="messagesTable">
       <Container style={{ height: '70vh', overflowY: 'scroll' }}>
-        <Route path="/messages/view" component={MessageViewContainer} />
-
-        <Route path="/messages/compose" component={MessageComposer} />
-
-        <Route exact path="/messages" component={MessagesContainer} />
+        <Switch>
+          <Route path="/messages/view" component={MessageViewContainer} />
+          <Route path="/messages/compose" component={MessageComposer} />
+          <Route path="/messages" component={MessagesListContainer} />
+        </Switch>
       </Container>
     </Segment>
   </div>

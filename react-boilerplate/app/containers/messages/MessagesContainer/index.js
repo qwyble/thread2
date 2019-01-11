@@ -1,48 +1,61 @@
 import React from 'react';
-import { Segment, Loader, Container } from 'semantic-ui-react';
-import axios from 'axios';
-import { Route } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-import MessagesUtil from '../../../components/Messages/SideBar';
-import MessagesList from '../messagesList';
-import SentMessagesList from '../../../components/Messages/MessageList/sentMessagesList';
-import ViewMessage from '../../../components/Messages/MessageView/index';
-import Composer from '../composer';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+
+import injectReducer from 'utils/injectReducer';
+import injectSaga from 'utils/injectSaga';
+
+import MessagesSideBar from 'components/Messages/MessagesSideBar';
+
+import reducer from './reducer';
+import saga from './saga';
+
+import { getMessages, deleteMessages } from './actions';
 
 class MessagesContainer extends React.Component {
-  componentDidMount() {}
+  handleGetInbox = () => {
+    this.props.getMessages('inbox');
+  };
+
+  handleGetSent = () => {
+    this.props.getMessages('sent');
+  };
 
   render() {
     return (
       <div>
-        <MessagesList messages={this.props.messages} />
+        <MessagesSideBar
+          onGetInbox={this.handleGetInbox}
+          onGetSent={this.handleGetSent}
+          onDelete={this.props.deleteMessages}
+        />
       </div>
     );
   }
 }
 
-export default MessagesContainer;
+MessagesContainer.propTypes = {
+  getMessages: PropTypes.func,
+  deleteMessages: PropTypes.func,
+};
 
-const messagesGet = () =>
-  axios({
-    method: 'get',
-    url: 'https://thread-204819.appspot.com/getMessages',
-    withCredentials: true,
-  });
+const mapStateToProps = {};
+const mapDispatchToProps = {
+  getMessages,
+  deleteMessages,
+};
 
-const sentMessagesGet = () =>
-  axios({
-    method: 'get',
-    url: 'https://thread-204819.appspot.com/getSentMessages',
-    withCredentials: true,
-  });
+const withConnect = connect(
+  mapStateToProps,
+  mapDispatchToProps
+);
+const withReducer = injectReducer({ key: 'MessagesContainer', reducer });
+const withSaga = injectSaga({ key: 'MessagesContainer', saga });
 
-const deletePost = selectedMessages =>
-  axios({
-    method: 'post',
-    url: 'https://thread-204819.appspot.com/deleteMessages',
-    data: {
-      messages: selectedMessages,
-    },
-    withCredentials: true,
-  });
+export default compose(
+  withReducer,
+  withSaga,
+  withConnect
+)(MessagesContainer);
