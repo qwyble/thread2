@@ -14,11 +14,13 @@ export const makeSelectIsLoading = () =>
 export const makeSelectMessage = () =>
   createSelector(
     selectMessageViewContainerState,
-    state => state.get('message')
+    selectMessagedViewContainerOwnProps,
+    (state, ownProps) => ownProps.location.state.message || state.get('message')
   );
 
 export const makeSelectMessageId = () =>
   createSelector(
     selectMessagedViewContainerOwnProps,
-    ownProps => ownProps.location.state.id
+    ownProps =>
+      ownProps.location.state.id || ownProps.location.state.message.idmessages
   );

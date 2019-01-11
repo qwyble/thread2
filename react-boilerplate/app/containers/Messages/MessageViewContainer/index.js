@@ -18,7 +18,7 @@ import { getMessage } from './actions';
 
 class MessageViewContainer extends Component {
   componentDidMount() {
-    this.props.getMessage();
+    if (!this.props.message) this.props.getMessage();
   }
 
   // TODO: view replies and parent messages....
