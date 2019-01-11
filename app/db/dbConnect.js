@@ -7,8 +7,7 @@ var sequelize = new Sequelize(
   config.password,
 
   {
-    host: '127.0.0.1',
-    port: '3306',
+    host: '/cloudsql/thread-204819:us-central1:thread-db1',
     dialect: 'mysql',
     define: {
       timestamps: false,
