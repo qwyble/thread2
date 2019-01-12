@@ -18,7 +18,7 @@ function* getMessage() {
     const message = yield call(getMessageRequest, messageId);
     yield put(getMessageCompleted(message));
   } catch (err) {
-    yield put(setError(err.message));
+    yield put(setError(err.response.data || err.message));
     yield put(getMessageFailed());
   }
 }

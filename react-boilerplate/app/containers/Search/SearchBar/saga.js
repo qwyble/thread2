@@ -21,7 +21,7 @@ function* searchChange(action) {
     yield put(searchChangeCompleted({ users, playlists, songs }));
   } catch (err) {
     yield put(searchChangeFailed());
-    yield put(setError(err.message));
+    yield put(setError(err.response.data || err.message));
   }
 }
 

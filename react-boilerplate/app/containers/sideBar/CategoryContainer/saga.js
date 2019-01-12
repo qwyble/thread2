@@ -24,7 +24,7 @@ function* getCategories() {
     yield put(setPlaylist(playlist));
   } catch (error) {
     yield put(getCategoriesCompleted([]));
-    yield put(setError(error.message));
+    yield put(setError(error.response.data || error.message));
   }
 }
 

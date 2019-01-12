@@ -20,7 +20,7 @@ function* getThread() {
     ]);
     yield put(getThreadCompleted(thread, comments));
   } catch (err) {
-    yield put(setError(err.message));
+    yield put(setError(err.response.data || err.message));
     yield put(getThreadFailed());
   }
 }

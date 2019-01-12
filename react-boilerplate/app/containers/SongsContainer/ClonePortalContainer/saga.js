@@ -12,16 +12,12 @@ export default function* clonePortalSaga() {
 function* clonePlaylist(action) {
   try {
     const { catId, plName, plToClone } = { ...action };
-    const plToAdd = yield call(clonePlaylistRequest, [
-      catId,
-      plName,
-      plToClone,
-    ]);
+    const plToAdd = yield call(clonePlaylistRequest, catId, plName, plToClone);
     yield put(clonePlaylistSuccess());
     yield put(addPlaylistToCategory(plToAdd, catId));
   } catch (err) {
     yield put(clonePlaylistFailed());
-    yield put(setError(err.message));
+    yield put(setError(err.response.data || err.message));
   }
 }
 

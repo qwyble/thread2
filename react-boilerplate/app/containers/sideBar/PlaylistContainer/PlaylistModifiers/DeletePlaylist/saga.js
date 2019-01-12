@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { call, takeLatest, put } from 'redux-saga';
 import { setError } from 'containers/Wrappers/ErrorWrapper/actions';
 import { DELETE_PLAYLIST } from './constants';
@@ -20,7 +21,7 @@ function* deletePlaylist(action) {
     yield put(deletePlaylistSuccess());
     yield put(removePlaylistFromCategory(data));
   } catch (err) {
-    yield put(setError(err.message));
+    yield put(setError(err.response.data || err.message));
     yield put(deletePlaylistFailed());
   }
 }

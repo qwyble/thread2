@@ -11,12 +11,12 @@ export default function* rateSongSaga() {
 function* rateSong(action) {
   try {
     const { idSongs, rating } = { ...action };
-    yield call(rateSongRequest, [idSongs, rating]);
+    yield call(rateSongRequest, idSongs, rating);
     yield put(rateSongCompleted());
     yield put(changeRating(idSongs, rating));
   } catch (err) {
     yield put(rateSongCompleted());
-    yield put(setError(err.message));
+    yield put(setError(err.response.data || err.message));
   }
 }
 

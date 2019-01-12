@@ -23,7 +23,7 @@ function* submitComment(action) {
       .toISOString()
       .substring(0, 19)
       .replace('T', ' ');
-    yield call(submitCommentRequest, [body, threadId, date]);
+    yield call(submitCommentRequest, body, threadId, date);
     const user = yield select(makeSelectUser);
     const comment = fromJS({
       userName: user.userName,
@@ -34,7 +34,7 @@ function* submitComment(action) {
     yield put(submitCommentCompleted());
     yield put(addCommentToThread(comment));
   } catch (err) {
-    yield put(setError(err.message));
+    yield put(setError(err.response.data || err.message));
     yield put(submitCommentFailed());
   }
 }

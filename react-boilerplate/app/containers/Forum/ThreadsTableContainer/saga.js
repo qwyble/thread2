@@ -18,7 +18,7 @@ function* getThreads() {
     const threads = yield call(getThreadsRequest, selectedCat);
     yield put(getThreadsCompleted(threads));
   } catch (err) {
-    yield put(setError(err.message));
+    yield put(setError(err.response.data || err.message));
     const oldThreads = yield select(makeSelectThreads);
     yield put(getThreadsCompleted(oldThreads));
   }

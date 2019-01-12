@@ -13,7 +13,7 @@ function* getFollowers() {
     yield put(getFollowersCompleted(followers));
   } catch (err) {
     yield put(getFollowersFailed());
-    yield put(setError(err.message));
+    yield put(setError(err.response.data || err.message));
   }
 }
 

@@ -1,5 +1,5 @@
-import { call, put, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
+import { call, put, takeLatest } from 'redux-saga/effects';
 
 import { renamePlInCat } from 'containers/SideBar/CategoryContainer/actions';
 import { setError } from 'containers/Wrappers/ErrorWrapper/actions';
@@ -22,7 +22,7 @@ function* renamePlaylist(action) {
     yield put(renamePlInCat(data.plid, data.plname));
   } catch (err) {
     yield put(renamePlaylistFailed());
-    yield put(setError(err.message));
+    yield put(setError(err.response.data || err.message));
   }
 }
 

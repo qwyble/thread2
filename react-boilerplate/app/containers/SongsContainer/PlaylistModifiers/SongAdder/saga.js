@@ -16,11 +16,11 @@ function* addSongs(action) {
   try {
     const songsToAdd = yield select(makeSelectSelectedSongs);
     const { plid } = { ...action };
-    yield call(addSongsRequest, [songsToAdd, plid]);
+    yield call(addSongsRequest, songsToAdd, plid);
     yield put(addSongsToPlSuccess());
   } catch (err) {
     yield put(addSongsToPlFailed());
-    yield put(setError(err.message));
+    yield put(setError(err.response.data || err.message));
   }
 }
 

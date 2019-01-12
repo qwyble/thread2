@@ -19,13 +19,13 @@ function* removeSongs() {
   try {
     const selectedSongs = yield select(makeSelectSelectedSongs);
     const selectedPlaylist = yield select(makeSelectSelectedPlaylist);
-    yield call(removeSongsRequest, [selectedSongs, selectedPlaylist]);
+    yield call(removeSongsRequest, selectedSongs, selectedPlaylist);
     const selectedSongIds = selectedSongs.map(song => song.idsongs);
     yield put(removeSongsFromPlaylist(selectedSongIds));
     yield put(removeSongsCompleted());
   } catch (err) {
     yield put(removeSongsFailed());
-    yield put(setError(err.message));
+    yield put(setError(err.response.data || err.message));
   }
 }
 

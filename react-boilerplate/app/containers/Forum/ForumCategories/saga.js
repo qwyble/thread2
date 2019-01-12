@@ -16,7 +16,7 @@ function* getCategories() {
     yield put(getCategoriesCompleted(categories));
   } catch (error) {
     yield put(getCategoriesCompleted([]));
-    yield put(setError(error.message));
+    yield put(setError(error.response.data));
   }
 }
 

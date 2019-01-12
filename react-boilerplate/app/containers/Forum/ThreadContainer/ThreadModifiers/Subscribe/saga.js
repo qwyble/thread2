@@ -26,7 +26,7 @@ function* getSubscribed() {
     const subbed = yield call(getSubscribedRequest, threadId);
     yield put(getSubscribedCompleted(subbed));
   } catch (err) {
-    yield put(setError(err.message));
+    yield put(setError(err.response.data || err.message));
     yield put(getSubscribedFailed());
   }
 }
@@ -34,10 +34,10 @@ function* subscribe() {
   try {
     const threadId = yield select(makeSelectThreadIdParam);
     const subbed = yield select(makeSelectIsSubscribed);
-    yield call(subscribeRequest, [threadId, subbed]);
+    yield call(subscribeRequest, threadId, subbed);
     yield put(subscribeCompleted());
   } catch (err) {
-    yield put(setError(err.message));
+    yield put(setError(err.response.data || err.message));
     yield put(subscribeFailed());
   }
 }

@@ -26,7 +26,7 @@ function* addPlaylist(action) {
     yield put(addPlaylistToCategory(playlist, data.catid));
   } catch (err) {
     yield put(addPlaylistFailed());
-    yield put(setError(err.message));
+    yield put(setError(err.response.data || err.message));
   }
 }
 

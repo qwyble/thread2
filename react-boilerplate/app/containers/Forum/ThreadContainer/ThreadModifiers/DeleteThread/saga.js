@@ -16,7 +16,7 @@ function* deleteThread() {
     yield call(deleteThreadRequest, threadId);
     yield put(deleteThreadCompleted());
   } catch (err) {
-    yield put(setError(err.message));
+    yield put(setError(err.response.data || err.message));
     yield put(deleteThreadFailed());
   }
 }

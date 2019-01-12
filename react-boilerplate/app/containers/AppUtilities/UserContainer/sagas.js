@@ -15,12 +15,11 @@ function* auth(action) {
     yield put(authSuccess(userObj));
   } catch (err) {
     yield put(authFailed());
-    yield put(setError(err.response.data));
+    yield put(setError(err.response.data || err.message));
   }
 }
 
 function authFunc(ext, creds) {
-  console.log(ext, creds);
   return axios({
     method: 'get',
     url: `https://thread-204819.appspot.com/auth/${ext}`,
@@ -29,7 +28,6 @@ function authFunc(ext, creds) {
   })
     .then(result => result.data)
     .catch(err => {
-      console.log({ ...err });
       throw err;
     });
 }

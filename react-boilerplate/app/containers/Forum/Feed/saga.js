@@ -15,7 +15,7 @@ function* getFeed() {
     const feedEvents = yield call(getFeedRequest);
     yield put(getFeedCompleted(feedEvents));
   } catch (err) {
-    yield put(setError(err.message));
+    yield put(setError(err.response.data || err.message));
     yield put(getFeedFailed());
   }
 }

@@ -49,7 +49,7 @@ function* getSongs() {
     yield put(getSongsSuccess(songs));
   } catch (err) {
     yield put(getSongsFailed());
-    yield put(setError(err.message));
+    yield put(setError(err.response.data || err.message));
   }
 }
 

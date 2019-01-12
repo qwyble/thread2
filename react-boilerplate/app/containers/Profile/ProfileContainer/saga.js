@@ -27,7 +27,7 @@ function* getUser() {
     const user = yield call(getUserRequest);
     yield put(getUserCompleted(user));
   } catch (err) {
-    yield put(setError(err.message));
+    yield put(setError(err.response.data || err.message));
     yield put(getUserFailed());
   }
 }
@@ -37,12 +37,12 @@ function* editUser(action) {
     const user = yield select(makeSelectUser);
     const userName = action.username || user.get('userName');
     const email = action.email || user.get('email');
-    yield call(editUserRequest, [userName, email]);
+    yield call(editUserRequest, userName, email);
     user.set('userName', userName);
     user.set('email', email);
     yield put(editUserCompleted(user));
   } catch (err) {
-    yield put(setError(err.message));
+    yield put(setError(err.response.data || err.message));
     yield put(editUserFailed());
   }
 }
@@ -52,7 +52,7 @@ function* uploadImage(action) {
     yield call(uploadImageRequest, action.imageFile);
     yield put(uploadImageCompleted(action.imageUrl));
   } catch (err) {
-    yield put(setError(err.message));
+    yield put(setError(err.response.data || err.message));
     yield put(uploadImageFailed());
   }
 }

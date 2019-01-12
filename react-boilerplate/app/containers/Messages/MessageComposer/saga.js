@@ -20,20 +20,21 @@ function* getUsers() {
     const users = yield call(getUsersRequest);
     yield put(getUsersCompleted(users));
   } catch (err) {
-    yield put(setError(err.message));
+    yield put(setError(err.response.data || err.message));
   }
 }
 
 function* sendMessage(action) {
   try {
-    const sentMessage = yield call(sendMessageRequest, [
+    const sentMessage = yield call(
+      sendMessageRequest,
       action.subject,
       action.body,
-      action.recipient,
-    ]);
+      action.recipient
+    );
     yield put(sendMessageCompleted(sentMessage));
   } catch (err) {
-    yield put(setError(err.message));
+    yield put(setError(err.response.data || err.message));
     yield put(sendMessageFailed());
   }
 }
