@@ -14,6 +14,7 @@ import injectSaga from 'utils/injectSaga';
 import { getSongs, sortBy, setDescending } from './actions';
 
 import reducer from './reducer';
+import saga from './saga';
 
 import { makeSelectIsLoading } from './selectors';
 
@@ -49,10 +50,9 @@ SongsContainer.propTypes = {
   setDescending: PropTypes.func,
 };
 
-const mapStateToProps = () =>
-  createStructuredSelector({
-    isLoading: makeSelectIsLoading(),
-  });
+const mapStateToProps = createStructuredSelector({
+  isLoading: makeSelectIsLoading(),
+});
 
 const mapDispatchToProps = {
   sortBy,
@@ -60,8 +60,7 @@ const mapDispatchToProps = {
   setDescending,
 };
 
-const withReducer = injectReducer({ key: 'songsContainer', reducer });
-const withSaga = injectSaga({ key: 'songsContainerSaga', saga });
+const withSaga = injectSaga({ key: 'songsContainer', saga });
 
 const withConnect = connect(
   mapStateToProps,

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Menu, Icon } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import UploadButton from 'components/Uploader/UploadButton';
-import SearchBar from 'containers/search/searchBar';
+import SearchBar from 'containers/Search/SearchBar';
 
 /* Top bar renders components for uploading songs,
 sending messages, and navigating the app. */

@@ -56,13 +56,12 @@ CategoryContainer.propTypes = {
   selectedCategoryId: PropTypes.string,
 };
 
-const mapStateToProps = () =>
-  createStructuredSelector({
-    selectedCategoryId: makeSelectSelectedCategoryId(),
-    categories: makeSelectCategories(),
-    isLoading: makeSelectIsLoading(),
-    ownerId: makeSelectProfileId(),
-  });
+const mapStateToProps = createStructuredSelector({
+  selectedCategoryId: makeSelectSelectedCategoryId(),
+  categories: makeSelectCategories(),
+  isLoading: makeSelectIsLoading(),
+  ownerId: makeSelectProfileId(),
+});
 
 const mapDispatchToProps = {
   getCategories,

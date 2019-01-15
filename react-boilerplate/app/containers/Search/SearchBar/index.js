@@ -1,4 +1,5 @@
 import React from 'react';
+import { toJS } from 'immutable';
 import PropTypes from 'prop-types';
 import { Search, Image } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
@@ -77,9 +78,9 @@ class SearchBar extends React.Component {
 SearchBar.propTypes = {
   searchString: PropTypes.string,
   searchChange: PropTypes.func,
-  users: PropTypes.object,
-  songs: PropTypes.object,
-  playlists: PropTypes.object,
+  users: PropTypes.array,
+  songs: PropTypes.array,
+  playlists: PropTypes.array,
   isLoading: PropTypes.bool,
 };
 

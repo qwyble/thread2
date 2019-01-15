@@ -5,7 +5,6 @@ import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
-import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 
 import ErrorWrapper from 'containers/Wrappers/ErrorWrapper';
@@ -15,7 +14,6 @@ import LoadableLoginContainer from 'containers/Authentication/LoginContainer/Loa
 import { makeSelectIsLoggedIn, makeSelectIsLoading } from './selectors';
 import { authenticate } from './actions';
 
-import reducer from './reducers';
 import saga from './sagas';
 
 class UserContainer extends React.Component {
@@ -24,11 +22,10 @@ class UserContainer extends React.Component {
   }
 
   handleLogout = () => {
-    this.props.onLogout({}, 'logout');
+    this.props.onAuth({}, 'logout');
   };
 
   render() {
-    console.log('rendering in UserContainer');
     if (this.props.isLoading) {
       return (
         <div>
@@ -71,6 +68,8 @@ class UserContainer extends React.Component {
 
 UserContainer.propTypes = {
   isLoggedIn: PropTypes.bool,
+  isLoading: PropTypes.bool,
+  onAuth: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -89,11 +88,9 @@ const withConnect = connect(
   mapDispatchToProps
 );
 
-const withReducer = injectReducer({ key: 'UserContainer', reducer });
 const withSaga = injectSaga({ key: 'UserContainer', saga });
 
 export default compose(
-  withReducer,
   withSaga,
   withConnect
 )(UserContainer);

@@ -9,6 +9,8 @@ import injectSaga from 'utils/injectSaga';
 import DeletePlaylistForm from 'components/SideBar/Playlists/PlaylistModifiers/DeletePlaylistForm';
 
 import LoaderWrapper from 'containers/Wrappers/LoaderWrapper';
+
+import saga from './saga';
 import { deletePlaylist } from './actions';
 import { makeSelectIsLoading, makeSelectDidDelete } from './selectors';
 

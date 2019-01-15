@@ -5,23 +5,23 @@ export const selectSearchBarState = state => state.get('SearchBar');
 export const makeSelectIsLoading = () =>
   createSelector(
     selectSearchBarState,
-    state => state.get('isLoading')
+    state => state.isLoading
   );
 
 export const makeSelectUsers = () =>
   createSelector(
     selectSearchBarState,
-    state => state.get('users')
+    state => state.users
   );
 
 export const makeSelectPlaylists = () =>
   createSelector(
     selectSearchBarState,
-    state => state.get('playlists')
+    state => state.playlists
   );
 
 export const makeSelectSongs = () =>
   createSelector(
     selectSearchBarState,
-    state => state.get('songs')
+    state => state.songs
   );

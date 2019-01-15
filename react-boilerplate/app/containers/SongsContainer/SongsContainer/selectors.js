@@ -1,6 +1,7 @@
 import { createSelector } from 'reselect';
+import { fromJS } from 'immutable';
 
-const selectSongsContainerState = state => state;
+const selectSongsContainerState = state => state.get('songsContainer');
 const selectSongsContainerOwnProps = (state, ownProps) => ownProps;
 
 export const selectSongsTableState = () =>

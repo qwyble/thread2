@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import isEmail from 'validator/lib/isEmail';
 
-import Signup from 'components/authentication/signup';
-import Login from 'components/authentication/login';
+import Signup from 'components/Authentication/signup';
+import Login from 'components/Authentication/login';
 
 class LoginContainer extends React.Component {
   state = {
@@ -77,7 +77,8 @@ class LoginContainer extends React.Component {
   getRedirectUrl = () => {
     const loc = this.props.location.state;
     if (loc) {
-      if (loc.from.slice(0, 4) !== 'auth') {
+      if (!loc.from.includes('auth') && !loc.from.includes('logout')) {
+        console.log(loc.from);
         return loc.from;
       }
     }

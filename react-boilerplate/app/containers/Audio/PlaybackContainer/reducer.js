@@ -6,7 +6,7 @@ const initialState = fromJS({
   nowPlaying: {},
 });
 
-export default function* audioContextReducer(state = initialState, action) {
+export default function audioContextReducer(state = initialState, action) {
   switch (action.type) {
     case HANDLE_PLAYING:
       return state.set('paused', false).set('nowPlaying', action.song);

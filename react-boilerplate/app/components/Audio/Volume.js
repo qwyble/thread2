@@ -43,7 +43,7 @@ class Volume extends React.Component {
 }
 
 Volume.propTypes = {
-  myRef: PropTypes.node,
+  myRef: PropTypes.object,
 };
 
 export default Volume;

@@ -18,7 +18,7 @@ import { toggleVisibility } from './actions';
 
 import reducer from './reducer';
 
-const SideBar = props => (
+const SideBarContainer = props => (
   <div>
     <div>
       <Sidebar.Pushable as={Segment} className="primaryContainer">
@@ -53,7 +53,7 @@ const SideBar = props => (
   </div>
 );
 
-SideBar.propTypes = {
+SideBarContainer.propTypes = {
   toggleVisibility: PropTypes.func,
   visible: PropTypes.bool,
   owner: PropTypes.object,
@@ -66,14 +66,14 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = { toggleVisibility };
 
-const withReducer = injectReducer({ key: 'SideBar', reducer });
+const withReducer = injectReducer({ key: 'SideBarContainer', reducer });
 
-const withConnect = connect({
-  mapDispatchToProps,
+const withConnect = connect(
   mapStateToProps,
-});
+  mapDispatchToProps
+);
 
-export default compose({
+export default compose(
   withReducer,
-  withConnect,
-})(SideBar);
+  withConnect
+)(SideBarContainer);

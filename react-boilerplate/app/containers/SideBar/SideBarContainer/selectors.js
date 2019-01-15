@@ -2,7 +2,7 @@ import { createSelector } from 'reselect';
 
 import { makeSelectParams } from 'containers/AppUtilities/ProfileContext/selectors';
 
-export const sideBarState = state => state.get('sideBar');
+export const sideBarState = state => state.get('SideBarContainer');
 
 export const makeSelectPlaylistParam = () =>
   createSelector(

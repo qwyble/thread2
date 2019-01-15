@@ -20,7 +20,7 @@ const Protected = props => {
     <Switch>
       <Route
         path="/logout"
-        render={props2 => <Logout {...props2} onLogout={props.onLogout} />}
+        render={props2 => <Logout {...props2} {...props} />}
       />
       <Route path="/" component={Root} />
     </Switch>

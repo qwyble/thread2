@@ -1,29 +1,29 @@
-import { fromJS } from 'immutable';
 import {
   SEARCH_CHANGE,
   SEARCH_CHANGE_COMPLETED,
   SEARCH_CHANGE_FAILED,
 } from './constants';
 
-const initialState = fromJS({
+const initialState = {
   isLoading: false,
-  users: fromJS([]),
-  playlists: fromJS([]),
-  songs: fromJS([]),
-});
+  users: [],
+  playlists: [],
+  songs: [],
+};
 
 export default function SearchBarReducer(state = initialState, action) {
   switch (action.type) {
     case SEARCH_CHANGE:
-      return state.set('isLoading', true);
+      return { ...state, isLoading: true };
     case SEARCH_CHANGE_COMPLETED:
-      return state
-        .set('isLoading', false)
-        .set('users', fromJS(action.obj.users))
-        .set('playlists', fromJS(action.obj.playlists))
-        .set('songs', fromJS(action.obj.songs));
+      return {
+        isLoading: false,
+        users: action.obj.users,
+        playlists: action.obj.playlists,
+        songs: action.obj.songs,
+      };
     case SEARCH_CHANGE_FAILED:
-      return state.set('isLoading', false);
+      return { ...state, isLoading: false };
     default:
       return state;
   }

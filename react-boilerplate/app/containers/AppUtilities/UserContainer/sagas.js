@@ -21,7 +21,7 @@ function* auth(action) {
 
 function authFunc(ext, creds) {
   return axios({
-    method: 'get',
+    method: ext === 'session' ? 'get' : 'post',
     url: `https://thread-204819.appspot.com/auth/${ext}`,
     data: creds,
     withCredentials: true,

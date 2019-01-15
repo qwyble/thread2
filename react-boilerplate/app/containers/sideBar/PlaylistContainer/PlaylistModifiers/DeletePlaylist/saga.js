@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { call, takeLatest, put } from 'redux-saga';
+import { call, takeLatest, put } from 'redux-saga/effects';
 import { setError } from 'containers/Wrappers/ErrorWrapper/actions';
 import { DELETE_PLAYLIST } from './constants';
 import {

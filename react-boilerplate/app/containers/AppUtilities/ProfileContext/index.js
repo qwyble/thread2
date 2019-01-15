@@ -20,7 +20,7 @@ import saga from './saga';
 
 // sets the profile being viewed,
 
-class RoutedContext extends React.Component {
+class ProfileContext extends React.Component {
   componentDidMount() {
     this.setProfile();
   }
@@ -44,7 +44,7 @@ class RoutedContext extends React.Component {
   }
 }
 
-RoutedContext.propTypes = {
+ProfileContext.propTypes = {
   isLoading: PropTypes.bool,
   profileParam: PropTypes.number,
   getProfile: PropTypes.func,
@@ -66,13 +66,13 @@ const mapDispatchToProps = {
 const withReducer = injectReducer({ key: 'ProfileContext', reducer });
 const withSaga = injectSaga({ key: 'ProfileContext', saga });
 
-const withConnect = connect({
-  mapDispatchToProps,
+const withConnect = connect(
   mapStateToProps,
-});
+  mapDispatchToProps
+);
 
 export default compose(
   withSaga,
   withReducer,
   withConnect
-)(RoutedContext);
+)(ProfileContext);

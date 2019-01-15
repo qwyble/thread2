@@ -72,7 +72,7 @@ class DurationMeter extends React.Component {
 }
 
 DurationMeter.propTypes = {
-  myRef: PropTypes.node,
+  myRef: PropTypes.object,
 };
 
 export default DurationMeter;

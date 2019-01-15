@@ -14,11 +14,14 @@ function userReducer(state = initialState, action) {
       return state.set('isLoading', true);
     case AUTH_SUCCESS:
       return state
-        .set('isLoggedIn', true)
+        .set('isLoggedIn', !!Object.keys(action.user).length)
         .set('user', fromJS(action.user))
         .set('isLoading', false);
     case AUTH_FAILED:
-      return state.set('isLoading', false);
+      return state
+        .set('isLoading', false)
+        .set('isLoggedIn', false)
+        .set('user', fromJS({}));
     default:
       return state;
   }

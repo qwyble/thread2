@@ -36,7 +36,7 @@ const Root = () => (
           <Route exact path="/edit" component={LoadableProfileContainer} />
           <Route path="/messages" component={LoadableMessagesRouter} />
           <Route path="/song/:song" component={LoadableSongDetails} />
-          <Route path="/" component={LoadableProfileContext} />
+          <Route exact path="/" component={LoadableProfileContext} />
         </Switch>
       </div>
       <div>

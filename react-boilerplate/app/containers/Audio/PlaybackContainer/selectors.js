@@ -2,7 +2,7 @@ import { makeSelectSongs } from 'containers/SongsContainer/SongsContainer/select
 import { createSelector } from 'reselect';
 
 export const selectPlaybackContainerState = state =>
-  state.get('playbackContainer');
+  state.get('PlaybackContainer');
 
 export const makeSelectNowPlaying = () =>
   createSelector(
@@ -28,20 +28,14 @@ export const makeSelectNextSong = () =>
   createSelector(
     makeSelectNowPlayingIndex,
     makeSelectSongs,
-    (index, songs) => {
-      const nextSong = songs[index + 1];
-      return nextSong;
-    }
+    (index, songs) => songs[index + 1]
   );
 
 export const makeSelectPrevSong = () =>
   createSelector(
     makeSelectNowPlayingIndex,
     makeSelectSongs,
-    (index, songs) => {
-      const prevSong = songs[index - 1];
-      return prevSong;
-    }
+    (index, songs) => songs[index - 1]
   );
 
 export const makeSelectIsPaused = () =>

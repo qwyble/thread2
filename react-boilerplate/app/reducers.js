@@ -4,16 +4,18 @@
 
 import { combineReducers } from 'redux-immutable';
 import { connectRouter } from 'connected-react-router/immutable';
+import UserContainer from 'containers/AppUtilities/UserContainer/reducers';
+import SongsContainer from 'containers/SongsContainer/SongsContainer/reducer';
 
 import history from 'utils/history';
-import appReducer from 'containers/AppUtilities/UserContainer/reducers';
 
 /**
  * Merges the main reducer with the router state and dynamically injected reducers
  */
 export default function createReducer(injectedReducers = {}) {
   const rootReducer = combineReducers({
-    appReducer,
+    UserContainer,
+    SongsContainer,
     ...injectedReducers,
   });
 

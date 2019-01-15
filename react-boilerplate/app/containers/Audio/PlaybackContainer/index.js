@@ -90,15 +90,14 @@ PlaybackContainer.propTypes = {
   handlePausing: PropTypes.func,
   handlePlaying: PropTypes.func,
   nowPlaying: PropTypes.object,
-  songs: PropTypes.array,
+  songs: PropTypes.object,
 };
 
-const mapStateToProps = () =>
-  createStructuredSelector({
-    paused: makeSelectIsPaused(),
-    nowPlaying: makeSelectNowPlaying(),
-    songs: makeSelectSongs(),
-  });
+const mapStateToProps = createStructuredSelector({
+  nowPlaying: makeSelectNowPlaying(),
+  paused: makeSelectIsPaused(),
+  songs: makeSelectSongs(),
+});
 
 const mapDispatchToProps = {
   handleEnd,
@@ -113,7 +112,7 @@ const withConnect = connect(
 );
 
 const withReducer = injectReducer({ key: 'PlaybackContainer', reducer });
-const withSaga = injectSaga({ key: 'PlaybackContainerSaga', saga });
+const withSaga = injectSaga({ key: 'PlaybackContainer', saga });
 
 export default compose(
   withSaga,

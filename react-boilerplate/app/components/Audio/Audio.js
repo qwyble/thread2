@@ -16,7 +16,7 @@ const Audio = props => (
 );
 
 Audio.propTypes = {
-  myRef: PropTypes.node,
+  myRef: PropTypes.object,
   URL: PropTypes.string,
   onEnd: PropTypes.func,
 };

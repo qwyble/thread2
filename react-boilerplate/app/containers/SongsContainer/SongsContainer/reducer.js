@@ -1,8 +1,11 @@
 import { fromJS } from 'immutable';
 import { combineReducers } from 'redux';
+
 import songAdder from 'containers/SongsContainer/PlaylistModifiers/SongAdder/reducer';
 import songRemover from 'containers/SongsContainer/PlaylistModifiers/SongRemover/reducer';
+
 import { CHANGE_RATING } from 'containers/SongsContainer/SongRowsContainer/constants';
+
 import {
   GET_SONGS,
   SELECT_SONG,
@@ -16,26 +19,21 @@ import {
   ADD_SONG_TO_STREAM,
 } from './constants';
 
-export default combineReducers({
-  songsContainer,
-  songAdder,
-  songRemover,
-});
-
-const initialState = {
-  songs: fromJS({}),
+const initialState = fromJS({
+  songs: [],
   isLoading: true,
   songsTable: {
     currentPage: 0,
     totalPages: 1,
-    selectedSongs: fromJS([]),
+    selectedSongs: [],
     noneSelected: true,
     descending: true,
     sortBy: 'dateUploaded',
   },
-};
+});
 
-export function songsContainer(state = initialState, action) {
+export function SongsContainer(state = initialState, action) {
+  console.log(initialState);
   switch (action.type) {
     case GET_SONGS:
       return state
@@ -95,3 +93,9 @@ export function songsContainer(state = initialState, action) {
       return state;
   }
 }
+
+export default combineReducers({
+  SongsContainer,
+  songAdder,
+  songRemover,
+});

@@ -6,8 +6,8 @@ import {
 } from './constants';
 
 const initialState = fromJS({
-  selectedPlaylist: fromJS({}),
-  selectedCategory: '',
+  selectedPlaylist: {},
+  selectedCategory: {},
   isVisible: true,
 });
 

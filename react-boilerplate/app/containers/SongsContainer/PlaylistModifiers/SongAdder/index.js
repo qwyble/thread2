@@ -69,11 +69,10 @@ SongAdder.propTypes = {
   isLoading: PropTypes.bool,
 };
 
-const mapStateToProps = () =>
-  createStructuredSelector({
-    categories: makeSelectCategories(),
-    isLoading: makeSelectIsLoading(),
-  });
+const mapStateToProps = createStructuredSelector({
+  categories: makeSelectCategories(),
+  isLoading: makeSelectIsLoading(),
+});
 
 const mapDispatchToProps = {
   addSongsToPlaylist,
@@ -89,4 +88,4 @@ const withSaga = injectSaga({ key: 'SongAdderSaga', saga });
 export default compose(
   withSaga,
   withConnect
-)(AddToPlaylistPortalForm);
+)(SongAdder);
