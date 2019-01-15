@@ -34,10 +34,9 @@ Paginator.propTypes = {
   totalPages: PropTypes.number,
 };
 
-const mapStateToProps = () =>
-  createStructuredSelector({
-    totalPages: () => makeSelectTotalPages(),
-  });
+const mapStateToProps = createStructuredSelector({
+  totalPages: makeSelectTotalPages(),
+});
 
 const mapDispatchToProps = {
   setCurrentPage,

@@ -12,7 +12,7 @@ export const makeSelectSongsTableState = () =>
 export const makeSelectPathname = () =>
   createSelector(
     selectSongsContainerOwnProps,
-    ownProps => ownProps.location.pathname
+    ownProps => ownProps.location.pathname.split('/')[1]
   );
 
 export const makeSelectUrl = () =>

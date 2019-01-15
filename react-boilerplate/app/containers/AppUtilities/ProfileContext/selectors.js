@@ -20,7 +20,7 @@ export const makeSelectParams = () =>
 export const makeSelectProfileParam = () =>
   createSelector(
     makeSelectParams(),
-    params => params.profile
+    params => parseInt(params.profile, 10)
   );
 
 export const makeSelectProfile = () =>

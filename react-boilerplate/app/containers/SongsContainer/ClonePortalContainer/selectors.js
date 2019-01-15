@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 
-export const selectClonePortalState = state => state;
+export const selectClonePortalState = state => state.get('ClonePortal');
 
 export const makeSelectIsLoading = () =>
   createSelector(

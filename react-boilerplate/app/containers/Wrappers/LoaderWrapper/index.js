@@ -16,7 +16,7 @@ const LoaderWrapper = props => (
 );
 
 LoaderWrapper.propTypes = {
-  children: PropTypes.array,
+  children: PropTypes.node,
   isLoading: PropTypes.bool,
   dimmer: PropTypes.bool,
 };

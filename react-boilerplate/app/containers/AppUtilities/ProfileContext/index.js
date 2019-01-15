@@ -17,7 +17,6 @@ import saga from './saga';
 
 class ProfileContext extends React.Component {
   componentDidMount() {
-    console.log('inside profile context');
     this.setProfile();
   }
 

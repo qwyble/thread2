@@ -42,7 +42,7 @@ class ModalWrapper extends React.Component {
 
 ModalWrapper.propTypes = {
   trigger: PropTypes.element,
-  children: PropTypes.element,
+  children: PropTypes.node,
 };
 
 export default ModalWrapper;

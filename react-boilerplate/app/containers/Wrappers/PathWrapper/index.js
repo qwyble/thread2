@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -11,14 +12,16 @@ const PathWrapper = props => (
 
 PathWrapper.propTypes = {
   isNotStream: PropTypes.bool,
-  children: PropTypes.array,
+  children: PropTypes.node,
 };
 
-const mapStateToProps = () =>
-  createStructuredSelector({
-    isNotStream: makeSelectIsNotStream(),
-  });
+const mapStateToProps = createStructuredSelector({
+  isNotStream: makeSelectIsNotStream(),
+});
 
 const withConnect = connect(mapStateToProps);
 
-export default compose(withConnect)(PathWrapper);
+export default compose(
+  withRouter,
+  withConnect
+)(PathWrapper);

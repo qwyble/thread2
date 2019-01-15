@@ -19,7 +19,7 @@ const StyledButton = props => (
 );
 
 StyledButton.propTypes = {
-  children: PropTypes.element,
+  children: PropTypes.node,
   onClick: PropTypes.func,
 };
 

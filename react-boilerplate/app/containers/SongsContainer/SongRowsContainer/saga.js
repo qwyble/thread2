@@ -1,6 +1,6 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
-import { setError } from 'containers/Wrappers/ErrorWrapper';
+import { setError } from 'containers/Wrappers/ErrorWrapper/actions';
 import { RATE_SONG } from './constants';
 import { rateSongCompleted, changeRating } from './actions';
 

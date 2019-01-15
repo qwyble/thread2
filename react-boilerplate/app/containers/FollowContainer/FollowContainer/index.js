@@ -51,7 +51,7 @@ FollowContainer.propTypes = {
   isLoading: PropTypes.bool,
   isFollowing: PropTypes.bool,
   getIsFollowing: PropTypes.func,
-  idOwner: PropTypes.string,
+  idOwner: PropTypes.number,
 };
 
 const mapStateToProps = createStructuredSelector({

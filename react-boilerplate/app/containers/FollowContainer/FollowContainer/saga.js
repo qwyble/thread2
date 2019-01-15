@@ -4,7 +4,7 @@ import {
   makeSelectProfileId,
   makeSelectUserId,
 } from 'containers/AppUtilities/ProfileContext/selectors';
-import { setError } from 'containers/Wrappers/ErrorWrapper';
+import { setError } from 'containers/Wrappers/ErrorWrapper/actions';
 import { makeSelectIsFollowing } from './selectors';
 import { GET_IS_FOLLOWING, FOLLOW_USER } from './constants';
 import { getIsFollowingComplete, followUserComplete } from './actions';

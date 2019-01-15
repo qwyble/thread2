@@ -17,7 +17,7 @@ const HasFollowing = props => (
 );
 
 HasFollowing.propTypes = {
-  children: PropTypes.element,
+  children: PropTypes.node,
   following: PropTypes.array,
 };
 

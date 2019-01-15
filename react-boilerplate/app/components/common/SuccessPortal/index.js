@@ -22,7 +22,7 @@ const SuccessPortal = props => (
 
 SuccessPortal.propTypes = {
   didSucceed: PropTypes.bool,
-  children: PropTypes.element,
+  children: PropTypes.node,
   to: PropTypes.string,
 };
 

@@ -19,7 +19,7 @@ const SideBar = props => (
 );
 
 SideBar.propTypes = {
-  children: PropTypes.element,
+  children: PropTypes.node,
   visible: PropTypes.bool,
 };
 

@@ -69,13 +69,12 @@ ClonePortalContainer.propTypes = {
   onClosePortal: PropTypes.func,
 };
 
-const mapStateToProps = () =>
-  createStructuredSelector({
-    isLoading: makeSelectIsLoading(),
-    plToClone: makeSelectSelectedPlid(),
-    categories: makeSelectCategories(),
-    didSucceed: makeSelectDidSucceed(),
-  });
+const mapStateToProps = createStructuredSelector({
+  isLoading: makeSelectIsLoading(),
+  plToClone: makeSelectSelectedPlid(),
+  categories: makeSelectCategories(),
+  didSucceed: makeSelectDidSucceed(),
+});
 
 const mapDispatchToProps = {
   clonePlaylist,
@@ -86,11 +85,11 @@ const withConnect = connect(
   mapDispatchToProps
 );
 
-const withReducer = injectReducer({ key: 'clonePortal', reducer });
+const withReducer = injectReducer({ key: 'ClonePortal', reducer });
 const withSaga = injectSaga({ key: 'clonePortalSaga', saga });
 
 export default compose(
-  withSaga,
   withReducer,
+  withSaga,
   withConnect
 )(ClonePortalContainer);

@@ -1,8 +1,15 @@
 import { createSelector } from 'reselect';
-import { makeSelectPathname } from 'containers/SongsContainer/SongsContainer/selectors';
+
+const selectPathWrapperOwnProps = (state, ownProps) => ownProps;
+
+export const makeSelectPathname = () =>
+  createSelector(
+    selectPathWrapperOwnProps,
+    ownProps => ownProps.location.pathname.split('/')[1]
+  );
 
 export const makeSelectIsPlaylist = () =>
   createSelector(
     makeSelectPathname,
-    path => path.includes('playlist')
+    path => path === 'playlist'
   );
