@@ -11,6 +11,6 @@ export const makeSelectIsLoading = () =>
 
 export const makeSelectIsPublic = () =>
   createSelector(
-    makeSelectSelectedPlaylist,
+    makeSelectSelectedPlaylist(),
     playlist => playlist.get('isPublic')
   );

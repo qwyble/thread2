@@ -25,15 +25,7 @@ import { clonePlaylist } from './actions';
 import reducer from './reducer';
 import saga from './saga';
 
-class ClonePortalContainer extends React.Component {
-  handleClonePlaylist = () => {
-    this.props.clonePlaylist(
-      this.state.selectedCatId,
-      this.state.plname,
-      this.state.plToClone
-    );
-  };
-
+class ClonePortalContainer extends React.PureComponent {
   render() {
     const PortalMessage = (
       <div>You must select a playlist, you can‘t clone a stream.</div>
@@ -55,8 +47,9 @@ class ClonePortalContainer extends React.Component {
               <PropChecker field={!this.props.didSucceed} alt={SuccessMessage}>
                 <ClonePortalForm
                   categories={this.props.categories}
-                  onClonePlaylist={this.handleClonePlaylist}
+                  onClonePlaylist={this.props.clonePlaylist}
                   onClosePortal={this.props.onClosePortal}
+                  plToClone={this.props.plToClone}
                 />
               </PropChecker>
             </PropChecker>

@@ -6,7 +6,7 @@ export const sideBarState = state => state.get('SideBarContainer');
 
 export const makeSelectPlaylistParam = () =>
   createSelector(
-    makeSelectParams,
+    makeSelectParams(),
     params => params.playlist
   );
 
@@ -18,19 +18,19 @@ export const makeSelectSelectedPlaylist = () =>
 
 export const makeSelectSelectedPlid = () =>
   createSelector(
-    makeSelectSelectedPlaylist,
+    makeSelectSelectedPlaylist(),
     playlist => playlist.get('plid')
   );
 
 export const makeSelectSelectedPlIsOwner = () =>
   createSelector(
-    makeSelectSelectedPlaylist,
+    makeSelectSelectedPlaylist(),
     selectedPlaylist => selectedPlaylist.get('isOwner')
   );
 
 export const makeSelectSelectedPlName = () =>
   createSelector(
-    makeSelectSelectedPlaylist,
+    makeSelectSelectedPlaylist(),
     playlist => playlist.get('plname')
   );
 
@@ -48,6 +48,6 @@ export const makeSelectSelectedCategory = () =>
 
 export const makeSelectSelectedCategoryId = () =>
   createSelector(
-    makeSelectSelectedCategory,
+    makeSelectSelectedCategory(),
     cat => cat.get('catid')
   );

@@ -10,6 +10,6 @@ export const makeSelectRenameCategory = () =>
 
 export const makeSelectIsLoading = () =>
   createSelector(
-    makeSelectRenameCategory,
+    makeSelectRenameCategory(),
     state => state.get('isLoading')
   );

@@ -11,7 +11,7 @@ const PathWrapper = props => (
 
 PathWrapper.propTypes = {
   isNotStream: PropTypes.bool,
-  children: PropTypes.element,
+  children: PropTypes.array,
 };
 
 const mapStateToProps = () =>

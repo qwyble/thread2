@@ -23,12 +23,12 @@ export const makeSelectComments = () =>
 
 export const makeSelectThreadIdParam = () =>
   createSelector(
-    makeSelectParams,
+    makeSelectParams(),
     params => params.id
   );
 
 export const makeSelectThreadOwnerId = () =>
   createSelector(
-    makeSelectThread,
+    makeSelectThread(),
     thread => thread.get('UserId')
   );

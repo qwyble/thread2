@@ -1,27 +1,27 @@
 import { createSelector } from 'reselect';
 
-export const selectSearchBarState = state => state.get('SearchBar');
+export const selectExplorerState = state => state.get('Explorer');
 
 export const makeSelectIsLoading = () =>
   createSelector(
-    selectSearchBarState,
+    selectExplorerState,
     state => state.get('isLoading')
   );
 
 export const makeSelectUsers = () =>
   createSelector(
-    selectSearchBarState,
+    selectExplorerState,
     state => state.get('users')
   );
 
 export const makeSelectPlaylists = () =>
   createSelector(
-    selectSearchBarState,
+    selectExplorerState,
     state => state.get('playlists')
   );
 
 export const makeSelectSongs = () =>
   createSelector(
-    selectSearchBarState,
+    selectExplorerState,
     state => state.get('songs')
   );

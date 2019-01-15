@@ -16,12 +16,12 @@ export const makeSelectIsLoading = () =>
 
 export const makeSelectSelectedMessages = () =>
   createSelector(
-    makeSelectMessages,
+    makeSelectMessages(),
     messages => messages.filter(message => !!message.selected)
   );
 
 export const makeSelectSelectedMessageIds = () =>
   createSelector(
-    makeSelectSelectedMessages,
+    makeSelectSelectedMessages(),
     messages => messages.map(message => message.idmessages)
   );

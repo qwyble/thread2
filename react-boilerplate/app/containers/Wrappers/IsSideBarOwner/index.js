@@ -18,7 +18,7 @@ const IsOwner = props => (
 IsOwner.propTypes = {
   alt: PropTypes.element,
   isOwner: PropTypes.bool,
-  children: PropTypes.element,
+  children: PropTypes.array,
 };
 
 const mapStateToProps = () =>

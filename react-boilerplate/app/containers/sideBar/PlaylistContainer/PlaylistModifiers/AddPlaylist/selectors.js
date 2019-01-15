@@ -9,6 +9,6 @@ export const makeSelectAddPlaylist = () =>
 
 export const makeSelectAddIsLoading = () =>
   createSelector(
-    makeSelectAddPlaylist,
+    makeSelectAddPlaylist(),
     addPlaylist => addPlaylist.get('isLoading')
   );

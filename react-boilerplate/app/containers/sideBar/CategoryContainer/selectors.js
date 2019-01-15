@@ -2,14 +2,20 @@ import { createSelector } from 'reselect';
 
 export const selectCategoryContainer = state => state.get('CategoryContainer');
 
-export const makeSelectIsLoading = () =>
+const makeSelectCatContainerState = () =>
   createSelector(
     selectCategoryContainer,
+    container => container.Categories
+  );
+
+export const makeSelectIsLoading = () =>
+  createSelector(
+    makeSelectCatContainerState(),
     state => state.get('isLoading')
   );
 
 export const makeSelectCategories = () =>
   createSelector(
-    selectCategoryContainer,
+    makeSelectCatContainerState(),
     state => state.get('categories')
   );

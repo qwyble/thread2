@@ -37,6 +37,14 @@ class ClonePortalForm extends React.Component {
     }
   };
 
+  handleClonePlaylist = () => {
+    this.props.onClonePlaylist(
+      this.state.selectedCatId,
+      this.state.plname,
+      this.props.plToClone
+    );
+  };
+
   render() {
     return (
       <div>
@@ -61,7 +69,7 @@ class ClonePortalForm extends React.Component {
         <Button onClick={this.props.onClosePortal}>Cancel</Button>
         <Button
           disabled={this.state.disabled}
-          onClick={this.props.onClonePlaylist}
+          onClick={this.props.handleClonePlaylist}
         >
           Submit
         </Button>
@@ -75,6 +83,7 @@ ClonePortalForm.propTypes = {
   categories: PropTypes.array,
   onClonePlaylist: PropTypes.func,
   onClosePortal: PropTypes.func,
+  plToClone: PropTypes.object,
 };
 
 export default ClonePortalForm;

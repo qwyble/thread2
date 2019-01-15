@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Table } from 'semantic-ui-react';
+import { Table, Loader } from 'semantic-ui-react';
 
 import TableHeader from 'components/SongsTable/TableHeader';
-import LoaderWrapper from 'containers/Wrappers/LoaderWrapper';
 import SongRowsContainer from 'containers/SongsContainer/SongRowsContainer';
 import ClonePortalWrapper from 'components/SongsTable/ClonePortal/ClonePortalWrapper';
 import SongAdderPortalWrapper from 'components/SongsTable/PlaylistModifiers/SongAdder/SongAdderPortalWrapper';
@@ -28,9 +27,17 @@ const SongsTable = props => (
         onSortBy={props.onSortBy}
         onSetDescending={props.onSetDescending}
       />
-      <LoaderWrapper isLoading={props.isLoading}>
+      {props.isLoading ? (
+        <tbody>
+          <tr>
+            <td>
+              <Loader active />{' '}
+            </td>
+          </tr>
+        </tbody>
+      ) : (
         <SongRowsContainer />
-      </LoaderWrapper>
+      )}
       <Table.Footer className="stickyBottom">
         <Table.Row>
           <Table.HeaderCell colSpan="4">

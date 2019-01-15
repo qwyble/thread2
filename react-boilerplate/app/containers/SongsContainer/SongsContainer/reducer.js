@@ -1,8 +1,4 @@
 import { fromJS } from 'immutable';
-import { combineReducers } from 'redux';
-
-import songAdder from 'containers/SongsContainer/PlaylistModifiers/SongAdder/reducer';
-import songRemover from 'containers/SongsContainer/PlaylistModifiers/SongRemover/reducer';
 
 import { CHANGE_RATING } from 'containers/SongsContainer/SongRowsContainer/constants';
 
@@ -32,8 +28,7 @@ const initialState = fromJS({
   },
 });
 
-export function SongsContainer(state = initialState, action) {
-  console.log(initialState);
+export default function SongsContainer(state = initialState, action) {
   switch (action.type) {
     case GET_SONGS:
       return state
@@ -93,9 +88,3 @@ export function SongsContainer(state = initialState, action) {
       return state;
   }
 }
-
-export default combineReducers({
-  SongsContainer,
-  songAdder,
-  songRemover,
-});

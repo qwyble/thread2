@@ -13,20 +13,20 @@ export const makeSelectMatch = () =>
 
 export const makeSelectParams = () =>
   createSelector(
-    makeSelectMatch,
+    makeSelectMatch(),
     match => match.params
   );
 
 export const makeSelectProfileParam = () =>
   createSelector(
-    makeSelectParams,
+    makeSelectParams(),
     params => params.profile
   );
 
 export const makeSelectProfile = () =>
   createSelector(
     selectProfileContext,
-    makeSelectUser,
+    makeSelectUser(),
     (profileContext, user) => {
       if (!profileContext.get('profile').isEmpty())
         return profileContext.get('profile');
@@ -36,20 +36,20 @@ export const makeSelectProfile = () =>
 
 export const makeSelectProfileId = () =>
   createSelector(
-    makeSelectProfile,
+    makeSelectProfile(),
     profile => profile.get('idUsers')
   );
 
 export const makeSelectUserId = () =>
   createSelector(
-    makeSelectUser,
+    makeSelectUser(),
     user => user.get('idUsers')
   );
 
 export const makeSelectIsOwner = () =>
   createSelector(
-    makeSelectProfileId,
-    makeSelectUserId,
+    makeSelectProfileId(),
+    makeSelectUserId(),
     (profileId, userId) => {
       if (profileId === userId) return true;
       if (profileId === '') return true;

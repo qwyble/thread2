@@ -52,15 +52,15 @@ CategoryContainer.propTypes = {
   categories: PropTypes.object,
   setCategory: PropTypes.func,
   isLoading: PropTypes.bool,
-  ownerId: PropTypes.string,
+  ownerId: PropTypes.number,
   selectedCategoryId: PropTypes.string,
 };
 
 const mapStateToProps = createStructuredSelector({
-  selectedCategoryId: makeSelectSelectedCategoryId(),
   categories: makeSelectCategories(),
-  isLoading: makeSelectIsLoading(),
   ownerId: makeSelectProfileId(),
+  selectedCategoryId: makeSelectSelectedCategoryId(),
+  isLoading: makeSelectIsLoading(),
 });
 
 const mapDispatchToProps = {

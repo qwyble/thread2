@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 
-export const selectAddToPlaylistState = state => state;
+export const selectAddToPlaylistState = state => state.get('SongAdder');
 
 export const makeSelectIsLoading = () =>
   createSelector(

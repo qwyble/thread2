@@ -6,6 +6,9 @@ import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 
+import injectReducer from 'utils/injectReducer';
+import injectSaga from 'utils/injectSaga';
+
 import { makeSelectSongs } from 'containers/SongsContainer/SongsContainer/selectors';
 import { makeSelectNowPlayingId } from 'containers/Audio/PlaybackContainer/selectors';
 
@@ -19,6 +22,8 @@ import {
   handlePausing,
 } from 'containers/Audio/PlaybackContainer/actions';
 
+import reducer from './reducer';
+import saga from './saga';
 import { makeSelectIsLoading, makeSelectSongId } from './selectors';
 import { rateSong } from './actions';
 
@@ -90,4 +95,11 @@ const withConnect = connect(
   mapDispatchToProps
 );
 
-export default compose(withConnect)(SongRowsContainer);
+const withReducer = injectReducer({ key: 'SongRowContainer', reducer });
+const withSaga = injectSaga({ key: 'SongRowContainer', saga });
+
+export default compose(
+  withReducer,
+  withSaga,
+  withConnect
+)(SongRowsContainer);

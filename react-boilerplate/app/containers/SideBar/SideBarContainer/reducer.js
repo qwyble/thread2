@@ -1,4 +1,5 @@
 import { fromJS } from 'immutable';
+
 import {
   SELECT_PLAYLIST,
   SELECT_CATEGORY,

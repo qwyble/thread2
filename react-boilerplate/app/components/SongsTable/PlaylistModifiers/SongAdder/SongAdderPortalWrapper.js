@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { Button } from 'semantic-ui-react';
@@ -26,9 +27,9 @@ AddToPlaylistPortalWrapper.propTypes = {
   disabled: PropTypes.bool,
 };
 
-const mapStateToProps = {
-  disabled: () => makeSelectNoneSelected(),
-};
+const mapStateToProps = createStructuredSelector({
+  disabled: makeSelectNoneSelected(),
+});
 
 const withConnect = connect(mapStateToProps);
 

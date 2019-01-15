@@ -12,29 +12,29 @@ export const makeSelectNowPlaying = () =>
 
 export const makeSelectNowPlayingId = () =>
   createSelector(
-    makeSelectNowPlaying,
+    makeSelectNowPlaying(),
     nowPlaying => nowPlaying.get('idSongs')
   );
 
 export const makeSelectNowPlayingIndex = () =>
   createSelector(
-    makeSelectNowPlayingId,
-    makeSelectSongs,
+    makeSelectNowPlayingId(),
+    makeSelectSongs(),
     (nowPlayingId, songs) =>
       songs.findIndex(song => song.idSongs === nowPlayingId)
   );
 
 export const makeSelectNextSong = () =>
   createSelector(
-    makeSelectNowPlayingIndex,
-    makeSelectSongs,
+    makeSelectNowPlayingIndex(),
+    makeSelectSongs(),
     (index, songs) => songs[index + 1]
   );
 
 export const makeSelectPrevSong = () =>
   createSelector(
-    makeSelectNowPlayingIndex,
-    makeSelectSongs,
+    makeSelectNowPlayingIndex(),
+    makeSelectSongs(),
     (index, songs) => songs[index - 1]
   );
 

@@ -10,12 +10,12 @@ export const makeSelectRenamePlaylistState = () =>
 
 export const makeSelectIsLoading = () =>
   createSelector(
-    makeSelectRenamePlaylistState,
+    makeSelectRenamePlaylistState(),
     renamePlaylist => renamePlaylist.get('isLoading')
   );
 
 export const makeSelectDidRename = () =>
   createSelector(
-    makeSelectRenamePlaylistState,
+    makeSelectRenamePlaylistState(),
     state => state.get('didRename')
   );

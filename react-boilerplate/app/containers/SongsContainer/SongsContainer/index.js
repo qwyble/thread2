@@ -8,12 +8,10 @@ import SongsTable from 'components/SongsTable/SongsTable';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 
-import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 
 import { getSongs, sortBy, setDescending } from './actions';
 
-import reducer from './reducer';
 import saga from './saga';
 
 import { makeSelectIsLoading } from './selectors';
@@ -70,6 +68,5 @@ const withConnect = connect(
 export default compose(
   withRouter,
   withSaga,
-  withReducer,
   withConnect
 )(SongsContainer);

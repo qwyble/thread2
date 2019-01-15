@@ -11,7 +11,7 @@ const IsPlaylistPathWrapper = props => (
 
 IsPlaylistPathWrapper.propTypes = {
   isPlaylist: PropTypes.bool,
-  children: PropTypes.element,
+  children: PropTypes.array,
 };
 
 const mapStateToProps = () =>

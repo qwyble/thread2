@@ -10,6 +10,6 @@ export const makeSelectDeleteCategory = () =>
 
 export const makeSelectIsLoading = () =>
   createSelector(
-    makeSelectDeleteCategory,
+    makeSelectDeleteCategory(),
     state => state.get('isLoading')
   );

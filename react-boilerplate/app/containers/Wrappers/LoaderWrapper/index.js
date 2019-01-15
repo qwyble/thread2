@@ -1,23 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Loader } from 'semantic-ui-react';
+import { Loader, Dimmer } from 'semantic-ui-react';
 
 const LoaderWrapper = props => (
-  <div>
+  <span>
     {props.isLoading ? (
-      <div>
-        {props.dimmer ? <Dimmer inverted active /> : <div />}
+      <span>
+        {props.dimmer ? <Dimmer inverted active /> : <span />}
         <Loader active />
-      </div>
+      </span>
     ) : (
-      <div>{props.children}</div>
+      <span>{props.children}</span>
     )}
-  </div>
+  </span>
 );
 
 LoaderWrapper.propTypes = {
-  children: PropTypes.element,
+  children: PropTypes.array,
   isLoading: PropTypes.bool,
+  dimmer: PropTypes.bool,
 };
 
 export default LoaderWrapper;

@@ -19,7 +19,7 @@ export const makeSelectDidSucceed = () =>
 
 export const makeSelectSongIdParam = () =>
   createSelector(
-    makeSelectParams,
+    makeSelectParams(),
     params => params.song
   );
 
@@ -31,8 +31,8 @@ export const makeSelectSong = () =>
 
 export const makeSelectIsPlaying = () =>
   createSelector(
-    makeSelectSongIdParam,
-    makeSelectNowPlayingId,
+    makeSelectSongIdParam(),
+    makeSelectNowPlayingId(),
     (songId, nowPlayingId) => {
       if (songId === nowPlayingId) return true;
       return false;

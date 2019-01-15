@@ -1,12 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Loader } from 'semantic-ui-react';
-
 import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 
-import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 
 import SideBarContainer from 'containers/SideBar/SideBarContainer';
@@ -15,13 +13,11 @@ import { makeSelectProfileParam, makeSelectIsLoading } from './selectors';
 
 import { makeSelectUser } from '../UserContainer/selectors';
 import { setProfile, getProfile } from './actions';
-import reducer from './reducer';
 import saga from './saga';
-
-// sets the profile being viewed,
 
 class ProfileContext extends React.Component {
   componentDidMount() {
+    console.log('inside profile context');
     this.setProfile();
   }
 
@@ -63,7 +59,6 @@ const mapDispatchToProps = {
   setProfile,
 };
 
-const withReducer = injectReducer({ key: 'ProfileContext', reducer });
 const withSaga = injectSaga({ key: 'ProfileContext', saga });
 
 const withConnect = connect(
@@ -73,6 +68,5 @@ const withConnect = connect(
 
 export default compose(
   withSaga,
-  withReducer,
   withConnect
 )(ProfileContext);

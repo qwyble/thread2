@@ -6,6 +6,7 @@ import { combineReducers } from 'redux-immutable';
 import { connectRouter } from 'connected-react-router/immutable';
 import UserContainer from 'containers/AppUtilities/UserContainer/reducers';
 import SongsContainer from 'containers/SongsContainer/SongsContainer/reducer';
+import ProfileContext from 'containers/AppUtilities/ProfileContext/reducer';
 
 import history from 'utils/history';
 
@@ -15,6 +16,7 @@ import history from 'utils/history';
 export default function createReducer(injectedReducers = {}) {
   const rootReducer = combineReducers({
     UserContainer,
+    ProfileContext,
     SongsContainer,
     ...injectedReducers,
   });

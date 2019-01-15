@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 
-export const selectFollowContainerState = state => state.get('followContainer');
+export const selectFollowContainerState = state => state.get('FollowContainer');
 
 export const makeSelectIsFollowing = () =>
   createSelector(

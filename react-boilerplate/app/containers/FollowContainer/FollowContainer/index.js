@@ -1,15 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import PathWrapper from 'containers/Wrappers/PathWrapper';
+
 import { createStructuredSelector } from 'reselect';
-import IsNotPlaylistOwner from 'containers/Wrappers/IsNotPlaylistOwner';
+
 import { makeSelectProfileId } from 'containers/AppUtilities/ProfileContext/selectors';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import FollowButton from './FollowButton';
-import { makeSelectIsLoading, makeSelectIsFollowing } from './selectors';
 
+import injectReducer from 'utils/injectReducer';
+import injectSaga from 'utils/injectSaga';
+
+import PathWrapper from 'containers/Wrappers/PathWrapper';
+import IsNotPlaylistOwner from 'containers/Wrappers/IsNotPlaylistOwner';
+
+import reducer from './reducer';
+import saga from './saga';
+import { makeSelectIsLoading, makeSelectIsFollowing } from './selectors';
 import { getIsFollowing, followUser } from './actions';
+
+import FollowButton from './FollowButton';
+
 class FollowContainer extends React.Component {
   componentDidMount() {
     this.props.getIsFollowing();
@@ -44,12 +54,11 @@ FollowContainer.propTypes = {
   idOwner: PropTypes.string,
 };
 
-const mapStateToProps = () =>
-  createStructuredSelector({
-    isLoading: makeSelectIsLoading(),
-    isFollowing: makeSelectIsFollowing(),
-    idOwner: makeSelectProfileId(),
-  });
+const mapStateToProps = createStructuredSelector({
+  isLoading: makeSelectIsLoading(),
+  isFollowing: makeSelectIsFollowing(),
+  idOwner: makeSelectProfileId(),
+});
 
 const mapDispatchToProps = {
   getIsFollowing,
@@ -61,4 +70,11 @@ const withConnect = connect(
   mapDispatchToProps
 );
 
-export default compose(withConnect)(FollowContainer);
+const withReducer = injectReducer({ key: 'FollowContainer', reducer });
+const withSaga = injectSaga({ key: 'FollowContainer', saga });
+
+export default compose(
+  withReducer,
+  withSaga,
+  withConnect
+)(FollowContainer);

@@ -17,6 +17,6 @@ export const makeSelectDidSucceed = () =>
 
 export const makeSelectSelectedSongsLength = () =>
   createSelector(
-    makeSelectSelectedSongs,
+    makeSelectSelectedSongs(),
     selectedSongs => selectedSongs.length
   );

@@ -9,6 +9,6 @@ export const makeSelectAddCategory = () =>
 
 export const makeSelectIsLoading = () =>
   createSelector(
-    makeSelectAddCategory,
+    makeSelectAddCategory(),
     state => state.get('isLoading')
   );
