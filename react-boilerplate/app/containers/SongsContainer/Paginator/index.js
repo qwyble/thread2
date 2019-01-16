@@ -47,4 +47,4 @@ const withConnect = connect(
   mapDispatchToProps
 );
 
-export default compose(withConnect);
+export default compose(withConnect)(Paginator);

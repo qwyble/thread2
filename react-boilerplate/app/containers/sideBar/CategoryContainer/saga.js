@@ -2,10 +2,11 @@ import { call, takeLatest, put, select } from 'redux-saga/effects';
 import axios from 'axios';
 
 import { makeSelectProfileId } from 'containers/AppUtilities/ProfileContext/selectors';
-import { makeSelectPlaylistParam } from 'containers/SideBar/SideBarContainer/selectors';
 
 import { setPlaylist } from 'containers/SideBar/SideBarContainer/actions';
 import { setError } from 'containers/Wrappers/ErrorWrapper/actions';
+
+import { makeSelectPlaylistParam } from './selectors';
 
 import { GET_CATEGORIES } from './constants';
 import { getCategoriesCompleted } from './actions';
@@ -16,15 +17,15 @@ export default function* CategoryContainerSaga() {
 
 function* getCategories() {
   try {
-    const profileId = yield select(makeSelectProfileId);
-    const plParam = yield select(makeSelectPlaylistParam);
-    const url = getUrl(profileId, plParam || 0);
+    const profileId = yield select(makeSelectProfileId()) || 0;
+    const plParam = yield select(makeSelectPlaylistParam()) || 0;
+    const url = getUrl(profileId, plParam);
     const { categories2, playlist } = yield call(getCatsRequest, url);
     yield put(getCategoriesCompleted(categories2));
     yield put(setPlaylist(playlist));
   } catch (error) {
     yield put(getCategoriesCompleted([]));
-    yield put(setError(error.response.data || error.message));
+    yield put(setError(error.message));
   }
 }
 

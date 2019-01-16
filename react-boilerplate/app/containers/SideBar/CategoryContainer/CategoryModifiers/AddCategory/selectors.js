@@ -4,7 +4,7 @@ import { selectCategoryContainer } from 'containers/SideBar/CategoryContainer/se
 export const makeSelectAddCategory = () =>
   createSelector(
     selectCategoryContainer,
-    state => state.get('AddCategory')
+    state => state.AddCategory
   );
 
 export const makeSelectIsLoading = () =>

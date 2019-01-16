@@ -35,14 +35,14 @@ class SongRowsContainer extends Component {
   };
 
   handleSongSelect = e => {
-    console.log(e.target);
     if (!e.target.value) this.props.selectSong(e.target.id);
     else this.props.deselectSong(e.target.id);
   };
 
   render() {
+    console.log(this.props.songs);
     return (
-      <div>
+      <tbody>
         {this.props.songs.map((song, key) => (
           <SongRow
             key={key}
@@ -57,7 +57,7 @@ class SongRowsContainer extends Component {
             }
           />
         ))}
-      </div>
+      </tbody>
     );
   }
 }
@@ -66,7 +66,7 @@ SongRowsContainer.propTypes = {
   handlePlaying: PropTypes.func,
   handlePausing: PropTypes.func,
   rateSong: PropTypes.func,
-  songs: PropTypes.array,
+  songs: PropTypes.object,
   songId: PropTypes.string,
   isLoading: PropTypes.bool,
   selectSong: PropTypes.func,

@@ -17,7 +17,7 @@ function* clonePlaylist(action) {
     yield put(addPlaylistToCategory(plToAdd, catId));
   } catch (err) {
     yield put(clonePlaylistFailed());
-    yield put(setError(err.response.data || err.message));
+    yield put(setError(err.message));
   }
 }
 

@@ -25,7 +25,7 @@ const ThreadList = props => (
 );
 
 ThreadList.propTypes = {
-  threads: PropTypes.array,
+  threads: PropTypes.object,
 };
 
 export default ThreadList;

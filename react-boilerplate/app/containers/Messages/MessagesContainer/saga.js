@@ -29,19 +29,19 @@ function* getMessages(action) {
       yield put(getMessagesCompleted(messages));
     }
   } catch (err) {
-    yield put(setError(err.response.data || err.message));
+    yield put(setError(err.message));
     yield put(getMessagesFailed());
   }
 }
 
 function* deleteMessages() {
   try {
-    const messageIds = yield select(makeSelectSelectedMessageIds);
+    const messageIds = yield select(makeSelectSelectedMessageIds());
     yield call(deleteMessagesRequest, messageIds);
     yield put(deleteMessagesCompleted(messageIds));
     yield put(setSuccess('messages deleted'));
   } catch (err) {
-    yield put(setError(err.response.data || err.message));
+    yield put(setError(err.message));
     yield put(deleteMessagesFailed());
   }
 }

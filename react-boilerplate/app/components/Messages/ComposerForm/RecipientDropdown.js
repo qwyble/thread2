@@ -26,7 +26,7 @@ class RecipientDropdown extends React.Component {
 RecipientDropdown.propTypes = {
   name: PropTypes.string,
   value: PropTypes.string,
-  options: PropTypes.array,
+  options: PropTypes.object,
   onChange: PropTypes.func,
   placeholder: PropTypes.string,
 };

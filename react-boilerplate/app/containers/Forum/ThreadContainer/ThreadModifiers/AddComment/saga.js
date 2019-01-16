@@ -18,13 +18,13 @@ export default function* AddCommentSaga() {
 function* submitComment(action) {
   try {
     const body = action.comment;
-    const threadId = yield select(makeSelectThreadIdParam);
+    const threadId = yield select(makeSelectThreadIdParam());
     const date = new Date()
       .toISOString()
       .substring(0, 19)
       .replace('T', ' ');
     yield call(submitCommentRequest, body, threadId, date);
-    const user = yield select(makeSelectUser);
+    const user = yield select(makeSelectUser());
     const comment = fromJS({
       userName: user.userName,
       imageUrl: user.imageUrl,
@@ -34,7 +34,7 @@ function* submitComment(action) {
     yield put(submitCommentCompleted());
     yield put(addCommentToThread(comment));
   } catch (err) {
-    yield put(setError(err.response.data || err.message));
+    yield put(setError(err.message));
     yield put(submitCommentFailed());
   }
 }

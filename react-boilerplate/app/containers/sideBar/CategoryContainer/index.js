@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
+
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -24,6 +26,7 @@ import saga from './saga';
 
 class CategoryContainer extends React.Component {
   componentDidMount() {
+    console.log('getting categories');
     this.props.getCategories();
   }
 
@@ -77,6 +80,7 @@ const withReducer = injectReducer({ key: 'CategoryContainer', reducer });
 const withSaga = injectSaga({ key: 'CategoryContainer', saga });
 
 export default compose(
+  withRouter,
   withSaga,
   withReducer,
   withConnect

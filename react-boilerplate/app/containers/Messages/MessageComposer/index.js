@@ -53,7 +53,7 @@ class MessageComposerContainer extends React.Component {
 MessageComposerContainer.propTypes = {
   isLoading: PropTypes.bool,
   sentMessage: PropTypes.object,
-  users: PropTypes.array,
+  users: PropTypes.object,
   getUsers: PropTypes.func,
   sendMessage: PropTypes.func,
 };

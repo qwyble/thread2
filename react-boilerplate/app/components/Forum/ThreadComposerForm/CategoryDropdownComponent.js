@@ -26,7 +26,7 @@ class CategoryDropdownComponent extends React.Component {
 CategoryDropdownComponent.propTypes = {
   name: PropTypes.string,
   value: PropTypes.string,
-  categories: PropTypes.array,
+  categories: PropTypes.object,
   onChange: PropTypes.func,
   placeholder: PropTypes.string,
 };

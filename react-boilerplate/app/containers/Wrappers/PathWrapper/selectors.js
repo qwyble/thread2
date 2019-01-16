@@ -1,21 +1,14 @@
 import { createSelector } from 'reselect';
-
-const selectPathWrapperOwnProps = (state, ownProps) => ownProps;
-
-export const makeSelectPathname = () =>
-  createSelector(
-    selectPathWrapperOwnProps,
-    ownProps => ownProps.location.pathname.split('/')[1]
-  );
+import { makeSelectPathnameRoot } from 'containers/AppUtilities/ProfileContext/selectors';
 
 export const makeSelectIsNotStream = () =>
   createSelector(
-    makeSelectPathname(),
+    makeSelectPathnameRoot(),
     path => path === 'profile' || path === 'playlist'
   );
 
 export const makeSelectIsStream = () =>
   createSelector(
-    makeSelectPathname(),
+    makeSelectPathnameRoot(),
     path => path === 'stream' || path === ''
   );

@@ -42,7 +42,7 @@ class Following extends React.Component {
 
 Following.propTypes = {
   isLoading: PropTypes.bool,
-  following: PropTypes.array,
+  following: PropTypes.object,
 };
 
 const mapStateToProps = () =>

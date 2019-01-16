@@ -14,7 +14,7 @@ function* getProfile(action) {
     yield put(getProfileSuccess(profile));
   } catch (err) {
     yield put(getProfileFailed());
-    yield put(setError(err.response.data || err.message));
+    yield put(setError(err.message));
   }
 }
 

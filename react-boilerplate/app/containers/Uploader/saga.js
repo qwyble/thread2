@@ -26,7 +26,7 @@ function* uploadSong(action) {
       yield put(addSongToStream(song));
     }
   } catch (err) {
-    yield put(setError(err.response.data || err.message));
+    yield put(setError(err.message));
     yield put(uploadSongFailed());
   }
 }

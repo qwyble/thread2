@@ -22,7 +22,7 @@ function* addCategory(action) {
     yield put(addCategoryToCats(category));
   } catch (err) {
     yield put(addCategoryFailed());
-    yield put(setError(err.response.data || err.message));
+    yield put(setError(err.message));
   }
 }
 

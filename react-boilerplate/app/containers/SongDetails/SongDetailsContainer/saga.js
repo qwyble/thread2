@@ -24,7 +24,7 @@ function* getSong() {
     const song = yield call(getSongRequest, songId);
     yield put(getSongCompleted(song));
   } catch (err) {
-    yield put(setError(err.response.data || err.message));
+    yield put(setError(err.message));
     yield put(getSongFailed());
   }
 }
@@ -36,7 +36,7 @@ function* deleteSong() {
     yield put(deleteSongCompleted());
     yield put(setSuccess('song deleted'));
   } catch (err) {
-    yield put(setError(err.response.data || err.message));
+    yield put(setError(err.message));
     yield put(deleteSongFailed());
   }
 }

@@ -35,7 +35,7 @@ const ThreadComposer = props => {
 };
 
 ThreadComposer.propTypes = {
-  categories: PropTypes.array,
+  categories: PropTypes.object,
   isLoading: PropTypes.bool,
   postThread: PropTypes.func,
   didSucceed: PropTypes.func,

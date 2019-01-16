@@ -43,7 +43,7 @@ class PlaylistContainer extends React.PureComponent {
 
 PlaylistContainer.propTypes = {
   setPlaylist: PropTypes.func,
-  playlists: PropTypes.array,
+  playlists: PropTypes.object,
 };
 
 const mapStateToProps = {};

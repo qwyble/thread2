@@ -14,11 +14,11 @@ export default function* ThreadsContainerSaga() {
 
 function* getThreads() {
   try {
-    const selectedCat = yield select(makeSelectSelectedCategory);
+    const selectedCat = yield select(makeSelectSelectedCategory());
     const threads = yield call(getThreadsRequest, selectedCat);
     yield put(getThreadsCompleted(threads));
   } catch (err) {
-    yield put(setError(err.response.data || err.message));
+    yield put(setError(err.message));
     const oldThreads = yield select(makeSelectThreads);
     yield put(getThreadsCompleted(oldThreads));
   }

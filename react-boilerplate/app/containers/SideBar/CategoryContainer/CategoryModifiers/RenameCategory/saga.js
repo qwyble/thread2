@@ -20,7 +20,7 @@ function* editCategory(action) {
     yield put(editCategoryInCats(action.category));
   } catch (err) {
     yield put(editCategoryFailed());
-    yield put(setError(err.response.data || err.message));
+    yield put(setError(err.message));
   }
 }
 

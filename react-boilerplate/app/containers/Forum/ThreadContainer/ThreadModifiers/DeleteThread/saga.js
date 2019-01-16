@@ -12,11 +12,11 @@ export default function* DeleteThreadSaga() {
 
 function* deleteThread() {
   try {
-    const threadId = yield select(makeSelectThreadIdParam);
+    const threadId = yield select(makeSelectThreadIdParam());
     yield call(deleteThreadRequest, threadId);
     yield put(deleteThreadCompleted());
   } catch (err) {
-    yield put(setError(err.response.data || err.message));
+    yield put(setError(err.message));
     yield put(deleteThreadFailed());
   }
 }

@@ -23,7 +23,7 @@ function* postThreads(action) {
     yield put(setSuccess('thread posted'));
     yield;
   } catch (err) {
-    yield put(setError(err.response.data || err.message));
+    yield put(setError(err.message));
     yield put(postThreadFailed());
   }
 }

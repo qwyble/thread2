@@ -1,15 +1,8 @@
 import { createSelector } from 'reselect';
-
-const selectPathWrapperOwnProps = (state, ownProps) => ownProps;
-
-export const makeSelectPathname = () =>
-  createSelector(
-    selectPathWrapperOwnProps,
-    ownProps => ownProps.location.pathname.split('/')[1]
-  );
+import { makeSelectPathnameRoot } from 'containers/AppUtilities/ProfileContext/selectors';
 
 export const makeSelectIsPlaylist = () =>
   createSelector(
-    makeSelectPathname,
+    makeSelectPathnameRoot(),
     path => path === 'playlist'
   );

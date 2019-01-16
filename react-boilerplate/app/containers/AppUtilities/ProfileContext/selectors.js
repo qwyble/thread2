@@ -3,18 +3,17 @@ import { createSelector } from 'reselect';
 import { makeSelectUser } from '../UserContainer/selectors';
 
 const selectProfileContext = state => state.get('ProfileContext');
-const selectProfileContextOwnProps = (state, ownProps) => ownProps;
-
-export const makeSelectMatch = () =>
-  createSelector(
-    selectProfileContextOwnProps,
-    ownProps => ownProps.match
-  );
 
 export const makeSelectParams = () =>
   createSelector(
-    makeSelectMatch(),
-    match => match.params
+    selectProfileContext,
+    state => state.get('params')
+  );
+
+export const makeSelectPathnameRoot = () =>
+  createSelector(
+    selectProfileContext,
+    state => state.get('root')
   );
 
 export const makeSelectProfileParam = () =>
@@ -26,12 +25,7 @@ export const makeSelectProfileParam = () =>
 export const makeSelectProfile = () =>
   createSelector(
     selectProfileContext,
-    makeSelectUser(),
-    (profileContext, user) => {
-      if (!profileContext.get('profile').isEmpty())
-        return profileContext.get('profile');
-      return user;
-    }
+    profileContext => profileContext.get('profile')
   );
 
 export const makeSelectProfileId = () =>

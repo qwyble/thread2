@@ -63,7 +63,7 @@ class ClonePortalContainer extends React.PureComponent {
 ClonePortalContainer.propTypes = {
   isLoading: PropTypes.bool,
   plToClone: PropTypes.string,
-  categories: PropTypes.array,
+  categories: PropTypes.object,
   clonePlaylist: PropTypes.func,
   didSucceed: PropTypes.bool,
   onClosePortal: PropTypes.func,

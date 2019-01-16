@@ -4,6 +4,7 @@ import {
   GET_PROFILE_SUCCESS,
   GET_PROFILE_FAILED,
   GET_PROFILE,
+  SET_PARAMS_CONTEXT,
 } from './constants';
 
 const blankProfile = fromJS({});
@@ -11,6 +12,8 @@ const blankProfile = fromJS({});
 const initialState = fromJS({
   profile: blankProfile,
   isLoading: true,
+  params: {},
+  root: '',
 });
 
 function profileReducer(state = initialState, action) {
@@ -27,6 +30,10 @@ function profileReducer(state = initialState, action) {
         .set('profile', fromJS(action.profile));
     case GET_PROFILE_FAILED:
       return state.set('isLoading', false);
+    case SET_PARAMS_CONTEXT:
+      return state
+        .set('params', fromJS(action.params))
+        .set('root', action.root);
     default:
       return state;
   }

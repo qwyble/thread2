@@ -42,7 +42,7 @@ const ThreadTable = ({ threads }) => (
 );
 
 ThreadTable.propTypes = {
-  threads: PropTypes.array,
+  threads: PropTypes.object,
 };
 
 export default ThreadTable;

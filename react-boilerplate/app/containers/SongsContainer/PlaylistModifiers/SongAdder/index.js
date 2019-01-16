@@ -64,7 +64,7 @@ class SongAdder extends React.Component {
 }
 
 SongAdder.propTypes = {
-  categories: PropTypes.array,
+  categories: PropTypes.object,
   addSongsToPlaylist: PropTypes.func,
   isLoading: PropTypes.bool,
 };

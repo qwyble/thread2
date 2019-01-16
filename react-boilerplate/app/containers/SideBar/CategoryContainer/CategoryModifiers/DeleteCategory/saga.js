@@ -20,7 +20,7 @@ function* deleteCategory(action) {
     yield put(deleteCategoryFromCats(action.catId));
   } catch (err) {
     yield put(deleteCategoryFailed);
-    yield put(setError(err.response.data || err.message));
+    yield put(setError(err.message));
   }
 }
 

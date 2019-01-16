@@ -18,7 +18,7 @@ const HasFollowers = props => (
 
 HasFollowers.propTypes = {
   children: PropTypes.node,
-  followers: PropTypes.array,
+  followers: PropTypes.object,
 };
 
 export default HasFollowers;

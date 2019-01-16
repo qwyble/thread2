@@ -80,7 +80,7 @@ class ClonePortalForm extends React.Component {
 }
 
 ClonePortalForm.propTypes = {
-  categories: PropTypes.array,
+  categories: PropTypes.object,
   onClonePlaylist: PropTypes.func,
   onClosePortal: PropTypes.func,
   plToClone: PropTypes.object,

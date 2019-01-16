@@ -93,7 +93,7 @@ class ThreadComposer extends React.Component {
 ThreadComposer.propTypes = {
   isLoading: PropTypes.bool,
   onPostThread: PropTypes.func,
-  categories: PropTypes.array,
+  categories: PropTypes.object,
 };
 
 export default ThreadComposer;

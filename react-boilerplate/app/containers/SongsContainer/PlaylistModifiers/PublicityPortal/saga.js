@@ -26,7 +26,7 @@ function* makePublic() {
     yield put(setIsPublic(!isPublic, plid));
   } catch (err) {
     yield put(makePublicComplete());
-    yield put(setError(err.response.data || err.message));
+    yield put(setError(err.message));
   }
 }
 

@@ -3,6 +3,7 @@ import {
   GET_PROFILE,
   GET_PROFILE_FAILED,
   GET_PROFILE_SUCCESS,
+  SET_PARAMS_CONTEXT,
 } from './constants';
 
 export function setProfile(profile) {
@@ -29,5 +30,15 @@ export function getProfileSuccess(profile) {
 export function getProfileFailed() {
   return {
     type: GET_PROFILE_FAILED,
+  };
+}
+
+export function setParamsContext(match) {
+  const { params } = { ...match };
+  const root = match.path.split('/')[1];
+  return {
+    type: SET_PARAMS_CONTEXT,
+    params,
+    root,
   };
 }

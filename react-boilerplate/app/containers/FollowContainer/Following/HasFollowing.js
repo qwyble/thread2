@@ -18,7 +18,7 @@ const HasFollowing = props => (
 
 HasFollowing.propTypes = {
   children: PropTypes.node,
-  following: PropTypes.array,
+  following: PropTypes.object,
 };
 
 export default HasFollowing;

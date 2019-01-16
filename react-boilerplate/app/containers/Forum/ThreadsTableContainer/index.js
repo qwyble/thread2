@@ -44,7 +44,7 @@ class ThreadsContainer extends React.Component {
 
 ThreadsContainer.propTypes = {
   isLoading: PropTypes.bool,
-  threads: PropTypes.array,
+  threads: PropTypes.object,
   selectedCategory: PropTypes.number,
   getThreads: PropTypes.func,
 };

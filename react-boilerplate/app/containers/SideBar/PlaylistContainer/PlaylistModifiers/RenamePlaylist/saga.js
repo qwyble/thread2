@@ -22,7 +22,7 @@ function* renamePlaylist(action) {
     yield put(renamePlInCat(data.plid, data.plname));
   } catch (err) {
     yield put(renamePlaylistFailed());
-    yield put(setError(err.response.data || err.message));
+    yield put(setError(err.message));
   }
 }
 

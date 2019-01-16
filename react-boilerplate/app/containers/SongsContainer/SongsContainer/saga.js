@@ -1,6 +1,7 @@
 import { call, put, takeLatest, select } from 'redux-saga/effects';
 import axios from 'axios';
 import { setError } from 'containers/Wrappers/ErrorWrapper/actions';
+import { makeSelectPathnameRoot } from 'containers/AppUtilities/ProfileContext/selectors';
 import {
   GET_SONGS,
   SORT_BY,
@@ -16,14 +17,13 @@ import {
 } from './actions';
 import {
   makeSelectCurrentPage,
-  makeSelectUrl,
   makeSelectSortBy,
   makeSelectDescending,
 } from './selectors';
 
 export default function* songsContainerSaga() {
   yield takeLatest(GET_SONGS, getSongs);
-  yield takeLatest(SORT_BY, sortBy);
+  yield takeLatest(SORT_BY, sort);
   yield takeLatest(SET_DESCENDING, setDescending);
   yield takeLatest(SET_CURRENT_PAGE, setCurrentPage);
 }
@@ -38,7 +38,7 @@ function* setDescending() {
   yield call(getSongs);
 }
 
-function* sortBy(action) {
+function* sort(action) {
   yield put(sortByReduction(action.sortParam));
   yield call(getSongs);
 }
@@ -49,17 +49,30 @@ function* getSongs() {
     yield put(getSongsSuccess(songs));
   } catch (err) {
     yield put(getSongsFailed());
-    yield put(setError(err.response.data || err.message));
+    yield put(setError(err.message));
   }
 }
 
-function* songsRequest() {
-  const url = yield select(makeSelectUrl);
-  const currentPage = yield select(makeSelectCurrentPage);
-  const sortByParam = yield select(makeSelectSortBy);
-  const descendingParam = yield select(makeSelectDescending);
+function* getUrl() {
+  const path = yield select(makeSelectPathnameRoot());
+  if (path.length < 2) return 'https://thread-204819.appspot.com/stream';
+  return `https://thread-204819.appspot.com${path}`;
+}
 
-  return getSongsRequest(url, sortByParam, descendingParam, currentPage);
+function* songsRequest() {
+  const url = getUrl();
+  const currentPage = yield select(makeSelectCurrentPage());
+  const sortByParam = yield select(makeSelectSortBy());
+  const descendingParam = yield select(makeSelectDescending());
+  console.log(descendingParam);
+
+  return yield call(
+    getSongsRequest,
+    url,
+    sortByParam,
+    descendingParam,
+    currentPage
+  );
 }
 
 const getSongsRequest = (url, sortBy, descending, currentItem) =>

@@ -12,16 +12,20 @@ import SideBarContainer from 'containers/SideBar/SideBarContainer';
 import { makeSelectProfileParam, makeSelectIsLoading } from './selectors';
 
 import { makeSelectUser } from '../UserContainer/selectors';
-import { setProfile, getProfile } from './actions';
+import { setProfile, getProfile, setParamsContext } from './actions';
 import saga from './saga';
 
 class ProfileContext extends React.Component {
   componentDidMount() {
     this.setProfile();
+    console.log(this.props.match);
+    this.props.setParamsContext(this.props.match);
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.profileParam !== prevProps.profileParam) this.setProfile();
+    if (prevProps.url !== this.props.url)
+      this.props.setParamsContext(this.props.match);
   }
 
   setProfile() {
@@ -45,6 +49,8 @@ ProfileContext.propTypes = {
   getProfile: PropTypes.func,
   setProfile: PropTypes.func,
   user: PropTypes.object,
+  setParamsContext: PropTypes.func,
+  match: PropTypes.object,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -56,6 +62,7 @@ const mapStateToProps = createStructuredSelector({
 const mapDispatchToProps = {
   getProfile,
   setProfile,
+  setParamsContext,
 };
 
 const withSaga = injectSaga({ key: 'ProfileContext', saga });

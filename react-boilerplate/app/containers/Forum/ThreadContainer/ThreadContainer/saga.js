@@ -13,14 +13,14 @@ export default function* ThreadViewSaga() {
 
 function* getThread() {
   try {
-    const threadId = yield select(makeSelectThreadIdParam);
+    const threadId = yield select(makeSelectThreadIdParam());
     const [thread, comments] = yield all([
       call(getThreadRequest, threadId),
       call(getCommentsRequest, threadId),
     ]);
     yield put(getThreadCompleted(thread, comments));
   } catch (err) {
-    yield put(setError(err.response.data || err.message));
+    yield put(setError(err.message));
     yield put(getThreadFailed());
   }
 }

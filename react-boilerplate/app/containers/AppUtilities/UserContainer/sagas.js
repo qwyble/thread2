@@ -15,7 +15,7 @@ function* auth(action) {
     yield put(authSuccess(userObj));
   } catch (err) {
     yield put(authFailed());
-    yield put(setError(err.response.data || err.message));
+    yield put(setError(err.message));
   }
 }
 

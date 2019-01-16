@@ -25,7 +25,7 @@ function* removeSongs() {
     yield put(removeSongsCompleted());
   } catch (err) {
     yield put(removeSongsFailed());
-    yield put(setError(err.response.data || err.message));
+    yield put(setError(err.message));
   }
 }
 

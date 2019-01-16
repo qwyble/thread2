@@ -1,4 +1,5 @@
 import { createSelector } from 'reselect';
+import { makeSelectParams } from 'containers/AppUtilities/ProfileContext/selectors';
 
 export const selectCategoryContainer = state => state.get('CategoryContainer');
 
@@ -18,4 +19,10 @@ export const makeSelectCategories = () =>
   createSelector(
     makeSelectCatContainerState(),
     state => state.get('categories')
+  );
+
+export const makeSelectPlaylistParam = () =>
+  createSelector(
+    makeSelectParams(),
+    params => params.get('playlist')
   );

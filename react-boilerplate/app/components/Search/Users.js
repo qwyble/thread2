@@ -43,7 +43,7 @@ const Users = props => (
 );
 
 Users.propTypes = {
-  users: PropTypes.array,
+  users: PropTypes.object,
 };
 
 export default Users;

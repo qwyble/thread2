@@ -21,7 +21,7 @@ function* deletePlaylist(action) {
     yield put(deletePlaylistSuccess());
     yield put(removePlaylistFromCategory(data));
   } catch (err) {
-    yield put(setError(err.response.data || err.message));
+    yield put(setError(err.message));
     yield put(deletePlaylistFailed());
   }
 }

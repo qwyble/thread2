@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
+import { makeSelectPathnameRoot } from 'containers/AppUtilities/ProfileContext/selectors';
 
 const selectSongsContainerState = state => state.get('SongsContainer');
-const selectSongsContainerOwnProps = (state, ownProps) => ownProps;
 
 export const makeSelectSongsTableState = () =>
   createSelector(
@@ -9,15 +9,9 @@ export const makeSelectSongsTableState = () =>
     state => state.get('songsTable')
   );
 
-export const makeSelectPathname = () =>
-  createSelector(
-    selectSongsContainerOwnProps,
-    ownProps => ownProps.location.pathname.split('/')[1]
-  );
-
 export const makeSelectUrl = () =>
   createSelector(
-    makeSelectPathname(),
+    makeSelectPathnameRoot(),
     path => {
       if (path.length < 2) return 'https://thread-204819.appspot.com/stream';
       return `https://thread-204819.appspot.com${path}`;
@@ -56,7 +50,7 @@ export const makeSelectSortBy = () =>
 
 export const makeSelectDescending = () =>
   createSelector(
-    selectSongsContainerState,
+    makeSelectSongsTableState(),
     state => state.get('descending')
   );
 

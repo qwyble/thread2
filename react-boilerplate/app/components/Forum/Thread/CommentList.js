@@ -25,7 +25,7 @@ const CommentList = props => (
 );
 
 CommentList.propTypes = {
-  comments: PropTypes.array,
+  comments: PropTypes.object,
 };
 
 export default CommentList;

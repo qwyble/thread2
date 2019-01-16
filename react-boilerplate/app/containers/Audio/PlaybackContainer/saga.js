@@ -10,14 +10,14 @@ export default function* audioPlaybackSaga() {
 }
 
 function* handleEnd() {
-  const nextSong = yield select(makeSelectNextSong);
+  const nextSong = yield select(makeSelectNextSong());
   if (nextSong) {
     yield put(handlePlaying(nextSong));
   }
 }
 
 function* handleSkipBack() {
-  const prevSong = yield select(makeSelectPrevSong);
+  const prevSong = yield select(makeSelectPrevSong());
   if (prevSong) {
     yield put(handlePlaying(prevSong));
   }

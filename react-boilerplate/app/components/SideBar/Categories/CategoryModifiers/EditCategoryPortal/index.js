@@ -80,7 +80,7 @@ class EditCategoryPortal extends React.Component {
 }
 
 EditCategoryPortal.propTypes = {
-  id: PropTypes.string,
+  id: PropTypes.number,
   catname: PropTypes.string,
 };
 

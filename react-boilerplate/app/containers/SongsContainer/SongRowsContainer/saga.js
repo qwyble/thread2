@@ -16,7 +16,7 @@ function* rateSong(action) {
     yield put(changeRating(idSongs, rating));
   } catch (err) {
     yield put(rateSongCompleted());
-    yield put(setError(err.response.data || err.message));
+    yield put(setError(err.message));
   }
 }
 

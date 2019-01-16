@@ -14,11 +14,11 @@ export default function* MessageViewContainerSaga() {
 
 function* getMessage() {
   try {
-    const messageId = yield select(makeSelectMessageId);
+    const messageId = yield select(makeSelectMessageId());
     const message = yield call(getMessageRequest, messageId);
     yield put(getMessageCompleted(message));
   } catch (err) {
-    yield put(setError(err.response.data || err.message));
+    yield put(setError(err.message));
     yield put(getMessageFailed());
   }
 }

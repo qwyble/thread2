@@ -44,7 +44,7 @@ class ForumFeed extends React.Component {
 }
 
 ForumFeed.propTypes = {
-  feedEvents: PropTypes.array,
+  feedEvents: PropTypes.object,
   isLoading: PropTypes.bool,
   getFeed: PropTypes.func,
 };

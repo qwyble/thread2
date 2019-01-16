@@ -78,7 +78,6 @@ class LoginContainer extends React.Component {
     const loc = this.props.location.state;
     if (loc) {
       if (!loc.from.includes('auth') && !loc.from.includes('logout')) {
-        console.log(loc.from);
         return loc.from;
       }
     }

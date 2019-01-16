@@ -14,7 +14,7 @@ function* getFollowing() {
     yield put(getFollowingCompleted(following));
   } catch (err) {
     yield put(getFollowingFailed());
-    yield put(setError(err.response.data || err.message));
+    yield put(setError(err.message));
   }
 }
 

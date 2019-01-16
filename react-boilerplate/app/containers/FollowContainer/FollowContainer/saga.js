@@ -16,19 +16,19 @@ export default function* FollowContainerSaga() {
 
 function* getIsFollowing() {
   try {
-    const ownerId = yield select(makeSelectProfileId);
-    const userId = yield select(makeSelectUserId);
+    const ownerId = yield select(makeSelectProfileId());
+    const userId = yield select(makeSelectUserId());
     const isFollowing = yield call(getIsFollowingRequest, ownerId, userId);
     yield put(getIsFollowingComplete(isFollowing));
   } catch (err) {
     yield put(getIsFollowingComplete(false));
-    yield put(setError(err.response.data || err.message));
+    yield put(setError(err.message));
   }
 }
 
 function* followUser() {
-  const ownerId = yield select(makeSelectProfileId);
-  const isFollowing = yield select(makeSelectIsFollowing);
+  const ownerId = yield select(makeSelectProfileId());
+  const isFollowing = yield select(makeSelectIsFollowing());
   try {
     if (isFollowing) {
       yield call(unfollowUserRequest, ownerId);
@@ -39,7 +39,7 @@ function* followUser() {
     }
   } catch (err) {
     yield put(followUserComplete(isFollowing));
-    yield put(setError(err.response.data || err.message));
+    yield put(setError(err.message));
   }
 }
 

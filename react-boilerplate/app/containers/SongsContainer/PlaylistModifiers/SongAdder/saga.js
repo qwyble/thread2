@@ -20,7 +20,7 @@ function* addSongs(action) {
     yield put(addSongsToPlSuccess());
   } catch (err) {
     yield put(addSongsToPlFailed());
-    yield put(setError(err.response.data || err.message));
+    yield put(setError(err.message));
   }
 }
 
