@@ -1,7 +1,10 @@
 import { call, takeLatest, put, select } from 'redux-saga/effects';
 import axios from 'axios';
 
-import { makeSelectProfileId } from 'containers/AppUtilities/ProfileContext/selectors';
+import {
+  makeSelectProfileId,
+  makeSelectIsOwner,
+} from 'containers/AppUtilities/ProfileContext/selectors';
 
 import { setPlaylist } from 'containers/SideBar/SideBarContainer/actions';
 import { setError } from 'containers/Wrappers/ErrorWrapper/actions';
@@ -17,16 +20,28 @@ export default function* CategoryContainerSaga() {
 
 function* getCategories() {
   try {
-    const profileId = yield select(makeSelectProfileId()) || 0;
-    const plParam = yield select(makeSelectPlaylistParam()) || 0;
+    const plParam = yield call(getPlParam);
+    const profileId = yield call(getProfileId);
     const url = getUrl(profileId, plParam);
     const { categories2, playlist } = yield call(getCatsRequest, url);
     yield put(getCategoriesCompleted(categories2));
-    yield put(setPlaylist(playlist));
+    if (playlist) yield put(setPlaylist(playlist));
   } catch (error) {
     yield put(getCategoriesCompleted([]));
     yield put(setError(error.message));
   }
+}
+
+function* getProfileId() {
+  const isOwner = yield select(makeSelectIsOwner());
+  if (isOwner) return '0';
+  return yield select(makeSelectProfileId());
+}
+
+function* getPlParam() {
+  const plParam = yield select(makeSelectPlaylistParam());
+  if (plParam) return plParam;
+  return '0';
 }
 
 function getUrl(profileId, plidParam) {
@@ -41,6 +56,7 @@ function getCatsRequest(url) {
   })
     .then(categories => categories.data)
     .catch(err => {
+      console.log(err.message);
       throw err;
     });
 }

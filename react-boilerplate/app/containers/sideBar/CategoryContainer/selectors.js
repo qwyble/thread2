@@ -3,21 +3,15 @@ import { makeSelectParams } from 'containers/AppUtilities/ProfileContext/selecto
 
 export const selectCategoryContainer = state => state.get('CategoryContainer');
 
-const makeSelectCatContainerState = () =>
-  createSelector(
-    selectCategoryContainer,
-    container => container.Categories
-  );
-
 export const makeSelectIsLoading = () =>
   createSelector(
-    makeSelectCatContainerState(),
+    selectCategoryContainer,
     state => state.get('isLoading')
   );
 
 export const makeSelectCategories = () =>
   createSelector(
-    makeSelectCatContainerState(),
+    selectCategoryContainer,
     state => state.get('categories')
   );
 

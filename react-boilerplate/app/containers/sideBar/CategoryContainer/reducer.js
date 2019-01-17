@@ -24,14 +24,7 @@ const initialState = fromJS({
   isLoading: true,
 });
 
-export default combineReducers({
-  Categories,
-  AddCategory,
-  DeleteCategory,
-  RenameCategory,
-});
-
-function Categories(state = initialState, action) {
+export default function Categories(state = initialState, action) {
   switch (action.type) {
     case GET_CATEGORIES:
       return state.set('isLoading', true);

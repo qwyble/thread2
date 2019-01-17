@@ -6,6 +6,7 @@ const PlayButtons = props => (
   <span>
     <Grid.Column width={2}>
       <Button
+        className="audioBarButton"
         inverted
         color="blue"
         icon="angle double left"
@@ -13,6 +14,7 @@ const PlayButtons = props => (
       />
 
       <Button
+        className="audioBarButton"
         size="mini"
         inverted
         color="blue"
@@ -21,6 +23,7 @@ const PlayButtons = props => (
       />
 
       <Button
+        className="audioBarButton"
         inverted
         color="blue"
         icon="angle double right"

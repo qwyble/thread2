@@ -1,14 +1,9 @@
 import { createSelector } from 'reselect';
-import { selectCategoryContainer } from 'containers/SideBar/CategoryContainer/selectors';
 
-export const makeSelectAddCategory = () =>
-  createSelector(
-    selectCategoryContainer,
-    state => state.AddCategory
-  );
+const selectAddCategoryContainer = state => state.get('AddCategory');
 
 export const makeSelectIsLoading = () =>
   createSelector(
-    makeSelectAddCategory(),
+    selectAddCategoryContainer,
     state => state.get('isLoading')
   );

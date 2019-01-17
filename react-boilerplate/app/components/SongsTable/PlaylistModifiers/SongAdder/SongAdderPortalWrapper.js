@@ -12,7 +12,7 @@ import { makeSelectNoneSelected } from 'containers/SongsContainer/SongsContainer
 
 const AddToPlaylistPortalWrapper = props => {
   const trigger = (
-    <Button disabled={props.disabled} size="mini">
+    <Button disabled={props.disabled} inverted color="blue" size="mini">
       Add to Playlist
     </Button>
   );

@@ -45,6 +45,7 @@ function* sort(action) {
 
 function* getSongs() {
   try {
+    console.log('asdfasdf');
     const songs = yield call(songsRequest);
     yield put(getSongsSuccess(songs));
   } catch (err) {
@@ -56,15 +57,14 @@ function* getSongs() {
 function* getUrl() {
   const path = yield select(makeSelectPathnameRoot());
   if (path.length < 2) return 'https://thread-204819.appspot.com/stream';
-  return `https://thread-204819.appspot.com${path}`;
+  return `https://thread-204819.appspot.com/${path}`;
 }
 
 function* songsRequest() {
-  const url = getUrl();
+  const url = yield call(getUrl);
   const currentPage = yield select(makeSelectCurrentPage());
   const sortByParam = yield select(makeSelectSortBy());
   const descendingParam = yield select(makeSelectDescending());
-  console.log(descendingParam);
 
   return yield call(
     getSongsRequest,

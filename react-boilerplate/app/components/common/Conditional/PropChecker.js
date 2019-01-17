@@ -14,7 +14,7 @@ const PropChecker = props => (
 PropChecker.propTypes = {
   children: PropTypes.node,
   alt: PropTypes.element,
-  field: PropTypes.oneOf([
+  field: PropTypes.oneOfType([
     PropTypes.bool,
     PropTypes.element,
     PropTypes.string,

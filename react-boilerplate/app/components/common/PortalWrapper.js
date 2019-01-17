@@ -14,21 +14,19 @@ class PortalWrapper extends React.Component {
 
   render() {
     return (
-      <div>
+      <span style={{ display: 'inline-block' }}>
         <Portal open={this.state.isOpen} trigger={this.props.trigger}>
-          <div>
-            {this.state.isOpen ? (
-              <Segment>
-                {React.cloneElement(this.props.children, {
-                  closePortal: this.toggleOpen,
-                })}
-              </Segment>
-            ) : (
-              <div />
-            )}
-          </div>
+          {this.state.isOpen ? (
+            <Segment>
+              {React.cloneElement(this.props.children, {
+                closePortal: this.toggleOpen,
+              })}
+            </Segment>
+          ) : (
+            <div />
+          )}
         </Portal>
-      </div>
+      </span>
     );
   }
 }

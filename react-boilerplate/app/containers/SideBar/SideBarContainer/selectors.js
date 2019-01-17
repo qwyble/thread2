@@ -5,7 +5,7 @@ export const sideBarState = state => state.get('SideBarContainer');
 export const makeSelectSelectedPlaylist = () =>
   createSelector(
     sideBarState,
-    state => state.get('selectedPlaylist') || undefined
+    state => state.get('selectedPlaylist')
   );
 
 export const makeSelectSelectedPlid = () =>
@@ -35,7 +35,7 @@ export const makeSelectVisibility = () =>
 export const makeSelectSelectedCategory = () =>
   createSelector(
     sideBarState,
-    state => state.get('selectedCategory') || undefined
+    state => state.get('selectedCategory')
   );
 
 export const makeSelectSelectedCategoryId = () =>

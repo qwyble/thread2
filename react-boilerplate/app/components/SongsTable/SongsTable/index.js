@@ -40,7 +40,7 @@ const SongsTable = props => (
       )}
       <Table.Footer className="stickyBottom">
         <Table.Row>
-          <Table.HeaderCell colSpan="4">
+          <Table.HeaderCell colSpan="5">
             <ClonePortalWrapper />
             <SongAdderPortalWrapper />
             <FollowContainer />

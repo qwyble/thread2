@@ -50,12 +50,15 @@ const Signup = props => (
                 onFocus={props.onFocus}
               />
             </Form.Field>
-            <Button type="submit" disabled={props.disabled}>
+            <br />
+            <Button type="submit" size="mini" disabled={props.disabled}>
               Sign Up{' '}
             </Button>
+            <Link to="/auth/login">
+              <Button size="mini">Login</Button>
+            </Link>
           </Form>
           <br />
-          <Link to="/auth/login">Login</Link>
         </Segment>
       </Grid>
     </Container>

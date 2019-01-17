@@ -34,7 +34,7 @@ class Category extends React.Component {
               </StyledButton>
             </Menu.Item>
             <PropChecker field={this.props.selected}>
-              <AnimationWrapper displayLists={displayLists}>
+              <AnimationWrapper displayLists={this.props.selected}>
                 <PlaylistContainer
                   playlists={this.props.category.get('pls')}
                   catId={this.props.category.get('catid')}
