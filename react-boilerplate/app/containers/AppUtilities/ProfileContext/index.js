@@ -18,14 +18,13 @@ import saga from './saga';
 class ProfileContext extends React.Component {
   componentDidMount() {
     this.setProfile();
-    console.log(this.props.match);
     this.props.setParamsContext(this.props.match);
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.profileParam !== prevProps.profileParam) this.setProfile();
-    if (prevProps.url !== this.props.url)
-      this.props.setParamsContext(this.props.match);
+    if (prevProps.url !== this.props.url) console.log(this.props.match);
+    this.props.setParamsContext(this.props.match);
   }
 
   setProfile() {

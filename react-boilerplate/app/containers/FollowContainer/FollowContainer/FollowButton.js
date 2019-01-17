@@ -4,13 +4,11 @@ import { Button } from 'semantic-ui-react';
 import LoaderWrapper from 'containers/Wrappers/LoaderWrapper';
 
 const FollowButton = props => (
-  <div>
-    <Button size="mini" onClick={props.follow}>
-      <LoaderWrapper isLoading={props.isLoading}>
-        {props.isFollowing ? <div>Unfollow</div> : <div>Follow</div>}
-      </LoaderWrapper>
-    </Button>
-  </div>
+  <Button inverted color="blue" onClick={props.follow} className="followButton">
+    <LoaderWrapper isLoading={props.isLoading}>
+      {props.isFollowing ? <span>Unfollow</span> : <span>Follow</span>}
+    </LoaderWrapper>
+  </Button>
 );
 
 FollowButton.propTypes = {

@@ -4,7 +4,7 @@ import { call, takeLatest, put, select } from 'redux-saga/effects';
 import { setError } from 'containers/Wrappers/ErrorWrapper/actions';
 import { setSuccess } from 'containers/Wrappers/SuccessWrapper/actions';
 
-import { makeSelectSongIdParam, makeSelectSong } from './selectors';
+import { makeSelectSong } from './selectors';
 import { GET_SONG, DELETE_SONG } from './constants';
 import {
   getSongCompleted,
@@ -18,10 +18,12 @@ export default function* SongDetailsSaga() {
   yield takeLatest(DELETE_SONG, deleteSong);
 }
 
-function* getSong() {
+function* getSong(action) {
   try {
-    const songId = yield select(makeSelectSongIdParam);
+    const { songId } = { ...action };
+    console.log(songId);
     const song = yield call(getSongRequest, songId);
+    console.log(song);
     yield put(getSongCompleted(song));
   } catch (err) {
     yield put(setError(err.message));
@@ -48,7 +50,11 @@ function getSongRequest(songId) {
     params: {
       songId,
     },
-  });
+  })
+    .then(result => result.data)
+    .catch(err => {
+      throw err;
+    });
 }
 
 function deleteSongRequest(song) {

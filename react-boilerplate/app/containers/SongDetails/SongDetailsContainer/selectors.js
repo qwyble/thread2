@@ -1,3 +1,4 @@
+import { toJS } from 'immutable';
 import { createSelector } from 'reselect';
 import { makeSelectParams } from 'containers/AppUtilities/ProfileContext/selectors';
 import { makeSelectNowPlayingId } from 'containers/Audio/PlaybackContainer/selectors';
@@ -20,7 +21,7 @@ export const makeSelectDidSucceed = () =>
 export const makeSelectSongIdParam = () =>
   createSelector(
     makeSelectParams(),
-    params => params.song
+    params => params.get('song')
   );
 
 export const makeSelectSong = () =>
@@ -34,7 +35,7 @@ export const makeSelectIsPlaying = () =>
     makeSelectSongIdParam(),
     makeSelectNowPlayingId(),
     (songId, nowPlayingId) => {
-      if (songId === nowPlayingId) return true;
+      if (nowPlayingId) if (songId === nowPlayingId) return true;
       return false;
     }
   );

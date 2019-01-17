@@ -17,14 +17,17 @@ class Paginator extends React.Component {
 
   render() {
     return (
-      <Pagination
-        inverted
-        pointing
-        secondary
-        defaultActivePage={1}
-        totalPages={this.props.totalPages}
-        onPageChange={this.handlePageChange}
-      />
+      <span style={{ display: 'inline-block' }}>
+        <Pagination
+          floated="right"
+          inverted
+          pointing
+          secondary
+          defaultActivePage={1}
+          totalPages={this.props.totalPages}
+          onPageChange={this.handlePageChange}
+        />
+      </span>
     );
   }
 }

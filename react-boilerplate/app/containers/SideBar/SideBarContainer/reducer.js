@@ -1,15 +1,10 @@
 import { fromJS } from 'immutable';
 
-import {
-  SELECT_PLAYLIST,
-  SELECT_CATEGORY,
-  TOGGLE_VISIBILITY,
-} from './constants';
+import { SELECT_PLAYLIST, SELECT_CATEGORY } from './constants';
 
 const initialState = fromJS({
   selectedPlaylist: {},
   selectedCategory: {},
-  isVisible: true,
 });
 
 function sideBarReducer(state = initialState, action) {
@@ -18,8 +13,6 @@ function sideBarReducer(state = initialState, action) {
       return state.set('selectedCategory', fromJS(action.category));
     case SELECT_PLAYLIST:
       return state.set('selectedPlaylist', fromJS(action.playlist));
-    case TOGGLE_VISIBILITY:
-      return state.set('isVisible', !state.get('isVisible'));
     default:
       return state;
   }

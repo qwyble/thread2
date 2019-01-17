@@ -31,6 +31,7 @@ class SearchBar extends React.Component {
   };
 
   render() {
+    console.log(this.props.users);
     const results = {
       users: {
         name: 'users',

@@ -31,17 +31,15 @@ class FollowContainer extends React.Component {
 
   render() {
     return (
-      <div style={{ float: 'left' }}>
-        <PathWrapper>
-          <IsNotPlaylistOwner>
-            <FollowButton
-              follow={this.props.follow}
-              isFollowing={this.props.isFollowing}
-              isLoading={this.props.isLoading}
-            />
-          </IsNotPlaylistOwner>
-        </PathWrapper>
-      </div>
+      <PathWrapper>
+        <IsNotPlaylistOwner>
+          <FollowButton
+            follow={this.props.follow}
+            isFollowing={this.props.isFollowing}
+            isLoading={this.props.isLoading}
+          />
+        </IsNotPlaylistOwner>
+      </PathWrapper>
     );
   }
 }

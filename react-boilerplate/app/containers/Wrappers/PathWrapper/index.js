@@ -6,7 +6,9 @@ import { createStructuredSelector } from 'reselect';
 import { makeSelectIsNotStream } from './selectors';
 
 const PathWrapper = props => (
-  <div>{props.isNotStream ? <div>{props.children}</div> : <div />}</div>
+  <span style={{ display: 'inline-block', fontSize: '1em' }}>
+    {props.isNotStream ? <span>{props.children}</span> : <div />}
+  </span>
 );
 
 PathWrapper.propTypes = {

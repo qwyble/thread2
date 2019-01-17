@@ -31,7 +31,13 @@ import { deleteSong, getSong } from './actions';
 
 class SongDetailsContainer extends React.Component {
   componentDidMount() {
-    this.props.getSong();
+    this.props.getSong(this.props.match.params.song);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.match.params.song !== prevProps.match.params.song) {
+      this.props.getSong(this.props.match.params.song);
+    }
   }
 
   handlePlaying = () => {
@@ -62,6 +68,7 @@ SongDetailsContainer.propTypes = {
   handlePlaying: PropTypes.func,
   isPlaying: PropTypes.bool,
   isPaused: PropTypes.bool,
+  match: PropTypes.object,
   deleteSong: PropTypes.func,
   isLoading: PropTypes.bool,
   getSong: PropTypes.func,

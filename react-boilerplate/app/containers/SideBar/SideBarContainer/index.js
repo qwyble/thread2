@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Sidebar, Segment, Button, Menu, Icon } from 'semantic-ui-react';
+import { Sidebar, Segment, Menu } from 'semantic-ui-react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -12,66 +12,43 @@ import SideBarHeader from 'components/SideBar/SidebarHeader';
 import SongsContainer from 'containers/SongsContainer/SongsContainer';
 
 import { makeSelectProfile } from 'containers/AppUtilities/ProfileContext/selectors';
-import { makeSelectVisibility } from './selectors';
-
-import { toggleVisibility } from './actions';
 
 import reducer from './reducer';
 
 const SideBarContainer = props => (
   <div>
-    <div>
-      <Sidebar.Pushable as={Segment} className="primaryContainer">
-        <Sidebar
-          inverted
-          vertical
-          width="thin"
-          icon="labeled"
-          animation="push"
-          as={Menu}
-          visible={props.visible}
-        >
-          <SideBarHeader owner={props.owner} />
+    <Sidebar.Pushable as={Segment} className="primaryContainer">
+      <Sidebar
+        inverted
+        vertical
+        width="thin"
+        icon="labeled"
+        animation="push"
+        visible
+        as={Menu}
+      >
+        <SideBarHeader owner={props.owner} />
 
-          <CategoryContainer />
-        </Sidebar>
-        <Sidebar.Pusher className="pusherContainer">
-          <Button
-            icon
-            inverted
-            color="blue"
-            attached="right"
-            className="sidebarButton"
-            onClick={props.toggleVisibility}
-          >
-            <Icon name={props.visible ? 'left arrow' : 'right arrow'} />
-          </Button>
-          <SongsContainer />
-        </Sidebar.Pusher>
-      </Sidebar.Pushable>
-    </div>
+        <CategoryContainer />
+      </Sidebar>
+      <Sidebar.Pusher className="pusherContainer">
+        <SongsContainer />
+      </Sidebar.Pusher>
+    </Sidebar.Pushable>
   </div>
 );
 
 SideBarContainer.propTypes = {
-  toggleVisibility: PropTypes.func,
-  visible: PropTypes.bool,
   owner: PropTypes.object,
 };
 
 const mapStateToProps = createStructuredSelector({
-  visible: makeSelectVisibility(),
   owner: makeSelectProfile(),
 });
 
-const mapDispatchToProps = { toggleVisibility };
-
 const withReducer = injectReducer({ key: 'SideBarContainer', reducer });
 
-const withConnect = connect(
-  mapStateToProps,
-  mapDispatchToProps
-);
+const withConnect = connect(mapStateToProps);
 
 export default compose(
   withReducer,

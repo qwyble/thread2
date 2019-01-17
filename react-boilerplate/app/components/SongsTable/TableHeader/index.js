@@ -3,38 +3,38 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const TableHeader = props => (
-  <Table.Header className="stickyTop">
-    <Table.Row>
-      <Table.HeaderCell />
-      <Table.HeaderCell />
-      <Table.HeaderCell>
+  <thead>
+    <tr>
+      <th scope="col" />
+      <th scope="col" />
+      <th scope="col">
         Title
         <Icon name="sort" onClick={() => props.onSortBy('songs.title')} />
-      </Table.HeaderCell>
-      <Table.HeaderCell>
+      </th>
+      <th scope="col">
         Uploader
         <Icon name="sort" onClick={() => props.onSortBy('songs.owner')} />
-      </Table.HeaderCell>
-      <Table.HeaderCell>
+      </th>
+      <th scope="col">
         Rating
         <Icon
           name="sort"
           onClick={() => props.onSortBy('songratings.rating')}
         />
-      </Table.HeaderCell>
-      <Table.HeaderCell>
+      </th>
+      <th scope="col">
         Genre
         <Icon name="sort" onClick={() => props.onSortBy('songs.genres')} />
-      </Table.HeaderCell>
-      <Table.HeaderCell>
+      </th>
+      <th scope="col">
         Date Uploaded
         <Icon
           name="sort"
           onClick={() => props.onSortBy('songs.dateUploaded')}
         />
-      </Table.HeaderCell>
-    </Table.Row>
-  </Table.Header>
+      </th>
+    </tr>
+  </thead>
 );
 
 TableHeader.propTypes = {

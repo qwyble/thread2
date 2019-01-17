@@ -1,10 +1,48 @@
 html * {
-  font-size: 0.99em !important;
+  font-size: 0.98em !important;
   font-family: 'Exo', sans-serif !important;
+}
+body {
+  color: aliceblue;
 }
 
 i.icon {
   font-family: Icons !important;
+  color: rgba(125, 254, 252, 0.866);
+}
+
+.btn.btn-outline-primary.button1 {
+  color: rgba(125, 254, 252, 0.866);
+  background-color: transparent;
+}
+.btn.btn-outline-primary.button1:hover {
+  color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(125, 254, 252, 0.866);
+}
+
+.ui.header {
+  color: aliceblue !important;
+}
+
+.ui.button.followButton {
+  font-size: 1em !important;
+}
+
+.ui.category.search .results.animating,
+.ui.category.search .results.visible {
+  background-color: rgba(114, 63, 63, 0.557);
+  border: none;
+}
+
+.ui.category.search > .results .category {
+  background-color: rgba(250, 250, 250, 0);
+}
+
+.ui.labeled.icon.menu .item {
+  line-height: 1.7285em;
+}
+
+.ui.compact.table tfoot th {
 }
 
 .checkboxSpan {
@@ -117,11 +155,6 @@ a {
   color: rgba(125, 254, 252, 0.866);
 }
 
-.songInfoContainer {
-  position: relative;
-  top: 100px;
-}
-
 #pButton {
   border: none;
 
@@ -170,16 +203,14 @@ a {
 }
 
 .stickyTop {
-  position: -webkit-sticky !important;
-  position: sticky !important;
   top: 0 !important;
   background: rgba(0, 0, 0, 0.3) !important;
   z-index: 100;
 }
 .stickyBottom {
-  position: -webkit-sticky !important;
-  position: sticky !important;
-  bottom: 0 !important;
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
   background: rgba(0, 0, 0, 0.5) !important;
 }
 

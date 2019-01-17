@@ -7,9 +7,10 @@ import {
   DELETE_SONG_FAILED,
 } from './constants';
 
-export function getSong() {
+export function getSong(songId) {
   return {
     type: GET_SONG,
+    songId,
   };
 }
 

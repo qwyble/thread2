@@ -1,18 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+import Button1 from 'components/UI/Buttons/Button1';
 import { Grid, Container, Button, Header, Icon } from 'semantic-ui-react';
 import SongAdderPortalWrapper from 'components/SongsTable/PlaylistModifiers/SongAdder/SongAdderPortalWrapper';
 const SongDetails = props => (
   <div>
-    <Container className="songInfoContainer">
+    <Container>
       <Grid verticalAlign="middle" stretched textAlign="center" colums={4}>
         <Grid.Row>
           <Grid.Column width={2}>
-            <Icon
-              size="huge"
-              name={props.playing ? 'pause' : 'play'}
-              onClick={props.onPlaying}
-            />
+            <Button1>
+              <FontAwesomeIcon icon="play" className="blueIcon" />
+            </Button1>
           </Grid.Column>
           <Grid.Column width={4}>
             <Header>Title</Header>
@@ -33,14 +35,17 @@ const SongDetails = props => (
           </Grid.Column>
         </Grid.Row>
         <Grid.Row>
-          <Grid.Column>
-            <SongAdderPortalWrapper />
-          </Grid.Column>
-          <Grid.Column>
-            <Button size="mini" onClick={props.onDeleteSong}>
+          <SongAdderPortalWrapper />
+          <span>
+            <Button
+              size="mini"
+              inverted
+              color="blue"
+              onClick={props.onDeleteSong}
+            >
               Delete Song
             </Button>
-          </Grid.Column>
+          </span>
         </Grid.Row>
       </Grid>
     </Container>

@@ -7,7 +7,6 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 
 import injectSaga from 'utils/injectSaga';
-import injectReducer from 'utils/injectReducer';
 
 import DurationMeter from 'components/Audio/DurationMeter';
 import PlayButtons from 'components/Audio/PlayButtons';
@@ -24,7 +23,6 @@ import {
   handleSkipBack,
 } from './actions';
 
-import reducer from './reducer';
 import saga from './saga';
 
 import { makeSelectIsPaused, makeSelectNowPlaying } from './selectors';
@@ -111,11 +109,9 @@ const withConnect = connect(
   mapDispatchToProps
 );
 
-const withReducer = injectReducer({ key: 'PlaybackContainer', reducer });
 const withSaga = injectSaga({ key: 'PlaybackContainer', saga });
 
 export default compose(
   withSaga,
-  withReducer,
   withConnect
 )(PlaybackContainer);

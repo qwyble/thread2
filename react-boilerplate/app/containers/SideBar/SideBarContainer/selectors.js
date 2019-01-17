@@ -26,12 +26,6 @@ export const makeSelectSelectedPlName = () =>
     playlist => playlist.get('plname')
   );
 
-export const makeSelectVisibility = () =>
-  createSelector(
-    sideBarState,
-    state => state.get('isVisible')
-  );
-
 export const makeSelectSelectedCategory = () =>
   createSelector(
     sideBarState,

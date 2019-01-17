@@ -7,6 +7,7 @@ import { connectRouter } from 'connected-react-router/immutable';
 import UserContainer from 'containers/AppUtilities/UserContainer/reducers';
 import SongsContainer from 'containers/SongsContainer/SongsContainer/reducer';
 import ProfileContext from 'containers/AppUtilities/ProfileContext/reducer';
+import PlaybackContainer from 'containers/Audio/PlaybackContainer/reducer';
 
 import history from 'utils/history';
 
@@ -18,6 +19,7 @@ export default function createReducer(injectedReducers = {}) {
     UserContainer,
     ProfileContext,
     SongsContainer,
+    PlaybackContainer,
     ...injectedReducers,
   });
 
