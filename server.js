@@ -48,3 +48,4 @@ require('./app/routes/imageUpload.js')(app);
 require('./app/routes/follower.js')(app);
 require('./app/routes/messages.js')(app);
 require('./app/routes/forums.js')(app);
+require('./app/routes/profiles.js')(app);

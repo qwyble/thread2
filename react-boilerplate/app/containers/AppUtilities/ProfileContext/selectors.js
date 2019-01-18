@@ -19,7 +19,7 @@ export const makeSelectPathnameRoot = () =>
 export const makeSelectProfileParam = () =>
   createSelector(
     makeSelectParams(),
-    params => parseInt(params.profile, 10)
+    params => parseInt(params.get('profile'), 10)
   );
 
 export const makeSelectProfile = () =>

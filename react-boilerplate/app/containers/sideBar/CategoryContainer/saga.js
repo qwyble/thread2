@@ -20,8 +20,10 @@ export default function* CategoryContainerSaga() {
 
 function* getCategories() {
   try {
-    const plParam = yield call(getPlParam);
+    const plidParam = yield call(getPlParam);
     const profileId = yield call(getProfileId);
+    console.log('prof id ', profileId);
+    consolelog(profileId, plidParam);
     const url = getUrl();
     const { categories2, playlist } = yield call(
       getCatsRequest,
@@ -65,7 +67,6 @@ function getCatsRequest(url, profileId, plidParam) {
   })
     .then(categories => categories.data)
     .catch(err => {
-      console.log(err.message);
       throw err;
     });
 }

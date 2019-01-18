@@ -29,8 +29,12 @@ class UserContainer extends React.Component {
     if (this.props.isLoading) {
       return (
         <div>
-          <Loader style={{ marginTop: '30vh' }} active inline="centered" />
-          <div>Authenticating . . .</div>
+          <Loader
+            message="authenticating"
+            style={{ marginTop: '30vh' }}
+            active
+            inline="centered"
+          />
         </div>
       );
     }

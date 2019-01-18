@@ -28,8 +28,6 @@ function profileReducer(state = initialState, action) {
       return state
         .set('isLoading', false)
         .set('profile', fromJS(action.profile));
-    case GET_PROFILE_FAILED:
-      return state.set('isLoading', false);
     case SET_PARAMS_CONTEXT:
       return state
         .set('params', fromJS(action.params))

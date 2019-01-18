@@ -1,11 +1,13 @@
 import React from 'react';
-import { Loader as SemanticLoader } from 'semantic-ui-react';
+
+require('./css.css');
 
 const Loader = props => {
   console.log(props);
   return (
     <div>
-      <SemanticLoader active />
+      <span>{props.message ? <span>{props.message}</span> : <span />}</span>
+      <span className="loading-indicator" />
     </div>
   );
 };

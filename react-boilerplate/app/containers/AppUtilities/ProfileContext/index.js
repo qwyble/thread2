@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Loader } from 'semantic-ui-react';
+import Loader from 'components/common/Loader';
 import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
@@ -17,19 +17,12 @@ import saga from './saga';
 
 class ProfileContext extends React.Component {
   componentDidMount() {
-    this.setProfile();
     this.props.setParamsContext(this.props.match);
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.profileParam !== prevProps.profileParam) this.setProfile();
-    if (prevProps.url !== this.props.url) console.log(this.props.match);
-    this.props.setParamsContext(this.props.match);
-  }
-
-  setProfile() {
-    if (this.props.profileParam) this.props.getProfile(this.props.profileParam);
-    else this.props.setProfile(this.props.user);
+    if (prevProps.match.url !== this.props.match.url)
+      this.props.setParamsContext(this.props.match);
   }
 
   render() {

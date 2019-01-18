@@ -1,0 +1,30 @@
+@keyframes dot-keyframes {
+  0% {
+    content: '.';
+  }
+  20% {
+    content: '. .';
+  }
+  40% {
+    content: '. . .';
+  }
+  60% {
+    content: '. . . .';
+  }
+  80% {
+    content: '. . . . .';
+  }
+  100% {
+    content: '. . . . . .';
+  }
+}
+
+.loading-indicator {
+  text-align: center;
+  width: 50px;
+  color: aliceblue;
+}
+.loading-indicator::after {
+  content: '.';
+  animation: dot-keyframes 0.25s linear infinite;
+}

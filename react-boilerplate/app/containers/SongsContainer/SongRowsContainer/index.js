@@ -50,10 +50,10 @@ class SongRowsContainer extends Component {
             onPause={this.props.handlePausing}
             onRate={this.props.rateSong}
             onSongSelect={this.handleSongSelect}
-            isPlaying={this.props.nowPlayingId === song.idSongs}
+            isPlaying={this.props.nowPlayingId === song.get('idSongs')}
             selected={!!song.isSelected}
             isLoading={
-              this.props.isLoading && this.props.songId === song.idSongs
+              this.props.isLoading && this.props.songId === song.get('idSongs')
             }
           />
         ))}

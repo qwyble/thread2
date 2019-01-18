@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Table, Loader } from 'semantic-ui-react';
+import Loader from 'components/common/Loader';
 import TableHeader from 'components/SongsTable/TableHeader';
 import SongRowsContainer from 'containers/SongsContainer/SongRowsContainer';
 import ClonePortalWrapper from 'components/SongsTable/ClonePortal/ClonePortalWrapper';
@@ -14,7 +14,7 @@ require('./css.css');
 
 const SongsTable = props => (
   <div className="tables-div">
-    <table className="table table-hover table-dark songs-table">
+    <table className="table table-hover table-dark  songs-table">
       <TableHeader
         onSortBy={props.onSortBy}
         onSetDescending={props.onSetDescending}

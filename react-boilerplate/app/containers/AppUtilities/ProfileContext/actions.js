@@ -7,6 +7,7 @@ import {
 } from './constants';
 
 export function setProfile(profile) {
+  console.log('in set profile', profile.toJS());
   return {
     type: SET_PROFILE,
     profile,

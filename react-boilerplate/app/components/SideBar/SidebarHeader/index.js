@@ -5,11 +5,11 @@ import { Link } from 'react-router-dom';
 import { Menu, Image } from 'semantic-ui-react';
 
 const SidebarHeader = props => {
-  console.log(props.owner.toJS());
+  console.log('sidebar owner: ', props.owner.toJS());
   return (
     <div>
       {props.owner ? (
-        <Link to={`/profile/${props.owner.idUsers}`}>
+        <Link to={`/profile/${props.owner.get('idUsers')}`}>
           <Menu.Item>
             <Image
               src={props.owner.get('imageUrl')}
