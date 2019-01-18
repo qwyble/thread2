@@ -3,30 +3,30 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const TableHeader = props => (
-  <thead>
-    <tr>
-      <th scope="col" />
-      <th scope="col" />
-      <th scope="col">
+  <thead style={{ display: 'block', width: '99%' }}>
+    <tr className="d-flex">
+      <th scope="col" className="" style={{ width: '4%' }} />
+      <th scope="col" className="" style={{ width: '4%' }} />
+      <th scope="col" className="col-3">
         Title
         <Icon name="sort" onClick={() => props.onSortBy('songs.title')} />
       </th>
-      <th scope="col">
+      <th scope="col" className="col-3">
         Uploader
         <Icon name="sort" onClick={() => props.onSortBy('songs.owner')} />
       </th>
-      <th scope="col">
+      <th scope="col" className="col-1">
         Rating
         <Icon
           name="sort"
           onClick={() => props.onSortBy('songratings.rating')}
         />
       </th>
-      <th scope="col">
+      <th scope="col" className="col-2">
         Genre
         <Icon name="sort" onClick={() => props.onSortBy('songs.genres')} />
       </th>
-      <th scope="col">
+      <th scope="col" className="col-2">
         Date Uploaded
         <Icon
           name="sort"

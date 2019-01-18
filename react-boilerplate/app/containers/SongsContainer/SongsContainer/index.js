@@ -16,6 +16,8 @@ import saga from './saga';
 
 import { makeSelectIsLoading } from './selectors';
 
+require('./css.css');
+
 class SongsContainer extends React.Component {
   componentDidMount() {
     this.props.getSongs();

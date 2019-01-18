@@ -205,13 +205,19 @@ a {
 }
 .table-dark {
   background-color: rgba(0, 0, 0, 0.146);
+
   border: none;
+  margin-bottom: 0px;
 }
 
 .table-dark td,
 .table-dark th,
 .table-dark thead th {
   border: none;
+}
+
+.table-dark tr {
+  display: block;
 }
 
 .ui.rating .active.icon {

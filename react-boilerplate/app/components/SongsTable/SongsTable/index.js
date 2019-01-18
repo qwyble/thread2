@@ -13,8 +13,8 @@ import Paginator from 'containers/SongsContainer/Paginator';
 require('./css.css');
 
 const SongsTable = props => (
-  <div>
-    <table className="table table-hover table-dark">
+  <div className="tables-div">
+    <table className="table table-hover table-dark songs-table">
       <TableHeader
         onSortBy={props.onSortBy}
         onSetDescending={props.onSetDescending}

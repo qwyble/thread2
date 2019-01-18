@@ -4,8 +4,8 @@ import { Checkbox, Rating } from 'semantic-ui-react';
 import LoaderWrapper from 'containers/Wrappers/LoaderWrapper';
 import PlayIcon from 'components/common/Icons/PlayIcon';
 const SongRow = props => (
-  <tr>
-    <th scope="row">
+  <tr className="d-flex">
+    <th scope="row" className="" style={{ width: '4%' }}>
       <Checkbox
         size="mini"
         id={props.song.get('idSongs')}
@@ -14,16 +14,16 @@ const SongRow = props => (
       />
       <span className="checkboxSpan" />
     </th>
-    <td>
+    <td className="" style={{ width: '4%' }}>
       <PlayIcon
         id={props.song.get('idSongs')}
         onClick={props.onPlayToggle}
         isPlaying={props.isPlaying}
       />
     </td>
-    <td>{props.song.get('title')}</td>
-    <td>{props.song.get('userName')}</td>
-    <td>
+    <td className="col-3">{props.song.get('title')}</td>
+    <td className="col-3">{props.song.get('userName')}</td>
+    <td className="col-1">
       <LoaderWrapper isLoading={props.isLoading}>
         <Rating
           maxRating={5}
@@ -32,8 +32,8 @@ const SongRow = props => (
         />
       </LoaderWrapper>
     </td>
-    <td>{props.song.get('genres')}</td>
-    <td>{props.song.get('dateUploaded').substr(0, 10)}</td>
+    <td className="col-2">{props.song.get('genres')}</td>
+    <td className="col-2">{props.song.get('dateUploaded').substr(0, 10)}</td>
   </tr>
 );
 

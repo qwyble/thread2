@@ -2,8 +2,18 @@
   position: fixed;
   bottom: 0px;
   margin: 0px;
+  background-color: rgba(34, 36, 38, 0.85);
 }
 
 .footer-cell {
   display: flex;
+}
+
+.tables-div {
+  height: 100%;
+  margin-bottom: 0px;
+}
+
+.table.table-hover.table-dark.songs-table {
+  height: 100%;
 }
