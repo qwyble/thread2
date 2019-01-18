@@ -9,15 +9,13 @@ import IsPlaylistOwner from 'containers/Wrappers/IsPlaylistOwner';
 const SongRemoverPortalWrapper = props => {
   const trigger = <Button size="mini">Remove from Playlist</Button>;
   return (
-    <div>
-      <IsPlaylistOwner>
-        <IsPlaylistPathWrapper>
-          <PortalWrapper trigger={trigger}>
-            <SongRemover onClosePortal={props.closePortal} />
-          </PortalWrapper>
-        </IsPlaylistPathWrapper>
-      </IsPlaylistOwner>
-    </div>
+    <IsPlaylistOwner>
+      <IsPlaylistPathWrapper>
+        <PortalWrapper trigger={trigger}>
+          <SongRemover onClosePortal={props.closePortal} />
+        </PortalWrapper>
+      </IsPlaylistPathWrapper>
+    </IsPlaylistOwner>
   );
 };
 

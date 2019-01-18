@@ -34,7 +34,7 @@ const SongsTable = props => (
     <table className="table table-dark playlist-footer">
       <tbody>
         <tr>
-          <td>
+          <td className="footer-cell">
             <ClonePortalWrapper />
             <SongAdderPortalWrapper />
             <FollowContainer />

@@ -36,7 +36,7 @@ class UserContainer extends React.Component {
     }
     return (
       <BrowserRouter>
-        <div>
+        <div className="container-fluid">
           <ErrorWrapper />
           <Switch>
             <Route

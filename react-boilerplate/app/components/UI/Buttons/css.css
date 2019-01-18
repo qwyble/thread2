@@ -1,8 +1,10 @@
-.btn.button1 {
+.btn.btn-outline-primary.button1 {
   color: rgba(125, 254, 252, 0.866);
+  background-color: transparent;
   border-color: rgba(125, 254, 252, 0.866);
 }
-
-.btn.button1:hover {
-  background-color: rgba(125, 254, 252, 0.866);
+.btn.btn-outline-primary.button1:hover {
+  color: aliceblue;
+  background-color: rgba(125, 254, 252, 0.2);
+  border-color: transparent;
 }

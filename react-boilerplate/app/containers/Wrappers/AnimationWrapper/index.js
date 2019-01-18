@@ -34,13 +34,13 @@ class AnimationWrapper extends React.Component {
         timeout={150}
       >
         {state => (
-          <div className={className[state]}>
+          <span className={className[state]}>
             {this.state.renderLists ? (
-              <div>{this.props.children}</div>
+              <span>{this.props.children}</span>
             ) : (
-              <div />
+              <span />
             )}
-          </div>
+          </span>
         )}
       </Transition>
     );

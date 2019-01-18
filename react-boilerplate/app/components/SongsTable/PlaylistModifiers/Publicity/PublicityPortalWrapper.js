@@ -4,13 +4,11 @@ import IsPlaylistOwner from 'containers/Wrappers/IsPlaylistOwner';
 import PublicityPortal from 'containers/SongsContainer/PlaylistModifiers/PublicityPortal';
 
 const PublicityPortalWrapper = () => (
-  <div>
-    <PathWrapper>
-      <IsPlaylistOwner>
-        <PublicityPortal />
-      </IsPlaylistOwner>
-    </PathWrapper>
-  </div>
+  <PathWrapper>
+    <IsPlaylistOwner>
+      <PublicityPortal />
+    </IsPlaylistOwner>
+  </PathWrapper>
 );
 
 export default PublicityPortalWrapper;

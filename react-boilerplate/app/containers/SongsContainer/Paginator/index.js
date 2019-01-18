@@ -17,7 +17,7 @@ class Paginator extends React.Component {
 
   render() {
     return (
-      <span style={{ display: 'inline-block' }}>
+      <span style={{ display: 'inline-block', marginLeft: 'auto' }}>
         <Pagination
           floated="right"
           inverted
@@ -26,6 +26,7 @@ class Paginator extends React.Component {
           defaultActivePage={1}
           totalPages={this.props.totalPages}
           onPageChange={this.handlePageChange}
+          style={{ marginLeft: 'auto' }}
         />
       </span>
     );

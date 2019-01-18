@@ -16,26 +16,24 @@ import { makeSelectProfile } from 'containers/AppUtilities/ProfileContext/select
 import reducer from './reducer';
 
 const SideBarContainer = props => (
-  <div>
-    <Sidebar.Pushable as={Segment} className="primaryContainer">
-      <Sidebar
-        inverted
-        vertical
-        width="thin"
-        icon="labeled"
-        animation="push"
-        visible
-        as={Menu}
-      >
-        <SideBarHeader owner={props.owner} />
+  <Sidebar.Pushable className="primaryContainer">
+    <Sidebar
+      inverted
+      vertical
+      width="thin"
+      icon="labeled"
+      animation="push"
+      visible
+      as={Menu}
+    >
+      <SideBarHeader owner={props.owner} />
 
-        <CategoryContainer />
-      </Sidebar>
-      <Sidebar.Pusher className="pusherContainer">
-        <SongsContainer />
-      </Sidebar.Pusher>
-    </Sidebar.Pushable>
-  </div>
+      <CategoryContainer />
+    </Sidebar>
+    <Sidebar.Pusher className="pusherContainer">
+      <SongsContainer />
+    </Sidebar.Pusher>
+  </Sidebar.Pushable>
 );
 
 SideBarContainer.propTypes = {

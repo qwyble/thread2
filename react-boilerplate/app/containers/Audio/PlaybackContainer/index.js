@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Grid } from 'semantic-ui-react';
 import { createStructuredSelector } from 'reselect';
 
 import { compose } from 'redux';
@@ -26,6 +25,7 @@ import {
 import saga from './saga';
 
 import { makeSelectIsPaused, makeSelectNowPlaying } from './selectors';
+require('./css.css');
 
 class PlaybackContainer extends React.Component {
   constructor(props) {
@@ -52,8 +52,8 @@ class PlaybackContainer extends React.Component {
           onEnd={this.props.handleEnd}
         />
 
-        <Grid className="playerGrid">
-          <Grid.Row>
+        <div className="container-fluid">
+          <div className="row">
             <SongsMenu
               songs={this.props.songs}
               onPlaying={this.props.handlePlaying}
@@ -74,8 +74,8 @@ class PlaybackContainer extends React.Component {
             )}
 
             <Volume myRef={this.myRef} />
-          </Grid.Row>
-        </Grid>
+          </div>
+        </div>
       </div>
     );
   }

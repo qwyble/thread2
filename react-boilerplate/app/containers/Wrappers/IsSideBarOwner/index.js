@@ -6,13 +6,13 @@ import { createStructuredSelector } from 'reselect';
 import { makeSelectIsOwner } from 'containers/AppUtilities/ProfileContext/selectors';
 
 const IsOwner = props => (
-  <div>
+  <span>
     {props.isOwner ? (
-      <div>{props.children}</div>
+      <span>{props.children}</span>
     ) : (
-      <div>{props.alt ? <div>{props.alt}</div> : <div />}</div>
+      <span>{props.alt ? <span>{props.alt}</span> : <span />}</span>
     )}
-  </div>
+  </span>
 );
 
 IsOwner.propTypes = {

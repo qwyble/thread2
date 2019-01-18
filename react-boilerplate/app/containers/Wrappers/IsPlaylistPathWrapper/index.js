@@ -8,7 +8,7 @@ import { createStructuredSelector } from 'reselect';
 import { makeSelectIsPlaylist } from './selectors';
 
 const IsPlaylistPathWrapper = props => (
-  <div>{props.isPlaylist ? <div>{props.children}</div> : <div />}</div>
+  <span>{props.isPlaylist ? <span>{props.children}</span> : <span />}</span>
 );
 
 IsPlaylistPathWrapper.propTypes = {

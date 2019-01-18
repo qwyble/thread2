@@ -15,34 +15,27 @@ import LoadableProfileContext from 'containers/AppUtilities/ProfileContext/Loada
 
 import logo from './logo.svg';
 
+require('./css.css');
+
 const Root = () => (
-  <div>
-    <div>
-      <div>
-        <LoadableTopBar logo={logo} />
-      </div>
-      <div>
-        <Switch>
-          <Route path="/stream" component={LoadableProfileContext} />
-          <Route
-            path="/playlist/:playlist"
-            component={LoadableProfileContext}
-          />
-          <Route path="/explore" component={LoadableExplorer} />
-          <Route path="/following" component={LoadableFollowing} />
-          <Route path="/followers" component={LoadableFollowers} />
-          <Route path="/forum" component={LoadableForumSidebar} />
-          <Route path="/profile/:profile" component={LoadableProfileContext} />
-          <Route exact path="/edit" component={LoadableProfileContainer} />
-          <Route path="/messages" component={LoadableMessagesRouter} />
-          <Route path="/song/:song" component={LoadableSongDetails} />
-          <Route exact path="/" component={LoadableProfileContext} />
-        </Switch>
-      </div>
-      <div>
-        <LoadableAudioPlayback />
-      </div>
+  <div className="appContainer">
+    <LoadableTopBar logo={logo} />
+    <div className="pageContainer">
+      <Switch>
+        <Route path="/stream" component={LoadableProfileContext} />
+        <Route path="/playlist/:playlist" component={LoadableProfileContext} />
+        <Route path="/explore" component={LoadableExplorer} />
+        <Route path="/following" component={LoadableFollowing} />
+        <Route path="/followers" component={LoadableFollowers} />
+        <Route path="/forum" component={LoadableForumSidebar} />
+        <Route path="/profile/:profile" component={LoadableProfileContext} />
+        <Route exact path="/edit" component={LoadableProfileContainer} />
+        <Route path="/messages" component={LoadableMessagesRouter} />
+        <Route path="/song/:song" component={LoadableSongDetails} />
+        <Route exact path="/" component={LoadableProfileContext} />
+      </Switch>
     </div>
+    <LoadableAudioPlayback />
   </div>
 );
 

@@ -1,0 +1,8 @@
+.audioContainer {
+  height: 55px;
+  padding-top: 1.5%;
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+  background-color: rgb(42, 41, 46, 0.7);
+}

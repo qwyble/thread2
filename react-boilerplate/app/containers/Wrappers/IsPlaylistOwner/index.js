@@ -6,13 +6,13 @@ import { createStructuredSelector } from 'reselect';
 import { makeSelectSelectedPlIsOwner } from 'containers/SideBar/SideBarContainer/selectors';
 
 const IsPlaylistOwner = props => (
-  <div>
+  <span>
     {props.isOwner ? (
-      <div>{props.children}</div>
+      <span>{props.children}</span>
     ) : (
-      <div>{props.alt ? <div>{props.alt}</div> : <div />}</div>
+      <span>{props.alt ? <span>{props.alt}</span> : <span />}</span>
     )}
-  </div>
+  </span>
 );
 
 IsPlaylistOwner.propTypes = {

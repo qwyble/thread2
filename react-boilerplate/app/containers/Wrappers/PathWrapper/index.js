@@ -7,7 +7,7 @@ import { makeSelectIsNotStream } from './selectors';
 
 const PathWrapper = props => (
   <span style={{ display: 'inline-block', fontSize: '1em' }}>
-    {props.isNotStream ? <span>{props.children}</span> : <div />}
+    {props.isNotStream ? <span>{props.children}</span> : <span />}
   </span>
 );
 
