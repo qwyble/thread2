@@ -40,12 +40,12 @@ class SongRowsContainer extends Component {
   };
 
   render() {
-    console.log(this.props.songs);
     return (
       <tbody>
         {this.props.songs.map((song, key) => (
           <SongRow
             key={key}
+            song={song}
             onPlay={this.props.handlePlaying}
             onPause={this.props.handlePausing}
             onRate={this.props.rateSong}

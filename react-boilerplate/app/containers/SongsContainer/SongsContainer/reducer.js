@@ -23,7 +23,7 @@ const initialState = fromJS({
     totalPages: 1,
     selectedSongs: [],
     noneSelected: true,
-    descending: true,
+    descending: 'DESC',
     sortBy: 'dateUploaded',
   },
 });
@@ -73,7 +73,9 @@ export default function SongsContainer(state = initialState, action) {
         );
     }
     case SET_DESCENDING_REDUCTION:
-      return state.set('descending', !state.get('descending'));
+      if (state.get('descending') === 'DESC')
+        return state.set('descending', 'ASC');
+      return state.set('descending', 'DESC');
     case SORT_BY_REDUCTION:
       return state.set('sortBy', action.sortParam);
     case CHANGE_RATING: {

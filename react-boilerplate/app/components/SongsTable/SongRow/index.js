@@ -4,36 +4,36 @@ import { Checkbox, Rating } from 'semantic-ui-react';
 import LoaderWrapper from 'containers/Wrappers/LoaderWrapper';
 import PlayIcon from 'components/common/Icons/PlayIcon';
 const SongRow = props => (
-  <tr className="row">
-    <td collapsing>
+  <tr>
+    <th scope="row">
       <Checkbox
         size="mini"
-        id={props.song.idSongs}
+        id={props.song.get('idSongs')}
         checked={props.selected}
         onChange={props.onSongSelect}
       />
       <span className="checkboxSpan" />
-    </td>
+    </th>
     <td>
       <PlayIcon
-        id={props.song.idSongs}
+        id={props.song.get('idSongs')}
         onClick={props.onPlayToggle}
         isPlaying={props.isPlaying}
       />
     </td>
-    <td>{props.song.title}</td>
-    <td>{props.song.userName}</td>
+    <td>{props.song.get('title')}</td>
+    <td>{props.song.get('userName')}</td>
     <td>
       <LoaderWrapper isLoading={props.isLoading}>
         <Rating
           maxRating={5}
-          rating={props.song.rating}
+          rating={props.song.get('rating')}
           onRate={props.onRate}
         />
       </LoaderWrapper>
     </td>
-    <td>{props.song.genres}</td>
-    <td>{props.song.dateUploaded.substr(0, 10)}</td>
+    <td>{props.song.get('genres')}</td>
+    <td>{props.song.get('dateUploaded').substr(0, 10)}</td>
   </tr>
 );
 

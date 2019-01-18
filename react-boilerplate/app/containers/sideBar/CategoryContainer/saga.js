@@ -22,8 +22,13 @@ function* getCategories() {
   try {
     const plParam = yield call(getPlParam);
     const profileId = yield call(getProfileId);
-    const url = getUrl(profileId, plParam);
-    const { categories2, playlist } = yield call(getCatsRequest, url);
+    const url = getUrl();
+    const { categories2, playlist } = yield call(
+      getCatsRequest,
+      url,
+      profileId,
+      plidParam
+    );
     yield put(getCategoriesCompleted(categories2));
     if (playlist) yield put(setPlaylist(playlist));
   } catch (error) {
@@ -44,14 +49,18 @@ function* getPlParam() {
   return '0';
 }
 
-function getUrl(profileId, plidParam) {
-  return `https://thread-204819.appspot.com/getPlaylists/${profileId}/${plidParam}`;
+function getUrl() {
+  return `https://thread-204819.appspot.com/getPlaylists`;
 }
 
-function getCatsRequest(url) {
+function getCatsRequest(url, profileId, plidParam) {
   return axios({
     method: 'get',
     url,
+    params: {
+      profileId,
+      plidParam,
+    },
     withCredentials: true,
   })
     .then(categories => categories.data)

@@ -45,7 +45,6 @@ function* sort(action) {
 
 function* getSongs() {
   try {
-    console.log('asdfasdf');
     const songs = yield call(songsRequest);
     yield put(getSongsSuccess(songs));
   } catch (err) {
@@ -85,7 +84,7 @@ const getSongsRequest = (url, sortBy, descending, currentItem) =>
       },
       withCredentials: true,
     })
-    .then(result => result.data)
+    .then(result => result.data[0])
     .catch(err => {
       throw new Error(err);
     });
