@@ -48,7 +48,7 @@ module.exports = function(app) {
 
   app.get('/getPlaylists/:profile/:plidParam', function(req, res) {
     playlist
-      .getCats(req.session.user.idUsers, req.params.profile)
+      .getCats(req.session.user.idUsers, req.query.profile)
       .then(data => {
         var playlist;
         const catpls = data;
@@ -60,7 +60,7 @@ module.exports = function(app) {
             if (plid) {
               cats[catid].pls.push({ plname, plid, isPublic });
               if (req.plidParam !== 0)
-                if ((plid = req.plidParam))
+                if ((plid = req.query.plidParam))
                   playlist = { plname, plid, isPublic };
             }
             return cats;

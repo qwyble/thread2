@@ -66,7 +66,7 @@ function getPublicUrl(file_name) {
   return `https://storage.googleapis.com/${BUCKET_NAME}/${file_name}`;
 }
 
-deleteFile = (songId, user, filename) => {
+async function deleteFile(songId, user, filename) {
   await myBucket.file(filename).delete();
   return sequelize.query(
     `DELETE FROM songs
@@ -76,4 +76,4 @@ deleteFile = (songId, user, filename) => {
       type: sequelize.QueryTypes.DELETE,
     }
   );
-};
+}

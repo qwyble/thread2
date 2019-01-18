@@ -9,6 +9,9 @@ var sequelize = new Sequelize(
   {
     host: '/cloudsql/thread-204819:us-central1:thread-db1',
     dialect: 'mysql',
+    dialectOptions: {
+      socketPath: '/cloudsql/thread-204819:us-central1:thread-db',
+    },
     define: {
       timestamps: false,
     },

@@ -1,24 +1,27 @@
-module.exports = function(sequelize, Sequelize){
+module.exports = function(sequelize, Sequelize) {
   const User = sequelize.define('user', {
-    idUsers:{
-      type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true
+    idUsers: {
+      type: Sequelize.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
     },
     userName: {
-      type: Sequelize.STRING
+      type: Sequelize.STRING,
     },
     email: {
       type: Sequelize.STRING,
       validate: {
-        isEmail: true
-      }
+        isEmail: true,
+      },
     },
     password: {
-      type: Sequelize.STRING
+      type: Sequelize.STRING,
+    },
+    imageUrl: {
+      type: Sequelize.STRING,
     },
     forumLists: Sequelize.JSON,
-    lastLoggedIn: Sequelize.DATE
-
+    lastLoggedIn: Sequelize.DATE,
   });
   return User;
-
-}
+};

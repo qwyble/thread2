@@ -81,7 +81,7 @@ module.exports = {
   },
 
   getCats: function(user, profile) {
-    if (!profile) {
+    if (profile === '0') {
       return sequelize.query(
         `SELECT
             categories.name AS catname,
