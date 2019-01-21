@@ -2,7 +2,6 @@ import { fromJS } from 'immutable';
 import {
   SET_PROFILE,
   GET_PROFILE_SUCCESS,
-  GET_PROFILE_FAILED,
   GET_PROFILE,
   SET_PARAMS_CONTEXT,
 } from './constants';

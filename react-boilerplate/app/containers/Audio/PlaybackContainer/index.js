@@ -33,48 +33,45 @@ class PlaybackContainer extends React.Component {
     this.myRef = React.createRef();
   }
 
-  handleClick = () => {
-    if (this.props.paused) {
-      this.props.handlePlaying(this.props.nowPlaying);
-      this.myRef.current.play();
-    } else {
-      this.props.handlePausing();
-      this.myRef.current.pause();
+  componentDidUpdate(prevProps) {
+    console.log(this.props.paused);
+    if (prevProps.paused !== this.props.paused) {
+      if (this.props.paused) this.myRef.current.pause();
+      else this.myRef.current.play();
     }
+  }
+
+  handleClick = () => {
+    if (this.props.paused) this.props.handlePlaying(this.props.nowPlaying);
+    else this.props.handlePausing();
   };
 
   render() {
     return (
-      <div className="audioContainer">
+      <div className="container-fluid audioContainer">
         <Audio
           myRef={this.myRef}
-          URL={this.props.nowPlaying.URL}
+          URL={this.props.nowPlaying.get('URL')}
           onEnd={this.props.handleEnd}
         />
 
-        <div className="container-fluid">
-          <div className="row">
-            <SongsMenu
-              songs={this.props.songs}
-              onPlaying={this.props.handlePlaying}
-              nowPlaying={this.props.nowPlaying}
-            />
+        <div className="row">
+          <SongsMenu
+            songs={this.props.songs}
+            onPlaying={this.props.handlePlaying}
+            nowPlaying={this.props.nowPlaying}
+          />
 
-            <PlayButtons
-              icon={this.props.paused ? 'play' : 'pause'}
-              skipBack={this.props.handleSkipBack}
-              onClick={this.handleClick}
-              onEnd={this.props.handleEnd}
-            />
+          <PlayButtons
+            icon={this.props.paused ? 'play' : 'pause'}
+            skipBack={this.props.handleSkipBack}
+            onClick={this.handleClick}
+            onEnd={this.props.handleEnd}
+          />
 
-            {!this.props.paused ? (
-              <DurationMeter myRef={this.myRef} />
-            ) : (
-              <div />
-            )}
+          <DurationMeter myRef={this.myRef} paused={this.props.paused} />
 
-            <Volume myRef={this.myRef} />
-          </div>
+          <Volume myRef={this.myRef} />
         </div>
       </div>
     );

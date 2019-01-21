@@ -1,6 +1,7 @@
 .audioContainer {
   height: 45px;
   padding-top: 0.5%;
+  padding-left: 15px;
   position: fixed;
   bottom: 0px;
   width: 100%;

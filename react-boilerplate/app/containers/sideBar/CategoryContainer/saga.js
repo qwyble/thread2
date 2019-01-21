@@ -23,8 +23,9 @@ function* getCategories() {
     const plidParam = yield call(getPlParam);
     const profileId = yield call(getProfileId);
     console.log('prof id ', profileId);
-    consolelog(profileId, plidParam);
+    console.log(profileId, plidParam);
     const url = getUrl();
+    console.log(url);
     const { categories2, playlist } = yield call(
       getCatsRequest,
       url,

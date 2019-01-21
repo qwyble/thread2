@@ -3,34 +3,32 @@ import PropTypes from 'prop-types';
 import { Button, Grid } from 'semantic-ui-react';
 
 const PlayButtons = props => (
-  <span>
-    <Grid.Column width={2}>
-      <Button
-        className="audioBarButton"
-        inverted
-        color="blue"
-        icon="angle double left"
-        onClick={props.skipBack}
-      />
+  <div className="col-sm-2 play-buttons">
+    <Button
+      className="audioBarButton"
+      inverted
+      color="blue"
+      icon="angle double left"
+      onClick={props.skipBack}
+    />
 
-      <Button
-        className="audioBarButton"
-        size="mini"
-        inverted
-        color="blue"
-        icon={props.icon}
-        onClick={props.onClick}
-      />
+    <Button
+      className="audioBarButton"
+      size="mini"
+      inverted
+      color="blue"
+      icon={props.icon}
+      onClick={props.onClick}
+    />
 
-      <Button
-        className="audioBarButton"
-        inverted
-        color="blue"
-        icon="angle double right"
-        onClick={props.onEnd}
-      />
-    </Grid.Column>
-  </span>
+    <Button
+      className="audioBarButton"
+      inverted
+      color="blue"
+      icon="angle double right"
+      onClick={props.onEnd}
+    />
+  </div>
 );
 
 PlayButtons.propTypes = {

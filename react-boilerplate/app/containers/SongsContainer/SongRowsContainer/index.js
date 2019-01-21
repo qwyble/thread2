@@ -10,7 +10,10 @@ import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 
 import { makeSelectSongs } from 'containers/SongsContainer/SongsContainer/selectors';
-import { makeSelectNowPlayingId } from 'containers/Audio/PlaybackContainer/selectors';
+import {
+  makeSelectNowPlayingId,
+  makeSelectIsPaused,
+} from 'containers/Audio/PlaybackContainer/selectors';
 
 import {
   selectSong,
@@ -28,12 +31,6 @@ import { makeSelectIsLoading, makeSelectSongId } from './selectors';
 import { rateSong } from './actions';
 
 class SongRowsContainer extends Component {
-  handlePlayToggle = e => {
-    if (!this.props.nowPlayingId === e.target.id)
-      this.props.handlePlaying(e.target.id);
-    else this.props.handlePausing();
-  };
-
   handleSongSelect = e => {
     if (!e.target.value) this.props.selectSong(e.target.id);
     else this.props.deselectSong(e.target.id);
@@ -46,11 +43,14 @@ class SongRowsContainer extends Component {
           <SongRow
             key={key}
             song={song}
-            onPlay={this.props.handlePlaying}
             onPause={this.props.handlePausing}
+            onPlay={this.props.handlePlaying}
             onRate={this.props.rateSong}
             onSongSelect={this.handleSongSelect}
-            isPlaying={this.props.nowPlayingId === song.get('idSongs')}
+            isPlaying={
+              !this.props.isPaused &&
+              this.props.isPlaying === song.get('idSongs')
+            }
             selected={!!song.isSelected}
             isLoading={
               this.props.isLoading && this.props.songId === song.get('idSongs')
@@ -71,7 +71,8 @@ SongRowsContainer.propTypes = {
   isLoading: PropTypes.bool,
   selectSong: PropTypes.func,
   deselectSong: PropTypes.func,
-  nowPlayingId: PropTypes.number,
+  isPaused: PropTypes.bool,
+  isPlaying: PropTypes.number,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -79,6 +80,7 @@ const mapStateToProps = createStructuredSelector({
   songId: makeSelectSongId(),
   isLoading: makeSelectIsLoading(),
   isPlaying: makeSelectNowPlayingId(),
+  isPaused: makeSelectIsPaused(),
 });
 
 const mapDispatchToProps = {

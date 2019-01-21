@@ -3,39 +3,50 @@ import PropTypes from 'prop-types';
 import { Checkbox, Rating } from 'semantic-ui-react';
 import LoaderWrapper from 'containers/Wrappers/LoaderWrapper';
 import PlayIcon from 'components/common/Icons/PlayIcon';
-const SongRow = props => (
-  <tr className="d-flex">
-    <th scope="row" className="" style={{ width: '4%' }}>
-      <Checkbox
-        size="mini"
-        id={props.song.get('idSongs')}
-        checked={props.selected}
-        onChange={props.onSongSelect}
-      />
-      <span className="checkboxSpan" />
-    </th>
-    <td className="" style={{ width: '4%' }}>
-      <PlayIcon
-        id={props.song.get('idSongs')}
-        onClick={props.onPlayToggle}
-        isPlaying={props.isPlaying}
-      />
-    </td>
-    <td className="col-3">{props.song.get('title')}</td>
-    <td className="col-3">{props.song.get('userName')}</td>
-    <td className="col-1">
-      <LoaderWrapper isLoading={props.isLoading}>
-        <Rating
-          maxRating={5}
-          rating={props.song.get('rating')}
-          onRate={props.onRate}
-        />
-      </LoaderWrapper>
-    </td>
-    <td className="col-2">{props.song.get('genres')}</td>
-    <td className="col-2">{props.song.get('dateUploaded').substr(0, 10)}</td>
-  </tr>
-);
+class SongRow extends React.Component {
+  handlePlayToggle = () => {
+    if (this.props.isPlaying) this.props.onPause();
+    else this.props.onPlay(this.props.song);
+  };
+
+  render() {
+    return (
+      <tr className="d-flex">
+        <th scope="row" className="" style={{ width: '4%' }}>
+          <Checkbox
+            size="mini"
+            id={this.props.song.get('idSongs')}
+            checked={this.props.selected}
+            onChange={this.props.onSongSelect}
+          />
+          <span className="checkboxSpan" />
+        </th>
+        <td className="" style={{ width: '4%' }}>
+          <PlayIcon
+            id={this.props.song.get('idSongs')}
+            onClick={this.handlePlayToggle}
+            isPlaying={this.props.isPlaying}
+          />
+        </td>
+        <td className="col-3">{this.props.song.get('title')}</td>
+        <td className="col-3">{this.props.song.get('userName')}</td>
+        <td className="col-1">
+          <LoaderWrapper isLoading={this.props.isLoading}>
+            <Rating
+              maxRating={5}
+              rating={this.props.song.get('rating')}
+              onRate={this.props.onRate}
+            />
+          </LoaderWrapper>
+        </td>
+        <td className="col-2">{this.props.song.get('genres')}</td>
+        <td className="col-2">
+          {this.props.song.get('dateUploaded').substr(0, 10)}
+        </td>
+      </tr>
+    );
+  }
+}
 
 SongRow.propTypes = {
   onRate: PropTypes.func,
@@ -43,7 +54,8 @@ SongRow.propTypes = {
   selected: PropTypes.bool,
   isLoading: PropTypes.bool,
   isPlaying: PropTypes.bool,
-  onPlayToggle: PropTypes.func,
   onSongSelect: PropTypes.func,
+  onPause: PropTypes.func,
+  onPlay: PropTypes.func,
 };
 export default SongRow;

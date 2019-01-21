@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Grid } from 'semantic-ui-react';
+
+require('./css.css');
+
 class DurationMeter extends React.Component {
   state = {
     percentPlayed: '0',
@@ -8,19 +10,22 @@ class DurationMeter extends React.Component {
     duration: '0',
   };
 
-  componentDidMount() {
-    this.interval = setInterval(() => this.getCurrentTime(), 300);
-  }
-
   componentWillUnmount() {
     clearInterval(this.interval);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.paused !== this.props.paused) {
+      if (this.props.paused) clearInterval(this.interval);
+      else this.interval = setInterval(() => this.getCurrentTime(), 300);
+    }
   }
 
   handleSongPosition = e => {
     const percentMarker = e.target.value / 100;
     const newPosition = this.props.myRef.current.duration * percentMarker;
     if (newPosition) {
-      this.props.myRef.current.fastSeek(newPosition);
+      this.props.myRef.current.currentTime = newPosition;
     }
   };
 
@@ -51,21 +56,24 @@ class DurationMeter extends React.Component {
 
   render() {
     return (
-      <div>
-        <Grid.Column>
+      <div className="col-sm-8 duration-div">
+        <span className="timer-span">
           {this.state.currentTime} / {this.state.duration}
-        </Grid.Column>
+        </span>
 
-        <Grid.Column className="playerCol" width={9}>
+        <span
+          className="song-slider-span"
+          style={{ display: 'inline-block', width: '90%' }}
+        >
           <input
             type="range"
             min="1"
             max="100"
             value={this.state.percentPlayed}
             className="songslider"
-            onChange={this.onSongPosition}
+            onChange={this.handleSongPosition}
           />
-        </Grid.Column>
+        </span>
       </div>
     );
   }
@@ -73,6 +81,7 @@ class DurationMeter extends React.Component {
 
 DurationMeter.propTypes = {
   myRef: PropTypes.object,
+  paused: PropTypes.bool,
 };
 
 export default DurationMeter;

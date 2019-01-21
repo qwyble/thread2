@@ -15,28 +15,28 @@ class Volume extends React.Component {
 
   render() {
     return (
-      <div>
-        <Grid.Column width={2}>
-          <Popup
-            trigger={<Icon name="volume up" />}
-            hoverable
-            style={{
-              backgroundColor: 'rgba(0,0,0, .2)',
-              borderStyle: 'none',
-            }}
-          >
-            <input
-              orient="vertical"
-              type="range"
-              min="0"
-              max="100"
-              value={this.state.volume * 100}
-              onChange={this.handleVolume}
-              className="slider"
-              id="myRange"
-            />
-          </Popup>
-        </Grid.Column>
+      <div className="col-sm-1 volume-column">
+        <Popup
+          trigger={<Icon name="volume up" />}
+          hoverable
+          style={{
+            backgroundColor: 'rgba(0,0,0, .4)',
+            borderStyle: 'none',
+            color: 'rgba(0,0,0, .4)',
+            background: 'rgba(0,0,0, .4)',
+          }}
+        >
+          <input
+            orient="vertical"
+            type="range"
+            min="0"
+            max="100"
+            value={this.state.volume * 100}
+            onChange={this.handleVolume}
+            className="slider"
+            id="myRange"
+          />
+        </Popup>
       </div>
     );
   }

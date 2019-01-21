@@ -6,6 +6,7 @@ import {
 } from './constants';
 
 export function handlePlaying(song) {
+  console.log('handling playing');
   return {
     type: HANDLE_PLAYING,
     song,

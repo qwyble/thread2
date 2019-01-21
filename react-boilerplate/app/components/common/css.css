@@ -19,10 +19,10 @@
   }
 }
 
-.loading-indicator {
-  text-align: center;
-  width: 50px;
+.loading-indicator span {
+  white-space: nowrap;
   color: aliceblue;
+  display: inline-block;
 }
 .loading-indicator::after {
   content: '.';

@@ -8,6 +8,6 @@ export default function* errorSaga() {
 }
 
 function* errorDelay() {
-  yield call(delay, 5000);
+  yield call(delay, 2000);
   yield put(removeError());
 }

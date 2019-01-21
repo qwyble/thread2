@@ -5,15 +5,17 @@ import { Icon } from 'semantic-ui-react';
 const PlayIcon = props => (
   <div>
     {props.isPlaying ? (
-      <Icon name="pause circle outline" />
+      <Icon onClick={props.onClick} name="pause circle outline" />
     ) : (
-      <Icon name="play circle outline" />
+      <Icon onClick={props.onClick} name="play circle outline" />
     )}
   </div>
 );
 
 PlayIcon.propTypes = {
-  isPlaying: PropTypes.bool,
+  isPlaying: PropTypes.bool.isRequired,
+  onClick: PropTypes.func.isRequired,
+  id: PropTypes.number.isRequired,
 };
 
 export default PlayIcon;
