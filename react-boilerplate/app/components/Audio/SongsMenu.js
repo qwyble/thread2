@@ -3,42 +3,46 @@ import PropTypes from 'prop-types';
 import { Grid, Menu, Popup, Button, Icon } from 'semantic-ui-react';
 
 const SongsMenu = props => (
-  <div className="col-sm-1 songs-menu">
-    <Popup
-      trigger={<Icon name="list" />}
-      inverted
-      hoverable
-      style={{
-        backgroundColor: 'rgba(255,255,255, .05)',
-      }}
-    >
-      <Menu
-        vertical
-        size="mini"
-        compact
+  <div className="col-md-1 d-none d-md-block songs-menu">
+    <span style={{ marginBottom: '4px' }}>
+      <Popup
+        trigger={<Icon name="list" style={{ marginBottom: '4px' }} />}
         inverted
+        hoverable
         style={{
-          backgroundColor: 'rgba(0,0,0, .6)',
-          overflowY: 'scroll',
-          height: '200px',
+          backgroundColor: 'rgba(255,255,255, .05)',
         }}
       >
-        {props.songs.map((song, i) => (
-          <Button
-            key={i}
-            size="mini"
-            fluid
-            inverted
-            color="blue"
-            active={song.idSongs === props.nowPlaying.idSongs}
-            onClick={() => props.onPlaying(song)}
-          >
-            {song.title}
-          </Button>
-        ))}
-      </Menu>
-    </Popup>
-    {props.nowPlaying.title}
+        <Menu
+          vertical
+          size="mini"
+          compact
+          inverted
+          style={{
+            backgroundColor: 'rgba(0,0,0, .8)',
+            overflowY: 'scroll',
+            height: '200px',
+          }}
+        >
+          {props.songs.map((song, i) => (
+            <Button
+              key={i}
+              size="mini"
+              fluid
+              inverted
+              color="blue"
+              active={song.get('idSongs') === props.nowPlaying.get('idSongs')}
+              onClick={() => props.onPlaying(song)}
+            >
+              {song.get('title')}
+            </Button>
+          ))}
+        </Menu>
+      </Popup>
+    </span>
+    <span style={{ verticalAlign: 'bottom' }}>
+      {props.nowPlaying.get('title')}
+    </span>
   </div>
 );
 

@@ -11,12 +11,14 @@ const SidebarHeader = props => {
       {props.owner ? (
         <Link to={`/profile/${props.owner.get('idUsers')}`}>
           <Menu.Item>
-            <Image
-              src={props.owner.get('imageUrl')}
-              floated="left"
-              size="mini"
-              spaced
-            />
+            <div>
+              <Image
+                src={props.owner.get('imageUrl')}
+                size="tiny"
+                spaced
+                style={{ paddingBottom: '5px' }}
+              />
+            </div>
             <div>{props.owner.get('userName')}</div>
           </Menu.Item>
         </Link>

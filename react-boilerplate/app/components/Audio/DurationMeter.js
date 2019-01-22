@@ -56,15 +56,12 @@ class DurationMeter extends React.Component {
 
   render() {
     return (
-      <div className="col-sm-8 duration-div">
+      <div className="col-md-8 d-none d-md-block duration-div">
         <span className="timer-span">
           {this.state.currentTime} / {this.state.duration}
         </span>
 
-        <span
-          className="song-slider-span"
-          style={{ display: 'inline-block', width: '90%' }}
-        >
+        <span className="song-slider-span" style={{ display: 'inline-block' }}>
           <input
             type="range"
             min="1"

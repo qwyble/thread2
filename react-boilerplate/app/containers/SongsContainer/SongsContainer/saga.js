@@ -2,6 +2,8 @@ import { call, put, takeLatest, select } from 'redux-saga/effects';
 import axios from 'axios';
 import { setError } from 'containers/Wrappers/ErrorWrapper/actions';
 import { makeSelectPathnameRoot } from 'containers/AppUtilities/ProfileContext/selectors';
+import { RESET_LIST } from 'containers/Audio/PlaybackContainer/constants';
+import { handleEnd } from 'containers/Audio/PlaybackContainer/actions';
 import {
   GET_SONGS,
   SORT_BY,
@@ -9,44 +11,63 @@ import {
   SET_CURRENT_PAGE,
 } from './constants';
 import {
+  setIsLoading,
   getSongsSuccess,
   getSongsFailed,
   sortByReduction,
   setDescendingReduction,
-  setCurrentPageReduction,
+  setCurrentItemReduction,
 } from './actions';
 import {
-  makeSelectCurrentPage,
+  makeSelectCurrentItem,
   makeSelectSortBy,
   makeSelectDescending,
+  makeSelectTotalPages,
 } from './selectors';
 
 export default function* songsContainerSaga() {
   yield takeLatest(GET_SONGS, getSongs);
   yield takeLatest(SORT_BY, sort);
   yield takeLatest(SET_DESCENDING, setDescending);
-  yield takeLatest(SET_CURRENT_PAGE, setCurrentPage);
+  yield takeLatest(SET_CURRENT_PAGE, setCurrentItem);
+  yield takeLatest(RESET_LIST, resetList);
 }
 
-function* setCurrentPage(action) {
-  yield put(setCurrentPageReduction(action.page));
+function* setCurrentItem(action) {
+  yield put(setCurrentItemReduction(action.page));
+  yield put(setIsLoading());
   yield call(getSongs);
 }
 
 function* setDescending() {
   yield put(setDescendingReduction());
+  yield put(setIsLoading());
   yield call(getSongs);
 }
 
 function* sort(action) {
   yield put(sortByReduction(action.sortParam));
+  yield put(setIsLoading());
   yield call(getSongs);
+}
+
+function* resetList() {
+  const currentItem = yield select(makeSelectCurrentItem());
+  const totalPages = yield select(makeSelectTotalPages());
+  if ((currentItem + 20) / 20 < totalPages) {
+    yield put(setCurrentItemReduction(currentItem + 20));
+    yield put(setIsLoading());
+    yield call(getSongs);
+    yield put(handleEnd());
+  }
 }
 
 function* getSongs() {
   try {
-    const songs = yield call(songsRequest);
-    yield put(getSongsSuccess(songs));
+    const data = yield call(songsRequest);
+    const songs = data[0];
+    const { count } = { ...data[1][0] };
+    yield put(getSongsSuccess(songs, count));
   } catch (err) {
     yield put(getSongsFailed());
     yield put(setError(err.message));
@@ -61,7 +82,7 @@ function* getUrl() {
 
 function* songsRequest() {
   const url = yield call(getUrl);
-  const currentPage = yield select(makeSelectCurrentPage());
+  const CurrentItem = yield select(makeSelectCurrentItem());
   const sortByParam = yield select(makeSelectSortBy());
   const descendingParam = yield select(makeSelectDescending());
 
@@ -70,7 +91,7 @@ function* songsRequest() {
     url,
     sortByParam,
     descendingParam,
-    currentPage
+    CurrentItem
   );
 }
 
@@ -84,7 +105,7 @@ const getSongsRequest = (url, sortBy, descending, currentItem) =>
       },
       withCredentials: true,
     })
-    .then(result => result.data[0])
+    .then(result => result.data)
     .catch(err => {
       throw new Error(err);
     });

@@ -12,6 +12,7 @@ import {
   SELECT_SONG,
   DESELECT_SONG,
   ADD_SONG_TO_STREAM,
+  SET_IS_LOADING,
 } from './constants';
 
 export function getSongs() {
@@ -20,10 +21,17 @@ export function getSongs() {
   };
 }
 
-export function getSongsSuccess(songs) {
+export function setIsLoading() {
+  return {
+    type: SET_IS_LOADING,
+  };
+}
+
+export function getSongsSuccess(songs, count) {
   return {
     type: GET_SONGS_SUCCESS,
     songs,
+    count,
   };
 }
 
@@ -41,14 +49,14 @@ export function removeSongsFromPlaylist(songIds) {
   };
 }
 
-export function setCurrentPage(page) {
+export function setCurrentItem(page) {
   return {
     type: SET_CURRENT_PAGE,
     page,
   };
 }
 
-export function setCurrentPageReduction(page) {
+export function setCurrentItemReduction(page) {
   return {
     type: SET_CURRENT_PAGE_REDUCTION,
     page,

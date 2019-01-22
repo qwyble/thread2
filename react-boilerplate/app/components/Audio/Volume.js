@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Grid, Popup, Icon } from 'semantic-ui-react';
+import { Segment, Button, Portal, Icon } from 'semantic-ui-react';
 
 class Volume extends React.Component {
   state = {
@@ -15,28 +15,29 @@ class Volume extends React.Component {
 
   render() {
     return (
-      <div className="col-sm-1 volume-column">
-        <Popup
-          trigger={<Icon name="volume up" />}
-          hoverable
-          style={{
-            backgroundColor: 'rgba(0,0,0, .4)',
-            borderStyle: 'none',
-            color: 'rgba(0,0,0, .4)',
-            background: 'rgba(0,0,0, .4)',
-          }}
+      <div className="col-xs-6 col-sm-4 col-md-1 volume-column">
+        <Portal
+          closeOnTriggerClick
+          openOnTriggerClick
+          trigger={
+            <Button icon size="mini">
+              <Icon button name="volume up" />
+            </Button>
+          }
         >
-          <input
-            orient="vertical"
-            type="range"
-            min="0"
-            max="100"
-            value={this.state.volume * 100}
-            onChange={this.handleVolume}
-            className="slider"
-            id="myRange"
-          />
-        </Popup>
+          <Segment className="volume-segment">
+            <input
+              orient="vertical"
+              type="range"
+              min="0"
+              max="100"
+              value={this.state.volume * 100}
+              onChange={this.handleVolume}
+              className="volume-slider"
+              id="myRange"
+            />
+          </Segment>
+        </Portal>
       </div>
     );
   }

@@ -1,5 +1,5 @@
 import { fromJS } from 'immutable';
-import { HANDLE_PLAYING, HANDLE_PAUSING } from './constants';
+import { HANDLE_PLAYING, HANDLE_PAUSING, RESET_LIST } from './constants';
 
 const initialState = fromJS({
   paused: true,
@@ -12,6 +12,8 @@ export default function audioContextReducer(state = initialState, action) {
       return state.set('paused', false).set('nowPlaying', action.song);
     case HANDLE_PAUSING:
       return state.set('paused', !state.paused);
+    case RESET_LIST:
+      return state.set('nowPlaying', fromJS({})).set('paused', true);
     default:
       return state;
   }

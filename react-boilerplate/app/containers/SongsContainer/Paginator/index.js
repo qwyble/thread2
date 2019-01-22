@@ -3,19 +3,23 @@ import PropTypes from 'prop-types';
 import { Pagination } from 'semantic-ui-react';
 import { createStructuredSelector } from 'reselect';
 
-import { setCurrentPage } from 'containers/SongsContainer/SongsContainer/actions';
-import { makeSelectTotalPages } from 'containers/SongsContainer/SongsContainer/selectors';
+import { setCurrentItem } from 'containers/SongsContainer/SongsContainer/actions';
+import {
+  makeSelectTotalPages,
+  makeSelectCurrentItem,
+} from 'containers/SongsContainer/SongsContainer/selectors';
 
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 
 class Paginator extends React.Component {
   handlePageChange = (e, d) => {
-    const currentItem = (d.activePage - 1) * 20;
-    this.props.setCurrentPage(currentItem);
+    const CurrentItem = (d.activePage - 1) * 20;
+    this.props.setCurrentItem(CurrentItem);
   };
 
   render() {
+    console.log(this.props.CurrentItem);
     return (
       <span style={{ display: 'inline-block', marginLeft: 'auto' }}>
         <Pagination
@@ -23,7 +27,7 @@ class Paginator extends React.Component {
           inverted
           pointing
           secondary
-          defaultActivePage={1}
+          activePage={this.props.CurrentItem / 20 + 1}
           totalPages={this.props.totalPages}
           onPageChange={this.handlePageChange}
           style={{ marginLeft: 'auto' }}
@@ -34,16 +38,18 @@ class Paginator extends React.Component {
 }
 
 Paginator.propTypes = {
-  setCurrentPage: PropTypes.func,
+  CurrentItem: PropTypes.number,
+  setCurrentItem: PropTypes.func,
   totalPages: PropTypes.number,
 };
 
 const mapStateToProps = createStructuredSelector({
   totalPages: makeSelectTotalPages(),
+  CurrentItem: makeSelectCurrentItem(),
 });
 
 const mapDispatchToProps = {
-  setCurrentPage,
+  setCurrentItem,
 };
 
 const withConnect = connect(

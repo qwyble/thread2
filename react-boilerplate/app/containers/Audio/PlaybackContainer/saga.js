@@ -2,7 +2,7 @@ import { select, takeLatest, put } from 'redux-saga/effects';
 
 import { HANDLE_END, HANDLE_SKIP_BACK } from './constants';
 import { makeSelectNextSong, makeSelectPrevSong } from './selectors';
-import { handlePlaying } from './actions';
+import { handlePlaying, resetAndWait } from './actions';
 
 export default function* audioPlaybackSaga() {
   yield takeLatest(HANDLE_END, handleEnd);
@@ -11,8 +11,9 @@ export default function* audioPlaybackSaga() {
 
 function* handleEnd() {
   const nextSong = yield select(makeSelectNextSong());
-  if (nextSong) {
-    yield put(handlePlaying(nextSong));
+  if (nextSong) yield put(handlePlaying(nextSong));
+  else {
+    yield put(resetAndWait());
   }
 }
 

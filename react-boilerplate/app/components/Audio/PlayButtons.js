@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Button, Grid } from 'semantic-ui-react';
 
 const PlayButtons = props => (
-  <div className="col-sm-2 play-buttons">
+  <div className="col-xs-6 col-sm-8 col-md-2 play-buttons">
     <Button
       className="audioBarButton"
       inverted

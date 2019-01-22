@@ -15,3 +15,5 @@ export const SELECT_SONG = 'boilerplate/SongsContainer/SELECT_SONG';
 export const DESELECT_SONG = 'boilerplate/SongsContainer/DESELECT_SONG';
 export const ADD_SONG_TO_STREAM =
   'boilerplate/SongsContainer/ADD_SONG_TO_STREAM';
+
+export const SET_IS_LOADING = 'boilerplaet/songsContainer/SET_IS_LOADING';

@@ -1,13 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Icon } from 'semantic-ui-react';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const PlayIcon = props => (
   <div>
     {props.isPlaying ? (
-      <Icon onClick={props.onClick} name="pause circle outline" />
+      <FontAwesomeIcon onClick={props.onClick} icon="pause" />
     ) : (
-      <Icon onClick={props.onClick} name="play circle outline" />
+      <FontAwesomeIcon onClick={props.onClick} icon="play" />
     )}
   </div>
 );

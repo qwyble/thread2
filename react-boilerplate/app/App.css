@@ -6,6 +6,16 @@ body {
   color: aliceblue;
 }
 
+path {
+  color: rgba(125, 254, 252, 0.866);
+}
+path:hover {
+  color: aliceblue;
+}
+path:active {
+  color: rgba(213, 255, 128, 0.866);
+}
+
 #app {
   height: 100%;
 }
@@ -80,6 +90,16 @@ i.icon {
   color: aliceblue;
 }
 
+.ui.input.focus > input,
+.ui.input > input:focus {
+  border: none !important;
+  color: aliceblue !important;
+}
+.ui.input > input {
+  border: none;
+  color: aliceblue;
+}
+
 .ui.segment.messagesTable {
   position: fixed;
   top: 10vh !important;
@@ -110,11 +130,6 @@ i.icon {
   overflow: auto;
 }
 
-.prompt {
-  border-radius: 2px !important;
-  opacity: 0.8;
-}
-
 .ui.modal.profileModal {
   margin: auto;
 }
@@ -126,8 +141,20 @@ i.icon {
 }
 
 .ui.button {
-  background-color: rgba(125, 254, 252, 0.886);
-  color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0);
+  color: rgba(125, 254, 252, 0.879);
+}
+.ui.button:focus {
+  background-color: rgba(125, 254, 252, 0.13);
+}
+.ui.button:active {
+  background-color: rgba(21, 251, 247, 0.335);
+}
+
+.ui.button:hover {
+  background-color: rgba(125, 254, 252, 0.2);
+  color: aliceblue;
+  transition: all 0.1s;
 }
 
 .ui.inverted.blue.button:hover {
@@ -140,6 +167,13 @@ i.icon {
   color: rgba(125, 254, 252, 0.879);
   box-shadow: 0 0 0 0px !important;
   -webkit-box-shadow: none;
+}
+
+.ui.inverted.blue.button:focus {
+  background-color: rgba(125, 254, 252, 0.13);
+}
+.ui.inverted.blue.button:active {
+  background-color: rgba(213, 255, 128, 0.537);
 }
 
 a {
@@ -190,10 +224,6 @@ a {
   bottom: 0px;
   width: 100%;
   background: rgba(0, 0, 0, 0.5) !important;
-}
-
-.ui.inverted.menu {
-  background-color: rgba(0, 0, 0, 0.146);
 }
 
 .ui.inverted.table.t1 {

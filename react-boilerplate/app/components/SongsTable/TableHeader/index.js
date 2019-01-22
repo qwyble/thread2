@@ -2,8 +2,13 @@ import { Table, Icon } from 'semantic-ui-react';
 import React from 'react';
 import PropTypes from 'prop-types';
 
+require('./css.css');
+
 const TableHeader = props => (
-  <thead style={{ display: 'block', width: '99%' }}>
+  <thead
+    className="songs-table-header"
+    style={{ display: 'block', width: '99%' }}
+  >
     <tr className="d-flex">
       <th scope="col" className="" style={{ width: '4%' }} />
       <th scope="col" className="" style={{ width: '4%' }} />

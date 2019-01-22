@@ -18,10 +18,13 @@ export const makeSelectUrl = () =>
     }
   );
 
-export const makeSelectCurrentPage = () =>
+export const makeSelectCurrentItem = () =>
   createSelector(
     makeSelectSongsTableState(),
-    state => state.get('currentPage')
+    state => {
+      console.log(state.get('CurrentItem'));
+      return state.get('CurrentItem');
+    }
   );
 
 export const makeSelectTotalPages = () =>

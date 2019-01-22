@@ -14,20 +14,6 @@
   opacity: 1;
 }
 
-.slider {
-  height: 100px;
-  width: 30px;
-}
-
-.playerSongList {
-  background-color: rgba(0, 0, 0, 0.9);
-  position: absolute;
-  width: 150px;
-  height: 200px;
-  bottom: 30%;
-  overflow-y: scroll;
-}
-
 .playlistTab {
   z-index: 0;
   padding: 0 !important;

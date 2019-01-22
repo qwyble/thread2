@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Sidebar, Segment, Menu } from 'semantic-ui-react';
+
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -15,6 +16,8 @@ import { makeSelectProfile } from 'containers/AppUtilities/ProfileContext/select
 
 import reducer from './reducer';
 
+require('./css.css');
+
 const SideBarContainer = props => (
   <Sidebar.Pushable className="primaryContainer">
     <Sidebar
@@ -24,6 +27,7 @@ const SideBarContainer = props => (
       icon="labeled"
       animation="push"
       visible
+      className="playlists-sidebar"
       as={Menu}
     >
       <SideBarHeader owner={props.owner} />

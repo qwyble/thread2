@@ -2,6 +2,7 @@
   display: inline-block;
   padding-right: 20px;
   vertical-align: -webkit-baseline-middle;
+  width: 10%;
 }
 
 .list.icon {
@@ -10,15 +11,13 @@
 
 .songs-menu {
   text-align: center;
+  padding-right: 0px;
+  padding-top: 7px;
 }
 
 .volume-column {
   text-align: center;
   padding-right: 25px;
-}
-
-.volume.up.icon {
-  padding-top: 7px;
 }
 
 .play-buttons {
@@ -55,4 +54,35 @@
   height: 10px;
   background: #66f6fb;
   cursor: pointer;
+}
+
+.song-slider-span {
+  width: 90%;
+}
+.volume-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 1px;
+  background: rgb(111, 233, 255);
+  outline: none;
+  opacity: 0.8;
+  vertical-align: middle;
+}
+
+.volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 3px;
+  height: 10px;
+  background: #66f6fb;
+  cursor: pointer;
+}
+.ui.segment.volume-segment {
+  right: 1%;
+  position: fixed;
+  top: 93%;
+  zindex: 1000;
+  padding: 1px 1px 1px 1px;
+  background-color: rgba(0, 0, 0, 0.7) !important;
 }

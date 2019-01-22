@@ -6,20 +6,21 @@ import {
   GET_SONGS,
   SELECT_SONG,
   DESELECT_SONG,
-  SET_CURRENT_PAGE,
+  SET_CURRENT_PAGE_REDUCTION,
   GET_SONGS_FAILED,
   SORT_BY_REDUCTION,
   GET_SONGS_SUCCESS,
   SET_DESCENDING_REDUCTION,
   REMOVE_SONGS_FROM_PLAYLIST,
   ADD_SONG_TO_STREAM,
+  SET_IS_LOADING,
 } from './constants';
 
 const initialState = fromJS({
   songs: [],
   isLoading: true,
   songsTable: {
-    currentPage: 0,
+    CurrentItem: 0,
     totalPages: 1,
     selectedSongs: [],
     noneSelected: true,
@@ -33,21 +34,25 @@ export default function SongsContainer(state = initialState, action) {
     case GET_SONGS:
       return state
         .set('isLoading', true)
-        .set('currentPage', 0)
+        .set('CurrentItem', 0)
         .set('totalPages', 1);
-    case GET_SONGS_SUCCESS:
+    case SET_IS_LOADING:
+      return state.set('isLoading', true);
+    case GET_SONGS_SUCCESS: {
+      console.log(Math.ceil(action.count));
       return state
         .set('isLoading', false)
         .set('songs', fromJS(action.songs))
-        .setIn(['songsTable', 'totalPages'], action.songs.length / 20);
+        .setIn(['songsTable', 'totalPages'], Math.ceil(action.count / 20));
+    }
     case GET_SONGS_FAILED:
       return state.set('isLoading', false);
     case REMOVE_SONGS_FROM_PLAYLIST:
       return state.update('songs', songs =>
         songs.filter(song => action.songIds.indexOf(song.idSongs) === -1)
       );
-    case SET_CURRENT_PAGE:
-      return state.setIn(['songsTable', 'currentPage'], action.currentPage);
+    case SET_CURRENT_PAGE_REDUCTION:
+      return state.setIn(['songsTable', 'CurrentItem'], action.page);
     case SELECT_SONG: {
       const songIndex = state
         .get('songs')

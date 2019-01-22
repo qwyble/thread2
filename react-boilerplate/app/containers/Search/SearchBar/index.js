@@ -1,5 +1,4 @@
 import React from 'react';
-import { toJS } from 'immutable';
 import PropTypes from 'prop-types';
 import { Search, Image } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
@@ -24,6 +23,7 @@ import {
 } from './selectors';
 
 import { searchChange } from './actions';
+require('./css.css');
 
 class SearchBar extends React.Component {
   handleSearchChange = e => {

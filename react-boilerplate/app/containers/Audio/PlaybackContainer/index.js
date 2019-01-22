@@ -34,16 +34,21 @@ class PlaybackContainer extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    console.log(this.props.paused);
     if (prevProps.paused !== this.props.paused) {
       if (this.props.paused) this.myRef.current.pause();
       else this.myRef.current.play();
     }
   }
 
-  handleClick = () => {
-    if (this.props.paused) this.props.handlePlaying(this.props.nowPlaying);
+  handleClick = e => {
+    e.preventDefault();
+    if (this.props.paused) this.props.handlePlaying(this.loadSong());
     else this.props.handlePausing();
+  };
+
+  loadSong = () => {
+    if (this.props.nowPlaying.size) return this.props.nowPlaying;
+    return this.props.songs.get(0);
   };
 
   render() {
