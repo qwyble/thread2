@@ -21,7 +21,7 @@ class Volume extends React.Component {
           openOnTriggerClick
           trigger={
             <Button icon size="mini">
-              <Icon button name="volume up" />
+              <Icon name="volume up" />
             </Button>
           }
         >

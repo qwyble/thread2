@@ -39,14 +39,13 @@ export default function SongsContainer(state = initialState, action) {
     case SET_IS_LOADING:
       return state.set('isLoading', true);
     case GET_SONGS_SUCCESS: {
-      console.log(Math.ceil(action.count));
       return state
         .set('isLoading', false)
         .set('songs', fromJS(action.songs))
         .setIn(['songsTable', 'totalPages'], Math.ceil(action.count / 20));
     }
     case GET_SONGS_FAILED:
-      return state.set('isLoading', false);
+      return state;
     case REMOVE_SONGS_FROM_PLAYLIST:
       return state.update('songs', songs =>
         songs.filter(song => action.songIds.indexOf(song.idSongs) === -1)

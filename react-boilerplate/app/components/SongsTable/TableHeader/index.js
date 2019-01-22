@@ -2,6 +2,8 @@ import { Table, Icon } from 'semantic-ui-react';
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 require('./css.css');
 
 const TableHeader = props => (
@@ -13,30 +15,54 @@ const TableHeader = props => (
       <th scope="col" className="" style={{ width: '4%' }} />
       <th scope="col" className="" style={{ width: '4%' }} />
       <th scope="col" className="col-3">
-        Title
-        <Icon name="sort" onClick={() => props.onSortBy('songs.title')} />
+        <button
+          type="button"
+          className="ui button table-header"
+          onClick={() => props.onSortBy('songs.title')}
+        >
+          Title
+          <FontAwesomeIcon icon="sort" />
+        </button>
       </th>
-      <th scope="col" className="col-3">
-        Uploader
-        <Icon name="sort" onClick={() => props.onSortBy('songs.owner')} />
+      <th scope="col" className="col-2">
+        <button
+          type="button"
+          className="ui button table-header"
+          onClick={() => props.onSortBy('songs.owner')}
+        >
+          Uploader
+          <FontAwesomeIcon icon="sort" />
+        </button>
       </th>
-      <th scope="col" className="col-1">
-        Rating
-        <Icon
-          name="sort"
+      <th scope="col" className="col-2">
+        <button
+          type="button"
+          className="ui button table-header"
           onClick={() => props.onSortBy('songratings.rating')}
-        />
+        >
+          Rating
+          <FontAwesomeIcon icon="sort" />
+        </button>
       </th>
       <th scope="col" className="col-2">
-        Genre
-        <Icon name="sort" onClick={() => props.onSortBy('songs.genres')} />
+        <button
+          type="button"
+          className="ui button table-header"
+          onClick={() => props.onSortBy('songs.genres')}
+        >
+          Genre
+          <FontAwesomeIcon icon="sort" />
+        </button>
       </th>
       <th scope="col" className="col-2">
-        Date Uploaded
-        <Icon
-          name="sort"
+        <button
+          type="button"
+          className="ui button table-header"
           onClick={() => props.onSortBy('songs.dateUploaded')}
-        />
+        >
+          Date Uploaded
+          <FontAwesomeIcon icon="sort" />
+        </button>
       </th>
     </tr>
   </thead>

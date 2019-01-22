@@ -1,0 +1,9 @@
+.songs-table th,
+.songs-table td {
+  padding: 0.6rem;
+  vertical-align: middle;
+  display: flex;
+  align-items: center;
+  height: 4vh;
+  max-height: 4vh;
+}

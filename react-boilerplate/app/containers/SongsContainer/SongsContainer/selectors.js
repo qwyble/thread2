@@ -21,10 +21,7 @@ export const makeSelectUrl = () =>
 export const makeSelectCurrentItem = () =>
   createSelector(
     makeSelectSongsTableState(),
-    state => {
-      console.log(state.get('CurrentItem'));
-      return state.get('CurrentItem');
-    }
+    state => state.get('CurrentItem')
   );
 
 export const makeSelectTotalPages = () =>

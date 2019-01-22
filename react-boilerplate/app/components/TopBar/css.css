@@ -1,8 +1,12 @@
 .ui.menu.topBar {
   z-index: 1000000;
   width: 100vw;
-  height: 5%;
+  height: 4.5%;
   padding-bottom: 0px;
   margin-bottom: 0px;
   background-color: rgba(34, 36, 38, 0.85);
+}
+
+.ui.inverted.menu .item.search-bar:hover {
+  background-color: rgba(0, 0, 0, 0);
 }

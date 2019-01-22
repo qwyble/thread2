@@ -20,7 +20,7 @@ const SongsTable = props => (
         onSetDescending={props.onSetDescending}
       />
       {props.isLoading ? (
-        <tbody>
+        <tbody style={{ display: 'block', overflow: 'scroll', height: '91%' }}>
           <tr>
             <td>
               <Loader active />{' '}

@@ -6,6 +6,15 @@ import {
   faAngleDoubleUp,
   faSearch,
   faPause,
+  faSort,
 } from '@fortawesome/free-solid-svg-icons';
 
-library.add(faBackward, faForward, faPlay, faPause, faAngleDoubleUp, faSearch);
+library.add(
+  faBackward,
+  faForward,
+  faPlay,
+  faPause,
+  faAngleDoubleUp,
+  faSearch,
+  faSort
+);

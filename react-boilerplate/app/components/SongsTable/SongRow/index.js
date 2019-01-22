@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import { Checkbox, Rating } from 'semantic-ui-react';
 import LoaderWrapper from 'containers/Wrappers/LoaderWrapper';
 import PlayIcon from 'components/common/Icons/PlayIcon';
+
+require('./css.css');
+
 class SongRow extends React.Component {
   handlePlayToggle = () => {
     if (this.props.isPlaying) this.props.onPause();
@@ -19,7 +22,6 @@ class SongRow extends React.Component {
             checked={this.props.selected}
             onChange={this.props.onSongSelect}
           />
-          <span className="checkboxSpan" />
         </th>
         <td className="" style={{ width: '4%' }}>
           <PlayIcon
@@ -28,9 +30,11 @@ class SongRow extends React.Component {
             isPlaying={this.props.isPlaying}
           />
         </td>
-        <td className="col-3">{this.props.song.get('title')}</td>
-        <td className="col-3">{this.props.song.get('userName')}</td>
-        <td className="col-1">
+        <td className="col-3">
+          <p>{this.props.song.get('title')}</p>
+        </td>
+        <td className="col-2">{this.props.song.get('userName')}</td>
+        <td className="col-2">
           <LoaderWrapper isLoading={this.props.isLoading}>
             <Rating
               maxRating={5}

@@ -4,6 +4,7 @@ import {
   HANDLE_PAUSING,
   HANDLE_END,
   HANDLE_SKIP_BACK,
+  START_FROM_END,
 } from './constants';
 
 export function handlePlaying(song) {
@@ -20,21 +21,26 @@ export function handlePausing() {
 }
 
 export function handleEnd() {
-  console.log('handleEnd');
   return {
     type: HANDLE_END,
   };
 }
 
 export function handleSkipBack() {
-  console.log('handleskipback');
   return {
     type: HANDLE_SKIP_BACK,
   };
 }
 
-export function resetAndWait() {
+export function startFromEnd() {
+  return {
+    type: START_FROM_END,
+  };
+}
+
+export function resetList(direction) {
   return {
     type: RESET_LIST,
+    direction,
   };
 }

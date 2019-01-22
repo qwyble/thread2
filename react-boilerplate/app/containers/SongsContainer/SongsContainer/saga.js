@@ -3,7 +3,10 @@ import axios from 'axios';
 import { setError } from 'containers/Wrappers/ErrorWrapper/actions';
 import { makeSelectPathnameRoot } from 'containers/AppUtilities/ProfileContext/selectors';
 import { RESET_LIST } from 'containers/Audio/PlaybackContainer/constants';
-import { handleEnd } from 'containers/Audio/PlaybackContainer/actions';
+import {
+  handleEnd,
+  startFromEnd,
+} from 'containers/Audio/PlaybackContainer/actions';
 import {
   GET_SONGS,
   SORT_BY,
@@ -51,14 +54,32 @@ function* sort(action) {
   yield call(getSongs);
 }
 
-function* resetList() {
+function* resetList(action) {
   const currentItem = yield select(makeSelectCurrentItem());
   const totalPages = yield select(makeSelectTotalPages());
-  if ((currentItem + 20) / 20 < totalPages) {
-    yield put(setCurrentItemReduction(currentItem + 20));
-    yield put(setIsLoading());
-    yield call(getSongs);
-    yield put(handleEnd());
+  if (action.direction === 'forward') {
+    let page = currentItem + 20;
+    if (page / 20 < totalPages) {
+      yield call(setCurrentItem, { page });
+      yield put(handleEnd());
+    } else {
+      page = 0;
+      yield call(setCurrentItem, { page });
+      yield put(handleEnd());
+    }
+  } else if (action.direction === 'backward') {
+    console.log('page', currentItem);
+    let page = currentItem - 20;
+    console.log(page, 'page');
+    if (page / 20 >= 0) {
+      yield call(setCurrentItem, { page });
+      yield put(startFromEnd());
+    } else {
+      page = totalPages * 20 - 20;
+      console.log('page2', page);
+      yield call(setCurrentItem, { page });
+      yield put(startFromEnd());
+    }
   }
 }
 

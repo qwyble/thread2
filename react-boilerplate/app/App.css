@@ -9,6 +9,10 @@ body {
 path {
   color: rgba(125, 254, 252, 0.866);
 }
+svg {
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+}
 path:hover {
   color: aliceblue;
 }
@@ -30,22 +34,16 @@ i.icon {
   color: rgba(125, 254, 252, 0.866);
 }
 
+.ui.inverted.menu .link.item:hover {
+  background-color: rgba(125, 254, 252, 0.2);
+}
+
 .ui.header {
   color: aliceblue !important;
 }
 
 .ui.button.followButton {
   font-size: 1em !important;
-}
-
-.ui.category.search .results.animating,
-.ui.category.search .results.visible {
-  background-color: rgba(114, 63, 63, 0.557);
-  border: none;
-}
-
-.ui.category.search > .results .category {
-  background-color: rgba(250, 250, 250, 0);
 }
 
 .ui.labeled.icon.menu .item {
@@ -62,6 +60,13 @@ i.icon {
 }
 .ui.fluid.search .results {
   opacity: 0.95;
+  height: auto;
+  max-height: 70vh;
+  overflow-y: scroll;
+}
+
+.ui.search > .results {
+  background: none;
 }
 
 .messagePortal {
@@ -142,13 +147,17 @@ i.icon {
 
 .ui.button {
   background-color: rgba(0, 0, 0, 0);
-  color: rgba(125, 254, 252, 0.879);
+  color: #7dfefce0;
+  padding-top: 1em;
 }
+
 .ui.button:focus {
   background-color: rgba(125, 254, 252, 0.13);
+  color: aliceblue;
 }
 .ui.button:active {
-  background-color: rgba(21, 251, 247, 0.335);
+  background-color: #7dff7d48 !important;
+  color: aliceblue;
 }
 
 .ui.button:hover {
@@ -164,16 +173,13 @@ i.icon {
 
 .ui.inverted.blue.button,
 .ui.inverted.blue.buttons .button {
-  color: rgba(125, 254, 252, 0.879);
+  color: #7dfefce0;
   box-shadow: 0 0 0 0px !important;
   -webkit-box-shadow: none;
 }
 
 .ui.inverted.blue.button:focus {
   background-color: rgba(125, 254, 252, 0.13);
-}
-.ui.inverted.blue.button:active {
-  background-color: rgba(213, 255, 128, 0.537);
 }
 
 a {

@@ -4,3 +4,4 @@ export const HANDLE_END = 'boilerplate/PlaybackContainer/HANDLE_END';
 export const HANDLE_SKIP_BACK =
   'boilerplate/PlaybackContainer/HANDLE_SKIP_BACK';
 export const RESET_LIST = 'boilerplate/PlaybackContainer/RESET_LIST';
+export const START_FROM_END = 'boilerplate/PlaybackContainer/START_FROM_END';

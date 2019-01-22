@@ -1,5 +1,36 @@
-.prompt {
+.ui.search .prompt {
   border-radius: 0px !important;
-  opacity: 0.2;
+  opacity: 0.9;
+  background-color: rgb(73, 95, 100);
+  color: aliceblue;
+}
+.ui.search .prompt:focus {
+  border-radius: 0px !important;
+  opacity: 0.9;
+  background-color: rgb(73, 95, 100);
+  color: aliceblue;
+}
+
+.ui.category.search.searchBar {
+  color: aliceblue;
+}
+
+.ui.category.search .results.animating,
+.ui.category.search .results.visible {
+  background-color: rgb(73, 95, 100);
+  border: none;
+}
+
+.ui.category.search > .results.visible {
+  background-color: rgba(3, 34, 41, 0.938);
+  height: auto;
+  max-height: 70vh;
+}
+.ui.category.search > .results .category {
+  background-color: rgba(0, 0, 0, 0);
+  color: aliceblue;
+}
+
+.ui.category.search > .results .category > .name {
   color: aliceblue;
 }

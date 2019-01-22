@@ -1,3 +1,9 @@
 .songs-table-header {
   background-color: rgba(34, 36, 38, 0.85);
 }
+
+.ui.button.table-header {
+  color: aliceblue;
+  position: absolute;
+  margin-left: -16px;
+}
