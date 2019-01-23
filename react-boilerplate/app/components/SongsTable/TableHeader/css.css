@@ -5,5 +5,9 @@
 .ui.button.table-header {
   color: aliceblue;
   position: absolute;
-  margin-left: -16px;
+  margin-left: -1.6em;
+}
+
+.songs-table th.title-header {
+  padding-left: 0rem;
 }

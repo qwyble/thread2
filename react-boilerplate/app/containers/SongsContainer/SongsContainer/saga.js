@@ -1,5 +1,6 @@
 import { call, put, takeLatest, select } from 'redux-saga/effects';
 import axios from 'axios';
+
 import { setError } from 'containers/Wrappers/ErrorWrapper/actions';
 import { makeSelectPathnameRoot } from 'containers/AppUtilities/ProfileContext/selectors';
 import { RESET_LIST } from 'containers/Audio/PlaybackContainer/constants';
@@ -7,6 +8,7 @@ import {
   handleEnd,
   startFromEnd,
 } from 'containers/Audio/PlaybackContainer/actions';
+
 import {
   GET_SONGS,
   SORT_BY,
@@ -57,29 +59,33 @@ function* sort(action) {
 function* resetList(action) {
   const currentItem = yield select(makeSelectCurrentItem());
   const totalPages = yield select(makeSelectTotalPages());
-  if (action.direction === 'forward') {
-    let page = currentItem + 20;
-    if (page / 20 < totalPages) {
-      yield call(setCurrentItem, { page });
-      yield put(handleEnd());
-    } else {
-      page = 0;
-      yield call(setCurrentItem, { page });
-      yield put(handleEnd());
-    }
-  } else if (action.direction === 'backward') {
-    console.log('page', currentItem);
-    let page = currentItem - 20;
-    console.log(page, 'page');
-    if (page / 20 >= 0) {
-      yield call(setCurrentItem, { page });
-      yield put(startFromEnd());
-    } else {
-      page = totalPages * 20 - 20;
-      console.log('page2', page);
-      yield call(setCurrentItem, { page });
-      yield put(startFromEnd());
-    }
+  if (action.direction === 'forward')
+    yield call(resetForward, currentItem, totalPages);
+  else if (action.direction === 'backward')
+    yield call(resetBackward, currentItem, totalPages);
+}
+
+function* resetForward(currentItem, totalPages) {
+  let page = currentItem + 20;
+  if (page / 20 < totalPages) {
+    yield call(setCurrentItem, { page });
+    yield put(handleEnd());
+  } else {
+    page = 0;
+    yield call(setCurrentItem, { page });
+    yield put(handleEnd());
+  }
+}
+
+function* resetBackward(currentItem, totalPages) {
+  let page = currentItem - 20;
+  if (page / 20 >= 0) {
+    yield call(setCurrentItem, { page });
+    yield put(startFromEnd());
+  } else {
+    page = totalPages * 20 - 20;
+    yield call(setCurrentItem, { page });
+    yield put(startFromEnd());
   }
 }
 

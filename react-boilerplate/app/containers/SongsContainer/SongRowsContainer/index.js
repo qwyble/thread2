@@ -32,6 +32,7 @@ import { rateSong } from './actions';
 
 class SongRowsContainer extends Component {
   handleSongSelect = e => {
+    console.log('selecting song2');
     if (!e.target.value) this.props.selectSong(e.target.id);
     else this.props.deselectSong(e.target.id);
   };

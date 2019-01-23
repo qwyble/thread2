@@ -80,7 +80,7 @@ i.icon {
   color: rgb(254, 134, 134);
 }
 .ui.segment {
-  background-color: rgba(160, 160, 160, 0.468) !important;
+  background-color: rgba(139, 160, 163, 0.376) !important;
   border-radius: 0px;
   color: aliceblue;
 }
@@ -91,7 +91,7 @@ i.icon {
 
 .ui.form .field .ui.input input {
   border-radius: 0rem !important;
-  background-color: rgba(69, 69, 69, 0.4);
+  background-color: rgb(52, 70, 73);
   color: aliceblue;
 }
 

@@ -53,6 +53,7 @@ export default function SongsContainer(state = initialState, action) {
     case SET_CURRENT_PAGE_REDUCTION:
       return state.setIn(['songsTable', 'CurrentItem'], action.page);
     case SELECT_SONG: {
+      console.log('selecting song');
       const songIndex = state
         .get('songs')
         .findIndex(song => song.get('idSongs') === action.idSongs);

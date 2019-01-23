@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Checkbox, Rating } from 'semantic-ui-react';
+import { Rating } from 'semantic-ui-react';
 import LoaderWrapper from 'containers/Wrappers/LoaderWrapper';
 import PlayIcon from 'components/common/Icons/PlayIcon';
 
@@ -14,23 +14,31 @@ class SongRow extends React.Component {
 
   render() {
     return (
-      <tr className="d-flex">
-        <th scope="row" className="" style={{ width: '4%' }}>
-          <Checkbox
-            size="mini"
-            id={this.props.song.get('idSongs')}
-            checked={this.props.selected}
-            onChange={this.props.onSongSelect}
-          />
+      <tr
+        className={this.props.isPlaying ? 'd-flex playing-song-row' : 'd-flex'}
+      >
+        <th scope="row" className="checkbox-cell col-1">
+          <span className="checkbox-span">
+            <label htmlFor="hiddencb" className="checkbox-label">
+              <input
+                type="checkbox"
+                name="hiddencb"
+                id={this.props.song.get('idSongs')}
+                checked={this.props.selected}
+                onChange={this.props.onSongSelect}
+              />
+              <span className="checkbox" />
+            </label>
+          </span>
+          <span className="play-icon-span">
+            <PlayIcon
+              id={this.props.song.get('idSongs')}
+              onClick={this.handlePlayToggle}
+              isPlaying={this.props.isPlaying}
+            />
+          </span>
         </th>
-        <td className="" style={{ width: '4%' }}>
-          <PlayIcon
-            id={this.props.song.get('idSongs')}
-            onClick={this.handlePlayToggle}
-            isPlaying={this.props.isPlaying}
-          />
-        </td>
-        <td className="col-3">
+        <td className="col-3 title-cell">
           <p>{this.props.song.get('title')}</p>
         </td>
         <td className="col-2">{this.props.song.get('userName')}</td>

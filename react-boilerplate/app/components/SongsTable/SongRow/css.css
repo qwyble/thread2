@@ -1,3 +1,7 @@
+tr.d-flex.playing-song-row {
+  background-color: rgba(86, 227, 251, 0.055);
+}
+
 .songs-table th,
 .songs-table td {
   padding: 0.6rem;
@@ -6,4 +10,85 @@
   align-items: center;
   height: 4vh;
   max-height: 4vh;
+}
+
+.play-icon-span {
+  padding-left: 0.5rem;
+}
+
+.checkbox-span {
+  padding-right: 0.5rem;
+}
+
+td.title-cell {
+  padding-left: 0rem;
+}
+
+th.checkbox-cell {
+  padding: 0.6rem 0rem;
+  justify-content: center;
+}
+
+.checkbox {
+  display: table-cell;
+  position: absolute;
+  vertical-align: middle;
+  top: 0;
+  left: 0;
+  height: 1em;
+  width: 1em;
+  background-color: rgba(2, 255, 255, 0.246);
+}
+
+.checkbox-label {
+  display: block;
+  position: relative;
+  width: 1em;
+  height: 1em;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.checkbox-label input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  width: 0;
+  height: 0;
+}
+
+.checkbox-label:hover input ~ .checkmark {
+  background-color: rgb(90, 253, 68);
+}
+
+.checkbox-label input:checked ~ .checkbox {
+  background-color: blueviolet;
+}
+
+.checkbox:after {
+  content: '';
+  position: absolute;
+  display: none;
+}
+
+.checkbox-label input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.checkbox-label .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+svg.svg-inline--fa.fa-pause > path {
+  color: rgb(90, 253, 68) !important;
 }

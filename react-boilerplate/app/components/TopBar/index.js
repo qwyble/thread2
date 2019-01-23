@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import { Menu, Icon } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+
 import UploadButton from 'components/Uploader/UploadButton';
 import SearchBar from 'containers/Search/SearchBar';
 

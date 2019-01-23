@@ -6,7 +6,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 const PlayIcon = props => (
   <div>
     {props.isPlaying ? (
-      <FontAwesomeIcon onClick={props.onClick} icon="pause" />
+      <FontAwesomeIcon
+        onClick={props.onClick}
+        icon="pause"
+        className="table-pause-icon"
+      />
     ) : (
       <FontAwesomeIcon onClick={props.onClick} icon="play" />
     )}

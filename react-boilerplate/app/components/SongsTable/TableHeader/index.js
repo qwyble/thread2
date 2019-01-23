@@ -12,9 +12,8 @@ const TableHeader = props => (
     style={{ display: 'block', width: '99%' }}
   >
     <tr className="d-flex">
-      <th scope="col" className="" style={{ width: '4%' }} />
-      <th scope="col" className="" style={{ width: '4%' }} />
-      <th scope="col" className="col-3">
+      <th scope="col" className="col-1" style={{ width: '4%' }} />
+      <th scope="col" className="col-3 title-header">
         <button
           type="button"
           className="ui button table-header"

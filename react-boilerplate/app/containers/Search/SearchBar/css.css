@@ -5,7 +5,7 @@
   color: aliceblue;
 }
 .ui.search .prompt:focus {
-  border-radius: 0px !important;
+  border-radius: 1px !important;
   opacity: 0.9;
   background-color: rgb(73, 95, 100);
   color: aliceblue;
