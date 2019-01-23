@@ -17,3 +17,4 @@ export const ADD_SONG_TO_STREAM =
   'boilerplate/SongsContainer/ADD_SONG_TO_STREAM';
 
 export const SET_IS_LOADING = 'boilerplaet/songsContainer/SET_IS_LOADING';
+export const SELECT_ALL = 'boilerplate/songsContainer/SELECT_ALL';

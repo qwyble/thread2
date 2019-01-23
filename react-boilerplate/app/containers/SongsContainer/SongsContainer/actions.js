@@ -13,6 +13,7 @@ import {
   DESELECT_SONG,
   ADD_SONG_TO_STREAM,
   SET_IS_LOADING,
+  SELECT_ALL,
 } from './constants';
 
 export function getSongs() {
@@ -100,6 +101,12 @@ export function deselectSong(idSongs) {
   return {
     type: DESELECT_SONG,
     idSongs,
+  };
+}
+
+export function selectAll() {
+  return {
+    type: SELECT_ALL,
   };
 }
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import Loader from 'components/common/Loader';
 import TableHeader from 'components/SongsTable/TableHeader';
 import SongRowsContainer from 'containers/SongsContainer/SongRowsContainer';
@@ -18,6 +19,8 @@ const SongsTable = props => (
       <TableHeader
         onSortBy={props.onSortBy}
         onSetDescending={props.onSetDescending}
+        onSelectAll={props.onSelectAll}
+        allSelected={props.allSelected}
       />
       {props.isLoading ? (
         <tbody style={{ display: 'block', overflow: 'scroll', height: '91%' }}>
@@ -52,6 +55,8 @@ SongsTable.propTypes = {
   onSortBy: PropTypes.func,
   isLoading: PropTypes.bool,
   onSetDescending: PropTypes.func,
+  onSelectAll: PropTypes.func,
+  allSelected: PropTypes.bool,
 };
 
 export default SongsTable;

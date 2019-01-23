@@ -9,5 +9,16 @@
 }
 
 .songs-table th.title-header {
-  padding-left: 0rem;
+  padding-left: -0rem;
+}
+
+.header-checkbox-span {
+  position: absolute;
+  display: inline-block;
+}
+
+.empty-header-span {
+  margin-left: 1em;
+  margin-right: 0.5em;
+  width: 0.875em;
 }

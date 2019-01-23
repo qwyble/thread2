@@ -13,22 +13,21 @@ class SongRow extends React.Component {
   };
 
   render() {
+    console.log(this.props.selected);
     return (
       <tr
         className={this.props.isPlaying ? 'd-flex playing-song-row' : 'd-flex'}
       >
         <th scope="row" className="checkbox-cell col-1">
           <span className="checkbox-span">
-            <label htmlFor="hiddencb" className="checkbox-label">
-              <input
-                type="checkbox"
-                name="hiddencb"
-                id={this.props.song.get('idSongs')}
-                checked={this.props.selected}
-                onChange={this.props.onSongSelect}
-              />
-              <span className="checkbox" />
-            </label>
+            <input
+              type="checkbox"
+              name="hiddencb"
+              className="checkbox"
+              id={this.props.song.get('idSongs')}
+              checked={this.props.selected}
+              onChange={this.props.onSongSelect}
+            />
           </span>
           <span className="play-icon-span">
             <PlayIcon

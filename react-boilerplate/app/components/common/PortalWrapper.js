@@ -3,28 +3,22 @@ import PropTypes from 'prop-types';
 import { Portal, Segment } from 'semantic-ui-react';
 
 class PortalWrapper extends React.Component {
-  state = {
-    isOpen: false,
-  };
-
-  toggleOpen = () => {
-    if (this.state.isOpen) this.setState({ isOpen: false });
-    else this.setState({ isOpen: true });
-  };
+  triggerRef = React.createRef();
 
   render() {
     return (
       <span style={{ display: 'inline-block' }}>
-        <Portal open={this.state.isOpen} trigger={this.props.trigger}>
-          {this.state.isOpen ? (
-            <Segment>
-              {React.cloneElement(this.props.children, {
-                closePortal: this.toggleOpen,
-              })}
-            </Segment>
-          ) : (
-            <div />
-          )}
+        <Portal
+          openOnTriggerClick
+          closeOnTriggerClick
+          trigger={this.props.trigger}
+          triggerRef={this.triggerRef}
+        >
+          <Segment>
+            {React.cloneElement(this.props.children, {
+              triggerRef: this.triggerRef,
+            })}
+          </Segment>
         </Portal>
       </span>
     );

@@ -3,6 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import PlayIcon from 'components/common/Icons/PlayIcon';
 
 require('./css.css');
 
@@ -12,7 +13,18 @@ const TableHeader = props => (
     style={{ display: 'block', width: '99%' }}
   >
     <tr className="d-flex">
-      <th scope="col" className="col-1" style={{ width: '4%' }} />
+      <th scope="col" className="col-1 checkbox-cell">
+        <span className="checkbox-span">
+          <input
+            type="checkbox"
+            name="hiddencb"
+            className="checkbox"
+            checked={props.allSelected}
+            onChange={props.onSelectAll}
+          />
+        </span>
+        <span className="empty-header-span" />
+      </th>
       <th scope="col" className="col-3 title-header">
         <button
           type="button"
@@ -68,6 +80,8 @@ const TableHeader = props => (
 );
 
 TableHeader.propTypes = {
+  allSelected: PropTypes.bool,
+  onSelectAll: PropTypes.func,
   onSortBy: PropTypes.func,
 };
 

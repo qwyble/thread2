@@ -10,11 +10,11 @@ import { connect } from 'react-redux';
 
 import injectSaga from 'utils/injectSaga';
 
-import { getSongs, sortBy, setDescending } from './actions';
+import { getSongs, sortBy, setDescending, selectAll } from './actions';
 
 import saga from './saga';
 
-import { makeSelectIsLoading } from './selectors';
+import { makeSelectIsLoading, makeSelectAllSelected } from './selectors';
 
 require('./css.css');
 
@@ -36,6 +36,8 @@ class SongsContainer extends React.Component {
           onSortBy={this.props.sortBy}
           isLoading={this.props.isLoading}
           onSetDescending={this.props.setDescending}
+          allSelected={this.props.allSelected}
+          onSelectAll={this.props.selectAll}
         />
       </div>
     );
@@ -43,21 +45,25 @@ class SongsContainer extends React.Component {
 }
 
 SongsContainer.propTypes = {
+  selectAll: PropTypes.func,
   sortBy: PropTypes.func,
   getSongs: PropTypes.func,
   isLoading: PropTypes.bool,
   location: PropTypes.object,
   setDescending: PropTypes.func,
+  allSelected: PropTypes.bool,
 };
 
 const mapStateToProps = createStructuredSelector({
   isLoading: makeSelectIsLoading(),
+  allSelected: makeSelectAllSelected(),
 });
 
 const mapDispatchToProps = {
   sortBy,
   getSongs,
   setDescending,
+  selectAll,
 };
 
 const withSaga = injectSaga({ key: 'songsContainer', saga });

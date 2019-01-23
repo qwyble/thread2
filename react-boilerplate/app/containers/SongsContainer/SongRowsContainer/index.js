@@ -33,8 +33,10 @@ import { rateSong } from './actions';
 class SongRowsContainer extends Component {
   handleSongSelect = e => {
     console.log('selecting song2');
-    if (!e.target.value) this.props.selectSong(e.target.id);
-    else this.props.deselectSong(e.target.id);
+    console.log(e.target.checked);
+    console.log(typeof e.target.id);
+    if (e.target.checked) this.props.selectSong(parseInt(e.target.id, 10));
+    else this.props.deselectSong(parseInt(e.target.id, 10));
   };
 
   render() {
@@ -52,7 +54,7 @@ class SongRowsContainer extends Component {
               !this.props.isPaused &&
               this.props.isPlaying === song.get('idSongs')
             }
-            selected={!!song.isSelected}
+            selected={!!song.get('isSelected')}
             isLoading={
               this.props.isLoading && this.props.songId === song.get('idSongs')
             }

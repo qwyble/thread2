@@ -14,6 +14,7 @@ import {
   REMOVE_SONGS_FROM_PLAYLIST,
   ADD_SONG_TO_STREAM,
   SET_IS_LOADING,
+  SELECT_ALL,
 } from './constants';
 
 const initialState = fromJS({
@@ -24,6 +25,7 @@ const initialState = fromJS({
     totalPages: 1,
     selectedSongs: [],
     noneSelected: true,
+    allSelected: false,
     descending: 'DESC',
     sortBy: 'dateUploaded',
   },
@@ -53,7 +55,6 @@ export default function SongsContainer(state = initialState, action) {
     case SET_CURRENT_PAGE_REDUCTION:
       return state.setIn(['songsTable', 'CurrentItem'], action.page);
     case SELECT_SONG: {
-      console.log('selecting song');
       const songIndex = state
         .get('songs')
         .findIndex(song => song.get('idSongs') === action.idSongs);
@@ -62,7 +63,7 @@ export default function SongsContainer(state = initialState, action) {
           selectedSongs.push(action.idSongs)
         )
         .updateIn(['songs', songIndex], song =>
-          song.merge({ isSelected: true })
+          song.merge(fromJS({ isSelected: true }))
         );
     }
     case DESELECT_SONG: {
@@ -74,8 +75,28 @@ export default function SongsContainer(state = initialState, action) {
           selectedSongs.filter(idSongs => idSongs !== action.idSongs)
         )
         .updateIn(['songs', songIndex], song =>
-          song.merge({ isSelected: false })
+          song.merge(fromJS({ isSelected: false }))
         );
+    }
+    case SELECT_ALL: {
+      if (state.getIn(['songsTable', 'allSelected'])) {
+        return state
+          .updateIn(['songsTable', 'selectedSongs'], () => fromJS([]))
+          .set(
+            'songs',
+            state.get('songs').map(song => song.set('isSelected', false))
+          )
+          .setIn(['songsTable', 'allSelected'], false);
+      }
+      return state
+        .updateIn(['songsTable', 'selectedSongs'], () =>
+          state.get('songs').map(song => song.get('idSongs'))
+        )
+        .set(
+          'songs',
+          state.get('songs').map(song => song.set('isSelected', true))
+        )
+        .setIn(['songsTable', 'allSelected'], true);
     }
     case SET_DESCENDING_REDUCTION:
       if (state.get('descending') === 'DESC')

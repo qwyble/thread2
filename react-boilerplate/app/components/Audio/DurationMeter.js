@@ -17,7 +17,7 @@ class DurationMeter extends React.Component {
   componentDidUpdate(prevProps) {
     if (prevProps.paused !== this.props.paused) {
       if (this.props.paused) clearInterval(this.interval);
-      else this.interval = setInterval(() => this.getCurrentTime(), 300);
+      else this.interval = setInterval(() => this.getCurrentTime(), 400);
     }
   }
 
@@ -32,9 +32,15 @@ class DurationMeter extends React.Component {
   getMinSec = time => {
     let currentTime = Math.round(time);
     const minutes = Math.floor(currentTime / 60);
-    const seconds = currentTime % 60;
+    const seconds = this.formatSeconds(currentTime);
     currentTime = `${minutes}:${seconds}`;
     return currentTime;
+  };
+
+  formatSeconds = ct => {
+    const ctmod = ct % 60;
+    if (ctmod < 10) return `0${ctmod}`;
+    return ctmod;
   };
 
   getCurrentTime = () => {
@@ -64,6 +70,7 @@ class DurationMeter extends React.Component {
         <span className="song-slider-span" style={{ display: 'inline-block' }}>
           <input
             type="range"
+            step="0.25"
             min="1"
             max="100"
             value={this.state.percentPlayed}

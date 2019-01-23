@@ -27,6 +27,7 @@ import saga from './saga';
 
 class ClonePortalContainer extends React.PureComponent {
   render() {
+    console.log('rendered');
     const PortalMessage = (
       <div>You must select a playlist, you can‘t clone a stream.</div>
     );

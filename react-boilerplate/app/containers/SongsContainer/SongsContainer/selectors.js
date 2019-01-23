@@ -65,3 +65,9 @@ export const makeSelectNoneSelected = () =>
     makeSelectSelectedSongs(),
     selectedSongs => selectedSongs.length < 1
   );
+
+export const makeSelectAllSelected = () =>
+  createSelector(
+    makeSelectSongsTableState(),
+    songsTable => songsTable.get('allSelected')
+  );
