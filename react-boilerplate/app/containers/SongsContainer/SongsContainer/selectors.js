@@ -63,7 +63,7 @@ export const makeSelectSelectedSongs = () =>
 export const makeSelectNoneSelected = () =>
   createSelector(
     makeSelectSelectedSongs(),
-    selectedSongs => selectedSongs.length < 1
+    selectedSongs => selectedSongs.size < 1
   );
 
 export const makeSelectAllSelected = () =>

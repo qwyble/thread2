@@ -12,6 +12,8 @@ import {
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 
+require('./css.css');
+
 class Paginator extends React.Component {
   handlePageChange = (e, d) => {
     const CurrentItem = (d.activePage - 1) * 20;
