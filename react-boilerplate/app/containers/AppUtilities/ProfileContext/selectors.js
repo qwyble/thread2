@@ -16,6 +16,12 @@ export const makeSelectPathnameRoot = () =>
     state => state.get('root')
   );
 
+export const makeSelectPlaylistParam = () =>
+  createSelector(
+    makeSelectParams(),
+    params => params.get('playlist')
+  );
+
 export const makeSelectProfileParam = () =>
   createSelector(
     makeSelectParams(),

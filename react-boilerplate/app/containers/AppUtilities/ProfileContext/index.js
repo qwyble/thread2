@@ -37,9 +37,6 @@ class ProfileContext extends React.Component {
 
 ProfileContext.propTypes = {
   isLoading: PropTypes.bool,
-  profileParam: PropTypes.number,
-  getProfile: PropTypes.func,
-  setProfile: PropTypes.func,
   user: PropTypes.object,
   setParamsContext: PropTypes.func,
   match: PropTypes.object,

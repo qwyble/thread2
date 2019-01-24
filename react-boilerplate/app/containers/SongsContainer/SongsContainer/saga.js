@@ -2,7 +2,11 @@ import { call, put, takeLatest, select } from 'redux-saga/effects';
 import axios from 'axios';
 
 import { setError } from 'containers/Wrappers/ErrorWrapper/actions';
-import { makeSelectPathnameRoot } from 'containers/AppUtilities/ProfileContext/selectors';
+import {
+  makeSelectPathnameRoot,
+  makeSelectProfileParam,
+  makeSelectPlaylistParam,
+} from 'containers/AppUtilities/ProfileContext/selectors';
 import { RESET_LIST } from 'containers/Audio/PlaybackContainer/constants';
 import {
   handleEnd,
@@ -103,10 +107,16 @@ function* getSongs() {
 
 function* getUrl() {
   const path = yield select(makeSelectPathnameRoot());
-  //  const pathParam = yield select(makeSelectPathParam());
+  const pathParam = yield call(getParam, path);
   if (path.length < 2) return 'https://thread-204819.appspot.com/stream';
-  console.log(path);
-  return `https://thread-204819.appspot.com/${path}`;
+  if (path === 'stream') return 'https://thread-204819.appspot.com/stream';
+  return `https://thread-204819.appspot.com/${path}/${pathParam}`;
+}
+
+function* getParam(path) {
+  if (path === 'profile') return yield select(makeSelectProfileParam());
+  if (path === 'playlist') return yield select(makeSelectPlaylistParam());
+  return undefined;
 }
 
 function* songsRequest() {

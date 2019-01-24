@@ -20,7 +20,6 @@ export default function* rootSaga() {
 function* getProfileSaga(action) {
   try {
     const profile = yield call(getProfileRequest, action.profileId);
-    console.log(profile);
     yield put(getProfileSuccess(profile));
   } catch (err) {
     yield put(getProfileFailed());

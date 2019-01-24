@@ -21,7 +21,6 @@ class Paginator extends React.Component {
   };
 
   render() {
-    console.log(this.props.CurrentItem);
     return (
       <span style={{ display: 'inline-block', marginLeft: 'auto' }}>
         <Pagination
