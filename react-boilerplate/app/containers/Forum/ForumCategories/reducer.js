@@ -9,7 +9,7 @@ import {
 const initialState = fromJS({
   categories: {},
   isLoading: true,
-  selectedCategory: '',
+  selectedCategory: undefined,
 });
 
 export default function Categories(state = initialState, action) {

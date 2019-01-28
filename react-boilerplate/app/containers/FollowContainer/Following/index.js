@@ -22,7 +22,7 @@ import { getFollowing } from './actions';
 
 class Following extends React.Component {
   componentDidMount() {
-    this.getFollowing();
+    this.props.getFollowing();
   }
 
   render() {
@@ -41,6 +41,7 @@ class Following extends React.Component {
 }
 
 Following.propTypes = {
+  getFollowing: PropTypes.func,
   isLoading: PropTypes.bool,
   following: PropTypes.object,
 };

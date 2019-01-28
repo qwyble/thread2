@@ -1,26 +1,21 @@
 import React from 'react';
-import {Menu, Button} from 'semantic-ui-react';
+import PropTypes from 'prop-types';
 
-const ForumCategoriesList = ({categories, onSelectCategory}) => (
-
-  <div>
+const ForumCategoriesList = ({ categories, onSelectCategory }) => (
+  <ul>
     {categories.map((cat, i) => (
-      <Menu.Item className='sideBarItem' key={i}>
-        <Button
-          inverted color='blue'
-          fluid size='mini'
-          className='button2'
-          onClick={onSelectCategory}
-          value={cat.value}
-        >
+      <li key={i}>
+        <button type="button" onClick={onSelectCategory} value={cat.value}>
           {cat.text}
-        </Button>
-      </Menu.Item>
+        </button>
+      </li>
     ))}
+  </ul>
+);
 
-  </div>
+ForumCategoriesList.propTypes = {
+  categories: PropTypes.object,
+  onSelectCategory: PropTypes.func,
+};
 
-
-)
-
-export default ForumCategoriesList
+export default ForumCategoriesList;

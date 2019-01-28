@@ -20,7 +20,7 @@ const Event = props => (
 );
 
 Event.propTypes = {
-  user: PropTypes.object,
+  user: PropTypes.string,
   body: PropTypes.string,
   subject: PropTypes.string,
   threadId: PropTypes.number,

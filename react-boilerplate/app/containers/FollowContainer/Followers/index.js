@@ -22,25 +22,22 @@ import { getFollowers } from './actions';
 
 class Followers extends React.Component {
   componentDidMount() {
-    this.getFollowers();
+    this.props.getFollowers();
   }
 
   render() {
     return (
-      <div>
-        <Grid container columns={4}>
-          <LoaderWrapper isLoading={this.props.isLoading}>
-            <HasFollowers followers={this.props.followers}>
-              <Users users={this.props.followers} />
-            </HasFollowers>
-          </LoaderWrapper>
-        </Grid>
-      </div>
+      <LoaderWrapper isLoading={this.props.isLoading}>
+        <HasFollowers followers={this.props.followers}>
+          <Users users={this.props.followers} />
+        </HasFollowers>
+      </LoaderWrapper>
     );
   }
 }
 
 Followers.propTypes = {
+  getFollowers: PropTypes.func,
   isLoading: PropTypes.bool,
   followers: PropTypes.object,
 };

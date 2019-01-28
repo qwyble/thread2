@@ -6,24 +6,26 @@ import { Link } from 'react-router-dom';
 
 import ThreadList from 'components/Forum/ThreadsTable/ThreadList';
 
+require('./css.css');
+
 const ThreadTable = ({ threads }) => (
-  <Table celled>
-    <Table.Header>
-      <Table.Row>
-        <Table.HeaderCell>Subject</Table.HeaderCell>
-        <Table.HeaderCell>Poster</Table.HeaderCell>
-        <Table.HeaderCell>Category</Table.HeaderCell>
-        <Table.HeaderCell>Replies</Table.HeaderCell>
-        <Table.HeaderCell>Subs</Table.HeaderCell>
-        <Table.HeaderCell>Date</Table.HeaderCell>
-      </Table.Row>
-    </Table.Header>
+  <table className="threads-table">
+    <thead>
+      <tr>
+        <th>Subject</th>
+        <th>Poster</th>
+        <th>Category</th>
+        <th>Replies</th>
+        <th>Subs</th>
+        <th>Date</th>
+      </tr>
+    </thead>
 
     <ThreadList threads={threads} />
 
-    <Table.Footer>
-      <Table.Row>
-        <Table.HeaderCell colSpan="6">
+    <tfoot>
+      <tr>
+        <th>
           <Link to="/forum/post">
             <Button>Post Thread</Button>
           </Link>
@@ -35,10 +37,10 @@ const ThreadTable = ({ threads }) => (
               <Icon name="chevron right" />
             </Menu.Item>
           </Menu>
-        </Table.HeaderCell>
-      </Table.Row>
-    </Table.Footer>
-  </Table>
+        </th>
+      </tr>
+    </tfoot>
+  </table>
 );
 
 ThreadTable.propTypes = {

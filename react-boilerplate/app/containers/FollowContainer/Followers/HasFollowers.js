@@ -4,7 +4,7 @@ import { Header } from 'semantic-ui-react';
 
 const HasFollowers = props => (
   <div>
-    {props.followers.length ? (
+    {props.followers.size ? (
       <div>{props.children}</div>
     ) : (
       <div>

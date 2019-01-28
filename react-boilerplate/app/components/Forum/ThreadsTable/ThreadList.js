@@ -4,24 +4,25 @@ import { Table } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
 const ThreadList = props => (
-  <Table.Body>
-    {props.threads.map((t, i) => (
-      <Table.Row key={i}>
-        <Table.Cell>
-          <Link to={{ pathname: `/forum/thread/${t.get('id')}` }}>
-            {t.get('subject')}
-          </Link>
-        </Table.Cell>
-        <Table.Cell>{t.get('userName')}</Table.Cell>
-        <Table.Cell>{t.get('category')}</Table.Cell>
-        <Table.Cell>{t.get('replies')}</Table.Cell>
-        <Table.Cell>{t.get('subs')}</Table.Cell>
-        <Table.Cell>
-          {t.get('date') ? t.get('date').slice(0, 10) : ''}
-        </Table.Cell>
-      </Table.Row>
-    ))}
-  </Table.Body>
+  <tbody>
+    {props.threads.map((t, i) => {
+      console.log(t);
+      return (
+        <tr key={i}>
+          <td>
+            <Link to={{ pathname: `/forum/thread/${t.get('id')}` }}>
+              {t.get('subject')}
+            </Link>
+          </td>
+          <td>{t.get('userName')}</td>
+          <td>{t.get('category')}</td>
+          <td>{t.get('replies')}</td>
+          <td>{t.get('subs')}</td>
+          <td>{t.get('date') ? t.get('date').slice(0, 10) : ''}</td>
+        </tr>
+      );
+    })}
+  </tbody>
 );
 
 ThreadList.propTypes = {

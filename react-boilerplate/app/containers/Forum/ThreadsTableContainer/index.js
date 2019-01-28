@@ -20,7 +20,7 @@ import { makeSelectIsLoading, makeSelectThreads } from './selectors';
 
 import { getThreads } from './actions';
 
-class ThreadsContainer extends React.Component {
+class ThreadsTableContainer extends React.Component {
   componentDidMount() {
     this.props.getThreads();
   }
@@ -42,7 +42,7 @@ class ThreadsContainer extends React.Component {
   }
 }
 
-ThreadsContainer.propTypes = {
+ThreadsTableContainer.propTypes = {
   isLoading: PropTypes.bool,
   threads: PropTypes.object,
   selectedCategory: PropTypes.number,
@@ -71,4 +71,4 @@ export default compose(
   withReducer,
   withSaga,
   withConnect
-)(ThreadsContainer);
+)(ThreadsTableContainer);

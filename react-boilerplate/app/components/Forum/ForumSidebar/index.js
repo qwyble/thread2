@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import { Sidebar, Segment } from 'semantic-ui-react';
 
 import Forum from 'components/Forum';
 import ForumCategories from 'containers/Forum/ForumCategories';
 
-import StyledButton from './StyledButton';
-import SideBar from './SideBar';
+require('./css.css');
 
 class ForumSidebar extends Component {
   state = { visible: true };
@@ -16,19 +14,11 @@ class ForumSidebar extends Component {
 
   render() {
     return (
-      <div className="primaryContainer">
-        <Sidebar.Pushable as={Segment}>
-          <SideBar visible={this.state.visible}>
-            <ForumCategories />
-          </SideBar>
-          <Sidebar.Pusher>
-            <StyledButton
-              toggleVis={this.toggleVis}
-              visibile={this.state.visible}
-            />
-            <Forum />
-          </Sidebar.Pusher>
-        </Sidebar.Pushable>
+      <div>
+        <nav className="forum-sidebar">
+          <ForumCategories />
+        </nav>
+        <Forum />
       </div>
     );
   }

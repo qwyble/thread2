@@ -24,6 +24,7 @@ class ForumCategories extends React.Component {
   }
 
   render() {
+    console.log(this.props.categories.toJS());
     return (
       <LoaderWrapper isLoading={this.props.isLoading}>
         <ForumCategoriesList

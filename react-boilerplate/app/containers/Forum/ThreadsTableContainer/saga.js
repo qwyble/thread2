@@ -28,5 +28,9 @@ function getThreadsRequest(selectedCat) {
   return axios({
     method: 'get',
     url: `https://thread-204819.appspot.com/getThreads/${selectedCat || 'all'}`,
-  });
+  })
+    .then(response => response.data)
+    .catch(err => {
+      throw err;
+    });
 }

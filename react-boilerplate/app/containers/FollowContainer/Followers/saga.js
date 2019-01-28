@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { takeLatest, call, put } from 'redux-saga/effects';
 import { setError } from 'containers/Wrappers/ErrorWrapper/actions';
 import { GET_FOLLOWERS } from './constants';

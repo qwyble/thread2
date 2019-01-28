@@ -1,45 +1,54 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Grid, Image, Icon, Popup, List } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
+import { Icon, Popup } from 'semantic-ui-react';
+
+require('./css.css');
+
 const Users = props => (
-  <Grid.Row>
-    {props.users.map((user, key) => (
-      <Grid.Column key={key}>
-        <Grid.Row>
-          <Image size="small" src={user.imageUrl} />
-        </Grid.Row>
-        <Grid.Row>
-          <Link
-            to={{
-              pathname: `/profile/${user.idUsers}`,
-            }}
-          >
-            {user.userName}
-          </Link>
-        </Grid.Row>
-        <Grid.Row columns={2}>
-          <List horizontal>
-            <List.Item>
+  <div className="container users-container">
+    <div className="row">
+      {props.users.map((user, key) => (
+        <div className="col-3 users-column" key={key}>
+          <div className="row">
+            <div className="col">
+              <img
+                style={{ height: '100px', maxWidth: 'auto' }}
+                src={user.get('imageUrl')}
+                alt=""
+              />
+            </div>
+          </div>
+          <div className="row">
+            <div className="col">
+              <Link
+                to={{
+                  pathname: `/profile/${user.get('idUsers')}`,
+                }}
+              >
+                {user.get('userName')}
+              </Link>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col">
               <Popup
                 trigger={<Icon name="list" />}
-                content={`${user.playlistsCount} playlist(s).`}
+                content={`${user.get('playlistsCount')} playlist(s).`}
               />
-              {user.playlistsCount}
-            </List.Item>
-            <List.Item>
+              {user.get('playlistsCount')}
               <Popup
                 trigger={<Icon name="music" />}
-                content={`${user.songsCount || '0'} song(s).`}
+                content={`${user.get('songsCount') || '0'} song(s).`}
               />
-              {user.songsCount || 0}
-            </List.Item>
-          </List>
-        </Grid.Row>
-      </Grid.Column>
-    ))}
-  </Grid.Row>
+              {user.get('songsCount') || 0}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
 );
 
 Users.propTypes = {

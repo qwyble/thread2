@@ -6,19 +6,21 @@ import ThreadsTableContainer from 'containers/Forum/ThreadsTableContainer';
 import ThreadComposer from 'containers/Forum/ThreadComposer';
 import ThreadContainer from 'containers/Forum/ThreadContainer/ThreadContainer';
 
+require('./css.css');
+
 const ForumGrid = () => (
-  <Grid style={{ margin: 'auto' }} divided stretched columns={2}>
-    <Grid.Row>
-      <Grid.Column width={13}>
+  <div className="container forum-container">
+    <div className="row">
+      <div className="col-sm-9">
         <Route path="/forum/post" component={ThreadComposer} />
         <Route path="/forum/thread/:id" component={ThreadContainer} />
         <Route exact path="/forum" component={ThreadsTableContainer} />
-      </Grid.Column>
-      <Grid.Column width={3}>
+      </div>
+      <div className="col-sm-3">
         <ForumFeed />
-      </Grid.Column>
-    </Grid.Row>
-  </Grid>
+      </div>
+    </div>
+  </div>
 );
 
 export default ForumGrid;
