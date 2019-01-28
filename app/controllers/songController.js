@@ -6,7 +6,7 @@ const User = require('../models/user.js')(sequelize, Sequelize);
 
 module.exports = {
 
-  getStream: function(owner, sortBy, order, currentItem){
+  getStream: function(owner, sortBy, order, CurrentItem){
   return (
     sequelize.query(
       `SELECT songs.*, users.userName, songratings.rating
@@ -22,7 +22,7 @@ module.exports = {
           WHERE FollowerId = ?
         )
       ORDER BY ${sortBy} ${order}
-      LIMIT ${currentItem}, 20;`,{
+      LIMIT ${CurrentItem}, 20;`,{
         replacements: [owner, owner, owner],
         type: sequelize.QueryTypes.SELECT
       }
