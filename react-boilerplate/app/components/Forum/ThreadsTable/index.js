@@ -22,24 +22,6 @@ const ThreadTable = ({ threads }) => (
     </thead>
 
     <ThreadList threads={threads} />
-
-    <tfoot>
-      <tr>
-        <th>
-          <Link to="/forum/post">
-            <Button>Post Thread</Button>
-          </Link>
-          <Menu floated="right" pagination>
-            <Menu.Item as="a" icon>
-              <Icon name="chevron left" />
-            </Menu.Item>
-            <Menu.Item as="a" icon>
-              <Icon name="chevron right" />
-            </Menu.Item>
-          </Menu>
-        </th>
-      </tr>
-    </tfoot>
   </table>
 );
 

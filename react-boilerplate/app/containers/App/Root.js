@@ -5,7 +5,7 @@ import LoadableMessagesRouter from 'components/Messages/MessagesRouter/Loadable'
 import LoadableProfileContainer from 'containers/Profile/ProfileContainer/Loadable';
 import LoadableAudioPlayback from 'containers/Audio/PlaybackContainer/Loadable';
 import LoadableSongDetails from 'containers/SongDetails/SongDetailsContainer/Loadable';
-import LoadableForumSidebar from 'components/Forum/ForumSidebar/Loadable';
+import LoadableForumGrid from 'components/Forum/ForumGrid/Loadable';
 import LoadableFollowers from 'containers/FollowContainer/Followers/Loadable';
 import LoadableFollowing from 'containers/FollowContainer/Following/Loadable';
 import LoadableExplorer from 'containers/Search/Explorer/Loadable';
@@ -27,7 +27,7 @@ const Root = () => (
         <Route path="/explore" component={LoadableExplorer} />
         <Route path="/following" component={LoadableFollowing} />
         <Route path="/followers" component={LoadableFollowers} />
-        <Route path="/forum" component={LoadableForumSidebar} />
+        <Route path="/forum" component={LoadableForumGrid} />
         <Route path="/profile/:profile" component={LoadableProfileContext} />
         <Route exact path="/edit" component={LoadableProfileContainer} />
         <Route path="/messages" component={LoadableMessagesRouter} />

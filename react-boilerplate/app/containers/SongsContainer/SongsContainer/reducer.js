@@ -10,7 +10,6 @@ import {
   GET_SONGS_FAILED,
   SORT_BY_REDUCTION,
   GET_SONGS_SUCCESS,
-  SET_DESCENDING_REDUCTION,
   REMOVE_SONGS_FROM_PLAYLIST,
   ADD_SONG_TO_STREAM,
   SET_IS_LOADING,
@@ -28,6 +27,7 @@ const initialState = fromJS({
     allSelected: false,
     descending: 'DESC',
     sortBy: 'dateUploaded',
+    previousSortBy: '',
   },
 });
 
@@ -98,12 +98,18 @@ export default function SongsContainer(state = initialState, action) {
         )
         .setIn(['songsTable', 'allSelected'], true);
     }
-    case SET_DESCENDING_REDUCTION:
-      if (state.get('descending') === 'DESC')
-        return state.set('descending', 'ASC');
-      return state.set('descending', 'DESC');
-    case SORT_BY_REDUCTION:
-      return state.set('sortBy', action.sortParam);
+    case SORT_BY_REDUCTION: {
+      var descending; // eslint-disable-line
+      if (state.getIn(['songsTable', 'sortBy']) !== action.sortParam)
+        descending = 'ASC';
+      else if (state.getIn(['songsTable', 'descending']) === 'DESC')
+        descending = 'ASC';
+      else descending = 'DESC';
+      return state
+        .setIn(['songsTable', 'previousSortBy'], state.get('sortBy'))
+        .setIn(['songsTable', 'sortBy'], action.sortParam)
+        .setIn(['songsTable', 'descending'], descending);
+    }
     case CHANGE_RATING: {
       const songIndex = state
         .get('songs')

@@ -13,7 +13,6 @@ class SongRow extends React.Component {
   };
 
   render() {
-    console.log(this.props.selected);
     return (
       <tr
         className={this.props.isPlaying ? 'd-flex playing-song-row' : 'd-flex'}

@@ -1,0 +1,28 @@
+.forum-container {
+  height: 100%;
+  max-width: 100%;
+  margin: 0px;
+}
+
+.ui.button.post-thread-button {
+  background-color: rgba(0, 0, 0, 0);
+  color: #7dfefce0;
+  background-color: rgba(125, 254, 252, 0.13);
+  padding-top: 1em;
+  margin: 1em 0em;
+}
+
+.ui.button.post-thread-button:focus {
+  color: aliceblue;
+  background-color: rgba(125, 254, 252, 0.13);
+}
+.ui.button.post-thread-button:active {
+  background-color: #7dff7d48 !important;
+  color: aliceblue;
+}
+
+.ui.button.post-thread-button::hover {
+  background-color: rgba(125, 254, 252, 0.2);
+  color: aliceblue;
+  transition: all 0.1s;
+}

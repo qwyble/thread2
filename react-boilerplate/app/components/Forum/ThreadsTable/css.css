@@ -1,3 +1,16 @@
 .threads-table {
   width: 100%;
+  height: 100%;
+}
+
+.threads-table th,
+.threads-table td {
+  padding: 0.6rem;
+  vertical-align: middle;
+  align-items: center;
+  height: 4vh;
+  max-height: 4vh;
+}
+
+.post-threads-button {
 }

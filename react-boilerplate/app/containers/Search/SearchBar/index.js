@@ -27,7 +27,7 @@ require('./css.css');
 
 class SearchBar extends React.Component {
   handleSearchChange = e => {
-    debounce(this.props.searchChange, 250, true)(e.target.value);
+    debounce(this.props.searchChange, 150)(e.target.value);
   };
 
   render() {
@@ -69,7 +69,7 @@ class SearchBar extends React.Component {
         loading={this.props.isLoading}
         resultRenderer={resultRenderer}
         value={this.props.searchString}
-        onSearchChange={this.props.searchChange}
+        onSearchChange={this.handleSearchChange}
       />
     );
   }

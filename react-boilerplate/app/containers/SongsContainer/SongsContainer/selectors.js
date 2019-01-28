@@ -1,5 +1,6 @@
 import { createSelector } from 'reselect';
 import { makeSelectPathnameRoot } from 'containers/AppUtilities/ProfileContext/selectors';
+import { select } from '../../../../node_modules/redux-saga/effects';
 
 const selectSongsContainerState = state => state.get('SongsContainer');
 
@@ -46,6 +47,12 @@ export const makeSelectSortBy = () =>
   createSelector(
     makeSelectSongsTableState(),
     songsTable => songsTable.get('sortBy')
+  );
+
+export const makeSelectPreviousSortBy = () =>
+  createSelector(
+    makeSelectSongsTableState(),
+    state => state.get('previousSortBy')
   );
 
 export const makeSelectDescending = () =>

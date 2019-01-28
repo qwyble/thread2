@@ -13,18 +13,12 @@ import {
   startFromEnd,
 } from 'containers/Audio/PlaybackContainer/actions';
 
-import {
-  GET_SONGS,
-  SORT_BY,
-  SET_DESCENDING,
-  SET_CURRENT_PAGE,
-} from './constants';
+import { GET_SONGS, SORT_BY, SET_CURRENT_PAGE } from './constants';
 import {
   setIsLoading,
   getSongsSuccess,
   getSongsFailed,
   sortByReduction,
-  setDescendingReduction,
   setCurrentItemReduction,
 } from './actions';
 import {
@@ -37,19 +31,12 @@ import {
 export default function* songsContainerSaga() {
   yield takeLatest(GET_SONGS, getSongs);
   yield takeLatest(SORT_BY, sort);
-  yield takeLatest(SET_DESCENDING, setDescending);
   yield takeLatest(SET_CURRENT_PAGE, setCurrentItem);
   yield takeLatest(RESET_LIST, resetList);
 }
 
 function* setCurrentItem(action) {
   yield put(setCurrentItemReduction(action.page));
-  yield put(setIsLoading());
-  yield call(getSongs);
-}
-
-function* setDescending() {
-  yield put(setDescendingReduction());
   yield put(setIsLoading());
   yield call(getSongs);
 }
@@ -124,6 +111,7 @@ function* songsRequest() {
   const CurrentItem = yield select(makeSelectCurrentItem());
   const sortByParam = yield select(makeSelectSortBy());
   const descendingParam = yield select(makeSelectDescending());
+  console.log(descendingParam);
 
   return yield call(
     getSongsRequest,

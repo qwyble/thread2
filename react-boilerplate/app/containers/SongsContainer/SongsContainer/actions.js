@@ -78,18 +78,6 @@ export function sortByReduction(sortParam) {
   };
 }
 
-export function setDescending() {
-  return {
-    type: SET_DESCENDING,
-  };
-}
-
-export function setDescendingReduction() {
-  return {
-    type: SET_DESCENDING_REDUCTION,
-  };
-}
-
 export function selectSong(idSongs) {
   return {
     type: SELECT_SONG,
