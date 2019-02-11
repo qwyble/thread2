@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 
-export const sideBarState = state => state.get('SideBarContainer');
+export const sideBarState = state => state.get('SideBar');
 
 export const makeSelectSelectedPlaylist = () =>
   createSelector(

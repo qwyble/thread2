@@ -26,6 +26,8 @@ import {
   makeSelectSongs,
 } from './selectors';
 
+require('./css.css');
+
 class Explorer extends React.Component {
   componentDidMount() {
     this.props.searchChange();
@@ -42,6 +44,7 @@ class Explorer extends React.Component {
           <Grid container columns={4}>
             <Grid.Row>
               <Input
+                className="search-input"
                 style={{ width: '100%' }}
                 onChange={this.handleInputChange}
                 icon="search"
@@ -55,7 +58,6 @@ class Explorer extends React.Component {
             <Playlists playlists={this.props.playlists} />
             <Header>Songs</Header>
             <Songs songs={this.props.songs} />
-            <Header>Genres</Header>
           </Grid>
         </Container>
       </div>

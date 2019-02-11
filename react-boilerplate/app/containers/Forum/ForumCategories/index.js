@@ -9,7 +9,7 @@ import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 
 import LoaderWrapper from 'containers/Wrappers/LoaderWrapper';
-import ForumCategoriesList from 'components/Forum/ForumSidebar/ForumCategoriesList';
+import ForumCategoriesList from 'components/Forum/ForumGrid/ForumCategoriesList';
 
 import { setCategory } from 'containers/SideBar/SideBarContainer/actions';
 

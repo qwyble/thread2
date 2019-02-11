@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Menu, Image } from 'semantic-ui-react';
 
-const SidebarHeader = props => {
+const SidebarHeader = (props) => {
   console.log('sidebar owner: ', props.owner.toJS());
   return (
     <div>

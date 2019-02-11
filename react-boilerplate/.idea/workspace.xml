@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="bb9e4c74-c30b-4fd4-bc83-ff23005f34b7" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.editorconfig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.eslintrc.js" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintrc.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/Search/Playlists.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/Search/Playlists.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/Search/Songs.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/Search/Songs.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/Search/css.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/Search/css.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/SideBar/Categories/CategoryModifiers/AddCategoryForm/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/SideBar/Categories/CategoryModifiers/AddCategoryForm/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/SideBar/SidebarHeader/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/SideBar/SidebarHeader/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/authentication/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/authentication/login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/authentication/signup.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/authentication/signup.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/containers/Audio/PlaybackContainer/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/containers/Audio/PlaybackContainer/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/containers/Authentication/LoginContainer/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/containers/Authentication/LoginContainer/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/containers/Forum/ForumCategories/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/containers/Forum/ForumCategories/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/containers/Search/Explorer/saga.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/containers/Search/Explorer/saga.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/containers/Search/SearchBar/css.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/containers/Search/SearchBar/css.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/containers/Search/SearchBar/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/containers/Search/SearchBar/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/containers/SideBar/SideBarContainer/actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/containers/SideBar/SideBarContainer/actions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/containers/SideBar/SideBarContainer/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/containers/SideBar/SideBarContainer/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/containers/search/Explorer/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/containers/search/Explorer/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/10.3b8bf91ce94c89352ab0.chunk.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/10.3b8bf91ce94c89352ab0.chunk.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/11.bbc46f74a1c45129e80b.chunk.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/11.bbc46f74a1c45129e80b.chunk.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/12.2b58fbb6a258cfae6c79.chunk.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/12.2b58fbb6a258cfae6c79.chunk.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/13.156ed7b34205dc5408be.chunk.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/13.156ed7b34205dc5408be.chunk.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/14.e2db9d51a07fc4684975.chunk.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/14.e2db9d51a07fc4684975.chunk.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/15.d14c0da0e0d2b14a32a4.chunk.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/15.d14c0da0e0d2b14a32a4.chunk.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/16.fda7ee6ae41fd1bc8819.chunk.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/16.fda7ee6ae41fd1bc8819.chunk.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/17.0fb588b1988c7bd66863.chunk.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/17.0fb588b1988c7bd66863.chunk.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/18.4e288ebce7726d752c39.chunk.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/18.4e288ebce7726d752c39.chunk.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/19.e20d833fed7dd21a0e9e.chunk.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/19.e20d833fed7dd21a0e9e.chunk.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/2.938d03e229f935302939.chunk.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/2.938d03e229f935302939.chunk.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/20.5cbb46d8662bc9b93d7f.chunk.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/20.5cbb46d8662bc9b93d7f.chunk.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/21.6bacb2488f1bd8be7d5f.chunk.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/21.6bacb2488f1bd8be7d5f.chunk.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/22.c6b98992f4bd44b3c0f9.chunk.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/23.64e22e49d4eb21d83612.chunk.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/24.d164458ff7414a9df990.chunk.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/3.13a3c1921d8fbfd9409a.chunk.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/3.13a3c1921d8fbfd9409a.chunk.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/4.3cb65cc5af825bc220cc.chunk.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/4.3cb65cc5af825bc220cc.chunk.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/8.88f446fab140ed4890ea.chunk.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/8.88f446fab140ed4890ea.chunk.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/9.07087660570add401769.chunk.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/9.07087660570add401769.chunk.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/main.a9768b394031ea2e4370.chunk.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/main.a9768b394031ea2e4370.chunk.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/runtime~main.a681e2087048269a766c.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/sw.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/sw.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/sw.js.gz" beforeDir="false" afterPath="$PROJECT_DIR$/build/sw.js.gz" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/vendors~main.ac4fd236a958271de5b0.chunk.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/vendors~main.ac4fd236a958271de5b0.chunk.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/.tmp/" />
+    <ignored path="$PROJECT_DIR$/temp/" />
+    <ignored path="$PROJECT_DIR$/tmp/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="363795147">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="4" />
+          <entry key="project.open.time.0" value="1" />
+          <entry key="project.open.time.2" value="1" />
+          <entry key="project.open.time.4" value="2" />
+          <entry key="project.opened" value="4" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.js.language.service.starts">
+        <counts>
+          <entry key="ESLintLanguageService" value="3" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="js" value="49" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="JavaScript" value="49" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/containers/Search/Explorer/saga.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="250">
+              <caret line="18" column="42" selection-start-line="18" selection-start-column="42" selection-end-line="18" selection-end-column="42" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/containers/Search/Explorer/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/app/containers/Search/Explorer/saga.js" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER">
+    <package-json value="$PROJECT_DIR$/package.json" />
+  </component>
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="NodeModulesDirectoryManager">
+    <handled-path value="$PROJECT_DIR$/node_modules" />
+  </component>
+  <component name="NodePackageJsonFileManager">
+    <packageJsonPaths>
+      <path value="$PROJECT_DIR$/package.json" />
+    </packageJsonPaths>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
+    <option name="x" value="1600" />
+    <option name="y" value="23" />
+    <option name="width" value="80" />
+    <option name="height" value="22" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="react-boilerplate" type="b2602c69:ProjectViewProjectNode" />
+              <item name="react-boilerplate" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="react-boilerplate" type="b2602c69:ProjectViewProjectNode" />
+              <item name="react-boilerplate" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="react-boilerplate" type="b2602c69:ProjectViewProjectNode" />
+              <item name="react-boilerplate" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="containers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="react-boilerplate" type="b2602c69:ProjectViewProjectNode" />
+              <item name="react-boilerplate" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="containers" type="462c0819:PsiDirectoryNode" />
+              <item name="Search" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="react-boilerplate" type="b2602c69:ProjectViewProjectNode" />
+              <item name="react-boilerplate" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="containers" type="462c0819:PsiDirectoryNode" />
+              <item name="Search" type="462c0819:PsiDirectoryNode" />
+              <item name="Explorer" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="NewWatcherDialog.advanced.open" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.standard" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.standard" value="project" />
+    <property name="node.js.selected.package.eslint" value="$PROJECT_DIR$/node_modules/eslint" />
+    <property name="node.js.selected.package.standard" value="" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="prettierjs.PrettierConfiguration.Package" value="$PROJECT_DIR$/node_modules/prettier" />
+    <property name="settings.editor.selected.configurable" value="watcher.settings" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="bb9e4c74-c30b-4fd4-bc83-ff23005f34b7" name="Default Changelist" comment="" />
+      <created>1549483259874</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1549483259874</updated>
+      <workItem from="1549483261802" duration="354000" />
+      <workItem from="1549567361385" duration="596000" />
+      <workItem from="1549646811663" duration="379000" />
+      <workItem from="1549828731677" duration="102000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="1431000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="0" width="1680" height="1050" extended-state="6" />
+    <layout>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.23688969" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="npm" order="2" side_tool="true" />
+      <window_info id="Favorites" order="3" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32987553" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Terminal" order="10" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/app/containers/Search/Explorer/saga.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="18" column="42" selection-start-line="18" selection-start-column="42" selection-end-line="18" selection-end-column="42" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/containers/Search/Explorer/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

@@ -12,11 +12,12 @@ export default function* SearchBarSaga() {
 
 function* searchChange(action) {
   try {
-    const { string } = { ...action.string };
+    const { string } = { ...action };
+    const searchString = string || '%';
     const [users, playlists, songs] = yield [
-      call(usersRequest, string),
-      call(playlistsRequest, string),
-      call(songsRequest, string),
+      call(usersRequest, searchString),
+      call(playlistsRequest, searchString),
+      call(songsRequest, searchString),
     ];
     yield put(searchChangeCompleted({ users, playlists, songs }));
   } catch (err) {
@@ -28,30 +29,30 @@ function* searchChange(action) {
 function usersRequest(string) {
   return axios({
     method: 'get',
-    url: `https://thread-204819.appspot.com/searchUsersAll/${escape(
-      string || '%'
-    )}`,
-  }).catch(err => {
-    throw err;
-  });
+    url: `https://thread-204819.appspot.com/searchUsersAll/${string}`,
+  })
+    .then(result => result.data)
+    .catch(err => {
+      throw err;
+    });
 }
 function playlistsRequest(string) {
   return axios({
     method: 'get',
-    url: `https://thread-204819.appspot.com/searchPlaylistsAll/${escape(
-      string || '%'
-    )}`,
-  }).catch(err => {
-    throw err;
-  });
+    url: `https://thread-204819.appspot.com/searchPlaylistsAll/${string}`,
+  })
+    .then(result => result.data)
+    .catch(err => {
+      throw err;
+    });
 }
 function songsRequest(string) {
   return axios({
     method: 'get',
-    url: `https://thread-204819.appspot.com/searchSongsAll/${escape(
-      string || '%'
-    )}`,
-  }).catch(err => {
-    throw err;
-  });
+    url: `https://thread-204819.appspot.com/searchSongsAll/${string}`,
+  })
+    .then(result => result.data)
+    .catch(err => {
+      throw err;
+    });
 }

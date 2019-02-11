@@ -6,14 +6,13 @@ import { Transition } from 'react-transition-group';
 class RenderAddCategory extends React.Component {
   state = {
     categoryToAdd: '',
-    error: this.props.error,
+    error: '',
     displayForm: false,
     renderForm: false,
   };
 
   handleInputChange = e => {
     const { value } = e.target;
-
     this.setState({ categoryToAdd: value, error: '' });
   };
 

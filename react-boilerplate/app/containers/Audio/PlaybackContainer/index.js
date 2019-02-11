@@ -66,16 +66,13 @@ class PlaybackContainer extends React.Component {
             onPlaying={this.props.handlePlaying}
             nowPlaying={this.props.nowPlaying}
           />
-
           <PlayButtons
             icon={this.props.paused ? 'play' : 'pause'}
             skipBack={this.props.handleSkipBack}
             onClick={this.handleClick}
             onEnd={this.props.handleEnd}
           />
-
           <DurationMeter myRef={this.myRef} paused={this.props.paused} />
-
           <Volume myRef={this.myRef} />
         </div>
       </div>

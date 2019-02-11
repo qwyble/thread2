@@ -10,11 +10,13 @@ import {
 } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
+require('./css.css');
+
 const Signup = props => (
   <div>
     <Container style={{ marginTop: '30vh' }} text textAlign="center">
       <Grid verticalAlign="middle" centered columns={3}>
-        <Segment>
+        <Segment className="auth-segment">
           <Form size="tiny" id="signup" name="signup" onSubmit={props.onSubmit}>
             <Form.Field error={props.errors.email}>
               <label htmlFor="email">Email</label>

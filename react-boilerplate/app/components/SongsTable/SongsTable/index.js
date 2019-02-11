@@ -18,7 +18,6 @@ const SongsTable = props => (
     <table className="table table-hover table-dark  songs-table">
       <TableHeader
         onSortBy={props.onSortBy}
-        onSetDescending={props.onSetDescending}
         onSelectAll={props.onSelectAll}
         allSelected={props.allSelected}
       />
@@ -52,11 +51,10 @@ const SongsTable = props => (
 );
 
 SongsTable.propTypes = {
-  onSortBy: PropTypes.func,
-  isLoading: PropTypes.bool,
-  onSetDescending: PropTypes.func,
-  onSelectAll: PropTypes.func,
-  allSelected: PropTypes.bool,
+  onSortBy: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  onSelectAll: PropTypes.func.isRequired,
+  allSelected: PropTypes.bool.isRequired,
 };
 
 export default SongsTable;

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Search, Image } from 'semantic-ui-react';
+import { Search, Image, Icon } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
 import debounce from 'utils/debounce';
@@ -47,6 +47,7 @@ class SearchBar extends React.Component {
           title: playlist.name || '',
           key: playlist.idplaylists,
           url: `/playlist/${playlist.idplaylists}`,
+          icon: 'list',
         })),
       },
       songs: {
@@ -56,6 +57,7 @@ class SearchBar extends React.Component {
           description: song.userName,
           key: song.idSongs,
           url: `/song/${song.idSongs}`,
+          icon: 'music',
         })),
       },
     };
@@ -110,17 +112,27 @@ export default compose(
   withConnect
 )(SearchBar);
 
-const resultRenderer = ({ title, url, image }) => (
+const resultRenderer = ({ title, url, image, icon }) => (
   <div>
     <Link to={url}>
-      <Image
-        className="searchImage"
-        floated="left"
-        circular
-        size="mini"
-        src={image}
-      />
-      {title}
+      <div className="row">
+        <div className="col-sm-2">
+          {icon ? (
+            <Icon className="search-bar-icon" floated="left" name={icon} />
+          ) : (
+            <Image
+              className="searchImage"
+              floated="left"
+              circular
+              size="mini"
+              src={image}
+            />
+          )}
+        </div>
+        <div className="col-sm-10">
+          <span>{title}</span>
+        </div>
+      </div>
     </Link>
   </div>
 );

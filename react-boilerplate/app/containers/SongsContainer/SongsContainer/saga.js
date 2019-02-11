@@ -111,7 +111,6 @@ function* songsRequest() {
   const CurrentItem = yield select(makeSelectCurrentItem());
   const sortByParam = yield select(makeSelectSortBy());
   const descendingParam = yield select(makeSelectDescending());
-  console.log(descendingParam);
 
   return yield call(
     getSongsRequest,

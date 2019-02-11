@@ -34,7 +34,7 @@ class LoginContainer extends React.Component {
     this.setState({ disabled });
   };
 
-  handleFocus = e => {
+  handleFocus = () => {
     this.setState({ errors: { password: false, email: false } });
   };
 
@@ -90,6 +90,7 @@ class LoginContainer extends React.Component {
     }
     return (
       <div>
+        <Switch>asdf</Switch>
         <Switch>
           <Route path="/auth/signup">
             <Signup

@@ -1,24 +1,27 @@
 .ui.search .prompt {
-  border-radius: 0px !important;
-  opacity: 0.9;
-  background-color: rgb(73, 95, 100);
+  background-color: rgba(125, 254, 252, 0);
   color: aliceblue;
 }
 .ui.search .prompt:focus {
-  border-radius: 1px !important;
-  opacity: 0.9;
-  background-color: rgb(73, 95, 100);
-  color: aliceblue;
+  color: aliceblue !important;
+  border-color: hsla(179, 97%, 74%, 0.616);
+  background-color: rgba(125, 254, 252, 0);
 }
 
 .ui.category.search.searchBar {
   color: aliceblue;
 }
 
+.ui.category.search > .results .category > .name {
+  display: none;
+}
+
 .ui.category.search .results.animating,
 .ui.category.search .results.visible {
+  border-radius: 0px;
   background-color: rgb(73, 95, 100);
-  border: none;
+  border-width: 1px;
+  border-color: hsla(179, 97%, 74%, 0.233);
 }
 
 .ui.category.search > .results.visible {
@@ -29,8 +32,15 @@
 .ui.category.search > .results .category {
   background-color: rgba(0, 0, 0, 0);
   color: aliceblue;
+  border-width: 1px;
+  border-color: hsla(179, 97%, 74%, 0.233);
+  width: 100%;
 }
 
 .ui.category.search > .results .category > .name {
   color: aliceblue;
+}
+
+.icon.search-bar-icon {
+  margin-right: 35px;
 }

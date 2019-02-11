@@ -8,8 +8,8 @@ class Playlists extends React.Component {
       <Grid.Row>
         {this.props.playlists.map((playlist, key) => (
           <Grid.Column key={key}>
-            <Link to={`/playlist/${playlist.idplaylists}`}>
-              {playlist.name}
+            <Link to={`/playlist/${playlist.get('idplaylists')}`}>
+              {playlist.get('name')}
             </Link>
           </Grid.Column>
         ))}
