@@ -49,7 +49,7 @@ class AnimationWrapper extends React.Component {
 
 AnimationWrapper.propTypes = {
   displayLists: PropTypes.bool,
-  children: PropTypes.node,
+  children: PropTypes.node.isRequired,
 };
 
 export default AnimationWrapper;

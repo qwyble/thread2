@@ -68,9 +68,9 @@ class ThreadContainer extends React.Component {
 }
 
 ThreadContainer.propTypes = {
-  getThread: PropTypes.func,
-  comments: PropTypes.object,
-  thread: PropTypes.object,
+  getThread: PropTypes.func.isRequired,
+  comments: PropTypes.object.isRequired,
+  thread: PropTypes.object.isRequired,
   isLoading: PropTypes.bool,
   threadIdParam: PropTypes.number,
 };

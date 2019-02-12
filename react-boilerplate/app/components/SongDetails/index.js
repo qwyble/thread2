@@ -53,9 +53,9 @@ const SongDetails = props => (
 );
 
 SongDetails.propTypes = {
-  song: PropTypes.object,
-  onDeleteSong: PropTypes.func,
-  onPlaying: PropTypes.func,
+  song: PropTypes.object.isRequired,
+  onDeleteSong: PropTypes.func.isRequired,
+  onPlaying: PropTypes.func.isRequired,
   playing: PropTypes.bool,
 };
 

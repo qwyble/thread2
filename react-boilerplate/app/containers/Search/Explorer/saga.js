@@ -13,7 +13,7 @@ export default function* SearchBarSaga() {
 function* searchChange(action) {
   try {
     const { string } = { ...action };
-    const searchString = string || '%';
+    const searchString = string || encodeURI('%');
     const [users, playlists, songs] = yield [
       call(usersRequest, searchString),
       call(playlistsRequest, searchString),

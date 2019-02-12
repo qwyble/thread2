@@ -17,7 +17,7 @@ const DeleteCategoryForm = props => (
 DeleteCategoryForm.propTypes = {
   onDelete: PropTypes.func,
   onCancel: PropTypes.func,
-  catname: PropTypes.string,
+  catname: PropTypes.string.isRequired,
 };
 
 export default DeleteCategoryForm;

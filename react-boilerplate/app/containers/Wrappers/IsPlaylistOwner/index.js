@@ -17,8 +17,8 @@ const IsPlaylistOwner = props => (
 
 IsPlaylistOwner.propTypes = {
   alt: PropTypes.element,
-  isOwner: PropTypes.bool,
-  children: PropTypes.node,
+  isOwner: PropTypes.bool.isRequired,
+  children: PropTypes.node.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({

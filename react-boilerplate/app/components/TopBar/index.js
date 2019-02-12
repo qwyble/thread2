@@ -85,7 +85,7 @@ const TopBar = props => (
 );
 
 TopBar.propTypes = {
-  logo: PropTypes.string,
+  logo: PropTypes.string.isRequired,
 };
 
 export default TopBar;

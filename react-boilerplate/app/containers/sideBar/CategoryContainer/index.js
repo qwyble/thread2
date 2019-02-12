@@ -51,12 +51,12 @@ class CategoryContainer extends React.Component {
 }
 
 CategoryContainer.propTypes = {
-  getCategories: PropTypes.func,
-  categories: PropTypes.object,
-  setCategory: PropTypes.func,
-  isLoading: PropTypes.bool,
-  ownerId: PropTypes.number,
-  selectedCategoryId: PropTypes.string,
+  getCategories: PropTypes.func.isRequired,
+  categories: PropTypes.object.isRequired,
+  setCategory: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  ownerId: PropTypes.number.isRequired,
+  selectedCategoryId: PropTypes.number,
 };
 
 const mapStateToProps = createStructuredSelector({

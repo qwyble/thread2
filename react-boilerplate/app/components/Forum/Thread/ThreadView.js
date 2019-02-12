@@ -26,7 +26,7 @@ const ThreadView = props => (
 );
 
 ThreadView.propTypes = {
-  thread: PropTypes.object,
+  thread: PropTypes.object.isRequired,
   isLoading: PropTypes.bool,
 };
 

@@ -6,8 +6,7 @@ import Loader from 'components/common/Loader';
 const LoaderWrapper = props => (
   <span>
     {props.isLoading ? (
-      <span>
-        {props.dimmer ? <Dimmer inverted active /> : <span />}
+      <span style={{ textAlign: 'center', width: '100%', height: '100%' }}>
         <Loader />
       </span>
     ) : (
@@ -17,7 +16,7 @@ const LoaderWrapper = props => (
 );
 
 LoaderWrapper.propTypes = {
-  children: PropTypes.node,
+  children: PropTypes.node.isRequired,
   isLoading: PropTypes.bool,
   dimmer: PropTypes.bool,
 };

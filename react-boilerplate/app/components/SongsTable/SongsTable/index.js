@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Loader from 'components/common/Loader';
+import TableLoader from './TableLoader';
 import TableHeader from 'components/SongsTable/TableHeader';
 import SongRowsContainer from 'containers/SongsContainer/SongRowsContainer';
 import ClonePortalWrapper from 'components/SongsTable/ClonePortal/ClonePortalWrapper';
@@ -21,17 +21,9 @@ const SongsTable = props => (
         onSelectAll={props.onSelectAll}
         allSelected={props.allSelected}
       />
-      {props.isLoading ? (
-        <tbody style={{ display: 'block', overflow: 'scroll', height: '91%' }}>
-          <tr>
-            <td>
-              <Loader active />{' '}
-            </td>
-          </tr>
-        </tbody>
-      ) : (
+      <TableLoader>
         <SongRowsContainer />
-      )}
+      </TableLoader>
     </table>
     <table className="table table-dark playlist-footer">
       <tbody>

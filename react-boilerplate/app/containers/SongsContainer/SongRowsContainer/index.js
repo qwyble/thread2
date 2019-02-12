@@ -32,9 +32,6 @@ import { rateSong } from './actions';
 
 class SongRowsContainer extends Component {
   handleSongSelect = e => {
-    console.log('selecting song2');
-    console.log(e.target.checked);
-    console.log(typeof e.target.id);
     if (e.target.checked) this.props.selectSong(parseInt(e.target.id, 10));
     else this.props.deselectSong(parseInt(e.target.id, 10));
   };
@@ -66,15 +63,15 @@ class SongRowsContainer extends Component {
 }
 
 SongRowsContainer.propTypes = {
-  handlePlaying: PropTypes.func,
-  handlePausing: PropTypes.func,
-  rateSong: PropTypes.func,
-  songs: PropTypes.object,
-  songId: PropTypes.string,
-  isLoading: PropTypes.bool,
-  selectSong: PropTypes.func,
-  deselectSong: PropTypes.func,
-  isPaused: PropTypes.bool,
+  handlePlaying: PropTypes.func.isRequired,
+  handlePausing: PropTypes.func.isRequired,
+  rateSong: PropTypes.func.isRequired,
+  songs: PropTypes.object.isRequired,
+  songId: PropTypes.string.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  selectSong: PropTypes.func.isRequired,
+  deselectSong: PropTypes.func.isRequired,
+  isPaused: PropTypes.bool.isRequired,
   isPlaying: PropTypes.number,
 };
 

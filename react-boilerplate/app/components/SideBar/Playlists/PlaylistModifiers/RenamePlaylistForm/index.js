@@ -50,9 +50,9 @@ class RenamePlaylistForm extends React.Component {
 }
 
 RenamePlaylistForm.propTypes = {
-  err: PropTypes.object,
-  plid: PropTypes.string,
-  plname: PropTypes.string,
+  err: PropTypes.object.isRequired,
+  plid: PropTypes.string.isRequired,
+  plname: PropTypes.string.isRequired,
   onRenamePlaylist: PropTypes.func,
   onCancel: PropTypes.func,
 };

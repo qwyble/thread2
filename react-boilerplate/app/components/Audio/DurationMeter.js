@@ -84,7 +84,7 @@ class DurationMeter extends React.Component {
 }
 
 DurationMeter.propTypes = {
-  myRef: PropTypes.object,
+  myRef: PropTypes.object.isRequired,
   paused: PropTypes.bool,
 };
 

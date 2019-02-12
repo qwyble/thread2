@@ -39,12 +39,12 @@ class RenamePlaylist extends Component {
 }
 
 RenamePlaylist.propTypes = {
-  plid: PropTypes.string,
-  plname: PropTypes.string,
-  didRename: PropTypes.bool,
-  isLoading: PropTypes.bool,
-  onClosePortal: PropTypes.func,
-  renamePlaylist: PropTypes.func,
+  plid: PropTypes.string.isRequired,
+  plname: PropTypes.string.isRequired,
+  didRename: PropTypes.bool.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  onClosePortal: PropTypes.func.isRequired,
+  renamePlaylist: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = () =>

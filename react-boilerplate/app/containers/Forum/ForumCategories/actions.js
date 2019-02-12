@@ -17,9 +17,10 @@ export function getCategoriesCompleted(cats) {
   };
 }
 
-export function setCategory(catId) {
+export function setCategory(e) {
+  console.log(e.target.value);
   return {
     type: SET_CATEGORY,
-    catId,
+    catId: parseInt(e.target.value, 10),
   };
 }

@@ -27,7 +27,7 @@ class PortalWrapper extends React.Component {
 
 PortalWrapper.propTypes = {
   trigger: PropTypes.element,
-  children: PropTypes.node,
+  children: PropTypes.node.isRequired,
 };
 
 export default PortalWrapper;

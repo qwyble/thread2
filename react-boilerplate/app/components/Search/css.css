@@ -1,3 +1,7 @@
 .users-container {
-  margin: 2.5vh 0vw;
+  margin: 2.5vh;
+}
+
+.padded-col {
+  margin: 5px;
 }

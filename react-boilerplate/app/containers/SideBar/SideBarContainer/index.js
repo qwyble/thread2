@@ -37,7 +37,7 @@ const SideBar = props => (
 );
 
 SideBar.propTypes = {
-  owner: PropTypes.object,
+  owner: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({

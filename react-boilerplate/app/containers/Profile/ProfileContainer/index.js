@@ -54,11 +54,11 @@ class ProfileContainer extends React.Component {
 }
 
 ProfileContainer.propTypes = {
-  getUser: PropTypes.func,
-  user: PropTypes.object,
+  getUser: PropTypes.func.isRequired,
+  user: PropTypes.object.isRequired,
   editIsLoading: PropTypes.bool,
-  editUser: PropTypes.func,
-  uploadImage: PropTypes.func,
+  editUser: PropTypes.func.isRequired,
+  uploadImage: PropTypes.func.isRequired,
   imageIsLoading: PropTypes.bool,
   getUserIsLoading: PropTypes.bool,
 };

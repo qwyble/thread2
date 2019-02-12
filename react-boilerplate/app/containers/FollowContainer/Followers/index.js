@@ -37,9 +37,9 @@ class Followers extends React.Component {
 }
 
 Followers.propTypes = {
-  getFollowers: PropTypes.func,
+  getFollowers: PropTypes.func.isRequired,
   isLoading: PropTypes.bool,
-  followers: PropTypes.object,
+  followers: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = () =>

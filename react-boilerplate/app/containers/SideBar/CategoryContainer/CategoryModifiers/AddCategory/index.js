@@ -24,7 +24,7 @@ const AddCategory = props => (
 
 AddCategory.propTypes = {
   isLoading: PropTypes.bool,
-  addCategory: PropTypes.func,
+  addCategory: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({

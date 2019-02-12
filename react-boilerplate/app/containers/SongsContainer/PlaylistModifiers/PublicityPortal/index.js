@@ -61,11 +61,11 @@ const PublicityPortal = props => {
 };
 
 PublicityPortal.propTypes = {
-  isLoading: PropTypes.bool,
-  isPublic: PropTypes.bool,
-  plname: PropTypes.string,
-  closePortal: PropTypes.func,
-  makePublic: PropTypes.func,
+  isLoading: PropTypes.bool.isRequired,
+  isPublic: PropTypes.bool.isRequired,
+  plname: PropTypes.string.isRequired,
+  closePortal: PropTypes.func.isRequired,
+  makePublic: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({

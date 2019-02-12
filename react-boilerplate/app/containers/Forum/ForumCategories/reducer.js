@@ -7,7 +7,7 @@ import {
 } from './constants';
 
 const initialState = fromJS({
-  categories: {},
+  categories: [],
   isLoading: true,
   selectedCategory: undefined,
 });

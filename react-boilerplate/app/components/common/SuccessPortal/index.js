@@ -21,9 +21,9 @@ const SuccessPortal = props => (
 );
 
 SuccessPortal.propTypes = {
-  didSucceed: PropTypes.bool,
-  children: PropTypes.node,
-  to: PropTypes.string,
+  didSucceed: PropTypes.bool.isRequired,
+  children: PropTypes.node.isRequired,
+  to: PropTypes.string.isRequired,
 };
 
 export default SuccessPortal;

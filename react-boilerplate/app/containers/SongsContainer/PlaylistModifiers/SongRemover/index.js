@@ -47,12 +47,12 @@ class SongRemover extends Component {
 }
 
 SongRemover.propTypes = {
-  onClosePortal: PropTypes.func,
+  onClosePortal: PropTypes.func.isRequired,
   selectedSongsLength: PropTypes.number,
-  plname: PropTypes.string,
-  removeSongs: PropTypes.func,
-  isLoading: PropTypes.bool,
-  didSucceed: PropTypes.bool,
+  plname: PropTypes.string.isRequired,
+  removeSongs: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  didSucceed: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({

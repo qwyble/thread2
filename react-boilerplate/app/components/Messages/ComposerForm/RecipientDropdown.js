@@ -24,11 +24,11 @@ class RecipientDropdown extends React.Component {
   }
 }
 RecipientDropdown.propTypes = {
-  name: PropTypes.string,
-  value: PropTypes.string,
-  options: PropTypes.object,
+  name: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+  options: PropTypes.object.isRequired,
   onChange: PropTypes.func,
-  placeholder: PropTypes.string,
+  placeholder: PropTypes.string.isRequired,
 };
 
 export default RecipientDropdown;

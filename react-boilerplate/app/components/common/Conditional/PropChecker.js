@@ -12,12 +12,12 @@ const PropChecker = props => (
 );
 
 PropChecker.propTypes = {
-  children: PropTypes.node,
-  alt: PropTypes.element,
+  children: PropTypes.node.isRequired,
+  alt: PropTypes.element.isRequired,
   field: PropTypes.oneOfType([
-    PropTypes.bool,
-    PropTypes.element,
-    PropTypes.string,
+    PropTypes.bool.isRequired,
+    PropTypes.element.isRequired,
+    PropTypes.string.isRequired,
     PropTypes.number,
   ]),
 };

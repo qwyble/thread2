@@ -49,8 +49,8 @@ class Category extends React.Component {
 }
 
 Category.propTypes = {
-  onSetCategory: PropTypes.func,
-  category: PropTypes.object,
+  onSetCategory: PropTypes.func.isRequired,
+  category: PropTypes.object.isRequired,
   selected: PropTypes.bool,
 };
 

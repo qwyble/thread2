@@ -27,8 +27,8 @@ const DeleteCategory = props => (
 
 DeleteCategory.propTypes = {
   isLoading: PropTypes.bool,
-  deleteCategory: PropTypes.func,
-  onClosePortal: PropTypes.func,
+  deleteCategory: PropTypes.func.isRequired,
+  onClosePortal: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({

@@ -18,7 +18,7 @@ const StyledButton = props => (
 );
 
 StyledButton.propTypes = {
-  toggleVis: PropTypes.func,
+  toggleVis: PropTypes.func.isRequired,
   visible: PropTypes.bool,
 };
 

@@ -33,7 +33,7 @@ const PlayButtons = props => (
 
 PlayButtons.propTypes = {
   skipBack: PropTypes.func,
-  icon: PropTypes.string,
+  icon: PropTypes.string.isRequired,
   onClick: PropTypes.func,
   onEnd: PropTypes.func,
 };

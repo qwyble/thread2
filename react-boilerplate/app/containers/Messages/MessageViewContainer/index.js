@@ -35,8 +35,8 @@ class MessageViewContainer extends Component {
 }
 
 MessageViewContainer.propTypes = {
-  getMessage: PropTypes.func,
-  message: PropTypes.object,
+  getMessage: PropTypes.func.isRequired,
+  message: PropTypes.object.isRequired,
   isLoading: PropTypes.bool,
 };
 

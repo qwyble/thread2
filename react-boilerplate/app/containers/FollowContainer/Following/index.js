@@ -27,23 +27,19 @@ class Following extends React.Component {
 
   render() {
     return (
-      <div>
-        <Grid container columns={4}>
-          <LoaderWrapper isLoading={this.props.isLoading}>
-            <HasFollowing following={this.props.following}>
-              <Users users={this.props.following} />
-            </HasFollowing>
-          </LoaderWrapper>
-        </Grid>
-      </div>
+      <LoaderWrapper isLoading={this.props.isLoading}>
+        <HasFollowing following={this.props.following}>
+          <Users users={this.props.following} />
+        </HasFollowing>
+      </LoaderWrapper>
     );
   }
 }
 
 Following.propTypes = {
-  getFollowing: PropTypes.func,
+  getFollowing: PropTypes.func.isRequired,
   isLoading: PropTypes.bool,
-  following: PropTypes.object,
+  following: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = () =>

@@ -26,8 +26,14 @@ import { searchChange } from './actions';
 require('./css.css');
 
 class SearchBar extends React.Component {
+  state = {
+    searchString: '',
+  };
+
   handleSearchChange = e => {
-    debounce(this.props.searchChange, 150)(e.target.value);
+    this.setState({ searchString: e.target.value }, () => {
+      debounce(this.props.searchChange, 150)(this.state.searchString);
+    });
   };
 
   render() {
@@ -70,7 +76,7 @@ class SearchBar extends React.Component {
         results={results}
         loading={this.props.isLoading}
         resultRenderer={resultRenderer}
-        value={this.props.searchString}
+        value={this.state.searchString}
         onSearchChange={this.handleSearchChange}
       />
     );
@@ -78,12 +84,11 @@ class SearchBar extends React.Component {
 }
 
 SearchBar.propTypes = {
-  searchString: PropTypes.string,
-  searchChange: PropTypes.func,
-  users: PropTypes.array,
-  songs: PropTypes.array,
-  playlists: PropTypes.array,
-  isLoading: PropTypes.bool,
+  searchChange: PropTypes.func.isRequired,
+  users: PropTypes.array.isRequired,
+  songs: PropTypes.array.isRequired,
+  playlists: PropTypes.array.isRequired,
+  isLoading: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = () =>
@@ -138,7 +143,7 @@ const resultRenderer = ({ title, url, image, icon }) => (
 );
 
 resultRenderer.propTypes = {
-  title: PropTypes.string,
-  url: PropTypes.string,
-  image: PropTypes.string,
+  title: PropTypes.string.isRequired,
+  url: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
 };

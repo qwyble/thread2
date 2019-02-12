@@ -37,9 +37,9 @@ class ProfileContext extends React.Component {
 
 ProfileContext.propTypes = {
   isLoading: PropTypes.bool,
-  user: PropTypes.object,
-  setParamsContext: PropTypes.func,
-  match: PropTypes.object,
+  user: PropTypes.object.isRequired,
+  setParamsContext: PropTypes.func.isRequired,
+  match: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({

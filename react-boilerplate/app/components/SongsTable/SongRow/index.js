@@ -59,13 +59,13 @@ class SongRow extends React.Component {
 }
 
 SongRow.propTypes = {
-  onRate: PropTypes.func,
-  song: PropTypes.object,
+  onRate: PropTypes.func.isRequired,
+  song: PropTypes.object.isRequired,
   selected: PropTypes.bool,
   isLoading: PropTypes.bool,
   isPlaying: PropTypes.bool,
-  onSongSelect: PropTypes.func,
-  onPause: PropTypes.func,
-  onPlay: PropTypes.func,
+  onSongSelect: PropTypes.func.isRequired,
+  onPause: PropTypes.func.isRequired,
+  onPlay: PropTypes.func.isRequired,
 };
 export default SongRow;

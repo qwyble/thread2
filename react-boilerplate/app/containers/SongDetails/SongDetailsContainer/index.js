@@ -63,15 +63,15 @@ class SongDetailsContainer extends React.Component {
 }
 
 SongDetailsContainer.propTypes = {
-  song: PropTypes.object,
-  handlePausing: PropTypes.func,
-  handlePlaying: PropTypes.func,
+  song: PropTypes.object.isRequired,
+  handlePausing: PropTypes.func.isRequired,
+  handlePlaying: PropTypes.func.isRequired,
   isPlaying: PropTypes.bool,
   isPaused: PropTypes.bool,
-  match: PropTypes.object,
-  deleteSong: PropTypes.func,
+  match: PropTypes.object.isRequired,
+  deleteSong: PropTypes.func.isRequired,
   isLoading: PropTypes.bool,
-  getSong: PropTypes.func,
+  getSong: PropTypes.func.isRequired,
   didSucceed: PropTypes.bool,
 };
 

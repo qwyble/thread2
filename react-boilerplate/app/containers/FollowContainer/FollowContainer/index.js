@@ -34,7 +34,7 @@ class FollowContainer extends React.Component {
       <PathWrapper>
         <IsNotPlaylistOwner>
           <FollowButton
-            follow={this.props.follow}
+            follow={this.props.followUser}
             isFollowing={this.props.isFollowing}
             isLoading={this.props.isLoading}
           />
@@ -45,11 +45,11 @@ class FollowContainer extends React.Component {
 }
 
 FollowContainer.propTypes = {
-  follow: PropTypes.func,
-  isLoading: PropTypes.bool,
-  isFollowing: PropTypes.bool,
-  getIsFollowing: PropTypes.func,
-  idOwner: PropTypes.number,
+  followUser: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  isFollowing: PropTypes.bool.isRequired,
+  getIsFollowing: PropTypes.func.isRequired,
+  idOwner: PropTypes.number.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({

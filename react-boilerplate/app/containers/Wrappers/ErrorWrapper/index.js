@@ -25,7 +25,7 @@ const ErrorWrapper = props => (
 );
 
 ErrorWrapper.propTypes = {
-  error: PropTypes.string,
+  error: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = () =>

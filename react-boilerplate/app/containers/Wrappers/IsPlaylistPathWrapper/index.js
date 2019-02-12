@@ -13,7 +13,7 @@ const IsPlaylistPathWrapper = props => (
 
 IsPlaylistPathWrapper.propTypes = {
   isPlaylist: PropTypes.bool,
-  children: PropTypes.node,
+  children: PropTypes.node.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({

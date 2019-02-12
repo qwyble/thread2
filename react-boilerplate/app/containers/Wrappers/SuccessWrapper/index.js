@@ -25,7 +25,7 @@ const SuccessWrapper = props => (
 );
 
 SuccessWrapper.propTypes = {
-  success: PropTypes.string,
+  success: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = () =>

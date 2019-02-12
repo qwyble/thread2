@@ -17,7 +17,12 @@ export const makeSelectSelectedPlid = () =>
 export const makeSelectSelectedPlIsOwner = () =>
   createSelector(
     makeSelectSelectedPlaylist(),
-    selectedPlaylist => selectedPlaylist.get('isOwner')
+    selectedPlaylist => {
+      if (selectedPlaylist.size) {
+        return selectedPlaylist.get('isOwner');
+      }
+      return false;
+    }
   );
 
 export const makeSelectSelectedPlName = () =>

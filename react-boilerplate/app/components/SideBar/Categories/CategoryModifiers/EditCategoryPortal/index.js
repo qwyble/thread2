@@ -81,7 +81,7 @@ class EditCategoryPortal extends React.Component {
 
 EditCategoryPortal.propTypes = {
   id: PropTypes.number,
-  catname: PropTypes.string,
+  catname: PropTypes.string.isRequired,
 };
 
 export default EditCategoryPortal;

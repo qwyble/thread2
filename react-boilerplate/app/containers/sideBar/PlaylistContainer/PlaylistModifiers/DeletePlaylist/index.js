@@ -37,11 +37,11 @@ class DeletePlaylist extends Component {
 }
 
 DeletePlaylist.propTypes = {
-  id: PropTypes.string,
-  isLoading: PropTypes.bool,
-  didDelete: PropTypes.bool,
-  onClosePortal: PropTypes.func,
-  deletePlaylist: PropTypes.func,
+  id: PropTypes.string.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  didDelete: PropTypes.bool.isRequired,
+  onClosePortal: PropTypes.func.isRequired,
+  deletePlaylist: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = () =>

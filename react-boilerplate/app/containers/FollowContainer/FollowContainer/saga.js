@@ -44,7 +44,7 @@ function* followUser() {
 }
 
 function getIsFollowingRequest(owner, user) {
-  axios
+  return axios
     .get('https://thread-204819.appspot.com/getIsFollowing', {
       params: {
         user,

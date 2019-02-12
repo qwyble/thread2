@@ -9,7 +9,7 @@ import ThreadContainer from 'containers/Forum/ThreadContainer/ThreadContainer';
 
 require('./css.css');
 
-class ForumSidebar extends Component {
+class ForumGrid extends Component {
   state = { visible: true };
 
   toggleVis = () => {
@@ -42,4 +42,4 @@ class ForumSidebar extends Component {
   }
 }
 
-export default ForumSidebar;
+export default ForumGrid;

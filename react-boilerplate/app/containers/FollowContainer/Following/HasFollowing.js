@@ -17,7 +17,7 @@ const HasFollowing = props => (
 );
 
 HasFollowing.propTypes = {
-  children: PropTypes.node,
+  children: PropTypes.node.isRequired,
   following: PropTypes.object,
 };
 

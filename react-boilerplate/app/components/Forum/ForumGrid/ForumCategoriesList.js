@@ -1,21 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import VertMenu from 'components/common/Menus/VertMenu';
+import MenuMapper from 'components/common/Menus/MenuMapper';
 
 const ForumCategoriesList = ({ categories, onSelectCategory }) => (
-  <ul>
-    {categories.map((cat, i) => (
-      <li key={i}>
-        <button type="button" onClick={onSelectCategory} value={cat.value}>
-          {cat.text}
-        </button>
-      </li>
-    ))}
-  </ul>
+  <VertMenu>
+    <MenuMapper
+      renderField="text"
+      valueField="value"
+      as="button"
+      onClick={onSelectCategory}
+    >
+      {categories}
+    </MenuMapper>
+  </VertMenu>
 );
 
 ForumCategoriesList.propTypes = {
-  categories: PropTypes.object,
-  onSelectCategory: PropTypes.func,
+  categories: PropTypes.object.isRequired,
+  onSelectCategory: PropTypes.func.isRequired,
 };
 
 export default ForumCategoriesList;

@@ -21,8 +21,8 @@ const AddPlaylist = props => (
 
 AddPlaylist.propTypes = {
   isLoading: PropTypes.bool,
-  error: PropTypes.object,
-  addPlaylist: PropTypes.func,
+  error: PropTypes.object.isRequired,
+  addPlaylist: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({

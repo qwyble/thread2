@@ -14,10 +14,10 @@ const TextComponent = props => (
 );
 
 TextComponent.propTypes = {
-  name: PropTypes.string,
+  name: PropTypes.string.isRequired,
   onChange: PropTypes.func,
-  value: PropTypes.string,
-  error: PropTypes.string,
+  value: PropTypes.string.isRequired,
+  error: PropTypes.string.isRequired,
 };
 
 export default TextComponent;

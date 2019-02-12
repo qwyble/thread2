@@ -11,10 +11,8 @@ import injectSaga from 'utils/injectSaga';
 import LoaderWrapper from 'containers/Wrappers/LoaderWrapper';
 import ForumCategoriesList from 'components/Forum/ForumGrid/ForumCategoriesList';
 
-import { setCategory } from 'containers/SideBar/SideBarContainer/actions';
-
 import { makeSelectCategories, makeSelectIsLoading } from './selectors';
-import { getCategories } from './actions';
+import { getCategories, setCategory } from './actions';
 import reducer from './reducer';
 import saga from './saga';
 
@@ -24,7 +22,6 @@ class ForumCategories extends React.Component {
   }
 
   render() {
-    console.log(this.props.categories.toJS());
     return (
       <LoaderWrapper isLoading={this.props.isLoading}>
         <ForumCategoriesList
@@ -37,9 +34,9 @@ class ForumCategories extends React.Component {
 }
 
 ForumCategories.propTypes = {
-  getCategories: PropTypes.func,
-  categories: PropTypes.object,
-  setCategory: PropTypes.func,
+  getCategories: PropTypes.func.isRequired,
+  categories: PropTypes.object.isRequired,
+  setCategory: PropTypes.func.isRequired,
   isLoading: PropTypes.bool,
 };
 

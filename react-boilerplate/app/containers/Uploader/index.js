@@ -39,10 +39,10 @@ class Uploader extends React.Component {
 }
 
 Uploader.propTypes = {
-  uploadSong: PropTypes.func,
+  uploadSong: PropTypes.func.isRequired,
   isLoading: PropTypes.bool,
   didSucceed: PropTypes.bool,
-  onCloseModal: PropTypes.func,
+  onCloseModal: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = () =>

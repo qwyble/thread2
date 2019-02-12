@@ -28,8 +28,8 @@ const MessagesListContainer = props => (
 );
 
 MessagesListContainer.propTypes = {
-  selectMessage: PropTypes.func,
-  messages: PropTypes.object,
+  selectMessage: PropTypes.func.isRequired,
+  messages: PropTypes.object.isRequired,
   isInbox: PropTypes.bool,
 };
 

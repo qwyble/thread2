@@ -32,7 +32,7 @@ const MessageView = props => {
 };
 
 MessageView.propTypes = {
-  message: PropTypes.object,
+  message: PropTypes.object.isRequired,
   isLoading: PropTypes.bool,
 };
 

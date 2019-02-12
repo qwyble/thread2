@@ -64,11 +64,11 @@ const ProfileEditFields = props => (
 );
 
 ProfileEditFields.propTypes = {
-  errors: PropTypes.object,
-  fields: PropTypes.object,
-  onInputChange: PropTypes.func,
+  errors: PropTypes.object.isRequired,
+  fields: PropTypes.object.isRequired,
+  onInputChange: PropTypes.func.isRequired,
   disabled: PropTypes.bool,
-  onSubmit: PropTypes.func,
+  onSubmit: PropTypes.func.isRequired,
 };
 
 export default ProfileEditFields;

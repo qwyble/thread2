@@ -39,7 +39,7 @@ class Conditional extends React.Component {
 
 Conditional.propTypes = {
   trigger: PropTypes.element,
-  children: PropTypes.node,
+  children: PropTypes.node.isRequired,
 };
 
 export default Conditional;

@@ -58,8 +58,8 @@ class AddCommentForm extends React.Component {
 
 AddCommentForm.propTypes = {
   isLoading: PropTypes.bool,
-  onCloseModal: PropTypes.func,
-  onSubmit: PropTypes.func,
+  onCloseModal: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
 };
 
 export default AddCommentForm;

@@ -27,8 +27,8 @@ const RenameCategory = props => (
 
 RenameCategory.propTypes = {
   isLoading: PropTypes.bool,
-  editCategory: PropTypes.func,
-  onClosePortal: PropTypes.func,
+  editCategory: PropTypes.func.isRequired,
+  onClosePortal: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({

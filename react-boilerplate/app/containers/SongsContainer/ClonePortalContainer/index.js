@@ -62,12 +62,12 @@ class ClonePortalContainer extends React.PureComponent {
 }
 
 ClonePortalContainer.propTypes = {
-  isLoading: PropTypes.bool,
-  plToClone: PropTypes.string,
-  categories: PropTypes.object,
-  clonePlaylist: PropTypes.func,
-  didSucceed: PropTypes.bool,
-  onClosePortal: PropTypes.func,
+  isLoading: PropTypes.bool.isRequired,
+  plToClone: PropTypes.string.isRequired,
+  categories: PropTypes.object.isRequired,
+  clonePlaylist: PropTypes.func.isRequired,
+  didSucceed: PropTypes.bool.isRequired,
+  onClosePortal: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({

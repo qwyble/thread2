@@ -72,8 +72,8 @@ class EditPlaylistPortal extends Component {
 }
 
 EditPlaylistPortal.propTypes = {
-  id: PropTypes.string,
-  playlist: PropTypes.string,
+  id: PropTypes.string.isRequired,
+  playlist: PropTypes.string.isRequired,
 };
 
 export default EditPlaylistPortal;

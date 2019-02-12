@@ -44,9 +44,9 @@ class ForumFeed extends React.Component {
 }
 
 ForumFeed.propTypes = {
-  feedEvents: PropTypes.object,
+  feedEvents: PropTypes.object.isRequired,
   isLoading: PropTypes.bool,
-  getFeed: PropTypes.func,
+  getFeed: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = () =>

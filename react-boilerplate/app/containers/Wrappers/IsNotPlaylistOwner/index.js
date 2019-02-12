@@ -16,9 +16,9 @@ const IsNotPlaylistOwner = props => (
 );
 
 IsNotPlaylistOwner.propTypes = {
-  alt: PropTypes.element,
+  alt: PropTypes.element.isRequired,
   isOwner: PropTypes.bool,
-  children: PropTypes.node,
+  children: PropTypes.node.isRequired,
 };
 
 const mapStateToProps = () =>

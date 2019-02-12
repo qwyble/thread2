@@ -68,15 +68,15 @@ const Signup = props => (
 );
 
 Signup.propTypes = {
-  email: PropTypes.string,
-  onInputChange: PropTypes.func,
-  onBlur: PropTypes.func,
-  onFocus: PropTypes.func,
-  username: PropTypes.string,
-  password: PropTypes.string,
-  errors: PropTypes.object,
-  onSubmit: PropTypes.func,
-  disabled: PropTypes.bool,
+  email: PropTypes.string.isRequired,
+  onInputChange: PropTypes.func.isRequired,
+  onBlur: PropTypes.func.isRequired,
+  onFocus: PropTypes.func.isRequired,
+  username: PropTypes.string.isRequired,
+  password: PropTypes.string.isRequired,
+  errors: PropTypes.object.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  disabled: PropTypes.bool.isRequired,
 };
 
 export default Signup;

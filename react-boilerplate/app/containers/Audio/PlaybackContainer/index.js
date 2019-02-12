@@ -54,11 +54,13 @@ class PlaybackContainer extends React.Component {
   render() {
     return (
       <div className="container-fluid audioContainer">
-        <Audio
-          myRef={this.myRef}
-          URL={this.props.nowPlaying.get('URL')}
-          onEnd={this.props.handleEnd}
-        />
+        {this.props.nowPlaying.get('URL') && (
+          <Audio
+            myRef={this.myRef}
+            URL={this.props.nowPlaying.get('URL')}
+            onEnd={this.props.handleEnd}
+          />
+        )}
 
         <div className="row">
           <SongsMenu
@@ -82,12 +84,12 @@ class PlaybackContainer extends React.Component {
 
 PlaybackContainer.propTypes = {
   paused: PropTypes.bool,
-  handleEnd: PropTypes.func,
-  handleSkipBack: PropTypes.func,
-  handlePausing: PropTypes.func,
-  handlePlaying: PropTypes.func,
-  nowPlaying: PropTypes.object,
-  songs: PropTypes.object,
+  handleEnd: PropTypes.func.isRequired,
+  handleSkipBack: PropTypes.func.isRequired,
+  handlePausing: PropTypes.func.isRequired,
+  handlePlaying: PropTypes.func.isRequired,
+  nowPlaying: PropTypes.object.isRequired,
+  songs: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({

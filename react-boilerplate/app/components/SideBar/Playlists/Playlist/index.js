@@ -28,8 +28,8 @@ const Playlist = props => (
 );
 
 Playlist.propTypes = {
-  id: PropTypes.string,
-  playlist: PropTypes.string,
+  id: PropTypes.string.isRequired,
+  playlist: PropTypes.string.isRequired,
   onSelectPlaylist: PropTypes.func,
 };
 

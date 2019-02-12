@@ -41,8 +41,8 @@ class Subscribe extends React.Component {
 }
 
 Subscribe.propTypes = {
-  subscribe: PropTypes.func,
-  getSubscribed: PropTypes.func,
+  subscribe: PropTypes.func.isRequired,
+  getSubscribed: PropTypes.func.isRequired,
   threadIdParam: PropTypes.number,
   isLoading: PropTypes.bool,
   subscribed: PropTypes.bool,

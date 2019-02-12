@@ -28,9 +28,9 @@ const AddCommentContainer = props => {
 };
 
 AddCommentContainer.propTypes = {
-  onCloseModal: PropTypes.func,
+  onCloseModal: PropTypes.func.isRequired,
   isLoading: PropTypes.bool,
-  submitComment: PropTypes.func,
+  submitComment: PropTypes.func.isRequired,
   didSucceed: PropTypes.bool,
 };
 

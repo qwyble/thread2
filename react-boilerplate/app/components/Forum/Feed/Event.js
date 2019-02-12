@@ -20,9 +20,9 @@ const Event = props => (
 );
 
 Event.propTypes = {
-  user: PropTypes.string,
-  body: PropTypes.string,
-  subject: PropTypes.string,
+  user: PropTypes.string.isRequired,
+  body: PropTypes.string.isRequired,
+  subject: PropTypes.string.isRequired,
   threadId: PropTypes.number,
 };
 

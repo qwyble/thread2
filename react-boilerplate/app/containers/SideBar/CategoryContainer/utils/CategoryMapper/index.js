@@ -18,7 +18,7 @@ const CategoryMapper = props => (
 );
 
 CategoryMapper.propTypes = {
-  categories: PropTypes.object,
+  categories: PropTypes.object.isRequired,
   onSetCategory: PropTypes.func,
   selectedCategoryId: PropTypes.number,
 };

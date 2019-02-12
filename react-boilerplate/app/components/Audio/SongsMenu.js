@@ -48,8 +48,8 @@ const SongsMenu = props => (
 
 SongsMenu.propTypes = {
   onPlaying: PropTypes.func,
-  nowPlaying: PropTypes.object,
-  songs: PropTypes.object,
+  nowPlaying: PropTypes.object.isRequired,
+  songs: PropTypes.object.isRequired,
 };
 
 export default SongsMenu;

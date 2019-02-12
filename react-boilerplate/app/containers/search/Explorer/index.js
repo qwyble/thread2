@@ -39,27 +39,21 @@ class Explorer extends React.Component {
 
   render() {
     return (
-      <div>
-        <Container>
-          <Grid container columns={4}>
-            <Grid.Row>
-              <Input
-                className="search-input"
-                style={{ width: '100%' }}
-                onChange={this.handleInputChange}
-                icon="search"
-                placeholder="Search..."
-                loading={this.props.isLoading}
-              />
-            </Grid.Row>
-            <Header>Users</Header>
-            <Users users={this.props.users} />
-            <Header>Playlists</Header>
-            <Playlists playlists={this.props.playlists} />
-            <Header>Songs</Header>
-            <Songs songs={this.props.songs} />
-          </Grid>
-        </Container>
+      <div className="container">
+        <Input
+          className="search-input"
+          style={{ width: '100%' }}
+          onChange={this.handleInputChange}
+          icon="search"
+          placeholder="Search..."
+          loading={this.props.isLoading}
+        />
+        <Header>Users</Header>
+        <Users users={this.props.users} />
+        <Header>Playlists</Header>
+        <Playlists playlists={this.props.playlists} />
+        <Header>Songs</Header>
+        <Songs songs={this.props.songs} />
       </div>
     );
   }
@@ -67,10 +61,10 @@ class Explorer extends React.Component {
 
 Explorer.propTypes = {
   isLoading: PropTypes.bool,
-  users: PropTypes.object,
-  songs: PropTypes.object,
-  playlists: PropTypes.object,
-  searchChange: PropTypes.func,
+  users: PropTypes.object.isRequired,
+  songs: PropTypes.object.isRequired,
+  playlists: PropTypes.object.isRequired,
+  searchChange: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = () =>

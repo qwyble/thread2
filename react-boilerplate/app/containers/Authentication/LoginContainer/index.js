@@ -124,8 +124,8 @@ class LoginContainer extends React.Component {
 }
 
 LoginContainer.propTypes = {
-  onAuth: PropTypes.func,
-  location: PropTypes.object,
+  onAuth: PropTypes.func.isRequired,
+  location: PropTypes.object.isRequired,
   isLoggedIn: PropTypes.bool,
 };
 

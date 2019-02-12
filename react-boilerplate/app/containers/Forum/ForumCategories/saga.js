@@ -24,7 +24,7 @@ function getCatsRequest() {
   return axios({
     method: 'get',
     url: 'https://thread-204819.appspot.com/getForumCategories',
-    params: { searchstring: '%' },
+    params: { searchString: '%' },
   })
     .then(result =>
       result.data.map(cat => ({

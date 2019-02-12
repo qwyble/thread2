@@ -98,8 +98,8 @@ class MessageComposer extends React.Component {
 
 MessageComposer.propTypes = {
   isLoading: PropTypes.bool,
-  onSendMessage: PropTypes.func,
-  users: PropTypes.object,
+  onSendMessage: PropTypes.func.isRequired,
+  users: PropTypes.object.isRequired,
   usersAreLoading: PropTypes.bool,
 };
 

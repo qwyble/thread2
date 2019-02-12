@@ -13,7 +13,7 @@ const FollowButton = props => (
 
 FollowButton.propTypes = {
   isFollowing: PropTypes.bool,
-  follow: PropTypes.func,
+  follow: PropTypes.func.isRequired,
   isLoading: PropTypes.bool,
 };
 

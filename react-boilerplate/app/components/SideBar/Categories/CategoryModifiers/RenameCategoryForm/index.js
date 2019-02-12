@@ -49,9 +49,9 @@ class EditCategoryForm extends React.Component {
 }
 
 EditCategoryForm.propTypes = {
-  err: PropTypes.object,
-  id: PropTypes.string,
-  catName: PropTypes.string,
+  err: PropTypes.object.isRequired,
+  id: PropTypes.string.isRequired,
+  catName: PropTypes.string.isRequired,
   onRenameCategory: PropTypes.func,
   onCancel: PropTypes.func,
 };

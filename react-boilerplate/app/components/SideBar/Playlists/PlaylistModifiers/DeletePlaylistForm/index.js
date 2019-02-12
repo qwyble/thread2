@@ -17,7 +17,7 @@ const DeletePlaylistForm = props => (
 DeletePlaylistForm.propTypes = {
   onDelete: PropTypes.func,
   onCancel: PropTypes.func,
-  playlist: PropTypes.string,
+  playlist: PropTypes.string.isRequired,
 };
 
 export default DeletePlaylistForm;

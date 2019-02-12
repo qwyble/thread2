@@ -52,10 +52,10 @@ class MessageComposerContainer extends React.Component {
 
 MessageComposerContainer.propTypes = {
   isLoading: PropTypes.bool,
-  sentMessage: PropTypes.object,
-  users: PropTypes.object,
-  getUsers: PropTypes.func,
-  sendMessage: PropTypes.func,
+  sentMessage: PropTypes.object.isRequired,
+  users: PropTypes.object.isRequired,
+  getUsers: PropTypes.func.isRequired,
+  sendMessage: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = () =>

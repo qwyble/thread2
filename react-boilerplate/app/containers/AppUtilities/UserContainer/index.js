@@ -73,7 +73,7 @@ class UserContainer extends React.Component {
 UserContainer.propTypes = {
   isLoggedIn: PropTypes.bool,
   isLoading: PropTypes.bool,
-  onAuth: PropTypes.func,
+  onAuth: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({

@@ -56,6 +56,6 @@ const UploaderFields = props => (
 UploaderFields.propTypes = {
   onInputChange: PropTypes.func,
   onUpload: PropTypes.func,
-  fields: PropTypes.object,
+  fields: PropTypes.object.isRequired,
 };
 export default UploaderFields;

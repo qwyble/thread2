@@ -68,7 +68,7 @@ class MessagesList extends React.Component {
 
 MessagesList.propTypes = {
   onSelectMessage: PropTypes.func,
-  messages: PropTypes.object,
+  messages: PropTypes.object.isRequired,
 };
 
 export default MessagesList;

@@ -13,7 +13,7 @@ const PathWrapper = props => (
 
 PathWrapper.propTypes = {
   isNotStream: PropTypes.bool,
-  children: PropTypes.node,
+  children: PropTypes.node.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({

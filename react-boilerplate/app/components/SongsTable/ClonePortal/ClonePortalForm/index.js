@@ -80,10 +80,10 @@ class ClonePortalForm extends React.Component {
 }
 
 ClonePortalForm.propTypes = {
-  categories: PropTypes.object,
+  categories: PropTypes.object.isRequired,
   onClonePlaylist: PropTypes.func,
   onClosePortal: PropTypes.func,
-  plToClone: PropTypes.object,
+  plToClone: PropTypes.object.isRequired,
 };
 
 export default ClonePortalForm;

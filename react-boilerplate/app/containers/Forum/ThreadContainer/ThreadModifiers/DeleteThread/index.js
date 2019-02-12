@@ -32,10 +32,10 @@ const DeleteThread = props => (
 );
 
 DeleteThread.propTypes = {
-  deleteThread: PropTypes.func,
+  deleteThread: PropTypes.func.isRequired,
   isLoading: PropTypes.bool,
   didSucceed: PropTypes.bool,
-  onCloseModal: PropTypes.func,
+  onCloseModal: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = () =>

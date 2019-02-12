@@ -43,10 +43,10 @@ class ThreadsTableContainer extends React.Component {
 }
 
 ThreadsTableContainer.propTypes = {
-  isLoading: PropTypes.bool,
-  threads: PropTypes.object,
+  isLoading: PropTypes.bool.isRequired,
+  threads: PropTypes.object.isRequired,
   selectedCategory: PropTypes.number,
-  getThreads: PropTypes.func,
+  getThreads: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = () =>

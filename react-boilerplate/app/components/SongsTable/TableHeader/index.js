@@ -81,8 +81,8 @@ const TableHeader = props => (
 
 TableHeader.propTypes = {
   allSelected: PropTypes.bool,
-  onSelectAll: PropTypes.func,
-  onSortBy: PropTypes.func,
+  onSelectAll: PropTypes.func.isRequired,
+  onSortBy: PropTypes.func.isRequired,
 };
 
 export default TableHeader;

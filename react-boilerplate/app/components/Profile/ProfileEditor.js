@@ -54,11 +54,11 @@ class ProfileEditor extends React.Component {
 }
 
 ProfileEditor.propTypes = {
-  user: PropTypes.object,
-  onImageUpload: PropTypes.func,
+  user: PropTypes.object.isRequired,
+  onImageUpload: PropTypes.func.isRequired,
   imageIsLoading: PropTypes.bool,
   editIsLoading: PropTypes.bool,
-  onSubmit: PropTypes.func,
+  onSubmit: PropTypes.func.isRequired,
 };
 
 export default ProfileEditor;

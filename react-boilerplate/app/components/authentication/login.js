@@ -58,14 +58,14 @@ const Login = props => (
 );
 
 Login.propTypes = {
-  email: PropTypes.string,
-  onInputChange: PropTypes.func,
-  onBlur: PropTypes.func,
-  onFocus: PropTypes.func,
-  password: PropTypes.string,
-  errors: PropTypes.object,
-  onSubmit: PropTypes.func,
-  disabled: PropTypes.bool,
+  email: PropTypes.string.isRequired,
+  onInputChange: PropTypes.func.isRequired,
+  onBlur: PropTypes.func.isRequired,
+  onFocus: PropTypes.func.isRequired,
+  password: PropTypes.string.isRequired,
+  errors: PropTypes.object.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  disabled: PropTypes.bool.isRequired,
 };
 
 export default Login;
