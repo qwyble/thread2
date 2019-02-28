@@ -41,14 +41,13 @@ MessagesContainer.propTypes = {
   deleteMessages: PropTypes.func,
 };
 
-const mapStateToProps = {};
 const mapDispatchToProps = {
   getMessages,
   deleteMessages,
 };
 
 const withConnect = connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps
 );
 const withReducer = injectReducer({ key: 'MessagesContainer', reducer });

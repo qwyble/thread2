@@ -1,12 +1,9 @@
 import axios from 'axios';
-import { fromJS } from 'immutable';
 import { call, takeLatest, put, select } from 'redux-saga/effects';
 
 import { setError } from 'containers/Wrappers/ErrorWrapper/actions';
-import { addCommentToThread } from 'containers/Forum/ThreadContainer/ThreadContainer/actions';
 
-import { makeSelectThreadIdParam } from 'containers/Forum/ThreadContainer/ThreadContainer/selectors';
-import { makeSelectUser } from 'containers/AppUtilities/UserContainer/selectors';
+import { makeSelectThreadId } from 'containers/Forum/ThreadContainer/ThreadContainer/selectors';
 
 import { SUBMIT_COMMENT } from './constants';
 import { submitCommentCompleted, submitCommentFailed } from './actions';
@@ -18,21 +15,14 @@ export default function* AddCommentSaga() {
 function* submitComment(action) {
   try {
     const body = action.comment;
-    const threadId = yield select(makeSelectThreadIdParam());
+    const threadId = yield select(makeSelectThreadId());
     const date = new Date()
       .toISOString()
       .substring(0, 19)
       .replace('T', ' ');
     yield call(submitCommentRequest, body, threadId, date);
-    const user = yield select(makeSelectUser());
-    const comment = fromJS({
-      userName: user.userName,
-      imageUrl: user.imageUrl,
-      date,
-      body,
-    });
+    console.log('before submit comment');
     yield put(submitCommentCompleted());
-    yield put(addCommentToThread(comment));
   } catch (err) {
     yield put(setError(err.message));
     yield put(submitCommentFailed());

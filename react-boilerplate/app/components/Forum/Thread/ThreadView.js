@@ -4,30 +4,25 @@ import PropTypes from 'prop-types';
 import { Segment } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
-import LoaderWrapper from 'containers/Wrappers/LoaderWrapper';
-
-const ThreadView = props => (
+const ThreadView = ({ thread }) => (
   <div>
     <Segment>
-      <LoaderWrapper isLoading={props.isLoading} />
-      {props.thread.Subject}
-
+      {thread.get('Subject')}
       <div>
-        <Link to={`/profile/${props.thread.UserId}`}>
-          {props.thread.userName}
+        <Link to={`/profile/${thread.get('UserId')}`}>
+          {thread.get('userName')}
         </Link>
       </div>
     </Segment>
 
     <Segment>
-      <pre>{props.thread.Body}</pre>
+      <pre>{thread.get('Body')}</pre>
     </Segment>
   </div>
 );
 
 ThreadView.propTypes = {
   thread: PropTypes.object.isRequired,
-  isLoading: PropTypes.bool,
 };
 
 export default ThreadView;

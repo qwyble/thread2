@@ -38,9 +38,7 @@ function* editUser(action) {
     const userName = action.username || user.get('userName');
     const email = action.email || user.get('email');
     yield call(editUserRequest, userName, email);
-    user.set('userName', userName);
-    user.set('email', email);
-    yield put(editUserCompleted(user));
+    yield put(editUserCompleted(userName, email));
   } catch (err) {
     yield put(setError(err.message));
     yield put(editUserFailed());
@@ -62,16 +60,18 @@ function getUserRequest() {
     method: 'get',
     url: 'https://thread-204819.appspot.com/getUserInfo',
     withCredentials: true,
-  }).catch(err => {
-    throw err;
-  });
+  })
+    .then(result => result.data[0])
+    .catch(err => {
+      throw err;
+    });
 }
 
-function editUserRequest(userName, email) {
+function editUserRequest(username, email) {
   return axios({
     method: 'post',
     url: 'https://thread-204819.appspot.com/editUserInfo',
-    data: { email, userName },
+    data: { email, username },
     withCredentials: true,
   }).catch(err => {
     throw err;

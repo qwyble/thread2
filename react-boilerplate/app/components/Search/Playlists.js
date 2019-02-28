@@ -1,24 +1,24 @@
 import React from 'react';
-import { Grid } from 'semantic-ui-react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 require('./css.css');
 
-class Playlists extends React.Component {
-  render() {
-    return (
-      <div className="container">
-        <div className="row">
-          {this.props.playlists.map((playlist, key) => (
-            <div className="col-2 padded-col" key={key}>
-              <Link to={`/playlist/${playlist.get('idplaylists')}`}>
-                {playlist.get('name')}
-              </Link>
-            </div>
-          ))}
+const Playlists = props => (
+  <div className="container">
+    <div className="row">
+      {props.playlists.map(playlist => (
+        <div className="col-2 padded-col" key={playlist.get('idplaylists')}>
+          <Link to={`/playlist/${playlist.get('idplaylists')}`}>
+            {playlist.get('name')}
+          </Link>
         </div>
-      </div>
-    );
-  }
-}
+      ))}
+    </div>
+  </div>
+);
+
+Playlists.propTypes = {
+  playlists: PropTypes.object.isRequired,
+};
 
 export default Playlists;

@@ -1,34 +1,39 @@
 import { createSelector } from 'reselect';
-import { makeSelectParams } from 'containers/AppUtilities/ProfileContext/selectors';
 
-export const selectThreadViewState = state => state.get('ThreadView');
+export const selectThreadContainerState = state => state.get('ThreadContainer');
 
 export const makeSelectIsLoading = () =>
   createSelector(
-    selectThreadViewState,
+    selectThreadContainerState,
     state => state.get('isLoading')
   );
 
 export const makeSelectThread = () =>
   createSelector(
-    selectThreadViewState,
+    selectThreadContainerState,
     state => state.get('thread')
   );
 
 export const makeSelectComments = () =>
   createSelector(
-    selectThreadViewState,
+    selectThreadContainerState,
     state => state.get('comments')
-  );
-
-export const makeSelectThreadIdParam = () =>
-  createSelector(
-    makeSelectParams(),
-    params => params.id
   );
 
 export const makeSelectThreadOwnerId = () =>
   createSelector(
     makeSelectThread(),
     thread => thread.get('UserId')
+  );
+
+export const makeSelectThreadId = () =>
+  createSelector(
+    makeSelectThread(),
+    thread => thread.get('idThreadPost')
+  );
+
+export const makeSelectCommentsLoading = () =>
+  createSelector(
+    selectThreadContainerState,
+    thread => thread.get('commentsLoading')
   );

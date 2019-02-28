@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button } from 'semantic-ui-react';
 
 import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
@@ -19,6 +18,7 @@ import DeleteThread from 'containers/Forum/ThreadContainer/ThreadModifiers/Delet
 
 import ThreadView from 'components/Forum/Thread/ThreadView';
 import CommentList from 'components/Forum/Thread/CommentList';
+import PropChecker from 'components/common/Conditional/PropChecker';
 
 import reducer from './reducer';
 import saga from './saga';
@@ -27,40 +27,50 @@ import {
   makeSelectThread,
   makeSelectIsLoading,
   makeSelectComments,
-  makeSelectThreadIdParam,
+  makeSelectCommentsLoading,
 } from './selectors';
 
-import { getThread } from './actions';
+import { getThread, getComments } from './actions';
 
 class ThreadContainer extends React.Component {
   componentDidMount() {
-    this.props.getThread();
+    this.props.getThread(this.props.match.params.id);
+    this.props.getComments(this.props.match.params.id);
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.threadIdParam !== this.props.threadIdParam) {
-      this.props.getThread();
+    if (prevProps.match.params.id !== this.props.match.params.id) {
+      this.props.getThread(this.props.match.params.id);
+      this.props.getComments(this.props.match.params.id);
     }
   }
 
-  render() {
-    const commentTrigger = <Button>Comment</Button>;
-    const deleteTrigger = <Button>Delete Thread</Button>;
+  renderCommentContainer = toggleOpen => (
+    <AddCommentContainer onClose={toggleOpen} />
+  );
 
+  render() {
     return (
       <div>
         <LoaderWrapper isLoading={this.props.isLoading}>
-          <ThreadView thread={this.props.thread} />
-          <ModalWrapper trigger={commentTrigger}>
-            <AddCommentContainer />
-          </ModalWrapper>
-          <Subscribe />
-          <IsThreadOwner>
-            <ModalWrapper trigger={deleteTrigger}>
-              <DeleteThread />
-            </ModalWrapper>
-          </IsThreadOwner>
-          <CommentList comments={this.props.comments} />
+          <PropChecker field={this.props.thread}>
+            <ThreadView thread={this.props.thread} />
+            <ModalWrapper
+              trigger={commentTrigger}
+              render={this.renderCommentContainer}
+            />
+            <Subscribe />
+            <IsThreadOwner>
+              <ModalWrapper trigger={deleteTrigger}>
+                <DeleteThread />
+              </ModalWrapper>
+            </IsThreadOwner>
+          </PropChecker>
+        </LoaderWrapper>
+        <LoaderWrapper isLoading={this.props.commentsLoading}>
+          <PropChecker field={this.props.thread}>
+            <CommentList comments={this.props.comments} />
+          </PropChecker>
         </LoaderWrapper>
       </div>
     );
@@ -71,20 +81,22 @@ ThreadContainer.propTypes = {
   getThread: PropTypes.func.isRequired,
   comments: PropTypes.object.isRequired,
   thread: PropTypes.object.isRequired,
-  isLoading: PropTypes.bool,
-  threadIdParam: PropTypes.number,
+  isLoading: PropTypes.bool.isRequired,
+  match: PropTypes.object.isRequired,
+  commentsLoading: PropTypes.bool.isRequired,
+  getComments: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = () =>
-  createStructuredSelector({
-    comments: makeSelectComments(),
-    thread: makeSelectThread(),
-    isLoading: makeSelectIsLoading(),
-    threadIdParam: makeSelectThreadIdParam(),
-  });
+const mapStateToProps = createStructuredSelector({
+  comments: makeSelectComments(),
+  thread: makeSelectThread(),
+  isLoading: makeSelectIsLoading(),
+  commentsLoading: makeSelectCommentsLoading(),
+});
 
 const mapDispatchToProps = {
   getThread,
+  getComments,
 };
 
 const withConnect = connect(
@@ -99,3 +111,15 @@ export default compose(
   withSaga,
   withConnect
 )(ThreadContainer);
+
+const commentTrigger = (
+  <button type="button" className="ui button">
+    Comment
+  </button>
+);
+
+const deleteTrigger = (
+  <button type="button" className="ui button">
+    Delete Thread
+  </button>
+);

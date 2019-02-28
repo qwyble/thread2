@@ -9,14 +9,16 @@ require('./css.css');
 const Users = props => (
   <div className="container">
     <div className="row">
-      {props.users.map((user, key) => (
-        <div className="col-2 padded-col">
+      {props.users.map(user => (
+        <div className="col-2 padded-col" key={user.get('idUsers')}>
           <div className="row">
-            <img
-              style={{ height: '100px', maxWidth: 'auto' }}
-              src={user.get('imageUrl')}
-              alt=""
-            />
+            <div className="thumbnail">
+              <img
+                className="user-thumbnail-medium"
+                src={user.get('imageUrl')}
+                alt=""
+              />
+            </div>
           </div>
           <div className="row">
             <Link

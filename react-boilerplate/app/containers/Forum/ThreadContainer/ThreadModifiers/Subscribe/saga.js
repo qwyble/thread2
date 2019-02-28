@@ -2,7 +2,7 @@ import axios from 'axios';
 import { call, takeLatest, put, select } from 'redux-saga/effects';
 
 import { setError } from 'containers/Wrappers/ErrorWrapper/actions';
-import { makeSelectThreadIdParam } from 'containers/Forum/ThreadContainer/ThreadContainer/selectors';
+import { makeSelectThreadId } from 'containers/Forum/ThreadContainer/ThreadContainer/selectors';
 
 import { GET_SUBSCRIBED, SUBSCRIBE } from './constants';
 
@@ -22,7 +22,7 @@ export default function* SubscribeSaga() {
 
 function* getSubscribed() {
   try {
-    const threadId = yield select(makeSelectThreadIdParam());
+    const threadId = yield select(makeSelectThreadId());
     const subbed = yield call(getSubscribedRequest, threadId);
     yield put(getSubscribedCompleted(subbed));
   } catch (err) {
@@ -30,9 +30,10 @@ function* getSubscribed() {
     yield put(getSubscribedFailed());
   }
 }
+
 function* subscribe() {
   try {
-    const threadId = yield select(makeSelectThreadIdParam());
+    const threadId = yield select(makeSelectThreadId());
     const subbed = yield select(makeSelectIsSubscribed());
     yield call(subscribeRequest, threadId, subbed);
     yield put(subscribeCompleted());
@@ -47,7 +48,7 @@ function getSubscribedRequest(threadId) {
     .get(`https://thread-204819.appspot.com/getSubscribed/${threadId}`, {
       withCredentials: true,
     })
-    .then(result => result.data.length)
+    .then(result => !!result.data.length)
     .catch(err => {
       throw err;
     });

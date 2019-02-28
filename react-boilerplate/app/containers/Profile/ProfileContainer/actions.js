@@ -37,11 +37,11 @@ export function editUser(email, username) {
   };
 }
 
-export function editUserCompleted(email, username) {
+export function editUserCompleted(userName, email) {
   return {
     type: EDIT_USER_COMPLETED,
     email,
-    username,
+    userName,
   };
 }
 

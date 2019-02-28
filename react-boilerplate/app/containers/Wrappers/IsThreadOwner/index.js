@@ -5,9 +5,9 @@ import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 import { makeSelectIsThreadOwner } from './selectors';
 
-const IsOwner = props => (
+const IsThreadOwner = props => (
   <span>
-    {props.isOwner ? (
+    {props.isThreadOwner ? (
       <span>{props.children}</span>
     ) : (
       <span>{props.alt ? <span>{props.alt}</span> : <span />}</span>
@@ -15,17 +15,17 @@ const IsOwner = props => (
   </span>
 );
 
-IsOwner.propTypes = {
-  alt: PropTypes.element.isRequired,
-  isOwner: PropTypes.bool,
+IsThreadOwner.propTypes = {
+  alt: PropTypes.element,
+  isThreadOwner: PropTypes.bool.isRequired,
   children: PropTypes.node.isRequired,
 };
 
 const mapStateToProps = () =>
   createStructuredSelector({
-    isOwner: makeSelectIsThreadOwner(),
+    isThreadOwner: makeSelectIsThreadOwner(),
   });
 
 const withConnect = connect(mapStateToProps);
 
-export default compose(withConnect)(IsOwner);
+export default compose(withConnect)(IsThreadOwner);

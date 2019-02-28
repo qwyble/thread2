@@ -1,8 +1,12 @@
 html * {
   font-size: 0.98em !important;
-  font-family: 'Exo', sans-serif !important;
 }
+
 body {
+  color: aliceblue;
+}
+
+pre {
   color: aliceblue;
 }
 
@@ -20,8 +24,31 @@ path:active {
   color: rgba(213, 255, 128, 0.866);
 }
 
+textarea {
+  width: 100%;
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box; /* Firefox, other Gecko */
+  box-sizing: border-box; /* Opera/IE 8+ */
+  border-radius: 0px !important;
+  border: solid;
+  border-width: 1px;
+  background-color: rgba(125, 254, 252, 0.148);
+  border-color: hsla(179, 97%, 74%, 0.612);
+  color: aliceblue;
+}
+
 #app {
   height: 100%;
+}
+
+.container {
+  border-radius: 0px;
+  color: aliceblue;
+  padding: 0.5em;
+}
+
+.container.center {
+  text-align: center;
 }
 
 .container-fluid {
@@ -34,12 +61,26 @@ i.icon {
   color: rgba(125, 254, 252, 0.866);
 }
 
+.row {
+  padding: 0.5em;
+  margin: 0em;
+}
+
+.ui.items {
+  color: aliceblue;
+}
+
+.ui.inverted.menu {
+  background-color: rgba(38, 37, 42, 0.65);
+}
+
 .ui.inverted.menu .link.item:hover {
   background-color: rgba(125, 254, 252, 0.2);
 }
 
 .ui.header {
   color: aliceblue !important;
+  margin: 1em;
 }
 
 .ui.button.followButton {
@@ -63,11 +104,39 @@ i.icon {
 .ui.form .field.error > label {
   color: rgb(254, 134, 134);
 }
-.ui.segment {
-  background-color: rgba(92, 90, 105, 0);
 
+.ui.segment {
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.3);
   border-radius: 0px;
   color: aliceblue;
+  padding: 0.15em;
+  margin: 0.5em;
+}
+
+.ui.segment.modal-content {
+  margin: 0px;
+  margin-top: 2%;
+}
+
+.ui.segment.inline {
+  display: inline-block;
+}
+
+.ui.segment.marginless {
+  margin: 0px;
+}
+
+.ui.segment.padded {
+  padding: 4em;
+}
+
+.ui.segment.light {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.ui.segment.center {
+  text-align: center;
 }
 
 .messageCheckbox {
@@ -82,12 +151,12 @@ i.icon {
   color: aliceblue;
 }
 
-.ui.input,
+.ui.input input,
 .ui.icon.input input {
   border-radius: 0px !important;
   border-width: 1px;
   background-color: rgba(125, 254, 252, 0.048);
-  border-color: hsla(179, 97%, 74%, 0.322);
+  border-color: hsla(179, 97%, 74%, 0.612);
   color: aliceblue;
 }
 
@@ -116,6 +185,30 @@ i.icon {
   background-color: rgba(0, 0, 0, 1);
   height: 10vh;
 }
+
+.padless {
+  padding: 0px !important;
+}
+
+.image.medium {
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  width: 200px;
+  height: 200px;
+}
+
+.user-thumbnail-medium {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  height: 100%;
+  width: auto;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
 .ui.search > .results .result .image.searchImage {
   float: left;
   width: 35px;
@@ -123,9 +216,6 @@ i.icon {
   border-radius: 500rem;
 }
 
-.ui.modal.profileModal {
-  margin: auto;
-}
 .ui.button.playlistButton {
   padding-right: 1cm !important;
   width: 100% !important;
@@ -133,10 +223,16 @@ i.icon {
   opacity: 0.8;
 }
 
+.ui.button.small {
+  width: 9em;
+}
+
 .ui.button {
   background-color: rgba(0, 0, 0, 0);
   color: #7dfefce0;
   padding-top: 1em;
+  text-align: center;
+  vertical-align: middle;
 }
 
 .ui.button:focus {
@@ -228,7 +324,7 @@ a {
   background: transparent;
 }
 .table-dark {
-  background-color: rgba(0, 0, 0, 0.146);
+  background-color: rgba(0, 0, 0, 0);
 
   border: none;
   margin-bottom: 0px;
@@ -290,11 +386,31 @@ a {
   z-index: 100;
 }
 
-.ui.modal.uploadModal {
-  vertical-align: middle !important;
-  position: relative;
+.ui.modal {
   margin: auto !important;
-  margin-top: 0vh !important;
+  top: 20%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 0px;
+  display: inline-block;
+  overflow: auto;
+  bottom: auto;
+}
+
+.ui.dimmer {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.ui.custom.modal {
+  position: fixed;
+  z-index: 10000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: (255, 255, 255, 0.2);
 }
 
 .button {

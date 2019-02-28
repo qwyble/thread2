@@ -97,7 +97,7 @@ class LoginContainer extends React.Component {
               onInputChange={this.handleInputChange}
               email={this.state.email}
               password={this.state.password}
-              username={this.state.username}
+              username={this.state.userName}
               onSubmit={this.handleSignupSubmit}
               onBlur={this.handleBlur}
               onFocus={this.handleFocus}

@@ -14,24 +14,33 @@ import reducer from './reducer';
 import saga from './saga';
 
 import { makeSelectIsLoading, makeSelectDidSucceed } from './selectors';
-import { submitComment } from './actions';
+import { submitComment, initState } from './actions';
 
-const AddCommentContainer = props => {
-  if (props.didSucceed) props.onCloseModal();
-  return (
-    <AddCommentForm
-      onCloseModal={props.onCloseModal}
-      isLoading={props.isLoading}
-      onSubmit={props.submitComment}
-    />
-  );
-};
+class AddCommentContainer extends React.Component {
+  componentDidUpdate() {
+    if (this.props.didSucceed) {
+      this.props.initState();
+      this.props.onClose();
+    }
+  }
+
+  render() {
+    return (
+      <AddCommentForm
+        onCloseModal={this.props.onClose}
+        isLoading={this.props.isLoading}
+        onSubmit={this.props.submitComment}
+      />
+    );
+  }
+}
 
 AddCommentContainer.propTypes = {
-  onCloseModal: PropTypes.func.isRequired,
+  onClose: PropTypes.func.isRequired,
   isLoading: PropTypes.bool,
   submitComment: PropTypes.func.isRequired,
   didSucceed: PropTypes.bool,
+  initState: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = () =>
@@ -42,6 +51,7 @@ const mapStateToProps = () =>
 
 const mapDispatchToProps = {
   submitComment,
+  initState,
 };
 
 const withConnect = connect(

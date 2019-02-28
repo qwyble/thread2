@@ -21,45 +21,34 @@ class ImageUploadPortal extends Component {
   };
 
   render() {
-    const trigger = <Button>Edit Image</Button>;
     return (
-      <div>
-        <PortalWrapper trigger={trigger}>
-          <Segment
-            compact
-            padded
-            raised
-            secondary
-            textAlign="center"
-            style={{ margin: 'auto', top: '-300px' }}
-          >
-            <LoaderWrapper isLoading={this.props.imageLoading} />
-            <Image
-              src={this.state.imageUrl || this.props.imageUrl}
-              style={{ margin: 'auto' }}
-            />
-            <Form onSubmit={this.handleImageUpload}>
-              <input
-                name="image"
-                type="file"
-                onChange={this.handleImageChange}
-              />
-              <Button type="submit" disabled={!this.state.imageFile}>
-                {' '}
-                Submit{' '}
-              </Button>
-            </Form>
-          </Segment>
-        </PortalWrapper>
-      </div>
+      <PortalWrapper trigger={trigger} x="28vw" y="15vh">
+        <LoaderWrapper isLoading={this.props.imageLoading} />
+        <div className="image medium">
+          <img src={this.state.imageUrl || this.props.imageUrl} alt="profile" />
+        </div>
+        <Form onSubmit={this.handleImageUpload}>
+          <input name="image" type="file" onChange={this.handleImageChange} />
+          <Button type="submit" disabled={!this.state.imageFile}>
+            {' '}
+            Submit{' '}
+          </Button>
+        </Form>
+      </PortalWrapper>
     );
   }
 }
 
 ImageUploadPortal.propTypes = {
-  onImageUpload: PropTypes.func,
-  imageUrl: PropTypes.func,
-  imageLoading: PropTypes.func,
+  onImageUpload: PropTypes.func.isRequired,
+  imageUrl: PropTypes.string.isRequired,
+  imageLoading: PropTypes.bool.isRequired,
 };
 
 export default ImageUploadPortal;
+
+const trigger = (
+  <button type="button" className="ui button">
+    Edit Image
+  </button>
+);

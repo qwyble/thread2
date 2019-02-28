@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Container, Segment } from 'semantic-ui-react';
 import { createStructuredSelector } from 'reselect';
 
 import { connect } from 'react-redux';
@@ -26,6 +25,8 @@ import {
 
 import { getUser, editUser, uploadImage } from './actions';
 
+require('./css.css');
+
 class ProfileContainer extends React.Component {
   componentDidMount() {
     this.props.getUser();
@@ -33,22 +34,20 @@ class ProfileContainer extends React.Component {
 
   render() {
     return (
-      <div>
-        <Container className="songInfoContainer">
-          <LoaderWrapper isLoading={this.props.getUserIsLoading}>
-            <Segment>
-              <ProfileViewer user={this.props.user} />
-            </Segment>
+      <LoaderWrapper isLoading={this.props.getUserIsLoading}>
+        <div className="container">
+          <div className="ui segment center profile-segment inline padded">
+            <ProfileViewer user={this.props.user} />
             <ProfileEditor
-              user={this.props.user}
+              imageUrl={this.props.user.get('imageUrl')}
               onSubmit={this.props.editUser}
               editIsLoading={this.props.editIsLoading}
               imageIsLoading={this.props.imageIsLoading}
-              onUploadImage={this.props.uploadImage}
+              onImageUpload={this.props.uploadImage}
             />
-          </LoaderWrapper>
-        </Container>
-      </div>
+          </div>
+        </div>
+      </LoaderWrapper>
     );
   }
 }
@@ -82,7 +81,7 @@ const withConnect = connect(
   mapDispatchToProps
 );
 const withReducer = injectReducer({ key: 'ProfileContainer', reducer });
-const withSaga = injectSaga({ key: 'profileContainer', saga });
+const withSaga = injectSaga({ key: 'ProfileContainer', saga });
 
 export default compose(
   withReducer,

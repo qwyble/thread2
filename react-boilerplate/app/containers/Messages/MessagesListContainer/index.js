@@ -5,6 +5,8 @@ import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 
+import { Table } from 'semantic-ui-react';
+
 import { makeSelectMessages } from 'containers/Messages/MessagesContainer/selectors';
 import { selectMessage } from 'containers/Messages/MessagesContainer/actions';
 
@@ -33,11 +35,10 @@ MessagesListContainer.propTypes = {
   isInbox: PropTypes.bool,
 };
 
-const mapStateToProps = () =>
-  createStructuredSelector({
-    messages: makeSelectMessages(),
-    isInbox: makeSelectIsInbox(),
-  });
+const mapStateToProps = createStructuredSelector({
+  messages: makeSelectMessages(),
+  isInbox: makeSelectIsInbox(),
+});
 
 const mapDispatchToProps = {
   selectMessage,

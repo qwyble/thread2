@@ -1,26 +1,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Segment, Header, Item } from 'semantic-ui-react';
 
 const CommentList = props => (
   <div>
-    <Segment>
-      <Header>Comments:</Header>
-      {props.comments.map((comment, i) => (
-        <Segment key={i}>
-          <Item.Group>
-            <Item>
-              <Item.Image size="tiny" src={comment.imageUrl} />
-              <Item.Content>
-                <Item.Header>{comment.userName}</Item.Header>
-                <Item.Meta>{comment.date}</Item.Meta>
-                <Item.Description>{comment.body}</Item.Description>
-              </Item.Content>
-            </Item>
-          </Item.Group>
-        </Segment>
+    <div className="ui segment">
+      <div>Comments:</div>
+      {props.comments.map(comment => (
+        <div className="ui segment" key={comment.get('idThreadReplies')}>
+          <div className="row">
+            <div className="col-2">
+              <img
+                className="user-thumbnail-medium"
+                src={comment.get('imageUrl')}
+                alt=""
+              />
+            </div>
+            <div className="col-10">
+              <div>{comment.get('userName')}</div>
+              <div>{comment.get('date')}</div>
+              <br />
+              <div>{comment.get('body')}</div>
+            </div>
+          </div>
+        </div>
       ))}
-    </Segment>
+    </div>
   </div>
 );
 

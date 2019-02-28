@@ -27,7 +27,7 @@ export default function SubscribeReducer(state = initialState, action) {
     case SUBSCRIBE_COMPLETED:
       return state
         .set('isLoading', false)
-        .set('subscribed', !this.state.get('subscribed'));
+        .set('subscribed', !state.get('subscribed'));
     case SUBSCRIBE_FAILED:
       return state.set('isLoading', false);
     default:

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Button } from 'semantic-ui-react';
 
 import LoaderWrapper from 'containers/Wrappers/LoaderWrapper';
-import { makeSelectThreadIdParam } from 'containers/Forum/ThreadContainer/ThreadContainer/selectors';
+import { makeSelectThreadId } from 'containers/Forum/ThreadContainer/ThreadContainer/selectors';
 
 import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
@@ -25,17 +25,18 @@ class Subscribe extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.threadIdParam !== this.props.threadIdParam)
-      this.props.getSubscribed();
+    if (prevProps.threadId !== this.props.threadId) this.props.getSubscribed();
   }
 
   render() {
     return (
-      <Button onClick={this.props.subscribe} floated="right">
-        <LoaderWrapper isLoading={this.props.isLoading} size="mini">
-          {this.props.subscribed ? 'Unsubscribe' : 'Subscribe'}
-        </LoaderWrapper>
-      </Button>
+      <span>
+        <button className="ui button small" onClick={this.props.subscribe}>
+          <LoaderWrapper isLoading={this.props.isLoading} size="mini">
+            {this.props.subscribed ? 'Unsubscribe' : 'Subscribe'}
+          </LoaderWrapper>
+        </button>
+      </span>
     );
   }
 }
@@ -43,14 +44,14 @@ class Subscribe extends React.Component {
 Subscribe.propTypes = {
   subscribe: PropTypes.func.isRequired,
   getSubscribed: PropTypes.func.isRequired,
-  threadIdParam: PropTypes.number,
-  isLoading: PropTypes.bool,
-  subscribed: PropTypes.bool,
+  threadId: PropTypes.number.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  subscribed: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = () =>
   createStructuredSelector({
-    threadIdParam: makeSelectThreadIdParam(),
+    threadId: makeSelectThreadId(),
     isLoading: makeSelectIsLoading(),
     subscribed: makeSelectIsSubscribed(),
   });

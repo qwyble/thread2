@@ -11,45 +11,54 @@ class AddCommentForm extends React.Component {
       value: '',
       error: '',
     },
+    disabled: true,
   };
 
   validate = e => {
-    const { name, value } = { ...e.target };
+    const { name, value } = e.target;
     if (name === 'comment') {
       if (value.length < 8) {
         this.setState({
           [name]: { value, error: 'comment must be >= 8 characters' },
+          disabled: true,
         });
+      } else if (value.length > 500) {
+        this.setState({
+          [name]: { value, error: 'comment must be <= 500 characters' },
+          disabled: true,
+        });
+      } else {
+        this.setState({ [name]: { value, error: '' }, disabled: false });
       }
-      this.setState({ [name]: { value, error: '' } });
     }
   };
 
-  handleCommentSubmit = () => {
+  handleCommentSubmit = e => {
+    e.preventDefault();
     this.props.onSubmit(this.state.comment.value);
   };
 
   render() {
-    const disabled = Object.values(this.state).find(
-      field => field.error.legnth
-    );
     return (
       <Segment>
         <LoaderWrapper isLoading={this.props.isLoading}>
-          <Form onSubmit={this.handleCommentSubmit}>
-            <Form.Field error={this.state.comment.error}>
-              <TextComponent
+          <form onSubmit={this.handleCommentSubmit}>
+            <div className="form-group">
+              <textarea
+                rows="10"
                 name="comment"
                 value={this.state.comment.value}
-                error={this.state.comment.error}
+                required
                 onChange={this.validate}
               />
-            </Form.Field>
-            <Button disabled={disabled} type="submit">
+
+              <div className="help-block">{this.state.comment.error}</div>
+            </div>
+            <Button disabled={this.state.disabled} type="submit">
               Submit
             </Button>
             <Button onClick={this.props.onCloseModal}>Cancel</Button>
-          </Form>
+          </form>
         </LoaderWrapper>
       </Segment>
     );

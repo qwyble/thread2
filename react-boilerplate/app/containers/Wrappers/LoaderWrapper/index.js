@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Dimmer } from 'semantic-ui-react';
 import Loader from 'components/common/Loader';
 
 const LoaderWrapper = props => (
@@ -16,9 +15,8 @@ const LoaderWrapper = props => (
 );
 
 LoaderWrapper.propTypes = {
-  children: PropTypes.node.isRequired,
-  isLoading: PropTypes.bool,
-  dimmer: PropTypes.bool,
+  children: PropTypes.node,
+  isLoading: PropTypes.bool.isRequired,
 };
 
 export default LoaderWrapper;

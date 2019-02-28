@@ -1,33 +1,36 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Portal, Segment } from 'semantic-ui-react';
+import { Portal } from 'semantic-ui-react';
 
 class PortalWrapper extends React.Component {
-  triggerRef = React.createRef();
-
   render() {
     return (
-      <span style={{ display: 'inline-block' }}>
-        <Portal
-          openOnTriggerClick
-          closeOnTriggerClick
-          trigger={this.props.trigger}
-          triggerRef={this.triggerRef}
+      <Portal
+        openOnTriggerClick
+        closeOnTriggerClick
+        trigger={this.props.trigger}
+      >
+        <div
+          className="ui segment"
+          style={{
+            backgroundColor: 'rgba(0, 0, 0)',
+            position: 'fixed',
+            top: this.props.y,
+            left: this.props.x,
+          }}
         >
-          <Segment>
-            {React.cloneElement(this.props.children, {
-              triggerRef: this.triggerRef,
-            })}
-          </Segment>
-        </Portal>
-      </span>
+          {this.props.children}
+        </div>
+      </Portal>
     );
   }
 }
 
 PortalWrapper.propTypes = {
-  trigger: PropTypes.element,
+  trigger: PropTypes.element.isRequired,
   children: PropTypes.node.isRequired,
+  x: PropTypes.string.isRequired,
+  y: PropTypes.string.isRequired,
 };
 
 export default PortalWrapper;

@@ -32,7 +32,10 @@ export default function ProfileContainerReducer(state = initialState, action) {
       return state.set('editIsLoading', true);
     case EDIT_USER_COMPLETED:
       // action.user is already an immutable object here
-      return state.set('editIsLoading', false).set('user', action.user);
+      return state
+        .set('editIsLoading', false)
+        .setIn(['user', 'userName'], action.userName)
+        .setIn(['user', 'email'], action.email);
     case EDIT_USER_FAILED:
       return state.set('editIsLoading', false);
     case UPLOAD_IMAGE:

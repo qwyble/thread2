@@ -70,29 +70,26 @@ class RenderAddCategory extends React.Component {
                     >
                       <Icon floated="right" name="minus" />
                     </Button>
-                    <Form inverted type="text">
-                      <Input
+                    <Input
+                      size="mini"
+                      placeholder="new category"
+                      onChange={this.handleInputChange}
+                      value={this.state.categoryToAdd}
+                    />
+                    <div title="asdcasdc">
+                      <Button
+                        fluid
+                        icon
                         inverted
                         size="mini"
-                        placeholder="new category"
-                        onChange={this.handleInputChange}
-                        value={this.state.categoryToAdd}
-                      />
-                      <div title="asdcasdc">
-                        <Button
-                          fluid
-                          icon
-                          inverted
-                          size="mini"
-                          type="submit"
-                          color="blue"
-                          onClick={this.handleAddClick}
-                          disabled={this.validate()}
-                        >
-                          <Icon floated="right" name="plus" />
-                        </Button>
-                      </div>
-                    </Form>
+                        type="submit"
+                        color="blue"
+                        onClick={this.handleAddClick}
+                        disabled={this.validate()}
+                      >
+                        <Icon floated="right" name="plus" />
+                      </Button>
+                    </div>
                   </div>
                 ) : (
                   <div />

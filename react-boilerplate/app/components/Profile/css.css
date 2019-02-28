@@ -1,0 +1,10 @@
+.profile-viewer-image {
+  width: 200px;
+  height: auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.profile-card {
+  text-align: left;
+}

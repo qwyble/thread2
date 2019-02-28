@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Modal, Segment, Dimmer } from 'semantic-ui-react';
+import { Modal, Segment, Dimmer, Button, Icon } from 'semantic-ui-react';
 
 class ModalWrapper extends React.Component {
   state = {
@@ -14,35 +14,30 @@ class ModalWrapper extends React.Component {
 
   render() {
     return (
-      <div>
-        <Modal
-          className="uploadModal"
-          open={this.state.isOpen}
-          trigger={this.props.trigger}
-          {...this.props}
-        >
-          <Dimmer.Dimmable as={Segment}>
-            <div>
-              {this.state.isOpen ? (
-                <Segment>
-                  {React.cloneElement(this.props.children, {
-                    onCloseModal: this.toggleOpen,
-                  })}
-                </Segment>
-              ) : (
-                <div />
-              )}
-            </div>
-          </Dimmer.Dimmable>
-        </Modal>
-      </div>
+      <Modal
+        onOpen={this.toggleOpen}
+        onClose={this.toggleOpen}
+        open={this.state.isOpen}
+        closeOnDocumentClick
+        dimmer
+        trigger={this.props.trigger}
+      >
+        <div className="container">
+          <div className="ui segment modal-content">
+            {this.state.isOpen ? (
+              <div>{this.props.render(this.toggleOpen)}</div>
+            ) : (
+              <div />
+            )}
+          </div>
+        </div>
+      </Modal>
     );
   }
 }
 
 ModalWrapper.propTypes = {
-  trigger: PropTypes.element,
-  children: PropTypes.node.isRequired,
+  trigger: PropTypes.element.isRequired,
 };
 
 export default ModalWrapper;

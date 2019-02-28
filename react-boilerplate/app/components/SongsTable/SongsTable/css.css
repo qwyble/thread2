@@ -1,8 +1,11 @@
+.songs-table {
+  background-color: rgba(38, 37, 42, 0.65);
+}
 .table.playlist-footer {
   position: fixed;
   bottom: 0px;
   margin: 0px;
-  background-color: rgba(34, 36, 38, 0.85);
+  background-color: rgba(38, 37, 42, 0);
 }
 
 .footer-cell {

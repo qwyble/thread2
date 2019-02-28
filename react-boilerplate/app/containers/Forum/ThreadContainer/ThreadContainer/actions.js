@@ -2,20 +2,22 @@ import {
   GET_THREAD,
   GET_THREAD_COMPLETED,
   GET_THREAD_FAILED,
-  ADD_COMMENT_TO_THREAD,
+  GET_COMMENTS,
+  GET_COMMENTS_COMPLETED,
+  GET_COMMENTS_FAILED,
 } from './constants';
 
-export function getThread() {
+export function getThread(threadId) {
   return {
     type: GET_THREAD,
+    threadId,
   };
 }
 
-export function getThreadCompleted(thread, comments) {
+export function getThreadCompleted(thread) {
   return {
     type: GET_THREAD_COMPLETED,
     thread,
-    comments,
   };
 }
 
@@ -25,9 +27,22 @@ export function getThreadFailed() {
   };
 }
 
-export function addCommentToThread(comment) {
+export function getComments(threadId) {
   return {
-    type: ADD_COMMENT_TO_THREAD,
-    comment,
+    type: GET_COMMENTS,
+    threadId,
+  };
+}
+
+export function getCommentsCompleted(comments) {
+  return {
+    type: GET_COMMENTS_COMPLETED,
+    comments,
+  };
+}
+
+export function getCommentsFailed() {
+  return {
+    type: GET_COMMENTS_FAILED,
   };
 }

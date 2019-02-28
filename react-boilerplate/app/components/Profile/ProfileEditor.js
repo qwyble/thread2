@@ -15,27 +15,31 @@ class ProfileEditor extends React.Component {
   };
 
   validate = (name, value) => {
-    const { formErrors } = getErrors(this.state.formErrors, name, value);
-    const disabled = formErrors.email.length || formErrors.username.length;
+    const formErrors = getErrors(this.state.formErrors, name, value);
+    const disabled = !!formErrors.email.length || !!formErrors.username.length;
     this.setState({ formErrors, disabled });
   };
 
   handleInputChange = e => {
-    const { name, value } = { ...e.target };
+    const { id, value } = e.target;
     const fields = { ...this.state.fields };
-    this.setState({ fields: { ...fields, [name]: value } });
-    this.validate(name, value);
+    this.setState({ fields: { ...fields, [id]: value } });
+    this.validate(id, value);
   };
 
-  handleSubmit = () => {
-    this.props.onSubmit(this.state.newEmail, this.state.newUsername);
+  handleSubmit = e => {
+    e.preventDefault();
+    this.props.onSubmit(
+      this.state.fields.newEmail,
+      this.state.fields.newUsername
+    );
   };
 
   render() {
     return (
-      <div>
+      <div className="container">
         <ImageUploadPortal
-          imageUrl={this.props.user.imageUrl}
+          imageUrl={this.props.imageUrl}
           onImageUpload={this.props.onImageUpload}
           imageLoading={this.props.imageIsLoading}
         />
@@ -54,11 +58,15 @@ class ProfileEditor extends React.Component {
 }
 
 ProfileEditor.propTypes = {
-  user: PropTypes.object.isRequired,
+  imageUrl: PropTypes.string,
   onImageUpload: PropTypes.func.isRequired,
-  imageIsLoading: PropTypes.bool,
-  editIsLoading: PropTypes.bool,
+  imageIsLoading: PropTypes.bool.isRequired,
+  editIsLoading: PropTypes.bool.isRequired,
   onSubmit: PropTypes.func.isRequired,
+};
+
+ProfileEditor.defaultProps = {
+  imageUrl: '',
 };
 
 export default ProfileEditor;
