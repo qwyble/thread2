@@ -33,7 +33,7 @@ module.exports = function(app){
       req.session.user.idUsers,
       encodeURI(req.query.sortBy),
       encodeURI(req.query.descending),
-      encodeURI(req.query.CurrentItem)
+      encodeURI(req.query.currentItem)
     ).then((data) => {
       songs.getStreamCount(req.session.user.idUsers)
       .then((data2) => {
