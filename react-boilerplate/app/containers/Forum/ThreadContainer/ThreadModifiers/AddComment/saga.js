@@ -21,7 +21,6 @@ function* submitComment(action) {
       .substring(0, 19)
       .replace('T', ' ');
     yield call(submitCommentRequest, body, threadId, date);
-    console.log('before submit comment');
     yield put(submitCommentCompleted());
   } catch (err) {
     yield put(setError(err.message));

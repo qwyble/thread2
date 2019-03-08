@@ -4,9 +4,10 @@ import {
   GET_MESSAGE_FAILED,
 } from './constants';
 
-export function getMessage() {
+export function getMessage(messageId) {
   return {
     type: GET_MESSAGE,
+    messageId,
   };
 }
 

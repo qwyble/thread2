@@ -36,9 +36,9 @@ const ThreadComposer = props => {
 
 ThreadComposer.propTypes = {
   categories: PropTypes.object.isRequired,
-  isLoading: PropTypes.bool,
+  isLoading: PropTypes.bool.isRequired,
   postThread: PropTypes.func.isRequired,
-  didSucceed: PropTypes.func.isRequired,
+  didSucceed: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = () =>

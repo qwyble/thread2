@@ -1,0 +1,7 @@
+.ui.category-item {
+    display: flex;
+}
+
+.ui.category-item:hover{
+    background-color: rgba(93, 193, 251, 0.171);
+}

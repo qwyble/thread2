@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
-import { makeSelectSelectedPlIsOwner } from 'containers/SideBar/SideBarContainer/selectors';
+import { makeSelectSelectedPlIsOwner } from 'containers/SideBar/PlaylistContainer/selectors';
 
 const IsPlaylistOwner = props => (
   <span>

@@ -39,7 +39,11 @@ class EditCategoryPortal extends React.Component {
     };
 
     return (
-      <div>
+      <button
+        type="button"
+        className="ui button"
+        style={{ padding: '.5em', height: '100%' }}
+      >
         <Dropdown
           text=" "
           icon="ellipsis vertical"
@@ -74,7 +78,7 @@ class EditCategoryPortal extends React.Component {
             )}
           </Segment>
         </TransitionablePortal>
-      </div>
+      </button>
     );
   }
 }

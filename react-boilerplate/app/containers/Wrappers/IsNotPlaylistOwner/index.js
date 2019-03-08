@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
-import { makeSelectSelectedPlIsOwner } from 'containers/SideBar/SideBarContainer/selectors';
+import { makeSelectSelectedPlIsOwner } from 'containers/SideBar/PlaylistContainer/selectors';
 
 const IsNotPlaylistOwner = props => (
   <span>
@@ -16,8 +16,8 @@ const IsNotPlaylistOwner = props => (
 );
 
 IsNotPlaylistOwner.propTypes = {
-  alt: PropTypes.element.isRequired,
-  isOwner: PropTypes.bool,
+  alt: PropTypes.node,
+  isOwner: PropTypes.bool.isRequired,
   children: PropTypes.node.isRequired,
 };
 

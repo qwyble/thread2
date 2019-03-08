@@ -15,6 +15,11 @@ import saga from './saga';
 import { getMessages, deleteMessages } from './actions';
 
 class MessagesContainer extends React.Component {
+  componentDidMount() {
+    if (window.location.pathname !== '/messages/sent') this.handleGetInbox();
+    else this.handleGetSent();
+  }
+
   handleGetInbox = () => {
     this.props.getMessages('inbox');
   };
@@ -25,19 +30,18 @@ class MessagesContainer extends React.Component {
 
   render() {
     return (
-      <div>
-        <MessagesSideBar
-          onGetInbox={this.handleGetInbox}
-          onGetSent={this.handleGetSent}
-          onDelete={this.props.deleteMessages}
-        />
-      </div>
+      <MessagesSideBar
+        onGetInbox={this.handleGetInbox}
+        onGetSent={this.handleGetSent}
+        onDelete={this.props.deleteMessages}
+      />
     );
   }
 }
 
 MessagesContainer.propTypes = {
   getMessages: PropTypes.func,
+  match: PropTypes.object,
   deleteMessages: PropTypes.func,
 };
 

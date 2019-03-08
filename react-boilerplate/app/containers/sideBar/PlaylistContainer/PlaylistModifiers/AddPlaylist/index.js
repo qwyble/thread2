@@ -21,7 +21,6 @@ const AddPlaylist = props => (
 
 AddPlaylist.propTypes = {
   isLoading: PropTypes.bool,
-  error: PropTypes.object.isRequired,
   addPlaylist: PropTypes.func.isRequired,
 };
 

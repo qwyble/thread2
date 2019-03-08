@@ -1,15 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Loader from 'components/common/Loader';
 import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 
 import injectSaga from 'utils/injectSaga';
 
-import SideBarContainer from 'containers/SideBar/SideBarContainer';
+import SideBarContainer from 'components/SideBar';
+import LoaderWrapper from 'containers/Wrappers/LoaderWrapper';
 
-import { makeSelectProfileParam, makeSelectIsLoading } from './selectors';
+import {
+  makeSelectProfileParam,
+  makeSelectIsLoading,
+  makeSelectProfile,
+} from './selectors';
 
 import { makeSelectUser } from '../UserContainer/selectors';
 import { setProfile, getProfile, setParamsContext } from './actions';
@@ -27,25 +31,29 @@ class ProfileContext extends React.Component {
 
   render() {
     if (this.props.user) {
-      if (!this.props.isLoading) {
-        return <SideBarContainer />;
-      }
+      return (
+        <LoaderWrapper isLoading={this.props.isLoading}>
+          <SideBarContainer owner={this.props.profile} />
+        </LoaderWrapper>
+      );
     }
-    return <Loader active />;
+    return <div />;
   }
 }
 
 ProfileContext.propTypes = {
-  isLoading: PropTypes.bool,
+  isLoading: PropTypes.bool.isRequired,
   user: PropTypes.object.isRequired,
   setParamsContext: PropTypes.func.isRequired,
   match: PropTypes.object.isRequired,
+  profile: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
   isLoading: makeSelectIsLoading(),
   profileParam: makeSelectProfileParam(),
   user: makeSelectUser(),
+  profile: makeSelectProfile(),
 });
 
 const mapDispatchToProps = {

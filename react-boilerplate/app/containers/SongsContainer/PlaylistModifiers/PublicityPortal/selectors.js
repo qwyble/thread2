@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect';
-import { makeSelectSelectedPlaylist } from 'containers/SideBar/SideBarContainer/selectors';
+import { makeSelectSelectedPlaylist } from 'containers/SideBar/PlaylistContainer/selectors';
 
 export const selectPublicityPortalState = state => state.get('PublicityPortal');
 

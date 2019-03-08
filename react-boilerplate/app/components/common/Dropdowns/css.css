@@ -1,0 +1,24 @@
+.dropdown-menu {
+    top: 18%;
+    width: 100%;
+    border-radius: 0px;
+    background-color: rgba(3,34,41, 0.738);
+}
+.dropdown-menu.open {
+    display: block;
+    position: absolute;
+}
+.dropdown-menu.closed {
+    display: none;
+
+}
+
+.dropdown-item {
+    color: aliceblue;
+}
+
+.ui.form select.hidden-select {
+    display: none;
+}
+
+

@@ -15,15 +15,15 @@ const MessageView = props => {
     <Container>
       <LoaderWrapper isLoading={props.isLoading}>
         <PropChecker field={props.message}>
-          <div style={{ float: 'right' }}>{props.message.date}</div>
-          From: {props.message.senderName}
+          <div style={{ float: 'right' }}>{props.message.get('date')}</div>
+          From: {props.message.get('senderName')}
           <Divider />
-          Subject: {props.message.subject}
+          Subject: {props.message.get('subject')}
           <Divider />
-          {props.message.text}
+          {props.message.get('text')}
           <Divider />
           <ConditionalBasicClosed buttonProps={buttonProps}>
-            <MessageComposer recipient={props.message.sender} />
+            <MessageComposer recipient={props.message.get('sender')} />
           </ConditionalBasicClosed>
         </PropChecker>
       </LoaderWrapper>

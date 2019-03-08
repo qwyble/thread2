@@ -17,16 +17,14 @@ import MessagesTableFooter from 'components/Messages/MessageTable/MessagesTableF
 import { makeSelectIsInbox } from './selectors';
 
 const MessagesListContainer = props => (
-  <div>
-    <Table selectable>
-      <MessagesTableHeader isInbox={props.isInbox} />
-      <MessagesList
-        onSelectMessage={props.selectMessage}
-        messages={props.messages}
-      />
-      <MessagesTableFooter />
-    </Table>
-  </div>
+  <Table selectable>
+    <MessagesTableHeader isInbox={props.isInbox} />
+    <MessagesList
+      onSelectMessage={props.selectMessage}
+      messages={props.messages}
+    />
+    <MessagesTableFooter />
+  </Table>
 );
 
 MessagesListContainer.propTypes = {

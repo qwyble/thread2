@@ -20,3 +20,15 @@ export const makeSelectPlaylistParam = () =>
     makeSelectParams(),
     params => params.get('playlist')
   );
+
+export const makeSelectSelectedCategory = () =>
+  createSelector(
+    selectCategoryContainer,
+    state => state.get('selectedCategory')
+  );
+
+export const makeSelectSelectedCategoryId = () =>
+  createSelector(
+    makeSelectSelectedCategory(),
+    cat => cat.get('catid')
+  );

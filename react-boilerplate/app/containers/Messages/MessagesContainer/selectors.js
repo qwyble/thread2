@@ -1,4 +1,4 @@
-import { createSelector } from 'immutable';
+import { createSelector } from 'reselect';
 
 const selectMessagesContainerState = state => state.get('MessagesContainer');
 
@@ -17,11 +17,11 @@ export const makeSelectIsLoading = () =>
 export const makeSelectSelectedMessages = () =>
   createSelector(
     makeSelectMessages(),
-    messages => messages.filter(message => !!message.selected)
+    messages => messages.filter(message => !!message.get('selected'))
   );
 
 export const makeSelectSelectedMessageIds = () =>
   createSelector(
     makeSelectSelectedMessages(),
-    messages => messages.map(message => message.idmessages)
+    messages => messages.map(message => message.get('idmessages'))
   );

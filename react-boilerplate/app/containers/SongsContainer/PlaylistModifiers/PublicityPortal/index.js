@@ -13,7 +13,7 @@ import { createStructuredSelector } from 'reselect';
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 
-import { makeSelectSelectedPlName } from 'containers/SideBar/SideBarContainer/selectors';
+import { makeSelectSelectedPlName } from 'containers/SideBar/PlaylistContainer/selectors';
 
 import reducer from './reducer';
 import saga from './saga';

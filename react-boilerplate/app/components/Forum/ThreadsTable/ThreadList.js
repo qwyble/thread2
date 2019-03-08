@@ -5,9 +5,7 @@ import { Link } from 'react-router-dom';
 
 const ThreadList = props => (
   <tbody>
-    {props.threads.map((t, i) => {
-      console.log(t);
-      return (
+    {props.threads.map((t, i) => (
         <tr key={i}>
           <td>
             <Link to={{ pathname: `/forum/thread/${t.get('id')}` }}>
@@ -20,8 +18,7 @@ const ThreadList = props => (
           <td>{t.get('subs')}</td>
           <td>{t.get('date') ? t.get('date').slice(0, 10) : ''}</td>
         </tr>
-      );
-    })}
+      ))}
   </tbody>
 );
 

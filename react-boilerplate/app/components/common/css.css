@@ -3,26 +3,39 @@
     content: '.';
   }
   20% {
-    content: '. .';
+    content: '..';
   }
   40% {
-    content: '. . .';
+    content: '...';
   }
   60% {
-    content: '. . . .';
+    content: '....';
   }
   80% {
-    content: '. . . . .';
+    content: '.....';
   }
   100% {
-    content: '. . . . . .';
+    content: '......';
   }
 }
 
-.loading-indicator span {
+.loading-indicator {
   color: aliceblue;
 }
 .loading-indicator::after {
   content: '.';
-  animation: dot-keyframes 0.45s linear infinite;
+  animation: dot-keyframes 0.75s linear infinite;
+}
+
+.loader-div {
+  position: absolute;
+  display: flex;
+  width: 100%;
+  height: 20%;
+  align-items: center;
+  left: 50%;
+}
+
+.loading-message {
+
 }

@@ -16,7 +16,7 @@ import LoaderWrapper from 'containers/Wrappers/LoaderWrapper';
 
 import ClonePortalForm from 'components/SongsTable/ClonePortal/ClonePortalForm';
 
-import { makeSelectSelectedPlid } from 'containers/SideBar/SideBarContainer/selectors';
+import { makeSelectSelectedPlid } from 'containers/SideBar/PlaylistContainer/selectors';
 import { makeSelectCategories } from 'containers/SideBar/CategoryContainer/selectors';
 import { makeSelectIsLoading, makeSelectDidSucceed } from './selectors';
 
@@ -27,7 +27,6 @@ import saga from './saga';
 
 class ClonePortalContainer extends React.PureComponent {
   render() {
-    console.log('rendered');
     const PortalMessage = (
       <div>You must select a playlist, you can‘t clone a stream.</div>
     );

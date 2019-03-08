@@ -21,9 +21,7 @@ export default function* SongDetailsSaga() {
 function* getSong(action) {
   try {
     const { songId } = { ...action };
-    console.log(songId);
     const song = yield call(getSongRequest, songId);
-    console.log(song);
     yield put(getSongCompleted(song));
   } catch (err) {
     yield put(setError(err.message));

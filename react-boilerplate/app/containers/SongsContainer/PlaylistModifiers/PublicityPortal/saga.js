@@ -4,7 +4,7 @@ import axios from 'axios';
 import { setIsPublic } from 'containers/SideBar/CategoryContainer/actions';
 import { setError } from 'containers/Wrappers/ErrorWrapper/actions';
 
-import { makeSelectSelectedPlid } from 'containers/SideBar/SideBarContainer/selectors';
+import { makeSelectSelectedPlid } from 'containers/SideBar/PlaylistContainer/selectors';
 
 import { makePublicComplete } from './actions';
 

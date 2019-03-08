@@ -6,10 +6,14 @@ require('./css.css');
 const Loader = props => {
   console.log(props);
   return (
-    <span className="loader-span">
-      {props.message ? <span>{props.message}</span> : <span />}
-      <span className="loading-indicator " />
-    </span>
+    <div className="loader-div">
+      {props.message ? (
+        <div className="loading-message">{props.message}</div>
+      ) : (
+        <span />
+      )}
+      <div className="loading-indicator " />
+    </div>
   );
 };
 

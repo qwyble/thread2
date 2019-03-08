@@ -1,0 +1,16 @@
+.listSidebar {
+  display: flex;
+  opacity: 0;
+  transform: scaleY(0);
+  max-height: 0;
+  transform-origin: top;
+  transition: opacity 0.25s, transform 0.25s, max-height 0.25s;
+}
+
+.listSidebar.displayed {
+  transform: scaleY(1);
+  max-height: 500px;
+  overflow: hidden;
+  opacity: 1;
+}
+

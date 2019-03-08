@@ -5,8 +5,8 @@ import Category from 'components/SideBar/Categories/Category';
 
 const CategoryMapper = props => (
   <div>
-    {props.categories.map((category, key) => (
-      <Menu.Item className="sideItems" key={key}>
+    {props.categories.map(category => (
+      <Menu.Item style={{ padding: '0' }} key={category.get('catid')}>
         <Category
           category={category}
           onSetCategory={props.onSetCategory}

@@ -13,12 +13,16 @@ import MessageView from 'components/Messages/MessageView';
 import reducer from './reducer';
 import saga from './saga';
 
-import { makeSelectMessage, makeSelectIsLoading } from './selectors';
+import {
+  makeSelectMessage,
+  makeSelectIsLoading,
+  makeSelectMessageId,
+} from './selectors';
 import { getMessage } from './actions';
 
 class MessageViewContainer extends Component {
   componentDidMount() {
-    if (!this.props.message) this.props.getMessage();
+    this.props.getMessage(this.props.messageId);
   }
 
   // TODO: view replies and parent messages....
@@ -37,14 +41,15 @@ class MessageViewContainer extends Component {
 MessageViewContainer.propTypes = {
   getMessage: PropTypes.func.isRequired,
   message: PropTypes.object.isRequired,
-  isLoading: PropTypes.bool,
+  isLoading: PropTypes.bool.isRequired,
+  messageId: PropTypes.string.isRequired,
 };
 
-const mapStateToProps = () =>
-  createStructuredSelector({
-    isLoading: makeSelectIsLoading(),
-    message: makeSelectMessage(),
-  });
+const mapStateToProps = createStructuredSelector({
+  isLoading: makeSelectIsLoading(),
+  message: makeSelectMessage(),
+  messageId: makeSelectMessageId(),
+});
 
 const mapDispatchToProps = {
   getMessage,
@@ -54,7 +59,7 @@ const withConnect = connect(
   mapStateToProps,
   mapDispatchToProps
 );
-const withReducer = injectReducer({ key: 'MesssageViewContainer', reducer });
+const withReducer = injectReducer({ key: 'MessageViewContainer', reducer });
 const withSaga = injectSaga({ key: 'MessageViewContainer', saga });
 
 export default compose(

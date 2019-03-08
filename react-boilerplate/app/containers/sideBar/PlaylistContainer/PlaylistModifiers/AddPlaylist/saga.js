@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { takeLatest, select, call, put } from 'redux-saga/effects';
-import { makeSelectSelectedCategoryId } from 'containers/SideBar/SideBarContainer/selectors';
+import { makeSelectSelectedCategoryId } from 'containers/SideBar/CategoryContainer/selectors';
 
 import { setError } from 'containers/Wrappers/ErrorWrapper/actions';
 

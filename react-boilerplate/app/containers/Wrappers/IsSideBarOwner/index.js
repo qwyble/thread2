@@ -6,13 +6,13 @@ import { createStructuredSelector } from 'reselect';
 import { makeSelectIsOwner } from 'containers/AppUtilities/ProfileContext/selectors';
 
 const IsSideBarOwner = props => (
-  <span>
+  <div>
     {props.isOwner ? (
-      <span>{props.children}</span>
+      <div style={{ height: '100%' }}>{props.children}</div>
     ) : (
-      <span>{props.alt ? <span>{props.alt}</span> : <span />}</span>
+      <div>{props.alt ? <div>{props.alt}</div> : <div />}</div>
     )}
-  </span>
+  </div>
 );
 
 IsSideBarOwner.propTypes = {

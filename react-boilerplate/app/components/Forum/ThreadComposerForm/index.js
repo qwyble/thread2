@@ -22,7 +22,7 @@ class ThreadComposer extends React.Component {
   };
 
   handleInputChange = e => {
-    const { name, value } = { ...e.target };
+    const { name, value } = e.target;
     const error = validate(name, value);
     this.setState({ [name]: { value, error } });
   };
@@ -33,65 +33,72 @@ class ThreadComposer extends React.Component {
   };
 
   render() {
-    const disabled = Object.values(this.state).find(
+    const disabled = !!Object.values(this.state).find(
       field => field.error.length
     );
 
     const CategoryDropdown = (
-      <Form.Field required error={!!this.state.category.error}>
+      <div className="form-group">
         <CategoryDropdownComponent
           name="category"
           placeholder="Choose thread category"
-          value={this.state.category.value}
-          onChange={this.handleInputChange}
+          onSelect={this.handleInputChange}
           categories={this.props.categories}
         />
         {this.state.category.error}
-      </Form.Field>
+      </div>
     );
 
     const SubjectComponent = (
-      <Form.Field required error={!!this.state.subject.error}>
-        <Input
-          name="subject"
-          placeholder="Subject"
-          value={this.state.subject.value}
-          onChange={this.handleInputChange}
-        />
-        {this.state.subject.error}
-      </Form.Field>
+      <div className="form-group">
+        <div>
+          <input
+            name="subject"
+            placeholder="Subject"
+            className="ui input form-control"
+            autoComplete="off"
+            value={this.state.subject.value}
+            onChange={this.handleInputChange}
+          />
+        </div>
+        <div>{this.state.subject.error}</div>
+      </div>
     );
 
     const BodyComponent = (
-      <Form.Field required error={!!this.state.body.error}>
-        <Input
-          name="body"
-          placeholder="Body"
-          value={this.state.body.value}
-          onChange={this.handleInputChange}
-        />
-        {this.state.body.error}
-      </Form.Field>
+      <div className="form-group">
+        <div>
+          <input
+            name="body"
+            placeholder="Body"
+            className="ui input form-control"
+            autoComplete="off"
+            value={this.state.body.value}
+            onChange={this.handleInputChange}
+          />
+        </div>
+        <div>{this.state.body.error} </div>
+      </div>
     );
 
     return (
       <Container>
         <LoaderWrapper isLoading={this.props.isLoading} />
-        <Form onSubmit={this.handleFormSubmit}>
+        <form onSubmit={this.handleFormSubmit}>
           {CategoryDropdown}
           {SubjectComponent}
           {BodyComponent}
           <Button type="submit" disabled={disabled}>
             Post
           </Button>
-        </Form>
+        </form>
       </Container>
     );
   }
 }
 
 ThreadComposer.propTypes = {
-  isLoading: PropTypes.bool,
+  isLoading: PropTypes.bool.isRequired,
   onPostThread: PropTypes.func.isRequired,
   categories: PropTypes.object.isRequired,
 };

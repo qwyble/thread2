@@ -23,13 +23,7 @@ class Conditional extends React.Component {
           </Segment>
         ) : (
           <div>
-            <Button onClick={this.toggleOpen} {...this.props.buttonProps}>
-              {this.props.message ? (
-                <span>{this.props.message}</span>
-              ) : (
-                <span />
-              )}
-            </Button>
+            <Button onClick={this.toggleOpen} {...this.props.buttonProps} />
           </div>
         )}
       </div>
@@ -40,6 +34,7 @@ class Conditional extends React.Component {
 Conditional.propTypes = {
   trigger: PropTypes.element,
   children: PropTypes.node.isRequired,
+  buttonProps: PropTypes.object,
 };
 
 export default Conditional;

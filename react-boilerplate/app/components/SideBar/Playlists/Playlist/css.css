@@ -1,0 +1,11 @@
+.playlistTab {
+    display: flex !important;
+    flex-direction: row !important;
+    z-index: 0 !important;
+    width: 100%;
+    padding-right: 0px !important;
+}
+
+.playlistTab:hover {
+    background-color: rgba(200, 200, 200, 0.164) !important;
+}

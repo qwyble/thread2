@@ -27,41 +27,43 @@ class MessagesList extends React.Component {
     }
 
     return (
-      <div>
-        <Table.Body>
-          {' '}
-          {this.props.messages.map((m, i) => {
-            const style = m.viewed ? { opacity: '.6' } : {};
-            return (
-              <Table.Row key={i} style={style}>
-                {' '}
-                <Table.Cell>
-                  {' '}
-                  <Checkbox
-                    className="messageCheckbox"
-                    size="mini"
-                    id={m.idmessages}
-                    checked={!!m.selected}
-                    onChange={this.props.onSelectMessage}
-                  />{' '}
-                  <span />{' '}
-                </Table.Cell>{' '}
-                <Table.Cell id={m.idmessages} onClick={this.handleViewMessage}>
-                  {' '}
-                  {m.senderName}{' '}
-                </Table.Cell>{' '}
-                <Table.Cell id={m.idmessages} onClick={this.handleViewMessage}>
-                  {' '}
-                  {m.subject}{' '}
-                </Table.Cell>{' '}
-                <Table.Cell id={m.idmessages} onClick={this.handleViewMessage}>
-                  {m.date.slice(0, 10)}
-                </Table.Cell>
-              </Table.Row>
-            );
-          })}
-        </Table.Body>
-      </div>
+      <Table.Body>
+        {this.props.messages.map(m => (
+          <Table.Row
+            key={m.get('idmessages')}
+            style={m.get('viewed') && { opacity: '.6' }}
+          >
+            <Table.Cell>
+              <Checkbox
+                className="messageCheckbox"
+                size="mini"
+                id={m.get('idmessages')}
+                checked={!!m.get('selected')}
+                onChange={this.props.onSelectMessage}
+              />
+              <span />
+            </Table.Cell>
+            <Table.Cell
+              id={m.get('idmessages')}
+              onClick={this.handleViewMessage}
+            >
+              {m.get('senderName')}
+            </Table.Cell>
+            <Table.Cell
+              id={m.get('idmessages')}
+              onClick={this.handleViewMessage}
+            >
+              {m.get('subject')}
+            </Table.Cell>
+            <Table.Cell
+              id={m.get('idmessages')}
+              onClick={this.handleViewMessage}
+            >
+              {m.get('date').slice(0, 10)}
+            </Table.Cell>
+          </Table.Row>
+        ))}
+      </Table.Body>
     );
   }
 }

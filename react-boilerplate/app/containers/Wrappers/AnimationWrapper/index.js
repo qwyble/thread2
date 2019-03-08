@@ -2,11 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Transition } from 'react-transition-group';
 
+require('./css.css');
+
 class AnimationWrapper extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      renderLists: '',
+      renderLists: false,
     };
   }
 
@@ -34,13 +36,13 @@ class AnimationWrapper extends React.Component {
         timeout={150}
       >
         {state => (
-          <span className={className[state]}>
+          <div className={className[state]}>
             {this.state.renderLists ? (
-              <span>{this.props.children}</span>
+              <div className="wide">{this.props.children}</div>
             ) : (
-              <span />
+              <div />
             )}
-          </span>
+          </div>
         )}
       </Transition>
     );
@@ -48,7 +50,7 @@ class AnimationWrapper extends React.Component {
 }
 
 AnimationWrapper.propTypes = {
-  displayLists: PropTypes.bool,
+  displayLists: PropTypes.bool.isRequired,
   children: PropTypes.node.isRequired,
 };
 

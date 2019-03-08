@@ -3,6 +3,7 @@ import {
   GET_CATEGORIES_COMPLETED,
   SET_IS_PUBLIC,
   RENAME_PL_IN_CAT,
+  SELECT_CATEGORY,
 } from './constants';
 
 export function getCategories() {
@@ -31,5 +32,12 @@ export function setIsPublic(isPublic, plid) {
     type: SET_IS_PUBLIC,
     isPublic,
     plid,
+  };
+}
+
+export function setCategory(category) {
+  return {
+    type: SELECT_CATEGORY,
+    category,
   };
 }

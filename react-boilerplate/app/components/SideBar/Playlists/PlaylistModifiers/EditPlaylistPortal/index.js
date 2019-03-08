@@ -34,10 +34,14 @@ class EditPlaylistPortal extends Component {
     ];
 
     return (
-      <div>
+      <button
+        type="button"
+        className="ui button"
+        style={{ padding: '.5em', height: '100%', zIndex: '10000' }}
+      >
         <Dropdown
           text=" "
-          icon="ellipsis vertical"
+          icon="ellipsis horizontal"
           className="dropOverlay icon"
           options={options}
           onChange={this.handleDropdownChange}
@@ -66,13 +70,13 @@ class EditPlaylistPortal extends Component {
             <div />
           )}
         </TransitionablePortal>
-      </div>
+      </button>
     );
   }
 }
 
 EditPlaylistPortal.propTypes = {
-  id: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
   playlist: PropTypes.string.isRequired,
 };
 

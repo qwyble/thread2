@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
 
 import { compose } from 'redux';
 import { connect } from 'react-redux';
@@ -12,9 +11,9 @@ import injectSaga from 'utils/injectSaga';
 import IsSideBarOwner from 'containers/Wrappers/IsSideBarOwner';
 import LoaderWrapper from 'containers/Wrappers/LoaderWrapper';
 
-import { setCategory } from 'containers/SideBar/SideBarContainer/actions';
+import { setCategory } from 'containers/SideBar/CategoryContainer/actions';
 import { makeSelectProfileId } from 'containers/AppUtilities/ProfileContext/selectors';
-import { makeSelectSelectedCategoryId } from 'containers/SideBar/SideBarContainer/selectors';
+import { makeSelectSelectedCategoryId } from 'containers/SideBar/CategoryContainer/selectors';
 
 import CategoryMapper from './utils/CategoryMapper';
 import AddCategory from './CategoryModifiers/AddCategory';
@@ -26,15 +25,17 @@ import saga from './saga';
 
 class CategoryContainer extends React.Component {
   componentDidMount() {
-    console.log('getting categories');
     this.props.getCategories();
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.ownerId !== this.props.ownerId) this.props.getCategories();
+    if (prevProps.ownerId !== this.props.ownerId) {
+      this.props.getCategories();
+    }
   }
 
   render() {
+    console.log('in cat container');
     return (
       <LoaderWrapper isLoading={this.props.isLoading}>
         <CategoryMapper
@@ -80,8 +81,7 @@ const withReducer = injectReducer({ key: 'CategoryContainer', reducer });
 const withSaga = injectSaga({ key: 'CategoryContainer', saga });
 
 export default compose(
-  withRouter,
-  withSaga,
   withReducer,
+  withSaga,
   withConnect
 )(CategoryContainer);

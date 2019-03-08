@@ -9,7 +9,7 @@ import injectSaga from 'utils/injectSaga';
 
 import { createStructuredSelector } from 'reselect';
 
-import { makeSelectSelectedPlName } from 'containers/SideBar/SideBarContainer/selectors';
+import { makeSelectSelectedPlName } from 'containers/SideBar/PlaylistContainer/selectors';
 
 import LoaderWrapper from 'containers/Wrappers/LoaderWrapper';
 

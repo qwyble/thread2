@@ -2,7 +2,7 @@ import { call, put, takeLatest, select } from 'redux-saga/effects';
 import axios from 'axios';
 
 import { makeSelectSelectedSongs } from 'containers/SongsContainer/SongsContainer/selectors';
-import { makeSelectSelectedPlaylist } from 'containers/SideBar/SideBarContainer/selectors';
+import { makeSelectSelectedPlaylist } from 'containers/SideBar/PlaylistContainer/selectors';
 
 import { removeSongsFromPlaylist } from 'containers/SongsContainer/SongsContainer/actions';
 import { setError } from 'containers/Wrappers/ErrorWrapper/actions';

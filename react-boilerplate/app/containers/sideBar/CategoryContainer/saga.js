@@ -6,7 +6,7 @@ import {
   makeSelectIsOwner,
 } from 'containers/AppUtilities/ProfileContext/selectors';
 
-import { setPlaylist } from 'containers/SideBar/SideBarContainer/actions';
+import { setPlaylist } from 'containers/SideBar/PlaylistContainer/actions';
 import { setError } from 'containers/Wrappers/ErrorWrapper/actions';
 
 import { makeSelectPlaylistParam } from './selectors';
@@ -22,16 +22,14 @@ function* getCategories() {
   try {
     const plidParam = yield call(getPlParam);
     const profileId = yield call(getProfileId);
-    console.log('prof id ', profileId);
-    console.log(profileId, plidParam);
     const url = getUrl();
-    console.log(url);
     const { categories2, playlist } = yield call(
       getCatsRequest,
       url,
       profileId,
       plidParam
     );
+    console.log(categories2);
     yield put(getCategoriesCompleted(categories2));
     if (playlist) yield put(setPlaylist(playlist));
   } catch (error) {
@@ -49,7 +47,7 @@ function* getProfileId() {
 function* getPlParam() {
   const plParam = yield select(makeSelectPlaylistParam());
   if (plParam) return plParam;
-  return '0';
+  return '';
 }
 
 function getUrl() {

@@ -1,20 +1,18 @@
 import axios from 'axios';
-import { call, takeLatest, put, select } from 'redux-saga/effects';
+import { call, takeLatest, put } from 'redux-saga/effects';
 
 import { setError } from 'containers/Wrappers/ErrorWrapper/actions';
 
 import { GET_MESSAGE } from './constants';
 import { getMessageCompleted, getMessageFailed } from './actions';
 
-import { makeSelectMessageId } from './selectors';
-
 export default function* MessageViewContainerSaga() {
   yield takeLatest(GET_MESSAGE, getMessage);
 }
 
-function* getMessage() {
+function* getMessage(action) {
   try {
-    const messageId = yield select(makeSelectMessageId());
+    const { messageId } = action;
     const message = yield call(getMessageRequest, messageId);
     yield put(getMessageCompleted(message));
   } catch (err) {
@@ -31,5 +29,9 @@ function getMessageRequest(messageId) {
       id: messageId,
     },
     withCredentials: true,
-  });
+  })
+    .then(result => result.data[0])
+    .catch(err => {
+      throw err;
+    });
 }

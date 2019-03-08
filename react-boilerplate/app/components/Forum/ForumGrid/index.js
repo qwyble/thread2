@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Route, Link } from 'react-router-dom';
+import React from 'react';
+import { Route, Link, Switch } from 'react-router-dom';
 
 import ForumCategories from 'containers/Forum/ForumCategories';
 import ForumFeed from 'containers/Forum/Feed';
@@ -16,9 +16,11 @@ const ForumGrid = () => (
         <ForumCategories />
       </div>
       <div className="col-sm-8">
-        <Route path="/forum/post" component={ThreadComposer} />
-        <Route path="/forum/thread/:id" component={ThreadContainer} />
-        <Route exact path="/forum" component={ThreadsTableContainer} />
+        <Switch>
+          <Route path="/forum/post" component={ThreadComposer} />
+          <Route path="/forum/thread/:id" component={ThreadContainer} />
+          <Route exact path="/forum" component={ThreadsTableContainer} />
+        </Switch>
       </div>
       <div className="col-sm-2">
         <Link to="/forum/post">

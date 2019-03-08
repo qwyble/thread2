@@ -13,6 +13,7 @@ import {
   SET_IS_PUBLIC,
   GET_CATEGORIES,
   GET_CATEGORIES_COMPLETED,
+  SELECT_CATEGORY,
 } from './constants';
 
 import { ADD_CAT_TO_CATS } from './CategoryModifiers/AddCategory/constants';
@@ -20,8 +21,9 @@ import { DELETE_CAT_FROM_CATS } from './CategoryModifiers/DeleteCategory/constan
 import { EDIT_CAT_IN_CATS } from './CategoryModifiers/RenameCategory/constants';
 
 const initialState = fromJS({
-  categories: fromJS({}),
+  categories: [],
   isLoading: true,
+  selectedCategory: {},
 });
 
 export default function Categories(state = initialState, action) {
@@ -32,6 +34,14 @@ export default function Categories(state = initialState, action) {
       return state
         .set('categories', fromJS(action.cats))
         .set('isLoading', false);
+    case SELECT_CATEGORY: {
+      const cat =
+        state.getIn(['selectedCategory', 'catid']) ===
+        action.category.get('catid')
+          ? fromJS({})
+          : action.category;
+      return state.set('selectedCategory', cat);
+    }
     case ADD_CAT_TO_CATS:
       return state.update('categories', categories =>
         categories.push(fromJS(action.category))

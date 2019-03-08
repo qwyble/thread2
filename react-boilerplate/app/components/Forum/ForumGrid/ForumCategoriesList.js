@@ -8,6 +8,8 @@ const ForumCategoriesList = ({ categories, onSelectCategory }) => (
     <MenuMapper
       renderField="text"
       valueField="value"
+      link
+      to="/forum"
       as="button"
       onClick={onSelectCategory}
     >

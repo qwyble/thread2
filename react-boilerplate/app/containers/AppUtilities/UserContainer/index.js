@@ -8,7 +8,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import injectSaga from 'utils/injectSaga';
 
 import ErrorWrapper from 'containers/Wrappers/ErrorWrapper';
-import Loader from 'components/common/Loader';
+import LoaderWrapper from 'containers/Wrappers/LoaderWrapper';
 import LoadableProtected from 'components/Authentication/Protected/Loadable';
 import LoadableLoginContainer from 'containers/Authentication/LoginContainer/Loadable';
 import { makeSelectIsLoggedIn, makeSelectIsLoading } from './selectors';
@@ -26,46 +26,36 @@ class UserContainer extends React.Component {
   };
 
   render() {
-    if (this.props.isLoading) {
-      return (
-        <div>
-          <Loader
-            message="authenticating"
-            style={{ marginTop: '30vh' }}
-            active
-            inline="centered"
-          />
-        </div>
-      );
-    }
     return (
-      <BrowserRouter>
-        <div className="container-fluid">
-          <ErrorWrapper />
-          <Switch>
-            <Route
-              path="/auth"
-              render={props => (
-                <LoadableLoginContainer
-                  {...props}
-                  isLoggedIn={this.props.isLoggedIn}
-                  onAuth={this.props.onAuth}
-                />
-              )}
-            />
-            <Route
-              path="/"
-              render={props => (
-                <LoadableProtected
-                  {...props}
-                  isLoggedIn={this.props.isLoggedIn}
-                  onLogout={this.handleLogout}
-                />
-              )}
-            />
-          </Switch>
-        </div>
-      </BrowserRouter>
+      <LoaderWrapper isLoading={this.props.isLoading} message="authenticating">
+        <BrowserRouter>
+          <div className="container-fluid">
+            <ErrorWrapper />
+            <Switch>
+              <Route
+                path="/auth"
+                render={props => (
+                  <LoadableLoginContainer
+                    {...props}
+                    isLoggedIn={this.props.isLoggedIn}
+                    onAuth={this.props.onAuth}
+                  />
+                )}
+              />
+              <Route
+                path="/"
+                render={props => (
+                  <LoadableProtected
+                    {...props}
+                    isLoggedIn={this.props.isLoggedIn}
+                    onLogout={this.handleLogout}
+                  />
+                )}
+              />
+            </Switch>
+          </div>
+        </BrowserRouter>
+      </LoaderWrapper>
     );
   }
 }

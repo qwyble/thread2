@@ -51,3 +51,11 @@ input[type='checkbox']:checked {
 svg.svg-inline--fa.fa-pause > path {
   color: rgb(90, 253, 68) !important;
 }
+
+
+.ui.rating .icon {
+  color: rgba(2, 255, 255, 0.246);
+}
+.ui.rating .selected.icon {
+  color: rgba(2, 255, 255, 0.781);
+}

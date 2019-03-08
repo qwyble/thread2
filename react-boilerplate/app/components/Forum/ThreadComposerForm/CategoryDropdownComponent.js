@@ -1,22 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Dropdown } from 'semantic-ui-react';
+import SearchDropdown from 'components/common/Dropdowns/SearchDropdown';
 
 class CategoryDropdownComponent extends React.Component {
-  onDropdownChange = (e, d) => {
-    this.props.onChange(d);
-  };
-
   render() {
     return (
-      <Dropdown
-        fluid
-        search
-        selection
-        name={this.props.name}
-        value={this.props.value}
+      <SearchDropdown
         options={this.props.categories}
-        onChange={this.onDropdownChange}
+        onSelect={this.props.onSelect}
         placeholder={this.props.placeholder}
       />
     );
@@ -24,10 +15,8 @@ class CategoryDropdownComponent extends React.Component {
 }
 
 CategoryDropdownComponent.propTypes = {
-  name: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
   categories: PropTypes.object.isRequired,
-  onChange: PropTypes.func,
+  onSelect: PropTypes.func.isRequired,
   placeholder: PropTypes.string.isRequired,
 };
 

@@ -33,9 +33,9 @@ function postThreadRequest(thread) {
     method: 'post',
     url: 'https://thread-204819.appspot.com/postThread',
     data: {
-      subject: thread.subject,
-      body: thread.body,
-      category: thread.category,
+      subject: thread.subject.value,
+      body: thread.body.value,
+      category: thread.category.value,
       date: thread.date,
     },
     withCredentials: true,

@@ -19,7 +19,9 @@ export default function MessageViewContainerReducer(
     case GET_MESSAGE:
       return state.set('isLoading', true);
     case GET_MESSAGE_COMPLETED:
-      return state.set('isLoading', false).set('message', action.message);
+      return state
+        .set('isLoading', false)
+        .set('message', fromJS(action.message));
     case GET_MESSAGE_FAILED:
       return state.set('isLoading', false);
     default:

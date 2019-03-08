@@ -1,35 +1,39 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button } from 'semantic-ui-react';
+import { Menu } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
 import EditPlaylistPortal from 'components/SideBar/Playlists/PlaylistModifiers/EditPlaylistPortal';
 import IsSideBarOwner from 'containers/Wrappers/IsSideBarOwner';
 
+require('./css.css');
+
 const Playlist = props => (
-  <div>
-    <Link to={`/playlist/${props.id}`}>
-      <Button
-        inverted
-        size="mini"
-        color="blue"
+  <Menu.Item className="playlistTab">
+    <IsSideBarOwner>
+      <EditPlaylistPortal
+        id={props.playlist.get('plid')}
+        playlist={props.playlist.get('plname')}
+      />
+    </IsSideBarOwner>
+    <Link
+      to={`/playlist/${props.playlist.get('plid')}`}
+      style={{ flexGrow: '1' }}
+    >
+      <button
+        type="button"
         className="playlistButton"
-        id={props.id}
-        playlist={props.playlist}
+        id={props.playlist.get('plid')}
         onClick={props.onSelectPlaylist}
       >
-        {props.playlist}
-      </Button>
+        {props.playlist.get('plname')}
+      </button>
     </Link>
-    <IsSideBarOwner>
-      <EditPlaylistPortal id={props.id} playlist={props.playlist} />
-    </IsSideBarOwner>
-  </div>
+  </Menu.Item>
 );
 
 Playlist.propTypes = {
-  id: PropTypes.string.isRequired,
-  playlist: PropTypes.string.isRequired,
+  playlist: PropTypes.object.isRequired,
   onSelectPlaylist: PropTypes.func,
 };
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Segment } from 'semantic-ui-react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 
 import MessageViewContainer from 'containers/Messages/MessageViewContainer';
 import MessageComposer from 'containers/Messages/MessageComposer';
@@ -16,7 +16,13 @@ const MessagesRouter = () => (
         <Switch>
           <Route path="/messages/view" component={MessageViewContainer} />
           <Route path="/messages/compose" component={MessageComposer} />
-          <Route path="/messages" component={MessagesListContainer} />
+          <Route path="/messages/sent" component={MessagesListContainer} />
+          <Route path="/messages/inbox" component={MessagesListContainer} />
+          <Redirect
+            from="*"
+            to="/messages/inbox"
+            component={MessagesListContainer}
+          />
         </Switch>
       </Container>
     </Segment>

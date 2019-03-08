@@ -37,7 +37,7 @@ ForumCategories.propTypes = {
   getCategories: PropTypes.func.isRequired,
   categories: PropTypes.object.isRequired,
   setCategory: PropTypes.func.isRequired,
-  isLoading: PropTypes.bool,
+  isLoading: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = () =>
