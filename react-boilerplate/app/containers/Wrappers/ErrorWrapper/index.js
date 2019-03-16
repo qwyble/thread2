@@ -18,9 +18,9 @@ require('./css.css');
 
 const ErrorWrapper = props => (
   <Portal open={!!props.error.length} className="errorSegment">
-    <Segment>
+    <div className="ui segment padded">
       <div>{props.error ? <div>{props.error}</div> : <div />}</div>
-    </Segment>
+    </div>
   </Portal>
 );
 

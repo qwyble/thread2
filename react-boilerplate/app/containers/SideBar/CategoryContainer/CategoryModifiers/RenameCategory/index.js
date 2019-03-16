@@ -19,16 +19,20 @@ import { makeSelectIsLoading } from './selectors';
 const RenameCategory = props => (
   <LoaderWrapper isLoading={props.isLoading}>
     <RenameCategoryForm
+      id={props.id}
       onCancel={props.onClosePortal}
       onRenameCategory={props.editCategory}
+      catname={props.catname}
     />
   </LoaderWrapper>
 );
 
 RenameCategory.propTypes = {
-  isLoading: PropTypes.bool,
+  id: PropTypes.number.isRequired,
+  isLoading: PropTypes.bool.isRequired,
   editCategory: PropTypes.func.isRequired,
   onClosePortal: PropTypes.func.isRequired,
+  catname: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -45,7 +49,7 @@ const withConnect = connect(
 );
 
 const withReducer = injectReducer({ key: 'RenameCategory', reducer });
-const withSaga = injectSaga({ key: 'RemoveCategory', saga });
+const withSaga = injectSaga({ key: 'RenameCategory', saga });
 
 export default compose(
   withReducer,

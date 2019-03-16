@@ -2,7 +2,6 @@ import {
   ADD_CATEGORY,
   ADD_CATEGORY_SUCCESS,
   ADD_CATEGORY_FAILED,
-  ADD_CAT_TO_CATS,
 } from './constants';
 
 export function addCategory(category) {
@@ -12,15 +11,9 @@ export function addCategory(category) {
   };
 }
 
-export function addCategorySuccess() {
+export function addCategorySuccess(category) {
   return {
     type: ADD_CATEGORY_SUCCESS,
-  };
-}
-
-export function addCategoryToCats(category) {
-  return {
-    type: ADD_CAT_TO_CATS,
     category,
   };
 }

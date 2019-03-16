@@ -40,7 +40,7 @@ class SearchDropdown extends Component {
 
   render() {
     return (
-      <div className="dropdown-group">
+      <div>
         <div>
           <SearchInput
             placeholder={this.props.placeholder}

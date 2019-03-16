@@ -13,6 +13,20 @@ pre {
 path {
   color: rgba(125, 254, 252, 0.866);
 }
+
+p {
+  margin-bottom: 0;
+}
+
+.highlighted.span {
+  color: rgba(125, 254, 252, 0.866);
+
+}
+
+.warning {
+  color: rgb(254, 134, 134);
+}
+
 svg {
   margin-left: 0.5em;
   margin-right: 0.5em;
@@ -132,7 +146,7 @@ i.icon {
 }
 
 .ui.segment.padded {
-  padding: 4em;
+  padding: .75em;
 }
 
 .ui.segment.light {
@@ -158,6 +172,7 @@ i.icon {
 
 input.ui.input,
 .ui.icon.input input {
+  height: 2em;
   border-radius: 0px !important;
   border-width: 1px;
   border-style: solid;

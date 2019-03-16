@@ -18,8 +18,14 @@ export default function* rootSaga() {
 }
 
 function* getProfileSaga(action) {
+  const { id, by } = action;
   try {
-    const profile = yield call(getProfileRequest, action.profileId);
+    let profile;
+    if (by === 'profileId') {
+      profile = yield call(getProfileRequest, id);
+    } else if (by === 'plid') {
+      profile = yield call(getProfileByPlaylistRequest, id);
+    }
     yield put(getProfileSuccess(profile));
   } catch (err) {
     yield put(getProfileFailed());
@@ -28,9 +34,16 @@ function* getProfileSaga(action) {
 }
 
 function* setParamsContext(action) {
-  if (action.params.profile) yield put(getProfile(action.params.profile));
-  else {
-    const user = yield select(makeSelectUser());
+  const user = yield select(makeSelectUser());
+  if (action.params.profile) {
+    if (user.get('idUsers') === action.params.profile) {
+      yield put(setProfile(user));
+    } else {
+      yield put(getProfile(action.params.profile, 'profileId'));
+    }
+  } else if (action.params.playlist) {
+    yield put(getProfile(action.params.playlist, 'plid'));
+  } else {
     yield put(setProfile(user));
   }
 }
@@ -41,7 +54,19 @@ function getProfileRequest(profileId) {
     url: `https://thread-204819.appspot.com/getProfile/${profileId}`,
     withCredentials: true,
   })
-    .then(response => response.data)
+    .then(response => response.data[0])
+    .catch(err => {
+      throw err;
+    });
+}
+
+function getProfileByPlaylistRequest(plid) {
+  return axios({
+    method: 'get',
+    url: `https://thread-204819.appspot.com/getProfileByPlaylist/${plid}`,
+    withCredentials: true,
+  })
+    .then(response => response.data[0])
     .catch(err => {
       throw err;
     });

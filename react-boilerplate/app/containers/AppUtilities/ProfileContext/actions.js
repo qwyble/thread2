@@ -13,10 +13,11 @@ export function setProfile(profile) {
   };
 }
 
-export function getProfile(profileId) {
+export function getProfile(id, by) {
   return {
     type: GET_PROFILE,
-    profileId,
+    id,
+    by,
   };
 }
 
@@ -36,6 +37,7 @@ export function getProfileFailed() {
 export function setParamsContext(match) {
   const { params } = { ...match };
   const root = match.path.split('/')[1];
+  console.log(params);
   return {
     type: SET_PARAMS_CONTEXT,
     params,

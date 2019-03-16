@@ -20,15 +20,17 @@ const DeleteCategory = props => (
   <LoaderWrapper isLoading={props.isLoading}>
     <DeleteCategoryForm
       onCancel={props.onClosePortal}
-      onDeleteCategory={props.deleteCategory}
+      onDelete={props.deleteCategory}
+      catname={props.catname}
     />
   </LoaderWrapper>
 );
 
 DeleteCategory.propTypes = {
-  isLoading: PropTypes.bool,
+  isLoading: PropTypes.bool.isRequired,
   deleteCategory: PropTypes.func.isRequired,
   onClosePortal: PropTypes.func.isRequired,
+  catname: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({

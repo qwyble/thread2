@@ -5,11 +5,7 @@ import { setError } from 'containers/Wrappers/ErrorWrapper/actions';
 
 import { ADD_CATEGORY } from './constants';
 
-import {
-  addCategorySuccess,
-  addCategoryFailed,
-  addCategoryToCats,
-} from './actions';
+import { addCategorySuccess, addCategoryFailed } from './actions';
 
 export default function* sideBarSaga() {
   yield takeLatest(ADD_CATEGORY, addCategory);
@@ -17,9 +13,13 @@ export default function* sideBarSaga() {
 
 function* addCategory(action) {
   try {
-    const category = yield call(addCatRequest, action.category);
-    yield put(addCategorySuccess());
-    yield put(addCategoryToCats(category));
+    const catid = yield call(addCatRequest, action.category);
+    const category = {
+      catname: action.category,
+      catid,
+      pls: [],
+    };
+    yield put(addCategorySuccess(category));
   } catch (err) {
     yield put(addCategoryFailed());
     yield put(setError(err.message));
@@ -33,7 +33,7 @@ function addCatRequest(category) {
     data: { category },
     withCredentials: true,
   })
-    .then(result => result.data)
+    .then(result => result.data[0])
     .catch(err => {
       throw err;
     });

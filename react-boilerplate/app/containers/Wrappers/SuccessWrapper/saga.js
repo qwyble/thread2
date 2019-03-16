@@ -8,6 +8,6 @@ export default function* successSaga() {
 }
 
 function* successDelay() {
-  yield call(delay, 5000);
+  yield call(delay, 2500);
   yield put(removeSuccess());
 }

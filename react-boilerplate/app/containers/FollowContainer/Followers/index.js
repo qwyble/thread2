@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Grid } from 'semantic-ui-react';
 import { createStructuredSelector } from 'reselect';
 
 import { connect } from 'react-redux';

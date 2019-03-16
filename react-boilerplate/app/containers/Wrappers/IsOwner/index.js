@@ -5,7 +5,7 @@ import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 import { makeSelectIsOwner } from 'containers/AppUtilities/ProfileContext/selectors';
 
-const IsSideBarOwner = props => (
+const IsOwner = props => (
   <div>
     {props.isOwner ? (
       <div style={{ height: '100%' }}>{props.children}</div>
@@ -15,7 +15,7 @@ const IsSideBarOwner = props => (
   </div>
 );
 
-IsSideBarOwner.propTypes = {
+IsOwner.propTypes = {
   alt: PropTypes.element,
   isOwner: PropTypes.bool.isRequired,
   children: PropTypes.node.isRequired,
@@ -28,4 +28,4 @@ const mapStateToProps = () =>
 
 const withConnect = connect(mapStateToProps);
 
-export default compose(withConnect)(IsSideBarOwner);
+export default compose(withConnect)(IsOwner);

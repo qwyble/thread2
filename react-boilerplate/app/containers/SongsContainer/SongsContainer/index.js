@@ -10,6 +10,7 @@ import { connect } from 'react-redux';
 
 import injectSaga from 'utils/injectSaga';
 
+import { makeSelectParams } from 'containers/AppUtilities/ProfileContext/selectors';
 import { getSongs, sortBy, selectAll } from './actions';
 
 import saga from './saga';
@@ -24,7 +25,7 @@ class SongsContainer extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.location.pathname !== prevProps.location.pathname) {
+    if (this.props.param !== prevProps.param) {
       this.props.getSongs();
     }
   }
@@ -48,13 +49,14 @@ SongsContainer.propTypes = {
   sortBy: PropTypes.func.isRequired,
   getSongs: PropTypes.func.isRequired,
   isLoading: PropTypes.bool.isRequired,
-  location: PropTypes.object.isRequired,
   allSelected: PropTypes.bool.isRequired,
+  param: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
   isLoading: makeSelectIsLoading(),
   allSelected: makeSelectAllSelected(),
+  param: makeSelectParams(),
 });
 
 const mapDispatchToProps = {

@@ -4,11 +4,17 @@ import { makeSelectPathnameRoot } from 'containers/AppUtilities/ProfileContext/s
 export const makeSelectIsNotStream = () =>
   createSelector(
     makeSelectPathnameRoot(),
-    path => path === 'profile' || path === 'playlist'
+    path => path !== 'stream'
   );
 
 export const makeSelectIsStream = () =>
   createSelector(
     makeSelectPathnameRoot(),
     path => path === 'stream' || path === ''
+  );
+
+export const makeSelectIsNotProfile = () =>
+  createSelector(
+    makeSelectPathnameRoot(),
+    path => path !== 'profile'
   );

@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 
-const selectDeleteCategoryContainer = () => state.get('DeleteCategory');
+const selectDeleteCategoryContainer = state => state.get('DeleteCategory');
 
 export const makeSelectIsLoading = () =>
   createSelector(

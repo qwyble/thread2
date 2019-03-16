@@ -39,5 +39,5 @@ function postThreadRequest(thread) {
       date: thread.date,
     },
     withCredentials: true,
-  });
+  }).then(result => result);
 }

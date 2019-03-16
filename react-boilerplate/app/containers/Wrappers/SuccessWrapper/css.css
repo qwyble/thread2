@@ -1,6 +1,5 @@
-.errorSegment {
-  background-color: rgba(12, 214, 137, 0.6);
-  color: rgba(12, 214, 137, 0.9);
+.successSegment {
+  background-color: rgba(79, 158, 157, 0.644);
   text-align: center;
   position: fixed;
   top: 0;

@@ -2,7 +2,6 @@ import {
   EDIT_CATEGORY,
   EDIT_CATEGORY_SUCCESS,
   EDIT_CATEGORY_FAILED,
-  EDIT_CAT_IN_CATS,
 } from './constants';
 
 export function editCategory(category) {
@@ -12,15 +11,9 @@ export function editCategory(category) {
   };
 }
 
-export function editCategorySuccess() {
+export function editCategorySuccess(category) {
   return {
     type: EDIT_CATEGORY_SUCCESS,
-  };
-}
-
-export function editCategoryInCats(category) {
-  return {
-    type: EDIT_CAT_IN_CATS,
     category,
   };
 }

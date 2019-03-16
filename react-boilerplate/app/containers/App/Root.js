@@ -24,11 +24,11 @@ const Root = () => (
       <Switch>
         <Route path="/stream" component={LoadableProfileContext} />
         <Route path="/playlist/:playlist" component={LoadableProfileContext} />
+        <Route path="/profile/:profile" component={LoadableProfileContext} />
         <Route path="/explore" component={LoadableExplorer} />
         <Route path="/following" component={LoadableFollowing} />
         <Route path="/followers" component={LoadableFollowers} />
         <Route path="/forum" component={LoadableForumGrid} />
-        <Route path="/profile/:profile" component={LoadableProfileContext} />
         <Route exact path="/edit" component={LoadableProfileContainer} />
         <Route path="/messages" component={LoadableMessagesRouter} />
         <Route path="/song/:song" component={LoadableSongDetails} />

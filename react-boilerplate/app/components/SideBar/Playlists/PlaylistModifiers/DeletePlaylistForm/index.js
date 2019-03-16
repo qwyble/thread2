@@ -3,21 +3,20 @@ import PropTypes from 'prop-types';
 import { Button } from 'semantic-ui-react';
 
 const DeletePlaylistForm = props => (
-  <div>
+  <div style={{ textAlign: 'center' }}>
     <p>
-      Are you sure you want to delete the
-      {props.playlist}
-      playlist?
+      Are you sure you want to delete <br />
+      <span className="highlighted span">{props.plname} </span>?
     </p>
-    <Button onClick={props.onCancel}>no</Button>
     <Button onClick={props.onDelete}>yes</Button>
+    <Button onClick={props.onCancel}>no</Button>
   </div>
 );
 
 DeletePlaylistForm.propTypes = {
-  onDelete: PropTypes.func,
-  onCancel: PropTypes.func,
-  playlist: PropTypes.string.isRequired,
+  onDelete: PropTypes.func.isRequired,
+  onCancel: PropTypes.func.isRequired,
+  plname: PropTypes.string.isRequired,
 };
 
 export default DeletePlaylistForm;

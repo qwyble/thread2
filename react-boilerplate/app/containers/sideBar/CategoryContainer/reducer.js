@@ -1,24 +1,18 @@
 import { fromJS } from 'immutable';
-import { combineReducers } from 'redux';
-
-import { ADD_PL_TO_CAT } from 'containers/SideBar/PlaylistContainer/PlaylistModifiers/AddPlaylist/constants';
-import { REMOVE_PL_FROM_CAT } from 'containers/SideBar/PlaylistContainer/PlaylistModifiers/DeletePlaylist/constants';
-
-import AddCategory from './CategoryModifiers/AddCategory/reducer';
-import DeleteCategory from './CategoryModifiers/DeleteCategory/reducer';
-import RenameCategory from './CategoryModifiers/RenameCategory/reducer';
 
 import {
-  RENAME_PL_IN_CAT,
   SET_IS_PUBLIC,
   GET_CATEGORIES,
   GET_CATEGORIES_COMPLETED,
   SELECT_CATEGORY,
 } from './constants';
 
-import { ADD_CAT_TO_CATS } from './CategoryModifiers/AddCategory/constants';
-import { DELETE_CAT_FROM_CATS } from './CategoryModifiers/DeleteCategory/constants';
-import { EDIT_CAT_IN_CATS } from './CategoryModifiers/RenameCategory/constants';
+import { ADD_CATEGORY_SUCCESS } from './CategoryModifiers/AddCategory/constants';
+import { DELETE_CATEGORY_SUCCESS } from './CategoryModifiers/DeleteCategory/constants';
+import { EDIT_CATEGORY_SUCCESS } from './CategoryModifiers/RenameCategory/constants';
+import { ADD_PLAYLIST_SUCCESS } from '../PlaylistContainer/PlaylistModifiers/AddPlaylist/constants';
+import { DELETE_PLAYLIST_SUCCESS } from '../PlaylistContainer/PlaylistModifiers/DeletePlaylist/constants';
+import { RENAME_PLAYLIST_SUCCESS } from '../PlaylistContainer/PlaylistModifiers/RenamePlaylist/constants';
 
 const initialState = fromJS({
   categories: [],
@@ -42,42 +36,55 @@ export default function Categories(state = initialState, action) {
           : action.category;
       return state.set('selectedCategory', cat);
     }
-    case ADD_CAT_TO_CATS:
+    case ADD_CATEGORY_SUCCESS:
       return state.update('categories', categories =>
         categories.push(fromJS(action.category))
       );
-    case DELETE_CAT_FROM_CATS:
+    case DELETE_CATEGORY_SUCCESS:
       return state.update('categories', categories =>
-        categories.filter(cat => cat.catid !== action.catId)
+        categories.filter(cat => cat.get('catid') !== action.catid)
       );
-    case EDIT_CAT_IN_CATS: {
+    case EDIT_CATEGORY_SUCCESS: {
       const index = state
         .get('categories')
-        .findIndex(i => i.catid === action.category.catid);
-      return state.updateIn(['categories', index], fromJS(action.category));
+        .findIndex(i => i.get('catid') === action.category.catid);
+      return state.setIn(
+        ['categories', index, 'catname'],
+        fromJS(action.category.name)
+      );
     }
-    case ADD_PL_TO_CAT:
-      return state.update('categories', cats =>
-        cats
-          .find(cat => cat.catid === action.catId)
-          .update('pls', pls => pls.push(fromJS(action.playlist)))
-      );
-    case REMOVE_PL_FROM_CAT:
-      return state.update('categories', cats =>
-        cats
-          .find(cat => cat.catid === action.catid)
-          .update('pls', pls => pls.filter(pl => pl.plid !== action.plId))
-      );
-    case RENAME_PL_IN_CAT: {
+    case ADD_PLAYLIST_SUCCESS: {
       const catIndex = state
         .get('categories')
-        .findIndex(cat => cat.pls.findIndex(pl => pl.plid === action.plid));
+        .findIndex(cat => cat.get('catid') === action.catid);
+      return state.updateIn(['categories', catIndex], cat =>
+        cat.update('pls', pls => pls.push(fromJS(action.playlist)))
+      );
+    }
+    case DELETE_PLAYLIST_SUCCESS: {
+      const catIndex = state
+        .get('categories')
+        .findIndex(cat => cat.get('catid') === action.catid);
+      return state.updateIn(['categories', catIndex], cat =>
+        cat.update('pls', pls =>
+          pls.filter(pl => pl.get('plid') !== action.plid)
+        )
+      );
+    }
+    case RENAME_PLAYLIST_SUCCESS: {
+      const catIndex = state
+        .get('categories')
+        .findIndex(
+          cat =>
+            cat.get('pls').findIndex(pl => pl.get('plid') === action.plid) !==
+            -1
+        );
       const plIndex = state
         .getIn(['categories', catIndex, 'pls'])
-        .findIndex(pl => pl.plid === action.plid);
-      return state.updateIn(
+        .findIndex(pl => pl.get('plid') === action.plid);
+      return state.setIn(
         ['categories', catIndex, 'pls', plIndex, 'plname'],
-        action.plname
+        action.newName
       );
     }
     case SET_IS_PUBLIC: {

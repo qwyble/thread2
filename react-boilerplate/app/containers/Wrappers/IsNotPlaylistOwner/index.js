@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
-import { makeSelectSelectedPlIsOwner } from 'containers/SideBar/PlaylistContainer/selectors';
+import { makeSelectIsOwner } from 'containers/AppUtilities/ProfileContext/selectors';
 
 const IsNotPlaylistOwner = props => (
   <span>
@@ -23,7 +23,7 @@ IsNotPlaylistOwner.propTypes = {
 
 const mapStateToProps = () =>
   createStructuredSelector({
-    isOwner: makeSelectSelectedPlIsOwner(),
+    isOwner: makeSelectIsOwner(),
   });
 
 const withConnect = connect(mapStateToProps);

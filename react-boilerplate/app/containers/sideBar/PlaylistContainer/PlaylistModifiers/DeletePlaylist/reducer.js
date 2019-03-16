@@ -7,8 +7,7 @@ import {
 } from './constants';
 
 const initialState = fromJS({
-  isLoading: true,
-  didDelete: false,
+  isLoading: false,
 });
 
 export default function deletePlaylistReducer(state = initialState, action) {
@@ -16,7 +15,7 @@ export default function deletePlaylistReducer(state = initialState, action) {
     case DELETE_PLAYLIST:
       return state.set('isLoading', true);
     case DELETE_PLAYLIST_SUCCESS:
-      return state.set('isLoading', false).set('didDelete', true);
+      return state.set('isLoading', false);
     case DELETE_PLAYLIST_FAILED:
       return state.set('isLoading', false);
     default:

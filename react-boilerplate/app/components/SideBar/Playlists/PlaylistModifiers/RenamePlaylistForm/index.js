@@ -14,14 +14,14 @@ class RenamePlaylistForm extends React.Component {
     return null;
   }
 
-  handleRenameSubmit = () => {
-    const plid = { ...this.props.plid };
+  handleRenameSubmit = e => {
+    e.preventDefault();
     const plname = this.state.newName;
     if (plname.length < 3) {
       this.setState({ err: 'category name must be at least 3 characters' });
       return;
     }
-    this.props.onRenamePlaylist({ plid, plname });
+    this.props.onRenamePlaylist(plname);
   };
 
   handleRenameChange = e => {
@@ -32,29 +32,39 @@ class RenamePlaylistForm extends React.Component {
     return (
       <div>
         <p>Enter a new name:</p>
-        <Form onSubmit={this.handleRenameSubmit}>
-          <Input
-            type="text"
-            style={{ width: '100%' }}
-            value={this.state.newName}
-            onChange={this.handleRenameChange}
-            placeholder={this.props.plname}
-          />
-          {this.state.err}
-          <Button onClick={this.props.onCanel}>Cancel</Button>
-          <Button type="submit">Ok</Button>
-        </Form>
+        <form onSubmit={this.handleRenameSubmit}>
+          <div>
+            <input
+              className="ui input"
+              type="text"
+              value={this.state.newName}
+              onChange={this.handleRenameChange}
+              placeholder={this.props.plname}
+            />
+          </div>
+          <div>{this.state.err}</div>
+          <div>
+            <button
+              type="button"
+              className="ui button"
+              onClick={this.props.onCancel}
+            >
+              Cancel
+            </button>
+            <button type="submit" className="ui button">
+              Ok
+            </button>
+          </div>
+        </form>
       </div>
     );
   }
 }
 
 RenamePlaylistForm.propTypes = {
-  err: PropTypes.object.isRequired,
-  plid: PropTypes.string.isRequired,
   plname: PropTypes.string.isRequired,
-  onRenamePlaylist: PropTypes.func,
-  onCancel: PropTypes.func,
+  onRenamePlaylist: PropTypes.func.isRequired,
+  onCancel: PropTypes.func.isRequired,
 };
 
 export default RenamePlaylistForm;

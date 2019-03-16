@@ -6,12 +6,8 @@ import {
   RENAME_PLAYLIST_SUCCESS,
 } from './constants';
 
-const blankError = fromJS({});
-
 const initialState = fromJS({
-  isLoading: true,
-  error: blankError,
-  didRename: false,
+  isLoading: false,
 });
 
 export default function renamePlaylistReducer(state = initialState, action) {
@@ -19,7 +15,7 @@ export default function renamePlaylistReducer(state = initialState, action) {
     case RENAME_PLAYLIST:
       return state.set('isLoading', true);
     case RENAME_PLAYLIST_SUCCESS:
-      return state.set('isLoading', false).set('didRename', true);
+      return state.set('isLoading', false);
     case RENAME_PLAYLIST_FAILED:
       return state.set('isLoading', false);
     default:

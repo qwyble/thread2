@@ -13,9 +13,3 @@ export const makeSelectIsLoading = () =>
     makeSelectDeletePlaylistState(),
     deletePlaylist => deletePlaylist.get('isLoading')
   );
-
-export const makeSelectDidDelete = () =>
-  createSelector(
-    makeSelectDeletePlaylistState(),
-    state => state.get('didDelete')
-  );

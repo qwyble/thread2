@@ -37,6 +37,7 @@ class SongRowsContainer extends Component {
   };
 
   render() {
+    console.log(this.props.songs.toJS());
     return (
       <tbody style={{ display: 'block', overflow: 'scroll', height: '91%' }}>
         {this.props.songs.map((song, key) => (

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
@@ -12,42 +12,30 @@ import LoaderWrapper from 'containers/Wrappers/LoaderWrapper';
 
 import saga from './saga';
 import { deletePlaylist } from './actions';
-import { makeSelectIsLoading, makeSelectDidDelete } from './selectors';
+import { makeSelectIsLoading } from './selectors';
+import { makeSelectEditedPlaylistName } from '../EditPlaylistPortal/selectors';
 
-class DeletePlaylist extends Component {
-  componentDidUpdate() {
-    if (this.props.didDelete) this.props.onClosePortal();
-  }
-
-  handleDelete() {
-    this.props.deletePlaylist(this.props.id);
-  }
-
-  render() {
-    return (
-      <LoaderWrapper isLoading={this.props.isLoading}>
-        <DeletePlaylistForm
-          plname={this.props.plname}
-          onDelete={this.handleDelete}
-          onCancel={this.props.onClosePortal}
-        />
-      </LoaderWrapper>
-    );
-  }
-}
+const DeletePlaylist = props => (
+  <LoaderWrapper isLoading={props.isLoading}>
+    <DeletePlaylistForm
+      plname={props.plname}
+      onDelete={props.deletePlaylist}
+      onCancel={props.onClosePortal}
+    />
+  </LoaderWrapper>
+);
 
 DeletePlaylist.propTypes = {
-  id: PropTypes.string.isRequired,
   isLoading: PropTypes.bool.isRequired,
-  didDelete: PropTypes.bool.isRequired,
   onClosePortal: PropTypes.func.isRequired,
   deletePlaylist: PropTypes.func.isRequired,
+  plname: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = () =>
   createStructuredSelector({
     isLoading: makeSelectIsLoading(),
-    didDelete: makeSelectDidDelete(),
+    plname: makeSelectEditedPlaylistName(),
   });
 
 const mapDispatchToProps = {
@@ -59,7 +47,7 @@ const withConnect = connect(
   mapDispatchToProps
 );
 
-const withSaga = injectSaga({ key: DeletePlaylist, saga });
+const withSaga = injectSaga({ key: 'DeletePlaylist', saga });
 
 export default compose(
   withSaga,

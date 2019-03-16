@@ -8,6 +8,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import injectSaga from 'utils/injectSaga';
 
 import ErrorWrapper from 'containers/Wrappers/ErrorWrapper';
+import SuccessWrapper from 'containers/Wrappers/SuccessWrapper';
 import LoaderWrapper from 'containers/Wrappers/LoaderWrapper';
 import LoadableProtected from 'components/Authentication/Protected/Loadable';
 import LoadableLoginContainer from 'containers/Authentication/LoginContainer/Loadable';
@@ -31,6 +32,7 @@ class UserContainer extends React.Component {
         <BrowserRouter>
           <div className="container-fluid">
             <ErrorWrapper />
+            <SuccessWrapper />
             <Switch>
               <Route
                 path="/auth"

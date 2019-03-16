@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { Button, Icon, Input, Form } from 'semantic-ui-react';
 import { Transition } from 'react-transition-group';
 
+require('./css.css');
+
 class RenderAddCategory extends React.Component {
   state = {
     categoryToAdd: '',
@@ -57,44 +59,35 @@ class RenderAddCategory extends React.Component {
         {state => (
           <div>
             <div className={className[state]}>
-              <div>
-                {this.state.displayForm ? (
+              {this.state.displayForm ? (
+                <div className="wide">
+                  <button
+                    type="button"
+                    className="ui button wide"
+                    onClick={this.handleToggle}
+                  >
+                    <Icon floated="right" name="minus" />
+                  </button>
+                  <input
+                    className="ui input new-cat-field"
+                    placeholder="new category"
+                    onChange={this.handleInputChange}
+                    value={this.state.categoryToAdd}
+                  />
                   <div>
-                    <Button
-                      fluid
-                      icon
-                      inverted
-                      size="mini"
-                      color="blue"
-                      onClick={this.handleToggle}
+                    <button
+                      className="ui button wide"
+                      type="button"
+                      onClick={this.handleAddClick}
+                      disabled={this.validate()}
                     >
-                      <Icon floated="right" name="minus" />
-                    </Button>
-                    <Input
-                      size="mini"
-                      placeholder="new category"
-                      onChange={this.handleInputChange}
-                      value={this.state.categoryToAdd}
-                    />
-                    <div title="asdcasdc">
-                      <Button
-                        fluid
-                        icon
-                        inverted
-                        size="mini"
-                        type="submit"
-                        color="blue"
-                        onClick={this.handleAddClick}
-                        disabled={this.validate()}
-                      >
-                        <Icon floated="right" name="plus" />
-                      </Button>
-                    </div>
+                      <Icon floated="right" name="plus" />
+                    </button>
                   </div>
-                ) : (
-                  <div />
-                )}
-              </div>
+                </div>
+              ) : (
+                <div />
+              )}
             </div>
             {this.state.displayForm ? (
               <div />

@@ -6,7 +6,7 @@ const PropChecker = ({ field, children, alt }) => {
 
   if (typeof field === 'object') {
     shouldRender = !!field.size;
-  } else shouldRender = field;
+  } else shouldRender = !!field;
 
   return (
     <div>

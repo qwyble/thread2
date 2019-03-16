@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Portal, Segment } from 'semantic-ui-react';
+import { Portal } from 'semantic-ui-react';
 import { createStructuredSelector } from 'reselect';
 
 import injectReducer from 'utils/injectReducer';
@@ -17,10 +17,12 @@ import { makeSelectSuccess } from './selectors';
 require('./css.css');
 
 const SuccessWrapper = props => (
-  <Portal open={!!props.success.length} className="errorSegment">
-    <Segment>
-      <div>{props.success ? <div>{props.success}</div> : <div />}</div>
-    </Segment>
+  <Portal open={!!props.success.length} className="successSegment">
+    <div className="ui segment padded">
+      <div className="successMessageBlock">
+          <div>{props.success ? <div>{props.success}</div> : <div />}</div>
+      </div>
+    </div>
   </Portal>
 );
 

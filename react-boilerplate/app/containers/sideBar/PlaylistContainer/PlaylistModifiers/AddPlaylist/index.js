@@ -6,7 +6,6 @@ import { createStructuredSelector } from 'reselect';
 
 import injectSaga from 'utils/injectSaga';
 import AddPlaylistForm from 'components/SideBar/Playlists/PlaylistModifiers/AddPlaylistForm';
-import LoaderWrapper from 'containers/Wrappers/LoaderWrapper';
 import saga from './saga';
 
 import { addPlaylist } from './actions';
@@ -14,9 +13,10 @@ import { addPlaylist } from './actions';
 import { makeSelectAddIsLoading } from './selectors';
 
 const AddPlaylist = props => (
-  <LoaderWrapper isLoading={props.isLoading}>
-    <AddPlaylistForm onAddPlaylist={props.addPlaylist} error={props.error} />
-  </LoaderWrapper>
+  <AddPlaylistForm
+    onAddPlaylist={props.addPlaylist}
+    isLoading={props.isLoading}
+  />
 );
 
 AddPlaylist.propTypes = {

@@ -1,9 +1,9 @@
 import { SET_SUCCESS, REMOVE_SUCCESS } from './constants';
 
-export function setSuccess(error) {
+export function setSuccess(success) {
   return {
     type: SET_SUCCESS,
-    error,
+    success,
   };
 }
 

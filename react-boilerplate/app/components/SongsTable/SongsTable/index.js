@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import TableLoader from './TableLoader';
 import TableHeader from 'components/SongsTable/TableHeader';
 import SongRowsContainer from 'containers/SongsContainer/SongRowsContainer';
 import ClonePortalWrapper from 'components/SongsTable/ClonePortal/ClonePortalWrapper';
@@ -10,6 +9,8 @@ import FollowContainer from 'containers/FollowContainer/FollowContainer';
 import SongRemoverPortalWrapper from 'components/SongsTable/PlaylistModifiers/SongRemover/SongRemoverPortalWrapper';
 import PublicityPortalWrapper from 'components/SongsTable/PlaylistModifiers/Publicity/PublicityPortalWrapper';
 import Paginator from 'containers/SongsContainer/Paginator';
+import PlaylistLoadingWrapper from 'containers/Wrappers/PlaylistLoadingWrapper';
+import TableLoader from './TableLoader';
 
 require('./css.css');
 

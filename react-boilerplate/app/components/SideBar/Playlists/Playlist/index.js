@@ -3,38 +3,49 @@ import PropTypes from 'prop-types';
 import { Menu } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
-import EditPlaylistPortal from 'components/SideBar/Playlists/PlaylistModifiers/EditPlaylistPortal';
-import IsSideBarOwner from 'containers/Wrappers/IsSideBarOwner';
+import EditPlaylistDropdown from 'components/SideBar/Playlists/PlaylistModifiers/EditPlaylistDropdown';
+import IsOwner from 'containers/Wrappers/IsOwner';
 
 require('./css.css');
 
-const Playlist = props => (
-  <Menu.Item className="playlistTab">
-    <IsSideBarOwner>
-      <EditPlaylistPortal
-        id={props.playlist.get('plid')}
-        playlist={props.playlist.get('plname')}
-      />
-    </IsSideBarOwner>
-    <Link
-      to={`/playlist/${props.playlist.get('plid')}`}
-      style={{ flexGrow: '1' }}
-    >
-      <button
-        type="button"
-        className="playlistButton"
-        id={props.playlist.get('plid')}
-        onClick={props.onSelectPlaylist}
-      >
-        {props.playlist.get('plname')}
-      </button>
-    </Link>
-  </Menu.Item>
-);
+class Playlist extends React.Component {
+  handleSetEditedPlaylist = whichPortal => {
+    this.props.onSetEditedPlaylist(this.props.playlist, whichPortal);
+  };
+
+  handleSetSelectedPlaylist = () => {
+    this.props.onSetPlaylist(this.props.playlist);
+  };
+
+  render() {
+    return (
+      <Menu.Item className="playlistTab">
+        <IsOwner>
+          <EditPlaylistDropdown
+            onSetEditedPlaylist={this.handleSetEditedPlaylist}
+          />
+        </IsOwner>
+        <Link
+          to={`/playlist/${this.props.playlist.get('plid')}`}
+          style={{ flexGrow: '1' }}
+        >
+          <button
+            type="button"
+            className="playlistButton"
+            onClick={this.handleSetSelectedPlaylist}
+          >
+            {this.props.playlist.get('plname')}
+          </button>
+        </Link>
+      </Menu.Item>
+    );
+  }
+}
 
 Playlist.propTypes = {
   playlist: PropTypes.object.isRequired,
-  onSelectPlaylist: PropTypes.func,
+  onSetPlaylist: PropTypes.func.isRequired,
+  onSetEditedPlaylist: PropTypes.func.isRequired,
 };
 
 export default Playlist;

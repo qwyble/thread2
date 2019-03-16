@@ -1,7 +1,6 @@
 .playlistTab {
     display: flex !important;
     flex-direction: row !important;
-    z-index: 0 !important;
     width: 100%;
     padding-right: 0px !important;
 }

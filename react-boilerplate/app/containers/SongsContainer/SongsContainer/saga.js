@@ -95,6 +95,7 @@ function* getSongs() {
 function* getUrl() {
   const path = yield select(makeSelectPathnameRoot());
   const pathParam = yield call(getParam, path);
+  console.log(path, pathParam);
   if (path.length < 2) return 'https://thread-204819.appspot.com/stream';
   if (path === 'stream') return 'https://thread-204819.appspot.com/stream';
   return `https://thread-204819.appspot.com/${path}/${pathParam}`;

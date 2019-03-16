@@ -7,6 +7,10 @@ import {
   faSearch,
   faPause,
   faSort,
+  faEllipsisV,
+  faEllipsisH,
+  faPlus,
+  faMinus,
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(
@@ -16,5 +20,9 @@ library.add(
   faPause,
   faAngleDoubleUp,
   faSearch,
-  faSort
+  faSort,
+  faEllipsisV,
+  faEllipsisH,
+  faPlus,
+  faMinus
 );

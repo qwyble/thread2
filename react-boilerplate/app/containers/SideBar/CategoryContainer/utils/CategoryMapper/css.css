@@ -1,0 +1,7 @@
+.item.category.menuItem.selected {
+    z-index: 10000;
+}
+
+.item.category.menuItem {
+    padding: 0;
+}

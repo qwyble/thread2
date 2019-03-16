@@ -4,16 +4,18 @@ import {
   RENAME_PLAYLIST_FAILED,
 } from './constants';
 
-export function renamePlaylist(playlist) {
+export function renamePlaylist(newName) {
   return {
     type: RENAME_PLAYLIST,
-    playlist,
+    newName,
   };
 }
 
-export function renamePlaylistSuccess() {
+export function renamePlaylistSuccess(plid, newName) {
   return {
     type: RENAME_PLAYLIST_SUCCESS,
+    plid,
+    newName,
   };
 }
 

@@ -5,24 +5,17 @@ import {
   REMOVE_PL_FROM_CAT,
 } from './constants';
 
-export function deletePlaylist(plId) {
+export function deletePlaylist() {
   return {
     type: DELETE_PLAYLIST,
-    plId,
   };
 }
 
-export function deletePlaylistSuccess() {
+export function deletePlaylistSuccess(catid, plid) {
   return {
     type: DELETE_PLAYLIST_SUCCESS,
-  };
-}
-
-export function removePlaylistFromCategory(plId, catId) {
-  return {
-    type: REMOVE_PL_FROM_CAT,
-    plId,
-    catId,
+    plid,
+    catid,
   };
 }
 

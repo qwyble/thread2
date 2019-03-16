@@ -6,6 +6,8 @@ import CategoryContainer from 'containers/SideBar/CategoryContainer';
 import CategoryListHeader from 'components/SideBar/SidebarHeader';
 import SongsContainer from 'containers/SongsContainer/SongsContainer';
 
+require('./css.css');
+
 const SideBar = props => (
   <Sidebar.Pushable as={Segment} className="primaryContainer">
     <Sidebar
@@ -16,6 +18,7 @@ const SideBar = props => (
       animation="push"
       as={Menu}
       visible
+      className="categories-sidebar"
     >
       <CategoryListHeader owner={props.owner} />
       <CategoryContainer />

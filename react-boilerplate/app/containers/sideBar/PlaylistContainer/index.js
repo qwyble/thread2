@@ -1,26 +1,29 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { createStructuredSelector } from 'reselect';
 
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { Menu } from 'semantic-ui-react';
 
-import IsSideBarOwner from 'containers/Wrappers/IsSideBarOwner';
-
+import IsOwner from 'containers/Wrappers/IsOwner';
 import Playlist from 'components/SideBar/Playlists/Playlist';
 import AddPlaylist from 'containers/SideBar/PlaylistContainer/PlaylistModifiers/AddPlaylist';
+import EditPlaylistPortal from 'containers/SideBar/PlaylistContainer/PlaylistModifiers/EditPlaylistPortal';
+
 import { setPlaylist } from 'containers/SideBar/PlaylistContainer/actions';
+import { setEditedPlaylist } from 'containers/SideBar/PlaylistContainer/PlaylistModifiers/EditPlaylistPortal/actions';
+import { makeSelectPlaylistParam } from 'containers/AppUtilities/ProfileContext/selectors';
 
-import injectReducer from 'utils/injectReducer';
-
-import { createStructuredSelector } from 'reselect';
-import reducer from './reducer';
 import { makeSelectSelectedPlid } from './selectors';
+import { getPlaylist } from './actions';
 
-class PlaylistContainer extends React.PureComponent {
-  handleSetPlaylist = (e, d) => {
-    this.props.setPlaylist(d.playlist);
-  };
+class PlaylistContainer extends React.Component {
+  componentDidMount() {
+    if (this.props.playlistParam) {
+      this.props.getPlaylist();
+    }
+  }
 
   render() {
     return (
@@ -29,13 +32,15 @@ class PlaylistContainer extends React.PureComponent {
           <Playlist
             key={playlist.get('plid')}
             playlist={playlist}
-            onSetPlaylist={this.handleSetPlaylist}
+            onSetPlaylist={this.props.setPlaylist}
             selectedPlid={this.props.selectedPlid}
+            onSetEditedPlaylist={this.props.setEditedPlaylist}
           />
         ))}
-        <IsSideBarOwner>
+        <IsOwner>
           <AddPlaylist />
-        </IsSideBarOwner>
+          <EditPlaylistPortal />
+        </IsOwner>
       </Menu.Menu>
     );
   }
@@ -45,14 +50,20 @@ PlaylistContainer.propTypes = {
   setPlaylist: PropTypes.func.isRequired,
   playlists: PropTypes.object.isRequired,
   selectedPlid: PropTypes.number,
+  setEditedPlaylist: PropTypes.func.isRequired,
+  playlistParam: PropTypes.string,
+  getPlaylist: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
   selectedPlid: makeSelectSelectedPlid(),
+  playlistParam: makeSelectPlaylistParam(),
 });
 
 const mapDispatchToProps = {
   setPlaylist,
+  setEditedPlaylist,
+  getPlaylist,
 };
 
 const withConnect = connect(
@@ -60,9 +71,4 @@ const withConnect = connect(
   mapDispatchToProps
 );
 
-const withReducer = injectReducer({ key: 'PlaylistContainer', reducer });
-
-export default compose(
-  withReducer,
-  withConnect
-)(PlaylistContainer);
+export default compose(withConnect)(PlaylistContainer);

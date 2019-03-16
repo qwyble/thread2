@@ -8,6 +8,8 @@ import UserContainer from 'containers/AppUtilities/UserContainer/reducers';
 import SongsContainer from 'containers/SongsContainer/SongsContainer/reducer';
 import ProfileContext from 'containers/AppUtilities/ProfileContext/reducer';
 import PlaybackContainer from 'containers/Audio/PlaybackContainer/reducer';
+import PlaylistContainer from 'containers/SideBar/PlaylistContainer/reducer';
+import CategoryContainer from 'containers/SideBar/CategoryContainer/reducer';
 
 import history from 'utils/history';
 
@@ -20,6 +22,8 @@ export default function createReducer(injectedReducers = {}) {
     ProfileContext,
     SongsContainer,
     PlaybackContainer,
+    PlaylistContainer,
+    CategoryContainer,
     ...injectedReducers,
   });
 

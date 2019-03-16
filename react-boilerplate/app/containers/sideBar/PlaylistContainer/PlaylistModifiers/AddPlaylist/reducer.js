@@ -7,7 +7,7 @@ import {
 } from './constants';
 
 const initialState = fromJS({
-  isLoading: true,
+  isLoading: false,
 });
 
 export default function addPlaylistReducer(state = initialState, action) {

@@ -1,12 +1,13 @@
 import axios from 'axios';
+import { fromJS } from 'immutable';
 import { call, takeLatest, put } from 'redux-saga/effects';
-import { setError } from 'containers/Wrappers/ErrorWrapper/actions';
-import {
-  editCategorySuccess,
-  editCategoryFailed,
-  editCategoryInCats,
-} from './actions';
 
+import { setError } from 'containers/Wrappers/ErrorWrapper/actions';
+import { setSuccess } from 'containers/Wrappers/SuccessWrapper/actions';
+
+import { setEditedCategory } from 'containers/SideBar/CategoryContainer/CategoryModifiers/EditCategoryPortal/actions';
+
+import { editCategorySuccess, editCategoryFailed } from './actions';
 import { EDIT_CATEGORY } from './constants';
 
 export default function* sideBarSaga() {
@@ -16,8 +17,9 @@ export default function* sideBarSaga() {
 function* editCategory(action) {
   try {
     yield call(editCategoryRequest, action.category);
-    yield put(editCategorySuccess());
-    yield put(editCategoryInCats(action.category));
+    yield put(editCategorySuccess(action.category));
+    yield put(setSuccess('Category renamed.'));
+    yield put(setEditedCategory(fromJS({}), -1));
   } catch (err) {
     yield put(editCategoryFailed());
     yield put(setError(err.message));

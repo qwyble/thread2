@@ -5,7 +5,7 @@ import IsSideBarOwner from 'containers/Wrappers/IsSideBarOwner';
 import PlaylistContainer from 'containers/SideBar/PlaylistContainer';
 import AnimationWrapper from 'containers/Wrappers/AnimationWrapper';
 
-import EditCategoryPortal from 'components/SideBar/Categories/CategoryModifiers/EditCategoryPortal';
+import EditCategoryDropdown from 'components/SideBar/Categories/CategoryModifiers/EditCategoryDropdown';
 
 import StyledButton from './StyledButton';
 require('./css.css');
@@ -15,21 +15,29 @@ class Category extends React.Component {
     this.props.onSetCategory(this.props.category);
   };
 
+  handleSetEditedCategory = whichPortal => {
+    this.props.onSetEditedCategory(
+      this.props.category,
+      parseInt(whichPortal, 10)
+    );
+  };
+
   render() {
     return (
       <div>
         <div className="ui category-item">
           <IsSideBarOwner>
-            <EditCategoryPortal
+            <EditCategoryDropdown
               id={this.props.category.get('catid')}
               catname={this.props.category.get('catname')}
+              onSetEditedCategory={this.handleSetEditedCategory}
             />
           </IsSideBarOwner>
           <StyledButton onClick={this.handleSelectCategory}>
             {this.props.category.get('catname')}
           </StyledButton>
         </div>
-        <AnimationWrapper displayLists={this.props.selected}>
+        <AnimationWrapper displayLists={this.props.isSelected}>
           <PlaylistContainer
             playlists={this.props.category.get('pls')}
             catId={this.props.category.get('catid')}
@@ -43,7 +51,8 @@ class Category extends React.Component {
 Category.propTypes = {
   onSetCategory: PropTypes.func.isRequired,
   category: PropTypes.object.isRequired,
-  selected: PropTypes.bool,
+  isSelected: PropTypes.bool.isRequired,
+  onSetEditedCategory: PropTypes.func.isRequired,
 };
 
 export default Category;

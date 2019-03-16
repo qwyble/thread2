@@ -14,9 +14,8 @@ function RenameCategory(state = initialState, action) {
   switch (action.type) {
     case EDIT_CATEGORY:
       return state.set('isLoading', true);
-    case EDIT_CATEGORY_SUCCESS: {
+    case EDIT_CATEGORY_SUCCESS:
       return state.set('isLoading', false);
-    }
     case EDIT_CATEGORY_FAILED:
       return state.set('isLoading', false);
     default:

@@ -5,22 +5,24 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
-import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 
 import IsSideBarOwner from 'containers/Wrappers/IsSideBarOwner';
 import LoaderWrapper from 'containers/Wrappers/LoaderWrapper';
 
-import { setCategory } from 'containers/SideBar/CategoryContainer/actions';
 import { makeSelectProfileId } from 'containers/AppUtilities/ProfileContext/selectors';
-import { makeSelectSelectedCategoryId } from 'containers/SideBar/CategoryContainer/selectors';
+import { setEditedCategory } from 'containers/SideBar/CategoryContainer/CategoryModifiers/EditCategoryPortal/actions';
+import EditCategoryPortal from 'containers/SideBar/CategoryContainer/CategoryModifiers/EditCategoryPortal';
 
 import CategoryMapper from './utils/CategoryMapper';
 import AddCategory from './CategoryModifiers/AddCategory';
 
-import { makeSelectCategories, makeSelectIsLoading } from './selectors';
-import { getCategories } from './actions';
-import reducer from './reducer';
+import {
+  makeSelectSelectedCategoryId,
+  makeSelectCategories,
+  makeSelectIsLoading,
+} from './selectors';
+import { getCategories, setCategory } from './actions';
 import saga from './saga';
 
 class CategoryContainer extends React.Component {
@@ -35,16 +37,17 @@ class CategoryContainer extends React.Component {
   }
 
   render() {
-    console.log('in cat container');
     return (
       <LoaderWrapper isLoading={this.props.isLoading}>
         <CategoryMapper
           categories={this.props.categories}
           onSetCategory={this.props.setCategory}
           selectedCategoryId={this.props.selectedCategoryId}
+          onSetEditedCategory={this.props.setEditedCategory}
         />
         <IsSideBarOwner>
           <AddCategory />
+          <EditCategoryPortal />
         </IsSideBarOwner>
       </LoaderWrapper>
     );
@@ -58,6 +61,7 @@ CategoryContainer.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   ownerId: PropTypes.number.isRequired,
   selectedCategoryId: PropTypes.number,
+  setEditedCategory: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -70,6 +74,7 @@ const mapStateToProps = createStructuredSelector({
 const mapDispatchToProps = {
   getCategories,
   setCategory,
+  setEditedCategory,
 };
 
 const withConnect = connect(
@@ -77,11 +82,9 @@ const withConnect = connect(
   mapDispatchToProps
 );
 
-const withReducer = injectReducer({ key: 'CategoryContainer', reducer });
 const withSaga = injectSaga({ key: 'CategoryContainer', saga });
 
 export default compose(
-  withReducer,
   withSaga,
   withConnect
 )(CategoryContainer);

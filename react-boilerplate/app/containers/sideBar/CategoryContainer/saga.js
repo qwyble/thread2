@@ -1,15 +1,9 @@
 import { call, takeLatest, put, select } from 'redux-saga/effects';
 import axios from 'axios';
 
-import {
-  makeSelectProfileId,
-  makeSelectIsOwner,
-} from 'containers/AppUtilities/ProfileContext/selectors';
+import { makeSelectProfileId } from 'containers/AppUtilities/ProfileContext/selectors';
 
-import { setPlaylist } from 'containers/SideBar/PlaylistContainer/actions';
 import { setError } from 'containers/Wrappers/ErrorWrapper/actions';
-
-import { makeSelectPlaylistParam } from './selectors';
 
 import { GET_CATEGORIES } from './constants';
 import { getCategoriesCompleted } from './actions';
@@ -20,48 +14,25 @@ export default function* CategoryContainerSaga() {
 
 function* getCategories() {
   try {
-    const plidParam = yield call(getPlParam);
-    const profileId = yield call(getProfileId);
+    const profileId = yield select(makeSelectProfileId());
     const url = getUrl();
-    const { categories2, playlist } = yield call(
-      getCatsRequest,
-      url,
-      profileId,
-      plidParam
-    );
-    console.log(categories2);
+    const { categories2 } = yield call(getCatsRequest, url, profileId);
     yield put(getCategoriesCompleted(categories2));
-    if (playlist) yield put(setPlaylist(playlist));
   } catch (error) {
     yield put(getCategoriesCompleted([]));
     yield put(setError(error.message));
   }
 }
 
-function* getProfileId() {
-  const isOwner = yield select(makeSelectIsOwner());
-  if (isOwner) return '0';
-  return yield select(makeSelectProfileId());
-}
-
-function* getPlParam() {
-  const plParam = yield select(makeSelectPlaylistParam());
-  if (plParam) return plParam;
-  return '';
-}
-
 function getUrl() {
   return `https://thread-204819.appspot.com/getPlaylists`;
 }
 
-function getCatsRequest(url, profileId, plidParam) {
+function getCatsRequest(url, profileId) {
   return axios({
     method: 'get',
     url,
-    params: {
-      profileId,
-      plidParam,
-    },
+    params: { profileId },
     withCredentials: true,
   })
     .then(categories => categories.data)
@@ -69,20 +40,3 @@ function getCatsRequest(url, profileId, plidParam) {
       throw err;
     });
 }
-/*
-
-function getPlaylistRequest(plParam) {
-  if (plParam) {
-    return axios({
-      method: 'get',
-      url: `https://thread-204819.appspot.com/getPlaylist/${plParam}`,
-      withCredentials: true,
-    })
-      .then(result => result.data)
-      .catch(err => {
-        throw new Error(err.message);
-      });
-  }
-  return undefined;
-}
-*/

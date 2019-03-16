@@ -1,14 +1,14 @@
 import React from 'react';
-import PathWrapper from 'containers/Wrappers/PathWrapper';
-import IsPlaylistOwner from 'containers/Wrappers/IsPlaylistOwner';
+import IsPlaylistPathWrapper from 'containers/Wrappers/IsPlaylistPathWrapper';
+import IsSideBarOwner from 'containers/Wrappers/IsSideBarOwner';
 import PublicityPortal from 'containers/SongsContainer/PlaylistModifiers/PublicityPortal';
 
 const PublicityPortalWrapper = () => (
-  <PathWrapper>
-    <IsPlaylistOwner>
+  <IsPlaylistPathWrapper>
+    <IsSideBarOwner>
       <PublicityPortal />
-    </IsPlaylistOwner>
-  </PathWrapper>
+    </IsSideBarOwner>
+  </IsPlaylistPathWrapper>
 );
 
 export default PublicityPortalWrapper;
